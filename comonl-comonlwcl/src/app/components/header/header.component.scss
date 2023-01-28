@@ -1,0 +1,207 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+
+header {
+
+  // Aggiunta transizione sul translateY
+  will-change: transform;
+  transition: transform 0.3s;
+
+  .navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-text {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 0;
+    color: #fff;
+    letter-spacing: 0.48px;
+    line-height: 1.8;
+
+    @media (max-width: 800px){
+      font-size: 18px;
+    }
+  }
+
+  &.header-hidden {
+    -webkit-transform: translateY(-110%);
+    transform: translateY(-110%);
+  }
+
+
+  .menu-utente{
+    .dropdown-menu{
+      right: 0;
+      left: auto;
+    }
+  }
+
+
+  .dropdown-toggle::after {
+    margin-left: 0;
+    vertical-align: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+  }
+
+  nav{
+
+  &.navbar-dark{
+    background:#178CD6;
+    color:#fff;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+
+  &.navbar-dark-blue{
+    background:#006CB4;
+    padding: 0.6rem 1rem;
+
+    .fa-id-card, .fa-question-circle{
+      font-size: 24px;
+      margin-right: 24px;
+      padding-top: 10px;
+
+      @media (max-width: 800px){
+        font-size: 18px;
+      }
+
+    }
+
+    .utente{
+      /* border: 1px solid #fff;*/
+      border-radius: 50%;
+      padding: 6px 4px;
+      background: #fff;
+      color: #213366;
+      font-weight: 600;
+      text-align: center;
+      display: inline-block;
+    }//utente
+  }//navbar-dark-blue
+
+  a,
+  a:focus
+  a:hover {
+    color:#fff;
+  }
+
+  .btn-link {
+    font-weight: 400;
+    color: #fff;
+    min-width: auto;
+    padding: 0;
+    margin-top: -10px;
+
+    /*&:hover{background: #2c85c1;}*/
+
+    .small{
+      display: block;
+      font-weight: 60%;
+      text-transform: lowercase;
+    }//small
+  }
+
+.ng-star-inserted{
+  padding-right: 8px;
+
+  &:disabled{
+    font-weight: bold;
+    border-bottom: 3px solid #fff;
+    padding: 9px 0px 3px;
+    margin-right: 10px;
+    margin-bottom: 6px;
+    opacity: 1;
+  }
+
+}
+
+}//
+
+
+
+}//header
+
+
+
+.btn-primary {
+  &.accedi{
+    padding: 8px 14px;
+    margin-top: -10px;
+
+    &:hover, &:active, &.active, &:focus {
+      background: #2c85c1;
+    }
+  }
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background-color: #17181F;
+}
+
+@media (min-width: 992px){
+
+#menu-mobile{display: none;}
+
+}
+
+#menu-mobile{
+  border-radius: 50%;
+  margin-right: 10px;
+  padding: 5px;
+
+  &:hover{background: #2c85c1;}
+  .fa-bars{font-size: 24px;}
+}
+
+@media (max-width: 800px){
+  .col-sm-8 {
+      -webkit-box-flex: 0;
+      flex: 0 0 66.6666666667%;
+      max-width: 66.6666666667%;
+  }
+
+  .col-sm-7 {
+    -webkit-box-flex: 0;
+    flex: 0 0 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+
+  .col-md-5 {
+    -webkit-box-flex: 0;
+    flex: 0 0 41.6666666667%;
+    max-width: 41.6666666667%;
+}
+  .col-md-6 {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+
+  .col-sm-4 {
+    -webkit-box-flex: 0;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+
+}
+

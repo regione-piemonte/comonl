@@ -1,0 +1,116 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+    <div class="col-12">
+      <h3>{{ 'RICERCA_COMUNICAZIONI.RESULTS.TITLE' | translate}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-2 col-lg-2">
+      <p class="filtri">{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.FILTERS_APPLY' | translate}}</p>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-7 filtri">
+      <label *ngIf="formRicercaVardatori?.codiceFiscaleAzienda"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.CF_AZIENDA" | translate}}:
+            {{formRicercaVardatori?.codiceFiscaleAzienda}}</label>
+            <label *ngIf="formRicercaVardatori?.denominazioneAzienda"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.DENOM_AZIENDA" | translate}}:
+              {{formRicercaVardatori?.denominazioneAzienda}}</label>
+            <label *ngIf="formRicercaVardatori?.codiceFiscaleLavoratore"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.CF_LAVORATORE" | translate}}:
+              {{formRicercaVardatori?.codiceFiscaleLavoratore}}</label>
+        <label *ngIf="formRicercaVardatori?.cognomeLavoratore"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.COGNOME_LAVORATORE" | translate}}:
+            {{formRicercaVardatori?.cognomeLavoratore}}</label>
+            <label *ngIf="formRicercaVardatori?.nomeLavoratore"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.NOME_LAVORATORE" | translate}}:
+              {{formRicercaVardatori?.nomeLavoratore}}</label>
+        <label *ngIf="formRicercaVardatori?.dataInvioInserimentoDa "><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_DA" | translate}}:
+            {{formRicercaVardatori?.dataInvioInserimentoDa | date: 'dd/MM/yyyy'}}</label>
+        <label *ngIf="formRicercaVardatori?.dataInvioInserimentoA"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_A" | translate}}:
+            {{formRicercaVardatori?.dataInvioInserimentoA | date: 'dd/MM/yyyy'}}</label>
+        <label *ngIf="formRicercaVardatori?.statoComunicaziones && formRicercaVardatori?.statoComunicaziones.length > 0"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.STATO_COM" | translate}}:
+            <div *ngFor="let item of formRicercaVardatori?.statoComunicaziones">
+              {{item?.dsComTStatoComunicazione}}
+            </div>
+        </label>
+        <label *ngIf="formRicercaVardatori?.codiceRegionale"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.COD_REG" | translate}}:
+          {{formRicercaVardatori?.codiceRegionale}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.tipoComunicazione"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.TIPO_COM" | translate}}:
+          {{formRicercaVardatori?.tipoComunicazione?.dsComTTipoComunicazione}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.tipoComunicazioneTu"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.TIPO_COM_TU" | translate}}:
+          {{formRicercaVardatori?.tipoComunicazioneTu?.dsComTTipoComunicazione}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.provinciaProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_PROV" | translate}}:
+          {{formRicercaVardatori?.provinciaProtocollo?.dsComTProvincia}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.annoProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_ANNO" | translate}}:
+          {{formRicercaVardatori?.annoProtocollo}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.numeroProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_NUMERO" | translate}}:
+          {{formRicercaVardatori?.numeroProtocollo}}
+        </label>
+        <label *ngIf="formRicercaVardatori?.tipoVariazione"><i class="fas fa-check"></i>
+          {{ "VARDATORI.RICERCA.FIELD.TIPO_VARIAZIONE" | translate}}:
+          {{ (formRicercaVardatori?.tipoVariazione === 'A'? "VARDATORI.RICERCA.FIELD.RAGIONE_SOC" : "VARDATORI.RICERCA.FIELD.DATORE_LAVORO") | translate }}</label>
+    </div>
+  </div>
+  <div class="mt-5 scrollbar-table scrollbar-primary">
+    <comonl-paginated-table [pagedResponse]="pagedResponse" (changePaginationData)="onChangePaginationData($event)" #pagedTable [columnNumber]="9" [limit]="currentPaginationData.limit">
+      <ng-template comonlPaginationHead>
+        <tr>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.AZIENDA' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.AZIENDA_PREC' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_INVIO_INS' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_TRASF' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_EVENTO' | translate }}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.TIPO' | translate}}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.STATO' | translate}}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.COD_COM' | translate}}</th>
+          <th>{{'APP.AZIONI' | translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template comonlPaginationBody let-el>
+        <tr>
+          <td>{{ el?.codiceFiscaleDatore}}</td>
+          <td>{{ el?.codiceFiscaleDatorePrec}}</td>
+          <td>{{ (el?.dtInvio ? el?.dtInvio : el?.dtInsert )| date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dtTrasferimento | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dtEvento | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dsComTTipoComunicazione  }}</td>
+          <td>{{ el?.dsComTStatoComunicazione  }}</td>
+          <td>{{ el?.codiceComunicazioneReg  }}</td>
+          <td class="azioni">
+            <!-- <a *ngIf="showNuovaCoAggiornamento(el)" (click)="nuovaCoAggiornamento(el)" title="Nuova CO aggiornam."><i class="fas fa-plus"></i></a> -->
+            <!-- <a *ngIf="showNuovaAssunzione(el)" title="Nuovo Assunzione"><i class="fas fa-plus"></i></a> -->
+            <a *ngIf="el?.dsComTStatoComunicazione !== 'INSERITA'" (click)="goToDettaglio(el,'view')" title="Dettaglio"><i class="fas fa-eye"></i></a>
+            <a *ngIf="el?.dsComTStatoComunicazione === 'INSERITA'" (click)="goToDettaglio(el,'edit')" title="modifica"><i class="fas fa-edit"></i></a>
+            <a *ngIf="el?.dsComTStatoComunicazione !== 'CANCELLATA'" (click)="goToStampa(el?.idComDComunicazione)" title="Stampa"><i class="fas fa-file-pdf"></i></a>
+            <a *ngIf="el?.dsComTStatoComunicazione === 'VALIDATA'" (click)="goToDettaglio(el,'rettifica')" title="Rettifica"><i class="fas fa-hand-paper"></i></a>
+            <a *ngIf="el?.dsComTStatoComunicazione === 'INSERITA'" (click)="onClickElimina(el?.idComDComunicazione)" title="Elimina"><i class="fas fa-trash-alt"></i></a>
+            <a *ngIf="el?.dsComTStatoComunicazione === 'VALIDATA'" (click)="goToDettaglio(el,'annullo')" title="Annulla"><i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </ng-template>
+    </comonl-paginated-table>
+    <div class="row">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onClickEsportaElencoComunicazioni()">
+          ESPORTA PDF
+        </button>
+      </div>
+    </div>
+  </div>

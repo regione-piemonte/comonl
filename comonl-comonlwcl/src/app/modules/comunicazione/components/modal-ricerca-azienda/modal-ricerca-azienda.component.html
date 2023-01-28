@@ -1,0 +1,47 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3>
+    <button type="button" class="btn btn-primary" style="box-shadow: none !important; border: none; outline: none; background-color: white; color: #000; font-size: 20pt; font-weight: bold" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formRicercaAzienda" *ngIf="showForm">
+        <div class="row">
+            <div class="form-group col-sm-8 col-md-3">
+                <label class="field" for="cfAzienda">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}</label>
+            </div>
+            <div class="form-group col-sm-8 col-md-4">
+                <input type="text"
+                        class="form-control"
+                        formControlName="cfAzienda"
+                        id="cfAzienda"
+                        maxlength="50">
+                    <div *ngIf="f?.cfAzienda?.errors" class="text-danger">
+                    <div *ngIf="f?.cfAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-8 col-md-3">
+                <label class="field" for="provincia">{{ 'ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.PROVINCIA_DOMICILIO' | translate}}</label>
+            </div>
+            <div class="form-group col-sm-8 col-md-4">
+                <select
+                class="form-select"
+                formControlName="provincia"
+                id="provincia">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let provincia of listaProvince" [ngValue]="provincia">{{provincia.dsComTProvincia}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    </div>
+  <div  *ngIf="showForm" class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Annulla</button>
+    <button type="button" class="btn btn-primary ml-auto">Conferma</button>
+  </div>

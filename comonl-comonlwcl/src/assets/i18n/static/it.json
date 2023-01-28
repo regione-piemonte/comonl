@@ -1,0 +1,66 @@
+{
+  "MESSAGES": {
+    "SYS-SYS-A-0001": "Si desidera annullare il soggetto selezionato?",
+    "SYS-SYS-A-0002": "Si desidera ripristinare il soggetto selezionato?",
+    "SYS-SYS-A-0003": "Si desidera annullare l'azienda/studio professionale?",
+    "SYS-SYS-A-0004": "Si desidera ripristinare l'azienda/studio professionale?",
+    "SYS-SYS-A-0005": "Si conferma la revoca della Delega selezionata?",
+    "SYS-SYS-A-0006": "Si conferma la validazione della Delega selezionata?",
+    "SYS-SYS-A-0007": "Si conferma l'annullamento della Delega selezionata?",
+    "SYS-SYS-A-0008": "Si conferma il salvataggio della Delega selezionata?",
+    "SYS-SYS-A-0009": "Si conferma l'invio della Comunicazione?",
+    "SYS-SYS-A-0010": "Si conferma di voler procedere con la variazione della sede legale?",
+    "SYS-SYS-A-0011": "Si desidera eliminare la comunicazione selezionata?",
+
+    "SYS-SYS-E-0001": "Errore generico: {{error}}",
+    "SYS-SYS-E-0002": "Errore di sistema: {{error}}",
+    "SYS-SYS-E-0003": "Parametro obbligatorio non presente: {{parameter}}",
+    "SYS-SYS-E-0004": "Parametro obbligatorio non presente o vuoto: {{parameter}}",
+    "SYS-SYS-E-0005": "{{fieldname}} deve essere {{operator}} {{value}}",
+    "SYS-SYS-E-0006": "{{entity}} non presente su sistema",
+    "SYS-SYS-E-0007": "Accesso non permesso",
+    "SYS-SYS-E-0008": "Non è possibile salvare: un altro utente ha modificato il dato. Ritornare alla consultazione e ricaricarlo",
+    "SYS-SYS-E-0009": "Sono stati riscontrati i seguenti errori: {{errori}}",
+    "SYS-SYS-E-0010": "Sono stati riscontrati degli errori durante l'elaborazione {{elaborazione_id}}",
+    "SYS-SYS-E-0011": "{{entity}} cancellato: puoi reinserirlo con lo stesso codice o contattare l’assistenza per ripristinarlo",
+    "SYS-SYS-E-0012": "Attenzione! Il campo {{parameter}} è obbligatorio",
+    "SYS-SYS-W-0001": "Attenzione: i Dati della comunicazione di urgenza, non saranno più disponibili in quanto si sta inserendo un'assunzione generata da tirocinio",
+
+    "INT-INT-E-0000": "Esiste già un intervento con questo codice.",
+    "INT-INT-P-0001": "Intervento inserito con successo!",
+    "INT-INT-P-0002": "Intervento aggiornato con successo!",
+    "INT-INT-P-0003": "Intervento eliminato con successo!",
+    "INT-INT-A-0004": "Si desidera eliminare l'intervento?",
+    "INT-INT-E-0005": "Non sono presenti risultati per i criteri di ricerca impostati",
+    "INT-INT-A-0006": "Stai uscendo senza salvare le modifiche.",
+    "INT-INT-A-0006-02": "Vuoi salvare le modifiche?",
+    "INT-INT-A-0007": "Non sono presenti risultati per i criteri di ricerca impostati, procedere con l’inserimento del nuovo attuatore",
+    "INT-INT-A-0008": "Il codice fiscale inserito esiste già e corrisponde alla ragione sociale ‘{{ descrizione }}’. Procedere con l’inserimento di questo attuatore?",
+    "COM-COM-E-0003": "Attenzione! Il campo {{parameter}} puo' valere SI o NO",
+    "COM-COM-E-0006": "Attenzione! Il campo {{parameter}} non puo' essere rettificato in quanto dato essenziale.",
+    "COM-COM-E-0015": "E' possibile rettificare solo l'ultima comunicazione del rapporto di lavoro. L'ultima comunicazione e' {{tipoComunicazione}} del {{dtRiferimento}} ({{codiceRegionale}})",
+    "COM-COM-E-0017": "Non e' possibile cancellare una comunicazione in stato {{statoComunicazione}}",
+    "COM-COM-E-0022": "Attenzione! Il campo {{field}} contiene un valore non più valido: {{code}} - {{desc}}. E' necessario aggiornare il dato per proseguire.",
+
+    "COM-COM-E-1027": "Attenzione: Comnbinazione di profili non ammessa. Esiste già un profilo come {{tipo}}.",
+    "COM-RAP-E-0182": "Attenzione! Il codice fiscale del lavoratore: {{parameter}}, non può essere uguale a quello del datore.",
+    "COM-RAP-W-0055": "Attenzione! Sulla base del Contratto collettivo e del livello inseriti, la retribuzione risulta inferiore al minimo ammesso calcolato: {{parameter}}. Si consiglia di verificare. Con la conferma, i dati vengono comunque accettati dal sistema sotto la responsabilita' di chi compila la comunicazione.",
+    "COM-RIE-W-0001": "Attenzione: verificare la correttezza delle date poiché la comunicazione potrebbe non rientrare nei termini previsti dalla legge.",
+    "COM-RAP-W-0146": "WARNING: l'età minima del lavoratore per il contratto di Apprendistato per la qualifica professionale e per il diploma professionale è di 15 anni compiuti.(C.F. {{parameter}}).",
+    "COM-RAP-W-0147": "WARNING: l'età massima del lavoratore per il contratto di Apprendistato per la qualifica professionale e per il diploma professionale è di 26 anni non compiuti.(C.F. {{parameter}}).",
+
+    "COM-RAP-W-0148": "WARNING: l'età minima del lavoratore per il contratto di Apprendistato professionale o contratto di mestiere (anche per lavoratori stagionali) è di 17 anni compiuti.(C.F. {{parameter}}).",
+    "COM-RAP-W-0149": "WARNING: l'età massima del lavoratore per il contratto di Apprendistato professionale o contratto di mestiere (anche per lavoratori stagionali) è di 30 anni non compiuti.(C.F. {{parameter}}).",
+
+    "COM-RAP-W-0150": "WARNING: l'età minima del lavoratore per il contratto di Apprendistato di alta formazione e ricerca è di 18 anni compiuti.(C.F. {{parameter}}).",
+    "COM-RAP-W-0151": "WARNING: l'età massima del lavoratore per il contratto di Apprendistato di alta formazione e ricerca è di 30 anni non compiuti.(C.F. {{parameter}}).",
+
+    "COM-RAP-W-0152": "WARNING: il lavoratore non ha raggiunto l'età minima per il lavoro.(C.F. {{parameter}}).",
+    "COM-RAP-W-0153": "WARNING: l'età massima del lavoratore per il contratto di Apprendistato di alta formazione e ricerca è di 30 anni non compiuti.(C.F. {{parameter}})."
+  },
+  "DATEPICKER": {
+    "WEEKDAYS": ["Lu", "Ma", "Me", "Gi", "Ve", "Sa", "Do"],
+    "MONTHS_SHORT": ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
+    "MONTHS_LONG": ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"]
+  }
+}

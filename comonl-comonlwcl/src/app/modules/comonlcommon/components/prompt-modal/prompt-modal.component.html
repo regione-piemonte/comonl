@@ -1,0 +1,18 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="callback(modal, false)">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <ngb-alert [type]="type" [dismissible]="false">{{message}}</ngb-alert>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="callback(modal, true)">{{yesLabel}}</button>
+
+    <button *ngIf="noLabel" type="button" class="btn btn-outline-dark" (click)="callback(modal, false)">{{noLabel}}</button>
+</div>

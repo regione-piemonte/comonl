@@ -1,0 +1,92 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+    <div class="col-12">
+      <h3>{{ 'RICERCA_DELEGA.RESULTS.TITLE' | translate}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-2 col-lg-2">
+      <p class="filtri">{{ 'RICERCA_DELEGA.RESULTS.FIELD.FILTERS_APPLY' | translate}}</p>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-7 filtri">
+        <label *ngIf="formRicercaDelega?.codiceFiscaleDelegato"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.CF_DELEGATO" | translate}}:
+            {{formRicercaDelega?.codiceFiscaleDelegato | uppercase}}
+        </label>
+        <label *ngIf="formRicercaDelega?.cognomeDelegato"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.COGNOME_DELEGATO" | translate}}:
+            {{formRicercaDelega?.cognomeDelegato}}
+        </label>
+        <label *ngIf="formRicercaDelega?.nomeDelegato"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.NOME_DELEGATO" | translate}}:
+            {{formRicercaDelega?.nomeDelegato}}
+        </label>
+        <label *ngIf="formRicercaDelega?.codiceFiscaleDelegante"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.CF_DELEGANTE" | translate}}:
+            {{formRicercaDelega?.codiceFiscaleDelegante | uppercase}}
+        </label>
+        <label *ngIf="formRicercaDelega?.cognomeDelegante"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.COGNOME_DELEGANTE" | translate}}:
+            {{formRicercaDelega?.cognomeDelegante}}
+        </label>
+        <label *ngIf="formRicercaDelega?.nomeDelegante"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.NOME_DELEGANTE" | translate}}:
+            {{formRicercaDelega?.nomeDelegante}}
+        </label>
+        <label *ngIf="formRicercaDelega?.codiceFiscaleImpresa"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.CF_IMPRESA" | translate}}:
+            {{formRicercaDelega?.codiceFiscaleImpresa}}
+        </label>
+        <label *ngIf="formRicercaDelega?.denominazione"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.DENOMINAZIONE" | translate}}:
+            {{formRicercaDelega?.denominazione}}
+        </label>
+        <label *ngIf="formRicercaDelega?.statoDelegas && formRicercaDelega?.statoDelegas.length > 0"><i class="fas fa-check"></i>
+            {{ "DELEGA.RICERCA.FIELD.STATO" | translate}}:
+            <div class="d-inline" *ngFor="let item of formRicercaDelega?.statoDelegas">
+              {{item.dsStatoDelega}}
+            </div>
+        </label>
+    </div>
+  </div>
+  <div class="mt-5 scrollbar-table scrollbar-primary">
+    <comonl-paginated-table [pagedResponse]="pagedResponse" (changePaginationData)="onChangePaginationData($event)" #pagedTable [columnNumber]="9" [limit]="currentPaginationData.limit">
+      <ng-template comonlPaginationHead>
+        <tr>
+          <th>{{ 'RICERCA_DELEGA.RESULTS.FIELD.DENOMINAZIONE' | translate }}</th>
+          <th>{{ 'RICERCA_DELEGA.RESULTS.FIELD.DELEGATO' | translate }}</th>
+          <th>{{ 'RICERCA_DELEGA.RESULTS.FIELD.DELEGANTE' | translate }}</th>
+          <th>{{ 'RICERCA_DELEGA.RESULTS.FIELD.STATO' | translate }}</th>
+          <th class="center">{{'APP.AZIONI' | translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template comonlPaginationBody let-el>
+        <tr>
+          <td>{{ el?.denominazioneImpresa }}</td>
+          <td>{{ el?.cognomeDelegato }} {{ el?.nomeDelegato }}</td>
+          <td>{{ el?.cognomeDelegante }} {{ el?.nomeDelegante }}</td>
+          <td>{{ el?.statoDelega.dsStatoDelega }}</td>
+          <td class="azioni">
+            <a *ngIf="el?.statoDelega.dsStatoDelega !== 'INSERITA'" (click)="goToDettaglioDelega(el, 'visualizza')" title="visualizza"><i class="fas fa-eye"></i></a>
+            <a *ngIf="el?.statoDelega.dsStatoDelega === 'INSERITA'" (click)="goToDettaglioDelega(el, 'modifica')" title="modifica"><i class="fas fa-edit"></i></a>
+            <a *ngIf="el?.statoDelega.dsStatoDelega === 'INSERITA'; else revoca"><i class="fas fa-trash-alt" title="elimina" (click)="onClickOpenModalOperazione(el, 'elimina', 'MESSAGES.SYS-SYS-A-0007')"></i></a>
+            <ng-template #revoca>
+              <a *ngIf="el?.statoDelega.dsStatoDelega === 'VALIDATA'"><i class="fas fa-trash-alt" title="revoca" (click)="onClickOpenModalOperazione(el, 'revoca', 'MESSAGES.SYS-SYS-A-0005')"></i></a>
+            </ng-template>
+            <a *ngIf="el?.statoDelega.dsStatoDelega === 'INSERITA'" title="valida" (click)="onClickOpenModalOperazione(el, 'valida', 'MESSAGES.SYS-SYS-A-0006')"><i class="fas fa-check-circle"></i></a>
+          </td>
+        </tr>
+      </ng-template>
+    </comonl-paginated-table>
+    <div class="row">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onClickEsportaElencoDeleghe()">
+          ESPORTA PDF
+        </button>
+      </div>
+    </div>
+  </div>
+

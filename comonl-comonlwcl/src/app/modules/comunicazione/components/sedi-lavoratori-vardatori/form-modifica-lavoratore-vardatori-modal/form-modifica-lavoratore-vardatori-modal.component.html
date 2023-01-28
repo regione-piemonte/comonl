@@ -1,0 +1,96 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">{{ 'ANAGRAFICA_LAV_MODAL.TITLE.EDIT' | translate}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="callback(modal)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <comonl-alert-message></comonl-alert-message>
+    <div class="modal-body">
+      <div class="card">
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.TITLE" | translate}}</h1>
+                    <label class="mb-4" >I campi contrassegnati con <span class="oblg asterisk">*</span> sono obbligatori</label>
+                    <div class="row">
+                      <div class="form-group col-sm-11 col-md-3" formGroupName="id">
+                          <label class="field" for="codiceFiscale">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.CF" | translate}} <span class="oblg asterisk">*</span></label>
+                              <input type="text"
+                                  class="form-control"
+                                  formControlName="codiceFiscale"
+                                  id="codiceFiscale"
+                                  minlength="11"
+                                  maxlength="16"
+                                  oninput="this.value = this.value.toUpperCase().trim()" >
+                                  <div *ngIf="f?.id?.controls?.codiceFiscale?.errors && f?.id?.controls?.codiceFiscale?.value?.length > 0" class="text-danger">
+                                    <div *ngIf="f?.id?.controls?.codiceFiscale?.errors?.minlength">{{"ERROR.FIELD.LENGHT_11" | translate}}</div>
+                                  </div>
+                                  <div *ngIf="f?.id?.controls?.codiceFiscale?.errors && f?.id?.controls?.codiceFiscale?.value?.length > 0" class="text-danger">
+                                    <div *ngIf="f?.id?.controls?.codiceFiscale?.errors?.pattern">{{"ERROR.FIELD.NOT_VALID_FORMAT" | translate}}</div>
+                                  </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-5">
+                          <label class="field" for="cognome">{{ "SEDI_LAVORATORI.FIELD.COGNOME" | translate}}</label>
+                              <input type="text"
+                                  class="form-control"
+                                  formControlName="cognome"
+                                  id="cognome"
+                                  maxlength="50">
+                        </div>
+                        <div class="form-group col-sm-8 col-md-4">
+                            <label class="field" for="nome">{{ "SEDI_LAVORATORI.FIELD.NOME" | translate}}</label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="nome"
+                                    id="nome"
+                                    maxlength="50">
+                        </div>
+                    </div>
+                    <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.TITLE" | translate}}</h1>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-3" formGroupName="comuneDomicilio">
+              <label class="field" for="codComuneMin">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COD_COMUNE" | translate}} <span class="oblg asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codComuneMin"
+                    oninput="this.value = this.value.toUpperCase().trim()"
+                    id="codComuneMin"
+                    minlength="3"
+                    maxlength="4">
+                    <div *ngIf="f?.comuneDomicilio?.controls?.codComuneMin?.errors" class="text-danger">
+                      <div *ngIf="f?.comuneDomicilio?.controls?.codComuneMin?.errors?.minlength && f?.comuneDomicilio?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                  </div>
+            </div>
+            <div class="form-group col-sm-11 col-md-4" formGroupName="comuneDomicilio">
+              <label class="field" for="dsComTComune">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA" | translate}} <span class="oblg asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="dsComTComune"
+                    oninput="this.value = this.value.toUpperCase()"
+                    id="dsComTComune"
+                    minlength="2"
+                    maxlength="100">
+                    <div *ngIf="f?.comuneDomicilio?.controls?.dsComTComune?.errors" class="text-danger">
+                      <div *ngIf="f?.comuneDomicilio?.controls?.dsComTComune?.errors?.minlength && f?.comuneDomicilio?.controls?.dsComTComune?.value?.length < 2">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                  </div>
+            </div>
+            <div class="col-auto line-height-btn-modal-anag-lav line-height-btn-modal-anag-lav">
+              <button type="button"
+                class="btn btn-primary ml-auto btn-lg btnSearch"
+                (click)="onClickFindComune()"
+                [disabled]="f?.comuneDomicilio?.controls?.codComuneMin?.value?.length < 3 && f?.comuneDomicilio?.controls?.dsComTComune?.value?.length < 2"
+                >{{ 'APP.SEARCH' | translate }}</button>
+            </div>
+          </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="callback(modal)">{{ 'APP.FIND_CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onClickConferma()"  class="btn btn-primary ml-auto">{{ 'APP.CONFIRM' | translate }}</button>
+</div>

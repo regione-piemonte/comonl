@@ -1,0 +1,13 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+@charset "UTF-8";
+@import "~bootstrap/scss/bootstrap";
+@import "~@ng-select/ng-select/scss/material.theme.scss";
+@import "~@ng-select/ng-select/scss/default.theme.scss";
+@import '~ngx-toastr/toastr';
+
+@import "./scss/font.scss";
+@import "./scss/custom.scss";
+@import "./scss/startup-loader.scss";

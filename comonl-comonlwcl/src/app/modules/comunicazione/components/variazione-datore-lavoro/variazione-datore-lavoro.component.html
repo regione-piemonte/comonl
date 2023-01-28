@@ -1,0 +1,290 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="variazione-datore-lavoro"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"VARIAZIONE_DATORE_LAVORO.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+        <div class="card">
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <h1 class="dati-anagrafici">{{"VARIAZIONE_DATORE_LAVORO.TITLE" | translate}}</h1>
+                    <!-- ************************* DATI COMUNICAZIONE ************************* -->
+                    <label *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="tipoTrasferimento">{{ 'VARIAZIONE_DATORE_LAVORO.FIELD.TIPO_VARIAZIONE' | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                            <select
+                                class="form-select"
+                                formControlName="tipoTrasferimento"
+                                (change)="this.INS_MODE ? onClickTipoTrasferimento(true) : onClickTipoTrasferimento(false)"
+                                id="tipoTrasferimento">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let tipoTrasferimento of listaTipoTrasferimento" [ngValue]="tipoTrasferimento">{{tipoTrasferimento?.dsComTTipoTrasferimento}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="dtTrasferimentoVarDatori">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.DATA_INIZIO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                            <div class="input-group">
+                                <input type="text"
+                                class="form-control"
+                                formControlName="dtTrasferimentoVarDatori"
+                                id="dtTrasferimentoVarDatori"
+                                ngbDatepicker
+                                #dtTrasferimentoVarDatori="ngbDatepicker"
+                                >
+                                <div class="input-group-append">
+                                <button
+                                    class="btn btn-outline-primary calendar"
+                                    (click)="dtTrasferimentoVarDatori.toggle()"
+                                    [disabled]="this.VIEW_MODE || this.ANNULLO_MODE"
+                                    type="button">
+                                    <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="dtFineAffittoRamo">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.DATA_FINE_AFFITTO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && flgAffittoRamo === true" class="asterisk">*</span></label>
+                            <div class="input-group">
+                                <input type="text"
+                                class="form-control"
+                                formControlName="dtFineAffittoRamo"
+                                id="dtFineAffittoRamo"
+                                ngbDatepicker
+                                #dtFineAffittoRamo="ngbDatepicker">
+                                <div class="input-group-append">
+                                <button
+                                    class="btn btn-outline-primary calendar"
+                                    (click)="dtFineAffittoRamo.toggle()"
+                                    [disabled]="this.flgAffittoRamo === false"
+                                    type="button">
+                                    <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form [formGroup]="formDatore">
+                    <h1 class="dati-anagrafici">{{"VARIAZIONE_DATORE_LAVORO.FIELD.DATI_AZIENDA_PRECEDENTE" | translate}}</h1>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label for="codiceFiscale">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.CF_AZIENDA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                                <input type="text"
+                                class="form-control"
+                                formControlName="codiceFiscale"
+                                id="codiceFiscale"
+                                minlength="11"
+                                maxlength="16"
+                                >
+                                <div *ngIf="fD?.codiceFiscale?.errors" class="text-danger">
+                                    <div *ngIf="fD?.codiceFiscale?.errors?.minlength">{{"ERROR.FIELD.LENGHT_11" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button"
+                            *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)"
+                            (click)="onClickFindAziendaPrec(fD?.codiceFiscale.value)"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            >{{ 'APP.SEARCH' | translate }}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label for="partitaIva">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.P_IVA" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="partitaIva"
+                                comonlDigitOnly
+                                id="partitaIva"
+                                maxlength="11"
+                                minlength="11">
+                            <div *ngIf="fD?.partitaIva?.errors" class="text-danger">
+                                <div *ngIf="fD?.partitaIva?.errors?.minlength">{{"ERROR.FIELD.LENGHT_11" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="dsDenominazioneDatore">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.DENOMINAZIONE_NOME_COGNOME" | translate}}</label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="dsDenominazioneDatore"
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="dsDenominazioneDatore"
+                                maxlength="100">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group gender col-sm-12 col-md-4">
+                            <label class="field cod" for="flgAzArtigiana">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.AZIENDA_ART" | translate}} </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input formControlName="flgAzArtigiana" type="radio" id="Si" [value]="'S'" >
+                                        <label class="radio-button" for="Si">Si</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input formControlName="flgAzArtigiana" type="radio" id="No" [value]="'N'" >
+                                        <label class="radio-button" for="No">No</label>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label class="field" for="naturaGiuridica">{{ 'VARIAZIONE_DATORE_LAVORO.FIELD.NATURA_GIURIDICA' | translate}}</label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="naturaGiuridica"
+                                id="naturaGiuridica">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let naturaGiuridica of listaNaturaGiuridica" [ngValue]="naturaGiuridica">{{naturaGiuridica.descrizione}}</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                    <div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-2" formGroupName="atecofin">
+                            <label for="codAtecofinMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_ATECO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="codAtecofinMin"
+                                    id="codAtecofinMin"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    maxlength="8"
+                                    >
+                                <div *ngIf="fD?.codAtecofinMin?.errors" class="text-danger">
+                                <div *ngIf="fD?.codAtecofinMin?.errors?.maxlength">{{"ERROR.FIELD.LENGHT_8" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="atecofin">
+                            <label for="dsComTAtecofin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTAtecofin"
+                                    id="dsComTAtecofin"
+                                    maxlength="250"
+                                    >
+                                <div *ngIf="fD?.dsComTAtecofin?.errors" class="text-danger">
+                                <div *ngIf="fD?.dsComTAtecofin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_6" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button"
+                            (click)="onClickFindAteco()"
+                            *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            >{{ 'APP.SEARCH' | translate }}</button>
+                        </div>
+                    </div>
+                    <form [formGroup]="formSedeLegale">
+                    <h1 class="dati-anagrafici">{{"VARIAZIONE_DATORE_LAVORO.FIELD.SEDE_LEGALE_PREC" | translate}}</h1>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-2" formGroupName="comune">
+                          <label class="field" for="codComuneMin">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.COD_COMUNE" | translate}} </label>
+                              <input type="text"
+                                  class="form-control"
+                                  formControlName="codComuneMin"
+                                  oninput="this.value = this.value.toUpperCase().trim()"
+                                  id="codComuneMin"
+                                  minlength="4"
+                                  maxlength="4">
+                                  <div *ngIf="fSL?.codComuneMin?.controls?.codComuneMin?.errors" class="text-danger">
+                                    <div *ngIf="fSL?.codComuneMin?.controls?.codComuneMin?.errors?.minlength && fSL?.comSedeLegale?.controls?.codComuneMin?.value?.length < 4">{{"ERROR.FIELD.MIN_LENGHT_4" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-4" formGroupName="comune">
+                          <label class="field" for="dsComTComune">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.DESCR_COMUNE" | translate}} </label>
+                              <input type="text"
+                                  class="form-control"
+                                  formControlName="dsComTComune"
+                                  oninput="this.value = this.value.toUpperCase()"
+                                  id="dsComTComune"
+                                  maxlength="50">
+                                  <div *ngIf="fSL?.dsComTComune?.controls?.dsComTComune?.errors" class="text-danger">
+                                    <div *ngIf="fSL?.dsComTComune?.controls?.dsComTComune?.errors?.minlength && fSL?.comSedeLegale?.controls?.codComuneMin?.value?.length < 4">{{"ERROR.FIELD.MIN_LENGHT_4" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                        <label for="indirizzoSede">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.INDIRIZZO" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="indirizzo"
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="indirizzoSede"
+                                maxlength="100">
+                        </div>
+                        <div class="form-group col-sm-8 col-md-2">
+                        <label class="field" for="capSede">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.CAP" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="codCap"
+                                id="capSede"
+                                comonlDigitOnly
+                                maxlength="5"
+                                minlength="5">
+                            <div *ngIf="fSL?.codCap?.errors" class="text-danger">
+                                <div *ngIf="fSL?.codCap?.errors?.minlength && fSL?.codCap?.errors?.maxlength">{{"ERROR.FIELD.LENGHT_5" | translate}} </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                        <label for="telefonoSede">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.TELEFONO" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                comonlDigitOnly
+                                formControlName="telefono"
+                                id="telefonoSede"
+                                >
+                        </div>
+                        <div class="form-group col-sm-8 col-md-2">
+                        <label class="field" for="fax">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.FAX" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="fax"
+                                id="fax"
+                                maxlength="15">
+                            <div *ngIf="fSL?.fax?.errors" class="text-danger">
+                                <div *ngIf="fSL?.fax?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-4">
+                            <label class="field" for="email">{{ "VARIAZIONE_DATORE_LAVORO.FIELD.EMAIL" | translate}} </label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="email"
+                                    id="email"
+                                    maxlength="50"
+                                    pattern="\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b">
+                                <div *ngIf="fSL?.email?.errors" class="text-danger">
+                                  <div *ngIf="fSL?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}} </div>
+                                </div>
+                          </div>
+                    </div>
+                </form>
+                </div>
+                </form>
+                <div class="row" *ngIf="!this.VIEW_MODE">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="goBack()"
+                        >{{ 'APP.BACK' | translate | uppercase}}</button>
+                      </div>
+                    <div class="col-auto ml-auto">
+                      <button type="button"
+                        class="btn btn-primary ml-auto btn-lg"
+                        (click)="onSubmit()"
+                        [disabled]="(!form.valid || fieldsAzPrec || fieldsSedeLegale) && !this.ANNULLO_MODE"
+                        >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,59 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+ngx-nestable .btn {
+  padding: 0;
+  min-width: initial;
+}
+label {
+  margin-bottom: 0;
+}
+
+.radio-label {
+  top: 4px;
+  cursor: pointer;
+  line-height: 20px;
+  font-size: 14px;
+
+  .label {
+    position: relative;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #C8CCD4;
+    border-radius: 100%;
+    -webkit-tap-highlight-color: transparent;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;;
+      background: #17a2b8;
+      transform: scale(0);
+      transition: all .2s ease;
+      opacity: .08;
+      pointer-events: none;
+    }
+  }
+  &:hover {
+    .label:after {
+      transform: scale(2);
+    }
+  }
+
+  input[type="radio"]:checked + .label {
+    border-color: #17a2b8;
+    &:after {
+      transform: scale(1);
+      transition: all .2s cubic-bezier(.35,.9,.4,.9);
+      opacity: 1;
+    }
+  }
+}

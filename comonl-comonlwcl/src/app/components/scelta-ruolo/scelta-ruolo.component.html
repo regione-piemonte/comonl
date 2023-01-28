@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<comonl-alert-msg
+  [typeMsg]="typeMsg"
+  [show]="hide"
+  [listMsg]="listMsg"
+></comonl-alert-msg>
+<div *ngIf="listaRuoli" class="card mt-3 mb-3">
+  <div class="card-body">
+    <h3>Elenco Ruoli Disponibili</h3>
+    <comonl-paginated-array-table [columnNumber]="4" [pagedResponse]="listaRuoli" [limit]="10">
+      <ng-template comonlPaginationHead>
+        <tr>
+          <th scope="col">Sel.</th>
+          <th scope="col">Denominazione azienda</th>
+          <th scope="col">Ruolo</th>
+          <th scope="col">Codice fiscale</th>
+        </tr>
+      </ng-template>
+      <ng-template comonlPaginationBody let-item>
+        <tr>
+          <td>
+            <input (change)="onClickChange(item)" type="radio" name="ilRadio">
+          </td>
+          <td>{{item.denominazioneAzienda}} </td>
+          <td>{{item.ilRuolo}} </td>
+          <td>{{item.codiceFiscaleAzienda}}</td>
+        </tr>
+      </ng-template>
+    </comonl-paginated-array-table>
+  </div>
+</div>

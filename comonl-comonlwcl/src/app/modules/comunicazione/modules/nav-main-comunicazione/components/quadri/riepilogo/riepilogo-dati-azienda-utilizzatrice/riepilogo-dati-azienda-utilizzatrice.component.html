@@ -1,0 +1,57 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_AZIENDA" | translate}}</h4>
+    <!-- <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.SEDE_ITALIANA"| translate}} <span class="valore"></span></div>
+    </div> -->
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.codiceFiscale}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.P_IVA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.partitaIva}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DENOMINAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.dsDenominazioneDatore}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.PUBB_AMM"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.flgPubAmm === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.ATTIVITA_ATECO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.atecofin?.codAtecofinMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.DESCR_ATTIVITA_ATECO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.atecofin?.dsComTAtecofin}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.flgSommin === 'S'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.NUM_CONTRATTO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.numContrSomm}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.DATA_INIZIO_CONTRATTO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.dtInizioContrattoSom | date:"dd/MM/yyyy"}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.DATA_FINE_CONTRATTO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.dtFineContrattoSom | date:"dd/MM/yyyy"}}</span></div>
+    </div>
+    <h4 class="title">{{"COMUNICAZIONE.SEDE_LEGALE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.STATO_ESTERO_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.statiEsteri?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.codCap}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.indirizzo}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeLegale?.email}}</span></div>
+    </div>
+    <h4 class="title">{{"COMUNICAZIONE.SEDE_OPERATIVA" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.STATO_ESTERO_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.statiEsteri?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.codCap}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.indirizzo}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL"| translate}} <span class="valore">{{comunicazioneToSave?.missione?.aziUtilizzatrice?.sedeOperativa?.email}}</span></div>
+    </div>
+</div>

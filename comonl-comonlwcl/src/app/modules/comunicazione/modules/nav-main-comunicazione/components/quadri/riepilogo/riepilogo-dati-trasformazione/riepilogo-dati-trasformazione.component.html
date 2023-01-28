@@ -1,0 +1,13 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_TRASFORMAZIONE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TRASFORMAZIONE.FIELD.DATA_TRASFORMAZIONE" | translate}} <span class="valore">{{(this.comunicazioneToSave?.missione ? this.comunicazioneToSave?.missione?.dtTrasformazione : this.comunicazioneToSave?.rapporto?.dtTrasformazione) | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-8"> {{ "TRASFORMAZIONE.FIELD.TIPO_TRASFORMAZIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione ? this.comunicazioneToSave?.missione?.trasformazionerl?.dsComTTrasformazionerl : this.comunicazioneToSave?.rapporto?.trasformazionerl?.dsComTTrasformazionerl}}</span></div>
+    </div>
+</div>

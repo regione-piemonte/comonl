@@ -1,0 +1,23 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em *ngIf="!flgModalTarget" data-scroll-marker="top"></em>
+<em *ngIf="flgModalTarget" data-scroll-marker="modal-top"></em>
+<br>
+<!-- <em data-scroll-marker="top"></em> -->
+<br>
+<div *ngIf="show">
+    <div *ngIf="typeMesage === 'S'" class="alert alert-success" role="alert" aria-atomic="true">
+      <span *ngFor="let msg of listSuccessMsg" [innerHTML]= "msg.errorMessage + '<br>' | escapeHtml"></span>
+    </div>
+    <div *ngIf="typeMesage === 'D'" class="alert alert-danger" role="alert" aria-atomic="true">
+      <span *ngFor="let msg of listDangerMsg" [innerHTML]= "getMessage(msg) + '<br>' | escapeHtml"></span>
+    </div>
+    <div *ngIf="typeMesage === 'W'" class="alert alert-warning" role="alert" aria-atomic="true">
+      <span *ngFor="let msg of listWarningMsg" [innerHTML]= "getMessage(msg) + '<br>' | escapeHtml"></span>
+    </div>
+    <div *ngIf="typeMesage === 'I'" class="alert alert-info" role="alert" aria-atomic="true">
+      <span *ngFor="let msg of listInfoMsg" [innerHTML]= "msg.errorMessage + '<br>' | escapeHtml"></span>
+    </div>
+  </div>

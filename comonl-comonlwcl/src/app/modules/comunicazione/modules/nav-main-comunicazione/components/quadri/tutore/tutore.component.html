@@ -1,0 +1,269 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="tutore"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-user mr-2"></i>{{"DATI_TUTORE.TITLE" | translate}}</h2>
+        <comonl-alert-message></comonl-alert-message>
+
+    <div *ngIf="showForm" class="card">
+        <div class="card-body">
+            <!-- ************************* DATI ANAGRAFICI DEL TUTORE ************************* -->
+            <form [formGroup]="form">
+                <h1 class="dati-anagrafici">{{"TUTORE.DATI_ANAGRAFICI" | translate}}</h1>
+                <label *ngIf="!this.VIEW_MODE">I campi contrassegnati con <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="cfTutore">{{ "TUTORE.FIELD.CF" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="cfTutore"
+                                id="cfTutore"
+                                oninput="this.value = this.value.toUpperCase().trim()"
+                                maxlength="16"
+                            >
+                            <div *ngIf="f?.cfTutore?.errors" class="text-danger">
+                                <div *ngIf="f?.cfTutore?.errors?.pattern">Formato non valido</div>
+                            </div>
+                    </div>
+                    <div class="form-group col" *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)">
+                        <button id="btnCompile" type="button" class="btn btn-outline-primary btn-sm" [disabled]="this.f.cfTutore.errors" (click)="onClickPreCompila()">
+                            {{ 'TUTORE.BUTTON.COMPILE' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-8 col-md-3">
+                    <label class="field" for="cognome">{{ "TUTORE.FIELD.COGNOME" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                    <input type="text"
+                    class="form-control"
+                    formControlName="cognome"
+                    oninput="this.value = this.value.toUpperCase()"
+                    id="cognome"
+                    maxlength="30">
+                  </div>
+                  <div class="form-group col-sm-8 col-md-3">
+                      <label class="field" for="nome">{{ "TUTORE.FIELD.NOME" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                          <input type="text"
+                              class="form-control"
+                              formControlName="nome"
+                              oninput="this.value = this.value.toUpperCase()"
+                              id="nome"
+                              maxlength="30">
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="form-group gender col-sm-12 col-md-3">
+                        <label class="field" for="sesso">{{ "TUTORE.FIELD.SESSO" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                    </div>
+                    <div>
+                        <div class="row">
+                          <div class="form-check form-check-inline">
+                            <input formControlName="sesso" type="radio" id="Maschio" [value]="'M'">
+                            <label class="radio-button" for="Maschio">M</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input formControlName="sesso" type="radio" id="Femmina" [value]="'F'" >
+                            <label class="radio-button" for="Femmina">F</label>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dtNascita">{{ "TUTORE.FIELD.DATA_NASCITA" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dtNascita"
+                            id="dtNascita"
+                            ngbDatepicker
+                            #dtNascita="ngbDatepicker"
+                            required>
+                            <div class="input-group-append">
+                            <button
+                                [disabled]="VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dtNascita.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtNascita?.invalid && f?.dtNascita?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group gender col-sm-12 col-md-3">
+                        <label class="field" for="flgTitolare">{{ 'TUTORE.FIELD.TITOLARE' | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="form-check form-check-inline">
+                              <input formControlName="flgTitolare" type="radio" id="Si" [value]="'S'">
+                              <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input formControlName="flgTitolare" type="radio" id="No" [value]="'N'">
+                              <label class="radio-button" for="No">No</label>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                <!-- ************************* QUALIFICA DEL TUTORE ************************* -->
+                <h1 class="dati-anagrafici">{{"TUTORE.QUALIFICA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3" formGroupName="istat">
+                        <label class="field" for="codIstat2001livello5Min">{{ "TUTORE.FIELD.COD_QUALIFICA_PROFESSIONALE" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="codIstat2001livello5Min"
+                                id="codIstat2001livello5Min"
+                                (change)="f?.istat?.controls?.id?.setValue(null)"
+                                maxlength="100"
+                                required>
+                            <div *ngIf="f?.istat?.controls?.codIstat2001livello5Min?.errors" class="text-danger">
+                              <div *ngIf="f?.istat?.controls?.codIstat2001livello5Min?.errors?.minlength && f?.istat?.controls?.dsComIstat2001livello5?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="istat">
+                        <label class="field" for="dsComIstat2001livello5">{{ "TUTORE.FIELD.DESCR_QUALIFICA_PROFESSIONALE" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="dsComIstat2001livello5"
+                                id="dsComIstat2001livello5"
+                                (change)="f?.istat?.controls?.id?.setValue(null)"
+                                maxlength="300"
+                                required>
+                            <div *ngIf="f?.istat?.controls?.dsComIstat2001livello5?.errors" class="text-danger">
+                              <div *ngIf="f?.istat?.controls?.dsComIstat2001livello5?.errors?.minlength && f?.istat?.controls?.codIstat2001livello5Min?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                    <div class="form-group col-auto" *ngIf="!(this.VIEW_MODE || (this.ANNULLO_MODE && !istatScaduto))">
+                        <button
+                            [disabled]="!(f?.istat?.controls?.codIstat2001livello5Min?.value?.length > 2 || f?.istat?.controls?.dsComIstat2001livello5?.value?.length > 2)"
+                            id="btnSearchQualifica"
+                            (click)="onSearchQualifica()"
+                            type="button"
+                            class="btn btn-outline-primary">
+                            {{ 'TUTORE.BUTTON.SEARCH' | translate | uppercase}}
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="numAnniEsperienza">{{ "TUTORE.FIELD.ANNI_ESPERIENZA" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="numAnniEsperienza"
+                                id="numAnniEsperienza"
+                                comonlDigitOnly
+                                maxlength="2">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="dsLivelloInquadramento">{{ "TUTORE.FIELD.LIV_INQUADRAMENTO" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="dsLivelloInquadramento"
+                                id="dsLivelloInquadramento"
+                                maxlength="6">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="gradoContrattuale">{{ 'TUTORE.FIELD.GRADO_QUALIFICAZIONE' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <select
+                          class="form-select"
+                          formControlName="gradoContrattuale"
+                          id="gradoContrattuale">
+                              <option [ngValue]="null"></option>
+                              <option *ngFor="let grado of listaGradiContrattuali" [ngValue]="grado">{{grado?.dsComTGradoContrattuale}}</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- ************************* VISITA MEDICA ************************* -->
+                <!-- DA QUI IN GIU ASSUNZIONE -->
+                <h1 *ngIf="IS_ASSUNZIONE" class="dati-anagrafici">{{"TUTORE.VISITA" | translate}}</h1>
+                <div *ngIf="IS_ASSUNZIONE" class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="dtVisitaMedica">{{ "TUTORE.FIELD.DATA_VISITA" | translate}} </label>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-3">
+                        <div class="input-group">
+                            <input type="text"
+                              class="form-control"
+                              formControlName="dtVisitaMedica"
+                              id="dtVisitaMedica"
+                              ngbDatepicker
+                              #dtVisitaMedica="ngbDatepicker"
+                              maxlength="10">
+                            <div class="input-group-append">
+                              <button
+                                [disabled]="VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dtVisitaMedica.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtVisitaMedica?.invalid && f?.dtVisitaMedica?.value?.length > 0 " class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IS_ASSUNZIONE" class="row">
+                    <div class="form-group col-sm-8 col-md-12">
+                        <!-- ************************* TESTO DINAMICO DA DB ************************* -->
+                    <h3 class="field">{{intestazioneFormale}}</h3>
+                    <!-- <p>{{testoFormale}} <strong *ngIf="urlSitoLavoro">{{urlSitoLavoro}}</strong></p> -->
+                    <p>{{testoFormale}} <a *ngIf="urlSitoLavoro" target="_blank" href={{urlSitoLavoro}}>{{urlSitoLavoro}}</a></p>
+                    </div>
+                </div>
+                <div *ngIf="IS_ASSUNZIONE" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="flgAccettazione">{{labelAccettazine}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="checkbox"
+                        id="flgAccettazione"
+                        formControlName="flgAccettazione">
+                        </label>
+                    </div>
+                </div>
+                <div *ngIf="IS_ASSUNZIONE" class="row">
+                    <div class="form-group col-sm-8 col-md-12">
+                        <!-- ************************* TESTO DINAMICO DA DB ************************* -->
+                    <p>{{testoAccettazine}}</p>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="!VIEW_MODE" class="row">
+                <div class="col-auto">
+                    <button
+                        (click)="onClickReset()"
+                        type="button"
+                        class="btn btn-outline-secondary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate | uppercase}}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onSubmit()"
+                    [disabled]="INVALIDITA_FORM || INVALIDITA_ANNULLO_MODE"
+                    >{{ 'TUTORE.BUTTON.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

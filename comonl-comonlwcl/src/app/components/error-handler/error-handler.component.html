@@ -1,0 +1,9 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div *ngIf="model && model.errors && model.invalid && (model.dirty || model.touched)">
+  <ng-container *ngFor="let error of errors | keyvalue">
+    <p *ngIf="model.errors[error.key]" class="text-danger">{{ extractErrorMessage(error) }}</p>
+  </ng-container>
+</div>

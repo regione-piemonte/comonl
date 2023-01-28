@@ -1,0 +1,72 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="variazione-ragione-sociale"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"VARIAZIONE_RAGIONE_SOCIALE.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+        <div *ngIf="showForm" class="card">
+            <div class="card-body">
+                <form [formGroup]="form">
+                  <!-- <h1 class="dati-anagrafici">{{"DATI_COMUNICAZIONE.TITLE" | translate}}</h1> -->
+                  <!-- ************************* DATI COMUNICAZIONE ************************* -->
+                  <!-- <label>I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label> -->
+                  <div class="row">
+                      <div class="form-group col-sm-11 col-md-4">
+                          <label class="field" for="dsVariazioneRagSociale">{{ "VARIAZIONE_RAGIONE_SOCIALE.FIELD.DENOMINAZIONE_PRECEDENTE" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                              <input type="text"
+                                  class="form-control"
+                                  formControlName="dsVariazioneRagSociale"
+                                  oninput="this.value = this.value.toUpperCase()"
+                                  id="dsVariazioneRagSociale"
+                                  required
+                                  maxlength="100">
+                              <div *ngIf="f?.dsVariazioneRagSociale?.errors" class="text-danger">
+                                <div *ngIf="f?.dsVariazioneRagSociale?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                              </div>
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="dtTrasferimentoVarDatori">{{ "VARIAZIONE_RAGIONE_SOCIALE.FIELD.DATA_INIZIO_VARIAZIONE" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                            <div class="input-group">
+                                <input type="text"
+                                class="form-control"
+                                formControlName="dtTrasferimentoVarDatori"
+                                id="dtTrasferimentoVarDatori"
+                                required
+                                ngbDatepicker
+                                #dtTrasferimentoVarDatori="ngbDatepicker">
+                                <div class="input-group-append">
+                                <button
+                                    class="btn btn-outline-primary calendar"
+                                    (click)="dtTrasferimentoVarDatori.toggle()"
+                                    [disabled]="this.VIEW_MODE || this.ANNULLO_MODE"
+                                    type="button">
+                                    <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                                <div *ngIf="f?.dtInizioVariazione?.errors" class="text-danger">
+                                    <div *ngIf="f?.dtInizioVariazione?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div  *ngIf="!this.VIEW_MODE" class="row">
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="onClickReset()"
+                        >{{ 'APP.ANNULLA' | translate | uppercase}}</button>
+                      </div>
+                    <div class="col-auto ml-auto">
+                      <button type="button"
+                        class="btn btn-primary ml-auto btn-lg"
+                        (click)="onClickInserisciVarDatori()"
+                        [disabled]="!form?.valid && !ANNULLO_MODE"
+                        >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM_ONLY' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

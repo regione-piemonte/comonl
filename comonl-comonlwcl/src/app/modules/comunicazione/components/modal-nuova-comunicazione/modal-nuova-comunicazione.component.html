@@ -1,0 +1,85 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3>
+    <button type="button" class="btn btn-primary" style="box-shadow: none !important; border: none; outline: none; background-color: white; color: #000; font-size: 20pt; font-weight: bold" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formNuovaComunicazione" *ngIf="showForm">
+        <div *ngIf="!tipo">
+            <p>Si ricorda che la funzione non deve essere utilizzata in caso di proroga, cessazione, trasformazione, trasferimento e distacco se è presente il rapporto di lavoro (cioè esiste almeno una comunicazione con la stessa data inizio rapporto, stesso codice fiscale azienda e stesso codice fiscale lavoratore).</p><br>
+        </div>
+        <div class="row" *ngIf="!tipo">
+            <div class="form-group gender col-sm-12 col-md-4">
+                <label class="field" for="urg">Urgenza</label>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="form-check form-check-inline">
+                    <input formControlName="urg" (click)="onClickUrgSi()" type="radio" id="yes" [value]="'S'" required>
+                    <label class="radio-button" for="yes">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input formControlName="urg" (click)="onClickUrgNo()" type="radio" id="no" [value]="'N'" checked required>
+                    <label class="radio-button" for="no">No</label>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="row" *ngIf="!tipo || (tipo && tipo === 'assunzione')">
+            <div class="form-group gender col-sm-12 col-md-4">
+                <label class="field" for="somm">Somministrazione</label>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="form-check form-check-inline">
+                    <input formControlName="somm" (click)="onClickSommSi()" type="radio" id="yes" [value]="'S'" required>
+                    <label class="radio-button" for="yes">Si</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input formControlName="somm" (click)="onClickSommNo()" type="radio" id="no" [value]="'N'" required>
+                    <label class="radio-button" for="no">No</label>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="row" *ngIf="!tipo; else nuovaCo">
+            <div class="form-group col-sm-12 col-md-4">
+                <label class="field" for="comunicazione">Comunicazione</label>
+            </div>
+            <div class="form-group col-sm-12 col-md-5">
+                <select
+                class="form-select"
+                formControlName="comunicazione"
+                id="comunicazione">
+                    <option [ngValue]="null"></option>
+                    <option *ngFor="let com of currentListSelected" [ngValue]="com">{{com?.dsDecodifica}}</option>
+                </select>
+            </div>
+        </div>
+        <ng-template #nuovaCo>
+            <div class="row">
+                <div class="form-group col-sm-12 col-md-4">
+                    <label class="field" for="comunicazione">Comunicazione</label>
+                </div>
+                <div class="form-group col-sm-12 col-md-5">
+                    <select
+                    class="form-select"
+                    formControlName="comunicazione"
+                    id="comunicazione">
+                        <option [ngValue]="null"></option>
+                        <option *ngFor="let com of currentListSelectedCo" [ngValue]="com">{{com?.dsDecodifica}}</option>
+                    </select>
+                </div>
+            </div>
+        </ng-template>
+    </form>
+    </div>
+  <div  *ngIf="showForm" class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close()">Annulla</button>
+    <button type="button" class="btn btn-primary ml-auto" [disabled]="conditionConfermaBtnDisable" (click)="goToNuovaComunicazione()">Conferma</button>
+  </div>

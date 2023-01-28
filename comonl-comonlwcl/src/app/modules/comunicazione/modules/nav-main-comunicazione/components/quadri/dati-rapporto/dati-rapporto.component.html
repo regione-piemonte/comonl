@@ -1,0 +1,707 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="dati-rapporto"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_RAPPORTO.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div *ngIf="showForm" class="card">
+        <div class="card-body">
+            <form [formGroup]="formDatiRapporto">
+                <!-- ************************* DATI RAPPORTO ************************* -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.DATI_RAPPORTO" | translate}}</h1>
+                <label *ngIf="!VIEW_MODE">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataInizioRapporto">{{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_INIZIO_RAPPORTO" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input
+                            formControlName="dtInizioRapporto"
+                            type="text"
+                            class="form-control"
+                            id="dataInizioRapporto"
+                            maxlength="10"
+                            ngbDatepicker
+                            #dataInizioRapporto="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                *ngIf="!VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataInizioRapporto.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtInizioRapporto?.invalid && f?.dtInizioRapporto?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label class="field" for="tipoRapporto">{{ 'COMUNICAZIONE.RAPPORTO.FIELD.TIPO_RAPPORTO' | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div *ngIf="!VIEW_MODE" class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="tipoContratti"
+                            (change)="setStateFormControlsDipendentidaTipoContratto()"
+                            id="tipoRapporto">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let tipoRapp of listaTipoRapporto" [ngValue]="tipoRapp" [disabled]="disabeleContrattoRipartito(tipoRapp?.codTipoContrattoMin)">{{tipoRapp?.dsComTTipoContratto}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="VIEW_MODE"class="form-group">
+                            <input disabled type="text"class="form-control" [value]="tipoContrattiPerView" id="tipoRapporto">
+                            <input hidden formControlName="tipoContratti">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div *ngIf="ENABLE_DT_FINE_RAPPORTO_AND_DT_FINE_PERIODO_FORMATIVO" class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataFineRapporto">{{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_RAPPORTO" | translate}}<span *ngIf="obbligoDtFineRapporto" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dtFineRapporto"
+                            id="dataFineRapporto"
+                            maxlength="10"
+                            ngbDatepicker
+                            #dataFineRapporto="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                *ngIf="!VIEW_MODE"
+                                [disabled]="disableDtfineRapportoBtn"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataFineRapporto.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtFineRapporto?.invalid && f?.dtFineRapporto?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                    <div *ngIf="ENABLE_DT_FINE_RAPPORTO_AND_DT_FINE_PERIODO_FORMATIVO" class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataFinePeriodoFormativo">{{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_PERIODO_FORMATIVO" | translate}}<span class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dtFinePeriodoFormativo"
+                            id="dataFinePeriodoFormativo"
+                            maxlength="10"
+                            ngbDatepicker
+                            #dataFinePeriodoFormativo="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                *ngIf="!VIEW_MODE"
+                                [disabled]="disableDtfinePeriodoFormBtn"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataFinePeriodoFormativo.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtFinePeriodoFormativo?.invalid && f?.dtFinePeriodoFormativo?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="lavoroStagionale">{{ "COMUNICAZIONE.RAPPORTO.FIELD.LAVORO_STAGIONALE" | translate}}<span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input (change)="setStatedtFineRapporto()" formControlName="flgLavStagionale" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input (change)="setStatedtFineRapporto()" formControlName="flgLavStagionale" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="IS_ASSUNZIONE_UNILAV" class="form-group col-sm-12 col-md-4">
+                        <label class="field cod" for="generatoDaTirocinio">{{ "COMUNICAZIONE.RAPPORTO.FIELD.GENERATO_DA_TIROCINIO" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgTirocinio" (click)="onClickDisplayWarning()" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgTirocinio" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* DATI DEL TIROCINIO ************************* -->
+                <div *ngIf="IS_TIROCINIO && !IS_UNISOMM">
+                    <h1 class="dati-title">{{"COMUNICAZIONE.DATI_TIROCINIO" | translate}}</h1>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label class="field" for="tipoTirocinio">{{ 'COMUNICAZIONE.TIROCINIO.FIELD.TIPO_TIROCINIO' | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="tipologiaTirocinio"
+                                id="tipoTirocinio">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let tipoTirocinio of listaTipologiaTirocinio" [ngValue]="tipoTirocinio">{{tipoTirocinio?.descrTipologiaTirocinio}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label class="field" for="categoriaTirocinante">{{ 'COMUNICAZIONE.TIROCINIO.FIELD.CATEGORIA_TIROCINANTE' | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="categTirocinante"
+                                id="categoriaTirocinante">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let categ of listaCategTirocinante" [ngValue]="categ">{{categ.descrCategTirocinante}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label class="field" for="tipoEntePromotore">{{ 'COMUNICAZIONE.TIROCINIO.FIELD.TIPO_ENTE_PROMOTORE' | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="tipoEntePromTirocinio"
+                                (change)="setControlsStatePerCpi()"
+                                id="tipoEntePromotore">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let tipoEntePromTirocinio of listaTipiEntePromTirocinio" [ngValue]="tipoEntePromTirocinio">{{tipoEntePromTirocinio.dsComTTipoEntePromTir}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label class="field" for="cpiEntePromotore">{{ 'COMUNICAZIONE.TIROCINIO.FIELD.CPI_ENTE_PROMOTORE' | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="cpi"
+                                (change)="setDsSoggPromTirocinio()"
+                                id="cpiEntePromotore">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let cpiEntePromTirocinio of listaCpiEntePromTirocinio" [ngValue]="cpiEntePromTirocinio">{{cpiEntePromTirocinio.dsComTCpi}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label class="field cod" for="cfEntePromotore">{{ "COMUNICAZIONE.TIROCINIO.FIELD.CF_ENTE_PROMOTORE" | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        oninput="this.value = this.value.toUpperCase().trim()"
+                                        formControlName="cfSoggPromotoreTirocinio"
+                                        id="cfEntePromotore"
+                                        maxlength="16">
+                            </div>
+                        </div>
+                        <!-- SPAZIO VUOTO -->
+                        <div class="form-group col-sm-8 col-md-4 space"></div>
+
+                        <div class="form-group col">
+                            <button
+                                [disabled]="flgSoggPromTirDisabled === true"
+                                *ngIf="!VIEW_MODE"
+                                (click)="onClickFindSoggPromotoreTirocinio()"
+                                id="btnSearch" type="button" class="btn btn-outline-primary btn-sm search">
+                                {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-8">
+                            <label class="field" for="soggEntePromotore">{{ "COMUNICAZIONE.TIROCINIO.FIELD.SOGG_ENTE_PROMOTORE" | translate}}<span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="dsSoggPromTirocinio"
+                                        id="soggEntePromotore"
+                                        maxlength="100">
+                                        <div *ngIf="f?.dsSoggPromTirocinio?.errors" class="text-danger">
+                                            <div *ngIf="f?.dsSoggPromTirocinio?.errors?.maxlength">{{"ERROR.FIELD.LENGHT_100" | translate}}</div>
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- ************************* DATI INQUADRAMENTO ************************* -->
+                    <h1 *ngIf="!IS_UNISOMM" class="dati-title">{{"COMUNICAZIONE.DATI_INQUADRAMENTO" | translate}}</h1>
+                    <div *ngIf="!IS_UNISOMM" class="row">
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label class="field" for="codCCNL">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_CCNL" | translate}} <span class="asterisk">*</span></label>
+                            <div class="form-group" formGroupName="ccnl">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="codCcnlMin"
+                                        id="codCCNL"
+                                        maxlength="50">
+                                    <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors" class="text-danger">
+                                        <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-6">
+                            <label class="field" for="desCCNL">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_CCNL" | translate}} <span class="asterisk">*</span></label>
+                            <div class="form-group" formGroupName="ccnl">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="dsCcnl"
+                                        id="descrCCNL"
+                                        maxlength="150">
+                                        <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors" class="text-danger">
+                                            <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                        </div>
+                            </div>
+                        </div>
+                        <div class="form-group col">
+                            <button
+                            *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !ccnlScaduto))"
+                            id="btnSearchCCNL"
+                            [disabled]="!(f?.ccnl?.controls?.codCcnlMin?.value?.length > 1 || f?.ccnl?.controls?.dsCcnl?.value?.length > 2)"
+                            (click)="onClickfindCcnl()"
+                            type="button"
+                            class="btn btn-outline-primary btn-sm search">
+                                {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                        </div>
+                    </div>
+                    <div *ngIf="!IS_UNISOMM" class="row">
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label class="field" for="codInquadramento">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_INQUADRAMENTO" | translate}} <span class="asterisk">*</span></label>
+                            <div class="form-group" formGroupName="livelloRetribuzione">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="codLivello"
+                                        id="codInquadramento"
+                                        maxlength="6">
+                                        <div *ngIf="f?.livelloRetribuzione?.controls?.codLivello?.errors" class="text-danger">
+                                            <div *ngIf="f?.livelloRetribuzione?.controls?.codLivello?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                        </div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrInquadramento">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_INQUADRAMENTO" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="livelloRetribuzione">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="desLivello"
+                                    id="descrInquadramento"
+                                    maxlength="200">
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <button
+                        *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !livelloRetribuzioneScaduto))"
+                        id="btnSearchInquadramento"
+                        [disabled]="!(f?.ccnl?.controls?.codCcnlMin?.value?.length > 1 || f?.ccnl?.controls?.dsCcnl?.value?.length > 2)"
+                        (click)="onClickfindLivelloRetr()"
+                         type="button"
+                         class="btn btn-outline-primary btn-sm search">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="retrib">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.RETRIBUZIONE_LORDA_ANNUALE" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="retribuzioneCompenso"
+                                    comonlDigitOnly
+                                    id="retrib"
+                                    maxlength="9">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="codISTAT">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_ISTAT" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="istatLivello5">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codIstat2001livello5Min"
+                                    id="codISTAT"
+                                    maxlength="12">
+                                <div *ngIf="f?.istatLivello5?.controls?.codIstat2001livello5Min?.errors" class="text-danger">
+                                    <div *ngIf="f?.istatLivello5?.controls?.codIstat2001livello5Min?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrISTAT">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_ISTAT" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="istatLivello5">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComIstat2001livello5"
+                                    id="descrISTAT"
+                                    maxlength="300">
+                                <div *ngIf="f?.istatLivello5?.controls?.dsComIstat2001livello5?.errors" class="text-danger">
+                                    <div *ngIf="f?.istatLivello5?.controls?.dsComIstat2001livello5?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <button
+                        *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !istatScaduto))"
+                        id="btnSearchISTAT"
+                        [disabled]="!(f?.istatLivello5?.controls?.codIstat2001livello5Min?.value?.length > 2 || f?.istatLivello5?.controls?.dsComIstat2001livello5?.value?.length > 2)"
+                        (click)="onClickFindIstat()"
+                        type="button"
+                        class="btn btn-outline-primary btn-sm search">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="assObbl">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ASSUNZIONE_OBBLIGATORIA" | translate}}<span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                          <div class="row">
+                            <div class="form-check form-check-inline">
+                              <input (change)="setControlStateAltriDati()" formControlName="flgAssunzioneObbligatoria" [value]="'S'" type="radio" id="Si">
+                              <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input (change)="setControlStateAltriDati()" formControlName="flgAssunzioneObbligatoria" [value]="'N'" type="radio" id="No">
+                              <label class="radio-button" for="No">No</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="patINAIL">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.PAT_INAIL" | translate}} <span class="asterisk">*</span></label>
+                        <input type="text"
+                                class="form-control"
+                                formControlName="patInail"
+                                id="patINAIL"
+                                comonlDigitOnly
+                                minlength="8"
+                                maxlength="10">
+                                <div *ngIf="f?.patInail?.errors" class="text-danger">
+                                    <div *ngIf="f?.patInail?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_8" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="field" for="entePrev">{{ 'COMUNICAZIONE.INQUADRAMENTO.FIELD.ENTE_PREVIDENZIALE' | translate}} <span class="asterisk">*</span></label>
+                        <div *ngIf="!VIEW_MODE" class="form-group">
+                            <select
+                            class="form-select"
+                            (change)="setStateCodiceEntePrevidenziale(f?.entePrevidenziale?.value)"
+                            formControlName="entePrevidenziale"
+                            id="entePrev">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let entePrev of listaEntiPrevidenziali" [ngValue]="entePrev">{{entePrev?.dsComTEntePrevidenziale}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="VIEW_MODE"class="form-group">
+                            <input disabled type="text"class="form-control" [value]="entePrevidenzialePerView" id="entePrev">
+                            <input hidden formControlName="entePrevidenziale">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="codEntePrev">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.COD_ENTE_PREVIDENZIALE" | translate}}</label>
+                    <div class="form-group">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="codiceEntePrev"
+                                id="codEntePrev"
+                                maxlength="20">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="field" for="tipoOrario">{{ 'COMUNICAZIONE.INQUADRAMENTO.FIELD.TIPO_ORARIO' | translate}} <span class="asterisk">*</span></label>
+                        <div *ngIf="!VIEW_MODE" class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="tipoOrario"
+                            (change)="setControlStatenumOreSettMed()"
+                            id="tipoOrario">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let tipoOrario of listaTipoOrario" [ngValue]="tipoOrario">{{tipoOrario?.dsComTTipoOrario}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="VIEW_MODE"class="form-group">
+                            <input disabled type="text"class="form-control" [value]="tipoOrarioPerView" id="tipoOrario">
+                            <input hidden formControlName="tipoOrario">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-2">
+                        <label class="field cod" for="oreSettimanaliMedie">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ORE_SETTIMANALI_MEDIE" | translate}}  <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numOreSettMed"
+                                    id="oreSettimanaliMedie"
+                                    comonlDigitOnly
+                                    maxlength="2">
+                            </div>
+                    </div>
+                </div>
+
+                <!-- ************************* ALTRI DATI UNILAV ************************* -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.ALTRI_DATI" | translate}}</h1>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="categoriaLav">{{ 'COMUNICAZIONE.ALTRI.FIELD.CATEGORIA_LAVORATORE' | translate}} <span *ngIf="obbligocategLavAssObbl" class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <select (change)="setControlStateLegge68Tipo()"
+                        class="form-select"
+                        formControlName="categLavAssObbl"
+                        id="categoriaLav">
+                            <option [ngValue]="null"></option>
+                            <option *ngFor="let categLavAssObbl of listaCategLavAssObbl" [ngValue]="categLavAssObbl">{{categLavAssObbl?.dsComTCategLavAssObbl}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="legge68tipo">{{ 'COMUNICAZIONE.ALTRI.FIELD.LEGGE68_TIPO' | translate}}<span *ngIf="obbligatorietaTriplaL68" class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <select
+                        class="form-select"
+                        (change)="setbligatrietaTriplaL68()"
+                        formControlName="tipoAttoL68"
+                        id="legge68tipo">
+                            <option [ngValue]="null"></option>
+                            <option *ngFor="let tipoAttoL68 of listaTipoAttoL68" [ngValue]="tipoAttoL68">{{tipoAttoL68.dsComTTipoAttoL68}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="legge68data">{{ 'COMUNICAZIONE.ALTRI.FIELD.LEGGE68_DATA' | translate}}<span *ngIf="obbligatorietaTriplaL68" class="asterisk">*</span></label>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control"
+                              formControlName="dtLegge68"
+                              id="legge68data"
+                              (dateSelect)="setbligatrietaTriplaL68()"
+                              (change)="setbligatrietaTriplaL68()"
+                              ngbDatepicker
+                              #legge68data="ngbDatepicker"
+                              maxlength="10"
+                            >
+                            <div class="input-group-append">
+                              <button
+                                *ngIf="!VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="legge68data.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                          </div>
+                          <div *ngIf="f?.dtLegge68?.invalid && f?.dtLegge68?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="legge68num">{{ "COMUNICAZIONE.ALTRI.FIELD.LEGGE68_NUM" | translate}}<span *ngIf="obbligatorietaTriplaL68" class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="numeroAttoLegge68"
+                                (change)="setbligatrietaTriplaL68()"
+                                id="legge68num"
+                                comonlDigitOnly
+                                maxlength="10">
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="socio">{{ "COMUNICAZIONE.ALTRI.FIELD.SOCIO_LAVORATORE" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgSocioLavoratore" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgSocioLavoratore" type="radio" [value]="'N'" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="field" for="agricoltura">{{ "COMUNICAZIONE.ALTRI.FIELD.LAVORO_AGRICOLTURA" | translate}}<span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input (change)="setGiornateLavPrev()" formControlName="flgLavoroAgricoltura" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input (change)="setGiornateLavPrev()" formControlName="flgLavoroAgricoltura" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="giornateLav">{{ "COMUNICAZIONE.ALTRI.FIELD.GIORNATE_LAVORATIVE" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="giornateLavPreviste"
+                                id="giornateLav"
+                                comonlDigitOnly
+                                maxlength="4">
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="tipoLav">{{ "COMUNICAZIONE.ALTRI.FIELD.TIPO_LAVORAZIONE" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="tipoLavorazione"
+                                id="tipoLav"
+                                maxlength="100">
+                    </div>
+                </div>
+                <div *ngIf="!IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="lavMob">{{ "COMUNICAZIONE.ALTRI.FIELD.LAVORATORE_MOBILITA" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group lavMob">
+                        <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input formControlName="flgLavInMobilita" [value]="'S'" type="radio" id="Si">
+                            <label class="radio-button" for="Si">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input formControlName="flgLavInMobilita" [value]="'N'" type="radio" id="No">
+                            <label class="radio-button" for="No">No</label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* ALTRI DATI UNILAV ************************* -->
+                <div *ngIf="IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="tipoLav">{{ "COMUNICAZIONE.DATI_RAPPORTO_FIELD_NUM_MATR_LAV" | translate}}<span class="asterisk">*</span></label>
+                        <div class="form-group ">
+                            <input type="text"
+                                    class="form-control"
+                                    comonlDigitOnly
+                                    formControlName="numMatricolaLav"
+                                    id="tipoLav"
+                                    maxlength="10">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="field" for="entePrev">{{ 'COMUNICAZIONE.INQUADRAMENTO.FIELD.ENTE_PREVIDENZIALE' | translate}} <span class="asterisk">*</span></label>
+                        <div *ngIf="!VIEW_MODE" class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="entePrevidenziale"
+                            id="entePrev">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let entePrev of listaEntiPrevidenziali" [ngValue]="entePrev">{{entePrev?.dsComTEntePrevidenziale}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf="VIEW_MODE"class="form-group">
+                            <input disabled type="text"class="form-control" [value]="entePrevidenzialePerView" id="entePrev">
+                            <input hidden formControlName="entePrevidenziale">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="codEntePrev">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.COD_ENTE_PREVIDENZIALE" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codiceEntePrev"
+                                    id="codEntePrev"
+                                    maxlength="20">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="numIndennitaSomm">{{ "COMUNICAZIONE.RAPPORTO.FIELD.INDENN_DISP" | translate}}</label>
+                        <div class="form-group ">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numIndennitaSomm"
+                                    id="numIndennitaSomm"
+                                    comonlDigitOnly
+                                    maxlength="6">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="IS_UNISOMM" class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="lavoroStagionale">{{ "COMUNICAZIONE.RAPPORTO.FIELD.LAVORO_MOBILITA" | translate}}<span class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input [value]="'S'" formControlName="flgLavInMobilita" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input [value]="'N'" formControlName="flgLavInMobilita" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <!-- BOTTONI -->
+
+            <div *ngIf="!VIEW_MODE" class="row">
+                <div class="col-auto">
+                    <button
+                        (click)="onClickReset()"
+                        type="button" class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                </div>
+                <!-- DA TOGLIERE, SOLO PER VERIFICARE CAMPI NON VALIDI  -->
+                <!-- <div class="col-auto">
+                    <button
+                        (click)="findInvalidControls()"
+                        type="button" class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                </div> -->
+                <!-- [disabled]="!formDatiRapporto.valid" -->
+                <div class="col-auto ml-auto">
+                    <button
+                        [disabled]="!formDatiRapporto?.valid && !ANNULLO_MODE"
+                        type="button"
+                        class="btn btn-primary ml-auto btn-lg"
+                        (click)="onSubmit()">
+                        {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

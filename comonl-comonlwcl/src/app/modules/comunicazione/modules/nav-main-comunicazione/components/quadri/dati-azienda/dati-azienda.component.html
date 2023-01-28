@@ -1,0 +1,712 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="datiAzienda"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_AZIENDA.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div *ngIf="showForm" class="card">
+        <div class="card-body">
+            <form [formGroup]="formDatiAzienda">
+                <!-- ************************* DATI RAPPORTO ************************* -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.DATI_AZIENDA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field cod" for="cfAzienda">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}<span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codiceFiscale"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="cfAzienda"
+                                    maxlength="99">
+                        </div>
+                    </div>
+                    <!-- *ngIf="this.data.routingParams.formModalParams.somm === 'S'" -->
+                    <!-- <div class="form-group col-sm-12 col-md-5" >
+                        <label for="statoEsteroCf">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.STATO_ESTERO_CF' | translate}}</label>
+                        <input type="text"
+                                class="form-control"
+                                formControlName="statoEsteroCf"
+                                id="statoEsteroCf"
+                                maxlength="100"
+                                minlength="6">
+                            <div *ngIf="f?.statoEsteroCf?.errors" class="text-danger">
+                                <div *ngIf="f?.statoEsteroCf?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_6" | translate}}</div>
+                            </div>
+                        </div> -->
+                    <div *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE || AGGIORNAMENTO_MODE) && PERMESSI_CERCA" class="form-group col-sm-8 col-md-2">
+                        <button id="btnSearch" type="button" (click)="onClickFindAziendaByCf()" class="btn btn-outline-primary btn-sm search">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field cod" for="partitaIva">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.P_IVA" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="partitaIva"
+                                    id="partitaIva"
+                                    maxlength="11">
+
+                        </div>
+                    </div>
+                    <div *ngIf="comunicazioneToSave?.flgSommin ==='S'" class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="flgUtilEstera">{{ "COMUNICAZIONE.AZIENDA.FIELD.AGENZIA_EST" | translate}}<span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgUtilEstera" [value]="'S'" type="radio" id="Si">
+                                    <label class="radio-button" for="Si">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgUtilEstera" [value]="'N'" type="radio" id="No">
+                                    <label class="radio-button" for="No">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="comunicazioneToSave?.flgSommin ==='S'" class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="numAgSomm">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.NUM_AG_SOMM" | translate}}<span *ngIf="comunicazioneToSave?.flgSommin ==='S' && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control margin-top"
+                                    formControlName="numAgenziaSommin"
+                                    id="numAgSomm"
+                                    comonlDigitOnly
+                                    maxlength="11">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="iscrAlboNum">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.ISCR_ALBO_NUM" | translate}}<span *ngIf="comunicazioneToSave?.flgSommin === 'S' && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numeroIscrizioneAlbo"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="iscrAlboNum"
+                                    maxlength="10">
+                                    <div *ngIf="f?.numeroIscrizioneAlbo?.errors" class="text-danger">
+                                        <div *ngIf="f?.numeroIscrizioneAlbo?.errors?.minlength">{{"ERROR.FIELD.LENGHT_10" | translate}}</div>
+                                    </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="iscrAlboData">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.ISCR_ALBO_DATA" | translate}}<span *ngIf="comunicazioneToSave?.flgSommin === 'S' && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                maxlength="10"
+                                formControlName="iscrAlboData"
+                                id="iscrAlboData"
+                                ngbDatepicker
+                                #d_iscrAlboData="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="d_iscrAlboData.toggle()"
+                                type="button"
+                                [disabled] = "VIEW_MODE">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.iscrAlboData?.invalid && f?.iscrAlboData?.value.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field cod" for="denominazione">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DENOMINAZIONE" | translate}}<span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsDenominazioneDatore"
+                                    id="denominazione"
+                                    maxlength="100">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="pubblicaAmm">{{ "COMUNICAZIONE.AZIENDA.FIELD.PUBB_AMM" | translate}}<span *ngIf="comunicazioneToSave.flgSommin !== 'S' && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgPubAmm" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgPubAmm" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="aziendaArt">{{ "COMUNICAZIONE.AZIENDA.FIELD.AZIENDA_ART" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgAzArtigiana" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgAzArtigiana" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="VIEW_MODE" class="row">
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field cod">{{ "COMUNICAZIONE.AZIENDA.FIELD.NATURA_GIURIDICA" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    [disabled]="true"
+                                    [value]="datore?.naturaGiuridica?.descrizione"
+                                    id="naturaGiuridica">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!VIEW_MODE" class="row">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <label for="naturaGiuridica">{{ 'COMUNICAZIONE.AZIENDA.FIELD.NATURA_GIURIDICA' | translate}} <span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="naturaGiuridica"
+                            id="naturaGiuridica"
+                            required>
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let naturaGiuridica of naturaGiuridicas" [ngValue]="naturaGiuridica">{{naturaGiuridica?.descrizione}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="atecofin">
+                        <label class="field cod" for="attivitaAteco">{{ "COMUNICAZIONE.AZIENDA.FIELD.ATTIVITA_ATECO_COD" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    (change)="f?.atecofin?.controls?.id?.setValue(null)"
+                                    formControlName="codAtecofinMin"
+                                    id="attivitaAteco"
+                                    maxlength="8">
+                                    <div *ngIf="f?.atecofin?.controls?.codAtecofinMin?.errors" class="text-danger">
+                                        <div *ngIf="f?.atecofin?.controls?.codAtecofinMin?.errors?.minlength && f?.atecofin?.controls?.dsComTAtecofin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                    </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="atecofin">
+                        <label class="field cod" for="attivitaAteco2">{{ "COMUNICAZIONE.AZIENDA.FIELD.ATTIVITA_ATECO_DESC" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    (change)="f?.atecofin?.controls?.id?.setValue(null)"
+                                    formControlName="dsComTAtecofin"
+                                    id="attivitaAteco2"
+                                    maxlength="250">
+                                    <div *ngIf="f?.atecofin?.controls?.dsComTAtecofin?.errors" class="text-danger">
+                                        <div *ngIf="f?.atecofin?.controls?.dsComTAtecofin?.errors?.minlength && f?.atecofin?.controls?.codAtecofinMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                    </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !atecoScaduto))" class="form-group col-sm-8 col-md-2">
+                        <button
+                        id="btnSearch"
+                        type="button"
+                        [disabled]="!(f?.atecofin?.controls?.codAtecofinMin?.value?.length > 2 || f?.atecofin?.controls?.dsComTAtecofin?.value?.length > 2)"
+                        (click)="onClickFindAteco()"
+                        class="btn btn-outline-primary btn-sm search">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <!-- LEGALE RAPPRESENTANTE -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.LEGALE_RAPPRESENTANTE" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="extraCom">{{ "COMUNICAZIONE.AZIENDA.FIELD.EXTRA_COM" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <!-- TODO da verificare -->
+                        <div class="form-group ml-3" formGroupName="legaleRappr">
+                            <div class="row" formGroupName="cittadinanza">
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgUe"  [value]="'N'"  type="radio" id="Si">
+                                    <label class="radio-button" for="Si">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgUe" [value]="'S'" type="radio" id="No">
+                                    <label class="radio-button" for="No">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="legaleRappr">
+                        <label class="field" for="resItalia">{{ "COMUNICAZIONE.AZIENDA.FIELD.SGG_ITA" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgSoggiornanteItalia" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgSoggiornanteItalia" [value]="'N'" type="radio" id="No" >
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" >
+                        <label class="field cod" for="cognome">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COGNOME" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="legaleRappr">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsCognome"
+                                    id="cognome"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3" >
+                        <label class="field cod" for="nome">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.NOME" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="legaleRappr">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsNome"
+                                    id="nome"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3" >
+                        <label class="field cod" for="dataNascita">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.DATA_NASCITA" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="legaleRappr">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dtNascita"
+                                    id="dataNascita"
+                                    ngbDatepicker
+                                    #d_nascita="ngbDatepicker"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" >
+                        <label class="field cod" for="sesso">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.SESSO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                                <div class="form-check form-check-inline" formGroupName="legaleRappr">
+                                    <input formControlName="sesso" [value]="'M'" type="radio" id="M">
+                                    <label class="radio-button" for="M">M</label>
+                                </div>
+                                <div class="form-check form-check-inline" formGroupName="legaleRappr">
+                                    <input formControlName="sesso" [value]="'F'" type="radio" id="F">
+                                    <label class="radio-button" for="F">F</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="legaleRappr">
+                        <label class="field cod" for="comuneNascita">{{ "DATI_AZIENDA.FIELD.COD_COMUNE_NASC" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="comune">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codComuneMin"
+                                    id="comuneNascita"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="legaleRappr">
+                        <label class="field cod" for="comuneNascita">{{ "DATI_AZIENDA.FIELD.DS_COMUNE_NASC" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="comune">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTComune"
+                                    id="comuneNascita"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="legaleRappr">
+                        <label class="field cod" for="statoEsteroNascita">{{ "DATI_AZIENDA.FIELD.COD_STATI_EST_NASC" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="statiEsteri">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codNazioneMin"
+                                    id="statoEsteroNascita"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="legaleRappr">
+                        <label class="field cod" for="statoEsteroNascita">{{ "DATI_AZIENDA.FIELD.DS_STATI_EST_NASC" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="statiEsteri">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsStatiEsteri"
+                                    id="statoEsteroNascita"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="legaleRappr">
+                        <label class="field cod" for="cittadinanza">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.CITTADINANZA" | translate}}
+                          <span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="oblg" title="campo obbligatorio">*</span>
+                        </label>
+                        <div class="form-group" formGroupName="cittadinanza">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTCittadinanza"
+                                    id="cittadinanza"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="legaleRappr">
+                        <label class="field cod" for="titoloSoggiorno">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.TITOLO_SOGGIORNO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="statusStraniero">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTStatusStraniero"
+                                    id="titoloSoggiorno"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="numDocumento">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.NUMERO_DOCUMENTO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="legaleRappr">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numeroDocumento"
+                                    id="numDocumento"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-9" formGroupName="legaleRappr">
+                        <label class="field cod" for="motivoPermesso">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.MOTIVO_PERMESSO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="motivoPermesso">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTMotivoPermesso"
+                                    id="motivoPermesso"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4" *ngIf="scadenzaPermesso; else dataRilascio">
+                        <label class="field cod" for="scadenzaPermesso">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.SCADENZA_PERMESSO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="legaleRappr">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dtScadenzaPermessoSogg"
+                                    ngbDatepicker
+                                    #dtScadenzaPermesso="ngbDatepicker"
+                                    id="scadenzaPermesso"
+                                    maxlength="10">
+
+                        </div>
+                    </div>
+                    <!-- TO DO da vedere -->
+                    <ng-template #dataRilascio>
+                        <div class="form-group col-sm-8 col-md-4">
+                            <label class="field cod" for="dataRilascio">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.SCADENZA_PERMESSO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        id="dataRilascio"
+                                        id="iscrAlboData"
+                                        ngbDatepicker
+                                        #dtScadenzaPermesso="ngbDatepicker"
+                                        maxlength="10">
+
+                            </div>
+                        </div>
+                    </ng-template>
+                    <div class="form-group col-sm-8 col-md-5"  formGroupName="legaleRappr">
+                        <label class="field cod" for="questTitSoggiorno">{{ "COMUNICAZIONE.AZIENDA.FIELD.QUESTURA_TITOLO_SOGGIORNO" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="questura">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsQuestura"
+                                    id="questTitSoggiorno"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- SEDE LEGALE -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.SEDE_LEGALE" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="sedeLegale">
+                        <label class="field cod" for="comuneLeg">{{ "DATI_AZIENDA.FIELD.COD_COMUNE" | translate}}</label>
+                        <div class="form-group" formGroupName="comune">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codComuneMin"
+                                    id="comuneLeg"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="sedeLegale">
+                        <label class="field cod" for="comuneLeg">{{ "DATI_AZIENDA.FIELD.DS_COMUNE" | translate}}</label>
+                        <div class="form-group" formGroupName="comune">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTComune"
+                                    id="comuneLeg"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3" formGroupName="sedeLegale">
+                        <label class="field cod" for="statoEsteroLeg">{{ "DATI_AZIENDA.FIELD.COD_STATI_EST" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="statiEsteri">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codNazioneMin"
+                                    id="statoEsteroLeg"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6" formGroupName="sedeLegale">
+                        <label class="field cod" for="statoEsteroLeg">{{ "DATI_AZIENDA.FIELD.DS_STATI_EST" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="statiEsteri">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsStatiEsteri"
+                                    id="statoEsteroLeg"
+                                    maxlength="50">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-7">
+                        <label class="field cod" for="indirizzoLeg">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="sedeLegale">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="indirizzo"
+                                    id="indirizzoLeg"
+                                    maxlength="50">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-2">
+                        <label class="field cod" for="capLeg">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}}<span *ngIf="IS_OBBL_ANAGRAFICA_LEGALE_RAPPR_EXTRA_COM && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="sedeLegale">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codCap"
+                                    id="capLeg"
+                                    maxlength="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="telefonoLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_LEGALE_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="sedeLegale">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="telefono"
+                                    id="telefonoLeg"
+                                    maxlength="50">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-2">
+                        <label class="field cod" for="faxLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_LEGALE_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="sedeLegale">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="fax"
+                                    id="faxLeg"
+                                    maxlength="50">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field cod" for="emailLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_LEGALE_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group" formGroupName="sedeLegale">
+                            <input type="email"
+                                    class="form-control"
+                                    formControlName="email"
+                                    id="emailLeg"
+                                    maxlength="50">
+                        </div>
+                    </div>
+                </div>
+                 <!-- SEDE OPERATIVA -->
+                 <div *ngIf="!IS_VARDATORE">
+                    <div class="row">
+                        <h1 class="dati-title form-group col-sm-8 col-md-8">{{"COMUNICAZIONE.SEDE_OPERATIVA" | translate}}</h1>
+                        <div *ngIf="!VIEW_MODE && !ANNULLO_MODE" class="form-group col-sm-8 col-md-2">
+                            <button [disabled]="!datore || !datore.codiceFiscale" id="btnSearch" (click)="onClickFindSedeOperativa()" type="button" class="btn btn-outline-primary btn-sm search">
+                                {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH_SEDE_OPERATIVA' | translate | uppercase}}</button>
+                        </div>
+                    </div>
+                    <p><strong>{{"COMUNICAZIONE.SEDE_OPERATIVA_NO_LEGALE" | translate}}</strong></p>
+                     <div class="row">
+                        <div class="form-group col-sm-8 col-md-3" formGroupName="sedeOperativa">
+                            <label class="field cod" for="comuneLeg">{{  "DATI_AZIENDA.FIELD.COD_COMUNE" | translate}}</label>
+                            <div class="form-group" formGroupName="comune">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="codComuneMin"
+                                        id="comuneLeg"
+                                        maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-7" formGroupName="sedeOperativa">
+                            <label class="field cod" for="comuneLeg">{{  "DATI_AZIENDA.FIELD.DS_COMUNE" | translate}}</label>
+                            <div class="form-group" formGroupName="comune">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="dsComTComune"
+                                        id="comuneLeg"
+                                        maxlength="50">
+
+                            </div>
+                        </div>
+                     </div>
+                     <div class="row">
+
+                            <div class="form-group col-sm-8 col-md-3" formGroupName="sedeOperativa">
+                                <label class="field cod" for="statoEsteroLeg">{{ "DATI_AZIENDA.FIELD.COD_STATI_EST" | translate}}<span *ngIf="IS_EXTRACOMUNITARIO && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                                <div class="form-group" formGroupName="statiEsteri">
+                                    <input type="text"
+                                            class="form-control"
+                                            formControlName="codNazioneMin"
+                                            id="statoEsteroLeg"
+                                            maxlength="50">
+
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-8 col-md-7" formGroupName="sedeOperativa">
+                                <label class="field cod" for="statoEsteroLeg">{{ "DATI_AZIENDA.FIELD.DS_STATI_EST" | translate}}<span *ngIf="IS_EXTRACOMUNITARIO && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                                <div class="form-group" formGroupName="statiEsteri">
+                                    <input type="text"
+                                            class="form-control"
+                                            formControlName="dsStatiEsteri"
+                                            id="statoEsteroLeg"
+                                            maxlength="50">
+
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-7" formGroupName="sedeOperativa">
+                            <label class="field cod" for="indirizzoLeg">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="indirizzo"
+                                        id="indirizzoLeg"
+                                        maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-2" formGroupName="sedeOperativa">
+                            <label class="field cod" for="capLeg">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}}<span *ngIf="!(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="codCap"
+                                        id="capLeg"
+                                        maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-3" formGroupName="sedeOperativa">
+                            <label class="field cod" for="telefonoLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_OPERATIVA_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="telefono"
+                                        id="telefonoLeg"
+                                        maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-2" formGroupName="sedeOperativa">
+                            <label class="field cod" for="faxLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_OPERATIVA_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="fax"
+                                        id="faxLeg"
+                                        maxlength="50">
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-4" formGroupName="sedeOperativa">
+                            <label class="field cod" for="emailLeg">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL" | translate}}<span *ngIf="TEL_FAX_MAIL_SEDE_OPERATIVA_INVALID && !(this.VIEW_MODE)" class="oblg" title="campo obbligatorio">*</span></label>
+                            <div class="form-group">
+                                <input type="email"
+                                        class="form-control"
+                                        formControlName="email"
+                                        id="emailLeg"
+                                        maxlength="50">
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+
+
+            </form>
+            <!-- BOTTONI -->
+            <div *ngIf="!VIEW_MODE" class="row">
+                <div class="col-auto">
+                    <button
+                    (click)="reset()"
+                    type="button"
+                    class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onSubmit()"
+                    [disabled]="INVALIDITA_FORM || DATORE_IS_NOT_VALID || INVALIDITA_ANNULLO_MODE || CF_DATORE_NOT_EQUAL_CF_FORM"
+                    >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

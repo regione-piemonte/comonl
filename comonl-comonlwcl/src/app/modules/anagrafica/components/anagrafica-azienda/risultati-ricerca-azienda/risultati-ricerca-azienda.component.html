@@ -1,0 +1,26 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div *ngIf="ricercaEffettuata">
+<div class="row">
+    <div class="col-12">
+      <h3>{{ 'RICERCA_AZIENDA.RESULTS.TITLE' | translate}}</h3>
+    </div>
+  </div>
+  
+  <div class="mt-5 scrollbar-table scrollbar-primary">
+    <table class="table table-responsive table-striped">
+      <th>Codice fiscale</th>
+      <th>Partita IVA</th>
+      <th>Regione Sociale</th>
+      <th>Azioni</th>
+      <tr>
+        <td>{{this.aziendaSilp?.cfAzienda}}</td>
+        <td>{{this.aziendaSilp?.partitaIva}}</td>
+        <td>{{this.aziendaSilp?.denominazioneDatoreLavoro}}</td>
+        <td></td>
+      </tr>      
+    </table>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_TRASFERIMENTO.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.DATA_TRASFERIMENTO" | translate}} <span class="valore">{{rapporto?.dtTrasformazione | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <h4 class="title">{{"DATI_TRASFERIMENTO.DATI_SEDE_LAV_PREC" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.COD_STATO_ESTERO" | translate}} <span class="valore">{{rapporto?.sedeLavoroPrecedente?.statiEsteri?.codNazioneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.DESCR_STATO_ESTERO" | translate}} <span class="valore">{{rapporto?.sedeLavoroPrecedente?.statiEsteri?.dsStatiEsteri}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.COD_COMUNE" | translate}} <span class="valore">{{rapporto?.sedeLavoroPrecedente?.comune?.codComuneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.DESCR_COMUNE" | translate}} <span class="valore">{{rapporto?.sedeLavoroPrecedente?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TRASFERIMENTO.FIELD.INDIRIZZO" | translate}} <span class="valore">{{rapporto?.sedeLavoroPrecedente?.indirizzo}}</span></div>
+    </div>
+</div>

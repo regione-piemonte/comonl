@@ -1,0 +1,67 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<header class="fixed-top" [class.header-hidden]="headerHidden">
+
+  <nav class="navbar navbar-expand navbar-dark-blue">
+    <div class="container-fluid">
+
+      <div class="row header-body">
+
+        <div class="col-sm-7 col-md-7">
+          <h1>
+            <button type="button" (click)="openCloseSideBar()" class="btn btn-link" id="menu-mobile"><i class="fas fa-bars"></i></button>
+            <a [routerLink]="['/home']">{{ titolo | translate }}</a>
+          </h1>
+        </div>
+
+        <div class="col-sm-5 col-md-5">
+            <span class="float-right">
+
+              <a href="http://www.sistemapiemonte.it/lavoro/guida_applicazioni/cms/index.php?option=com_content&view=article&id=73&Itemid=53" title="Contatti" _blank><i class="fas fa-id-card"></i></a>
+
+              <a href="http://www.sistemapiemonte.it/lavoro/guida_applicazioni/cms/" title="Guida" _blank><i class="fas fa-question-circle"></i></a>
+
+              <!--  TASTO ACCEDI  <button class="btn btn-primary accedi">Accedi</button> -->
+
+              <span ngbDropdown class="menu-utente">
+                <a ngbDropdownToggle class="btn btn-link dropdown-toggle">
+                  <span class="utente"> NU <!-- {{ utente?.nome?.charAt(0) }}{{ utente?.cognome?.charAt(0) }} --></span>
+                </a>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                  <div class="dropdown-divider"></div>
+                  <button type="button" class="dropdown-item" ngbDropdownItem
+                    disabled>{{ 'HEADER.ROLE' | translate }}:
+                     {{ ilRuoloUtente.ilRuolo }}
+                  </button>
+                  <ng-container>
+                    <button type="button" class="dropdown-item" ngbDropdownItem disabled>
+                      Denominazione Azienda:
+                      {{ ilRuoloUtente.denominazioneAzienda }}
+                    </button>
+                  </ng-container>
+                  <ng-container>
+                    <button type="button" class="dropdown-item" ngbDropdownItem disabled>
+                      Codice fiscale:
+                      {{ ilRuoloUtente.codiceFiscaleAzienda }}
+                    </button>
+                  </ng-container>
+                  <div class="dropdown-divider"></div>
+                  <button type="button" class="dropdown-item" ngbDropdownItem
+                    (click)="cambiaRuolo()">Cambia ruolo</button>
+                  <button type="button" class="dropdown-item" ngbDropdownItem
+                    (click)="logout()">{{ 'APP.EXIT' | translate }}</button>
+                </div>
+              </span>
+
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+  </nav>
+
+</header>

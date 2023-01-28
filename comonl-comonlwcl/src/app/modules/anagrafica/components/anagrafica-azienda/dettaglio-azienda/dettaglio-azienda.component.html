@@ -1,0 +1,946 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="dettaglio-azienda"></em>
+<div class="container">
+    <div class="mb-4">
+      <button *ngIf="!wrapperHelper" type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="goToAnagrafica()">{{ 'APP.RETURN' | translate | uppercase}}</button>
+       <button *ngIf="wrapperHelper" type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="goToComunicazione()">{{ 'APP.COMUNICAZIONE_RETURN' | translate | uppercase}}</button>
+    </div>
+    <h2><i style="color: #005ca9;" class="fas fa-industry mr-2"></i>{{"ANAGRAFICA.DETTAGLIO_AZIENDA.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card" *ngIf="showForm">
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="showForm">
+                <!-- ************************* DATI GENERALI DELL'AZIENDA ************************* -->
+                <h1 class="dati-anagrafici">{{"ANAGRAFICA.DETTAGLIO_AZIENDA.DATI_GENERALI" | translate}}</h1>
+                <label class="mb-4" *ngIf="!this.READ_MODE">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-5">
+                        <label for="cfAzienda">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.CF" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="cfAzienda"
+                                id="cfAzienda"
+                                oninput="this.value = this.value.toUpperCase().trim()"
+                                minlength="11"
+                                maxlength="16"
+                                required>
+                            <div *ngIf="f?.cfAzienda?.errors" class="text-danger">
+                              <div *ngIf="f?.cfAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_11" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="partitaIva">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.P_IVA" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="partitaIva"
+                            comonlDigitOnly
+                            id="partitaIva"
+                            maxlength="11"
+                            minlength="11">
+                        <div *ngIf="f?.partitaIva?.errors" class="text-danger">
+                            <div *ngIf="f?.partitaIva?.errors?.minlength">{{"ERROR.FIELD.LENGHT_11" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="col-auto" *ngIf="this.INS_MODE">
+                      <button
+                        id="btnSearch"
+                        type="button"
+                        (click)="onClickFindAziendaSuAaep()"
+                        [disabled]="f?.cfAzienda?.errors"
+                        class="btn btn-primary ml-auto btn-lg btnSearch">
+                        Cerca Azienda su AAEP </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <label for="denominazioneDatoreLavoro">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DENOM_AZIENDA" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="denominazioneDatoreLavoro"
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="denominazioneDatoreLavoro"
+                                maxlength="305"
+                                required>
+                            <div *ngIf="f?.denominazioneDatoreLavoro?.errors" class="text-danger">
+                            <div *ngIf="f?.denominazioneDatoreLavoro?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_6" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2" formGroupName="atecofin">
+                        <label for="codAtecofinMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_ATECO" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="codAtecofinMin"
+                                oninput="this.value = this.value.toUpperCase().trim()"
+                                id="codAtecofinMin"
+                                minlength="3"
+                                maxlength="8"
+                                required>
+                            <div *ngIf="f?.atecofin?.controls?.codAtecofinMin?.errors" class="text-danger">
+                            <div *ngIf="f?.atecofin?.controls?.codAtecofinMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6" formGroupName="atecofin">
+                        <label for="dsComTAtecofin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="dsComTAtecofin"
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="dsComTAtecofin"
+                                minlength="3"
+                                maxlength="250"
+                                required>
+                            <div *ngIf="f?.atecofin?.controls?.dsComTAtecofin?.errors" class="text-danger">
+                            <div *ngIf="f?.atecofin?.controls?.dsComTAtecofin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="col-auto" *ngIf="!this.READ_MODE">
+                      <button
+                        id="btnSearch"
+                        type="button"
+                        [disabled]="this.READ_MODE || this.wrapperHelper || (f?.atecofin?.controls?.codAtecofinMin?.value?.length < 3 && f?.atecofin?.controls?.dsComTAtecofin?.value?.length < 3)"
+                        (click)="onClickFindAteco()"
+                        class="btn btn-primary ml-auto btn-lg btnSearch">
+                        {{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2" formGroupName="ccnl">
+                        <label for="codCcnlMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_CCNL" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="codCcnlMin"
+                                oninput="this.value = this.value.toUpperCase().trim()"
+                                id="codCcnlMin"
+                                minlength="2"
+                                maxlength="5"
+                                required>
+                            <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors" class="text-danger">
+                            <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6" formGroupName="ccnl">
+                        <label for="dsCcnl">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="dsCcnl"
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="dsCcnl"
+                                minlength="2"
+                                maxlength="1500"
+                                required>
+                            <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors" class="text-danger">
+                            <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="col-auto" *ngIf="!this.READ_MODE">
+                      <button
+                            id="btnSearchCCNL"
+                            [disabled]="this.READ_MODE || this.wrapperHelper || (f?.ccnl?.controls?.codCcnlMin?.value?.length < 2 && f?.ccnl?.controls?.dsCcnl?.value?.length < 2)"
+                            (click)="onClickfindCcnl()"
+                            type="button"
+                            class="btn btn-primary ml-auto btn-lg btnSearch">
+                        <!-- <button type="button"
+                        class="btn btn-primary ml-auto btn-lg btnSearch"
+                        (click)="onSubmit()"> -->
+                        {{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <label for="naturaGiuridica">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.NATURA_GIURIDICA' | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="naturaGiuridica"
+                            id="naturaGiuridica"
+                            required>
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let naturaGiuridica of listaNaturaGiuridica" [ngValue]="naturaGiuridica">{{naturaGiuridica.descrizione}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="flagArtigiana">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.AZIENDA_ART" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                        <div class="row ml-1">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flagArtigiana" type="radio" id="Si" [value]="'S'" required>
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flagArtigiana" type="radio" id="No" [value]="'N'" required>
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="flgPubblicaAmm">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.PUBBL_AMM" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                        <div class="row ml-1">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgPubblicaAmm" type="radio" id="Si" [value]="'S'" [checked]="this.f.flgPubblicaAmm.value === 'S'">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgPubblicaAmm" type="radio" id="No" [value]="'N'" [checked]="this.f.flgPubblicaAmm.value === 'N'">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="iscrAlboNum">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.ISCR_ALBO_NUM" | translate}} <span *ngIf="!this.READ_MODE && !ISCR_ALBO_DATA_VUOTO" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="iscrAlboNum"
+                                    (change)="setValidatorsIscrizAlboNumAlboData()"
+                                    id="iscrAlboNum"
+                                    maxlength="10"
+                                    minlength="10">
+                                <div *ngIf="f?.iscrAlboNum?.errors" class="text-danger">
+                                <div *ngIf="f?.iscrAlboNum?.errors?.minlength">{{"ERROR.FIELD.LENGHT_10" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="iscrAlboData">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.ISCR_ALBO_DATA" | translate}} <span *ngIf="!this.READ_MODE && !ISCR_ALBO_NUM_VUOTO" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input
+                            formControlName="iscrAlboData"
+                            type="text"
+                            class="form-control"
+                            id="iscrAlboData"
+                            (change)="setValidatorsIscrizAlboNumAlboData()"
+                            (dateSelect)="setValidatorsIscrizAlboNumAlboData()"
+                            ngbDatepicker
+                            #iscrAlboData="ngbDatepicker"
+                            maxlength="10">
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="iscrAlboData.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.iscrAlboData?.invalid && f?.iscrAlboData?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* DATI LEGALE RAPPRESENTANTE DELL'AZIENDA ************************* -->
+                <h1 class="dati-anagrafici">{{"ANAGRAFICA.DETTAGLIO_AZIENDA.LEGALE_RAPPRESENTANTE" | translate}}</h1>
+                <form [formGroup]="formLegaleRappr">
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="extraCom">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.EXTRA_COM" | translate}}</label>
+                            <div class="form-group ml-3">
+                                <div class="row">
+                                <div class="form-check form-check-inline">
+                                    <input
+                                      formControlName="extraCom"
+                                      type="radio"
+                                      id="Si"
+                                      [value]="'S'"
+                                      (click)="onClickExtraCom('S')"
+                                      >
+                                    <label class="radio-button" for="S">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input
+                                      formControlName="extraCom"
+                                      type="radio"
+                                      id="No"
+                                      [value]="'N'"
+                                      (click)="onClickExtraCom('N')"
+                                      >
+                                    <label class="radio-button" for="N">No</label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3" *ngIf="this.fL?.extraCom?.value === 'S'">
+                            <label class="field" for="flgResidenzaItaliana">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.RES_ITA" | translate}}</label>
+                            <div class="form-group ml-3">
+                                <div class="row">
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgResidenzaItaliana" type="radio" id="Si" [value]="'S'"
+                                    (click)="onClickSoggiornanteItalia('S')">
+                                    <label class="radio-button" for="S">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="flgResidenzaItaliana" type="radio" id="No" [value]="'N'"
+                                    (click)="onClickSoggiornanteItalia('N')">
+                                    <label class="radio-button" for="N">No</label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-8 col-md-5">
+                            <label class="field cod" for="dsCognome">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COGNOME_LR" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="dsCognome"
+                                        oninput="this.value = this.value.toUpperCase()"
+                                        id="dsCognome"
+                                        maxlength="50">
+                                    <div *ngIf="fL?.dsCognome?.errors" class="text-danger">
+                                    <div *ngIf="fL?.dsCognome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label class="field cod" for="dsNome">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.NOME_LR" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="dsNome"
+                                        oninput="this.value = this.value.toUpperCase()"
+                                        id="dsNome"
+                                        maxlength="50">
+                                    <div *ngIf="fL?.dsNome?.errors" class="text-danger">
+                                    <div *ngIf="fL?.dsNome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="sesso">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.SESSO_LR" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group ml-3">
+                                <div class="row">
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="sesso" type="radio" id="M" [value]="'M'" [checked]="this.fL.sesso.value === 'M'">
+                                    <label class="radio-button" for="M">Maschio</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input formControlName="sesso" type="radio" id="F" [value]="'F'" [checked]="this.fL.sesso.value === 'F'">
+                                    <label class="radio-button" for="F">Femmina</label>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label class="field cod" for="dtNascita">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DATA_NASCITA_LR" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input
+                                formControlName="dtNascita"
+                                type="text"
+                                class="form-control"
+                                id="dtNascita"
+                                ngbDatepicker
+                                #dtNascita="ngbDatepicker"
+                                maxlength="10">
+                                <div class="input-group-append">
+                                  <button
+                                  class="btn btn-outline-primary calendar"
+                                  (click)="dtNascita.toggle()"
+                                  [disabled]="this.READ_MODE"
+                                  type="button">
+                                  <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                            <div *ngIf="fL?.dtNascita?.invalid && fL?.dtNascita?.value?.length > 0" class="text-danger">
+                                    {{'ERROR.INVALID_DATE' | translate}}
+                            </div>
+                            <div *ngIf="fL?.dtNascita?.value > now" class="text-danger">
+                              {{'ERROR.FUTURE_DATE' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="statiEsteri">
+                            <label for="codNazioneMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_STATO_ESTERO" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="codNazioneMin"
+                                    (change)="checkValue('statiEsteriNascita')"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="codNazioneMin"
+                                    minlength="3"
+                                    maxlength="100">
+                                <div *ngIf="fL?.statiEsteri?.controls?.codNazioneMin?.errors" class="text-danger">
+                                <div *ngIf="fL?.statiEsteri?.controls?.codNazioneMin?.errors?.minlength && fL?.statiEsteri?.controls?.codNazioneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="statiEsteri">
+                            <label for="dsStatiEsteri">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR_STATO_ESTERO" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="dsStatiEsteri"
+                                    (change)="checkValue('statiEsteriNascita')"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="dsStatiEsteri"
+                                    minlength="2"
+                                    maxlength="100">
+                                    <div *ngIf="fL?.statiEsteri?.controls?.dsStatiEsteri?.errors" class="text-danger">
+                                        <div *ngIf="fL?.statiEsteri?.controls?.dsStatiEsteri?.errors?.minlength && fL?.statiEsteri?.controls?.dsStatiEsteri?.value?.length < 2">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                        </div>
+                        </div>
+                        <div class="col-auto" *ngIf="!this.READ_MODE && COMUNE_NASCITA_VUOTO">
+                            <button type="button"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            (click)="onClickFindStatoEstero('nascita')"
+                            [disabled]="this.READ_MODE || this.wrapperHelper || (fL?.statiEsteri?.controls?.codNazioneMin?.value?.length < 3 && fL?.statiEsteri?.controls?.dsStatiEsteri?.value?.length < 2)"
+                            >{{ 'APP.SEARCH' | translate }}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+                            <label for="codComuneMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_COMUNE_NASCITA" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="codComuneMin"
+                                    (change)="checkValue('comuneNascita')"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="codComuneMin"
+                                    minlength="3"
+                                    maxlength="100">
+                                <div *ngIf="fL?.codComuneMin?.errors" class="text-danger">
+                                <div *ngIf="fL?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="comune" >
+                            <label for="dsComTComune">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR_COMUNE_NASCITA" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                                <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTComune"
+                                    (change)="checkValue('comuneNascita')"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="dsComTComune"
+                                    minlength="2"
+                                    maxlength="100">
+                                <div *ngIf="fL?.comune?.controls?.dsComTComune?.errors" class="text-danger">
+                                <div *ngIf="fL?.comune?.controls?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                        <div class="col-auto" *ngIf="!this.READ_MODE && STATI_ESTERI_NASCITA_VUOTO">
+                            <button type="button"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            (click)="onClickFindComune('nascita')"
+                            [disabled]="this.READ_MODE || this.wrapperHelper || (fL?.comune?.controls?.codComuneMin?.value?.length < 3 && fL?.comune?.controls?.dsComTComune?.value?.length < 2)"
+                            >{{ 'APP.SEARCH' | translate }}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-8" >
+                            <label for="cittadinanza">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.CITTADINANZA_LR' | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_EXTRA_COMUNITARIO" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="cittadinanza"
+                                id="cittadinanza"
+                                maxlength="100">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let cittadinanza of listaCittadinanzaFiltrata" [ngValue]="cittadinanza">{{cittadinanza.dsComTCittadinanza}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="(this.fL?.flgResidenzaItaliana?.value === 'S' && this.fL?.extraCom?.value === 'S') || this.READ_MODE">
+                        <div class="form-group col-sm-12 col-md-5">
+                            <label for="statusStraniero">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.TITOLO_SOGGIORNO' | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_SOGGIORNANTE_ITALIA" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group" *ngIf="!READ_MODE">
+                                <select
+                                (change)="onClickSelectStatusStraniero()"
+                                class="form-select"
+                                formControlName="statusStraniero"
+                                id="statusStraniero"
+                                maxlength="100">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let statusStraniero of listaTitoloSoggiorno" [ngValue]="statusStraniero">{{statusStraniero.dsComTStatusStraniero}}</option>
+                                  </select>
+                            </div>
+                            <div class="input-group" *ngIf="READ_MODE">
+                            <input
+                                  type="text"
+                                  class="form-control"
+                                  id="statusStraniero"
+                                  [value]="this.azienda?.ilLegaleRapprDellaSedeLegale?.statusStraniero?.dsComTStatusStraniero">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label class="field" for="numeroDocumento">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.NUMERO_DOCUMENTO" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_SOGGIORNANTE_ITALIA" class="asterisk">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="text"
+                                class="form-control"
+                                formControlName="numeroDocumento"
+                                id="numeroDocumento">
+                                <div *ngIf="fL?.numeroDocumento?.errors" class="text-danger">
+                                    <div *ngIf="fL?.numeroDocumento?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group col-sm-12 col-md-5">
+                        <label class="field" for="motivoPermesso">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.MOTIVO_PERMESSO' | translate}}
+                          <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_SOGGIORNANTE_ITALIA" class="asterisk">*</span>
+                        </label>
+                        <div class="form-group" *ngIf="!READ_MODE">
+                            <select
+                            class="form-select"
+                            formControlName="motivoPermesso"
+                            id="motivoPermesso">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let motivoPermesso of listaMotivoPermesso" [ngValue]="motivoPermesso">{{motivoPermesso.dsComTMotivoPermesso}}</option>
+                            </select>
+                        </div>
+                        <div class="input-group" *ngIf="READ_MODE">
+                          <input
+                                type="text"
+                                class="form-control"
+                                id="motivoPermesso"
+                                disabled
+                                [value]="this.azienda?.ilLegaleRapprDellaSedeLegale?.motivoPermesso?.dsComTMotivoPermesso">
+                          </div>
+
+                        </div>
+                        <div class="form-group col-sm-8 col-md-3">
+                            <label id="scad" class="field" for="dtScadenzaPermessoSogg">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.SCADENZA_PERMESSO" | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_SOGGIORNANTE_ITALIA" class="asterisk">*</span>
+                            </label>
+                            <div class="input-group">
+                              <input type="text"
+                              class="form-control"
+                              formControlName="dtScadenzaPermessoSogg"
+                              id="dtScadenzaPermessoSogg"
+                              ngbDatepicker
+                              #dtScadenzaPermessoSogg="ngbDatepicker"
+                              maxlength="10">
+                              <div class="input-group-append">
+                                <button
+                                  class="btn btn-outline-primary calendar"
+                                  (click)="dtScadenzaPermessoSogg.toggle()"
+                                  type="button">
+                                  <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                              </div>
+                            </div>
+                            <div *ngIf="fL?.dtScadenzaPermessoSogg?.invalid && fL?.dtScadenzaPermessoSogg?.value?.length > 0" class="text-danger">
+                              {{'ERROR.INVALID_DATE' | translate}}
+                            </div>
+                            <div *ngIf="flgControlloDataScadenzaPerm && fL?.dtScadenzaPermessoSogg?.value < data2000 " class="text-danger">
+                              {{'ERROR.DATE_MINORE_2000' | translate}}
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-8 ">
+                            <label class="field" for="questura">{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.QUESTURA' | translate}}
+                              <span *ngIf="!this.READ_MODE && LEGALE_RAPPRESENTANTE_SOGGIORNANTE_ITALIA" class="asterisk">*</span>
+                            </label>
+                            <div class="form-group">
+                                <select
+                                class="form-select"
+                                formControlName="questura"
+                                maxlength="100"
+                                id="questura">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let questura of listaQuestura" [ngValue]="questura">{{questura.dsQuestura}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row col-md-12" *ngIf="!(this.READ_MODE || this.INS_MODE)">
+                    <button type="button"
+                    (click)="onClickAnnulla()"
+                        class="btn btn-outline-secondary mr-auto btn-lg"
+                        [disabled]="!form?.valid && !formLegaleRappr?.valid"
+                        >Annulla Azienda</button>
+                    <div class="col-auto" *ngIf="!this.INS_MODE">
+                      <button type="button"
+                            [disabled]="this.wrapperHelper"
+                            (click)="onClickAnnullaRappresentante()"
+                            class="btn btn-outline-secondary mr-auto btn-lg">Annulla Rappresentante
+                      </button>
+                    </div>
+                    <button type="button"
+                        (click)="onClickSalvaAzienda()"
+                        class="btn btn-primary ml-auto btn-lg mr-5"
+                        [disabled]="!form?.valid || !formLegaleRappr?.valid || nuovaSede"
+                        >{{ 'ANAGRAFICA_AZIENDA.BUTTON.CONFIRM_AZIENDA' | translate }}</button>
+                </div>
+                <!-- ************************* ELENCO SEDI ************************* -->
+                <div *ngIf="this.showElencoSedi || this.READ_MODE || this.EDIT_MODE || flgRicerca">
+                    <h1 class="dati-anagrafici mt-4">{{"ANAGRAFICA.DETTAGLIO_AZIENDA.ELENCO_SEDI" | translate}}</h1>
+                    <div class="row" *ngIf="!this.READ_MODE">
+                      <div class="form-group col-sm-8 col-md-3">
+                          <label class="field" for="provincia">{{ 'ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.PROVINCIA_DOMICILIO' | translate}}</label>
+                        <div class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="provincia"
+                            id="provincia" (change)="onchangeProvinciaDelleSedi()">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let provincia of this.provinceSedi" [ngValue]="provincia">{{provincia?.dsComTProvincia}}</option>
+                            </select>
+                        </div>
+                      </div>
+                      <div class="col-auto" *ngIf="!wrapperHelper">
+                        <button type="button"
+                        class="btn btn-outline-primary ml-auto btn-lg btnSearch"
+                        [disabled]="nuovaSede"
+                        (click)="showNuovaSede()"
+                        >{{ 'ANAGRAFICA.DETTAGLIO_AZIENDA.NUOVA_SEDE' | translate }}</button>
+                      </div>
+                    </div>
+                <!-- VISUALIZZA: {{this.cliccataIconaVisualizzaSede}} ---------- MODIFICA: {{this.cliccataIconaModificaSede}} -->
+                <div class="col-md-12" *ngIf="!this.INS_MODE">
+                    <comonl-paginated-array-table [columnNumber]="5" [pagedResponse]="this.elencoSediOrdered" [limit]="8">
+                        <ng-template comonlPaginationHead>
+                            <tr>
+                            <th>Tipo Sede</th>
+                            <th>Indirizzo</th>
+                            <th>Comune / Stato estero</th>
+                            <th>Valida</th>
+                            <th>Azioni</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template comonlPaginationBody let-sede>
+                            <tr>
+                                <td>{{sede?.sedeLegale ? 'Legale' : (sede?.sedeOperativa) ? 'Operativa' : null}}</td>
+                                <td>{{sede?.toponimoSede.dsComTToponimo}} {{sede?.indirizzo}} {{sede?.numeroCivico}}</td>
+                                <td>{{sede?.comune?.dsComTComune ? sede?.comune?.dsComTComune : sede.statiEsteri?.dsStatiEsteri ? sede?.statiEsteri?.dsStatiEsteri : ''}}</td>
+                                <td>{{sede?.flgValida === 'S' ? 'Si' : 'No'}}</td>
+                                <td *ngIf="!nuovaSede || flgViewSede || modificaSede || inserisciSede; else disableForInsertSede">
+                                    <a><i *ngIf="this.READ_MODE" class="fas fa-eye mr-2" (click)="showDettaglioSede(sede, 'visualizza')" title="Visualizza"></i></a>
+                                    <a><i *ngIf="this.EDIT_MODE" class="fas fa-edit ml-2 mr-2" (click)="showDettaglioSede(sede, 'modifica',true)" title="Modifica"></i></a>
+                                    <a><i *ngIf="(wrapperHelper && sede?.flgValida === 'S')" (click)="onClickChooseSedeOperativa(sede)" class="fas fa-check-double ml-2" title="Seleziona Sede Operativa"></i></a>
+                                    <a *ngIf="!this.READ_MODE">
+                                        <i *ngIf="sede?.sedeOperativa === true && !wrapperHelper && sede?.flgValida === 'S'; else sedeLegale;" (click)="setSedeLegale(sede,elencoSedi[0], 'MESSAGES.SYS-SYS-A-0010')" title="Imposta sede legale" class="fas fa-stamp ml-2"></i>
+                                    </a>
+                                    <ng-template #sedeLegale><i *ngIf="!wrapperHelper && sede?.flgValida === 'S'" class="fas fa-certificate ml-2" title="Sede Legale"></i></ng-template>
+                                </td>
+                                <ng-template #disableForInsertSede>
+                                  <td>
+                                    <i *ngIf="this.READ_MODE" class="fas fa-eye mr-2" title="Visualizza"></i>
+                                    <i *ngIf="this.EDIT_MODE" class="fas fa-edit ml-2 mr-2" title="Modifica"></i>
+                                    <i *ngIf="wrapperHelper" class="fas fa-check-double ml-2" title="Seleziona Sede Operativa"></i>
+                                    <i *ngIf="!this.READ_MODE && sede?.sedeOperativa; else sedeLegale;" class="fas fa-stamp ml-2"></i>
+                                    <ng-template #sedeLegale><i class="fas fa-certificate ml-2" title="Sede Legale"></i></ng-template>
+                                  </td>
+                                </ng-template>
+                            </tr>
+                        </ng-template>
+                    </comonl-paginated-array-table>
+                  </div>
+                  <!-- Da campire quale tipo di errore bisogna far comparire.-->
+                  <!-- <div *ngIf="!this.INS_MODE">
+                    <div *ngIf="!this.azienda || (this.azienda && this.azienda.elencoSedi && this.azienda.elencoSedi.length <= 0)" class="alert alert-warning" role="alert"></div>
+                        {{ 'ERROR.ERROR_TITLE' | translate}}
+                  </div> -->
+                </div>
+            </form>
+            <!-- ---------- {{this.inserisciSede}} --------- {{this.modificaSede}} ---------- {{this.nuovaSede}} -->
+            <!-- ************************* DETTAGLIO SEDE ************************* -->
+            <h1 class="dati-anagrafici mt-4" *ngIf="((showDettaglio) || nuovaSede) && showForm">{{"ANAGRAFICA.DETTAGLIO_AZIENDA.DETTAGLIO_SEDE" | translate}}</h1>
+            <form [formGroup]="formDettaglioSede" *ngIf="((showDettaglio) || nuovaSede) && showForm">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-1">
+                        <label id="tipo" class="field" for="tipoSede">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.TIPO_SEDE" | translate}} </label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3 ml-3">
+                        <div class="form-check form-check-inline">
+                            <input formControlName="tipoSede" type="radio" id="L" [value]="'L'" required >
+                            <label class="radio-button" for="L">Legale</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input formControlName="tipoSede" type="radio" id="O" [value]="'O'" required >
+                            <label class="radio-button" for="O">Operativa</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="numAgenziaSomministrazione">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.NUM_AG_SOMM" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numAgenziaSomministrazione"
+                                    id="numAgenziaSomministrazione"
+                                    maxlength="11">
+                                <div *ngIf="fS?.numAgenziaSomministrazione?.errors" class="text-danger">
+                                <div *ngIf="fS?.numAgenziaSomministrazione?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="patInail">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.PAT_INAIL" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="patInail"
+                                    id="patInail"
+                                    comonlDigitOnly
+                                    minlength="8"
+                                    maxlength="10">
+                                <div *ngIf="fS?.patInail?.errors" class="text-danger">
+                                <div *ngIf="fS?.patInail?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_NUMBER_8" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="statiEsteri">
+                        <label for="codNazioneMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_STATO_ESTERO_SEDE" | translate}} <span *ngIf="!this.READ_MODE && this.modificaSede" class="asterisk">*</span></label>
+                        <input type="text"
+                            formControlName="codNazioneMin"
+                            (change)="checkValue('statiEsteriSede')"
+                            oninput="this.value = this.value.toUpperCase().trim()"
+                            class="form-control"
+                            id="codStatoEst">
+                        <div *ngIf="fS?.statiEsteri?.controls?.codNazioneMin?.errors" class="text-danger">
+                            <div *ngIf="fS?.statiEsteri?.controls?.codNazioneMin?.errors?.minlength && fS?.statiEsteri?.controls?.dsStatiEsteri?.value?.length < 3">
+                              {{"ERROR.FIELD.MIN_LENGHT_3" | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="statiEsteri">
+                        <label for="dsStatiEsteri">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR_STATO_ESTERO_SEDE" | translate}} <span *ngIf="!this.READ_MODE && this.modificaSede" class="asterisk">*</span></label>
+                        <input type="text"
+                            formControlName="dsStatiEsteri"
+                            (change)="checkValue('statiEsteriSede')"
+                            oninput="this.value = this.value.toUpperCase()"
+                            id="descrStatoEstero"
+                            class="form-control"
+                            minlength="2"
+                            maxlength="100">
+                        <div *ngIf="fS?.statiEsteri?.controls?.dsStatiEsteri?.errors" class="text-danger">
+                            <div *ngIf="fS?.statiEsteri?.controls?.dsStatiEsteri?.errors?.minlength  && fS?.statiEsteri?.controls?.codNazioneMin?.value?.length < 3">
+                              {{"ERROR.FIELD.MIN_LENGHT_2" | translate}}
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!disabilitaComuneEStatiEsteri" class="col-auto">
+                      <button
+                        *ngIf="!this.READ_MODE && COMUNE_SEDE_VUOTO"
+                        [disabled]="!(fS?.statiEsteri?.controls?.dsStatiEsteri?.value?.length > 2 || fS?.statiEsteri?.controls?.codNazioneMin?.value?.length > 2)"
+                        (click)="onClickFindStatoEstero('sede')" class="btn btn-primary ml-auto btn-lg btnSearch">
+                        {{"APP.SEARCH" | translate}}
+                      </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+                        <label for="codComuneMin">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_COMUNE_SEDE" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                          <input type="text"
+                          formControlName="codComuneMin"
+                          (change)="checkValue('comuneSede')"
+                          oninput="this.value = this.value.toUpperCase().trim()"
+                          maxlength="4"
+                          class="form-control"
+                          id="codComune">
+                          <div *ngIf="fS?.comune?.controls?.codComuneMin?.errors" class="text-danger">
+                              <div *ngIf="fS?.comune?.controls?.codComuneMin?.errors?.minlength && fS?.comune?.controls?.dsComTComune?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                          </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="comune">
+                        <label for="dsComTComune">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR_COMUNE_SEDE" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                          <input type="text"
+                          formControlName="dsComTComune"
+                          (change)="checkValue('comuneSede')"
+                          oninput="this.value = this.value.toUpperCase()"
+                          class="form-control"
+                          id="descrComune"
+                          maxlength="100">
+                          <div *ngIf="fS?.comune?.controls?.dsComTComune?.errors" class="text-danger">
+                              <div *ngIf="fS?.comune?.controls?.dsComTComune?.errors?.minlength && fS?.comune?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                          </div>
+                    </div>
+                    <div *ngIf="!disabilitaComuneEStatiEsteri" class="col-auto">
+                      <button
+                        *ngIf="!READ_MODE && STATI_ESTERI_SEDE_VUOTO"
+                        [disabled]="!(fS?.comune?.controls?.codComuneMin?.value?.length > 2 || fS?.comune?.controls?.dsComTComune?.value?.length > 2)"
+                        (click)="onClickFindComune('sede')"
+                        class="btn btn-primary ml-auto btn-lg btnSearch">{{"APP.SEARCH" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                    <label class="field" for="toponimoSede">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.TOPONIMO" | translate}} <span *ngIf="!this.READ_MODE && !COMUNE_SEDE_VUOTO" class="asterisk">*</span></label>
+                    <div class="form-group">
+                        <select
+                        class="form-select"
+                        formControlName="toponimoSede"
+                        id="toponimoSede"
+                        maxlength="100"
+                        [required]="!COMUNE_SEDE_VUOTO">
+                        <option [ngValue]="null"></option>
+                            <option *ngFor="let toponimo of listaToponimi" [ngValue]="toponimo">{{toponimo?.dsComTToponimo}}</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-4">
+                    <label class="field" for="indirizzo">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="indirizzo"
+                            oninput="this.value = this.value.toUpperCase()"
+                            id="indirizzo"
+                            maxlength="100"
+                            required>
+                        <div *ngIf="fS?.indirizzo?.errors" class="text-danger">
+                        <div *ngIf="fS?.indirizzo?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-1">
+                    <label class="field" for="numeroCivico">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.NUM_CIVICO_RESIDENZA" | translate}} <span *ngIf="!this.READ_MODE && !COMUNE_SEDE_VUOTO" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="numeroCivico"
+                            id="numeroCivico"
+                            maxlength="15"
+                            [required]="!COMUNE_SEDE_VUOTO">
+                        <div *ngIf="fS?.numeroCivico?.errors" class="text-danger">
+                        <div *ngIf="fS?.numeroCivico?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-1 pr-0">
+                    <label class="field" for="cap">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}} <span *ngIf="!this.READ_MODE && !COMUNE_SEDE_VUOTO" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="cap"
+                            comonlDigitOnly
+                            id="cap"
+                            maxlength="5"
+                            [required]="!COMUNE_SEDE_VUOTO">
+                        <div *ngIf="fS?.cap?.errors" class="text-danger">
+                        <div *ngIf="fS?.cap?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="telefono">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.TELEFONO" | translate}} <span *ngIf="!this.READ_MODE FLG_TELEFONO_OBBLIGATORIO" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="telefono"
+                            comonlDigitOnly
+                            id="telefono"
+                            maxlength="15"
+                            [required]="FLG_TELEFONO_OBBLIGATORIO">
+                        <div *ngIf="fS?.telefono?.errors" class="text-danger">
+                            <div *ngIf="fS?.telefono?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-2">
+                        <label class="field" for="fax">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.FAX" | translate}} <span *ngIf="!this.READ_MODE && (this.modificaSede || this.inserisciSede)" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="fax"
+                            id="fax"
+                            maxlength="15"
+                            [required]="FLG_FAX_OBBLIGATORIO">
+                        <div *ngIf="fS?.fax?.errors" class="text-danger">
+                            <div *ngIf="fS?.fax?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="email">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.EMAIL" | translate}} <span *ngIf="!this.READ_MODE && (this.modificaSede || this.inserisciSede)" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="email"
+                            pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?"
+                            id="email"
+                            maxlength="80"
+                            [required]="FLG_EMAIL_OBBLIGATORIO">
+                        <div *ngIf="fS?.email?.errors" class="text-danger">
+                            <div *ngIf="fS?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-1">
+                        <label id="tipo" class="field" for="flgValida">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.FLG_VALIDA" | translate}} </label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3 ml-3">
+                        <div class="form-check form-check-inline">
+                            <input formControlName="flgValida" (change)="setValidatorMotivoInvalida()" type="radio" id="S" [value]="'S'" required >
+                            <label class="radio-button" for="L">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input formControlName="flgValida" (change)="setValidatorMotivoInvalida()" type="radio" id="N" [value]="'N'" required >
+                            <label class="radio-button" for="O">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="fS?.flgValida?.value === 'N'">
+                    <div class="form-group col-sm-11 col-md-8">
+                        <label class="field" for="motivoInvalida">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.MOTIVO_INVALIDA" | translate}} <span *ngIf="fS?.flgValida?.value === 'N'" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="motivoInvalida"
+                            id="motivoInvalida"
+                            oninput="this.value = this.value.toUpperCase()"
+                            maxlength="300">
+                        <div *ngIf="fS?.motivoInvalida?.errors" class="text-danger">
+                            <div *ngIf="fS?.motivoInvalida?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- {{!this.READ_MODE && (this.modificaSede || this.inserisciSede || this.nuovaSede || this.showDettaglio) && showForm}} -->
+            <div *ngIf="!this.READ_MODE && (this.modificaSede || this.inserisciSede || this.nuovaSede || this.showDettaglio) && showForm">
+                <div class="row">
+                    <div class="col-auto">
+                        <button type="button"
+                    (click)="onClickAnnullaDatiInseritiSede()"
+                        class="btn btn-outline-secondary mr-auto btn-lg"
+                        [disabled]="!form?.valid && !formLegaleRappr?.valid"
+                        >Annulla Sede</button>
+                    </div>
+                    <div class="col-auto" *ngIf="!this.INS_MODE">
+                        <button type="button"
+                        (click)="onClickAnnullaModificaInserimentoSede()"
+                            class="btn btn-outline-secondary mr-auto btn-lg"
+                            [disabled]="!form?.valid && !formLegaleRappr?.valid"
+                            >Annulla Operazione</button>
+                    </div>
+                    <div class="col-auto ml-auto" *ngIf="this.INS_MODE || nuovaSede">
+                        <!-- || controlliDisabilitazioneSalvataggio -->
+                        <button type="button"
+                            class="btn btn-primary mr-auto btn-lg"
+                            [disabled]="!form?.valid || !formLegaleRappr?.valid || !formDettaglioSede?.valid || controlliDisabilitazioneSalvataggio"
+                            (click)="onClickSalvaAzienda()"
+                            >{{ 'ANAGRAFICA_AZIENDA.BUTTON.CONFIRM_AZIENDA_E_SEDE' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

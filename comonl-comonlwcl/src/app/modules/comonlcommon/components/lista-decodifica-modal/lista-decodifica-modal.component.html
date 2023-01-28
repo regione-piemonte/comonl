@@ -1,0 +1,54 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-annulla-title">{{title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="callback(modal)">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formRicerca">
+        <div class="row">
+            <div class="form-group col-sm-12 col-md-3">
+            <label for="codAteco">Codice </label>
+            <input type="text" formControlName="codDecodifica" class="form-control" id="codAteco">
+          </div>
+          <div class="form-group col-sm-12 col-md-7">
+            <label for="descrAteco">Descrizione <span></span></label>
+            <input type="text" formControlName="dsDecodifica" class="form-control" id="descrAteco">
+          </div>
+          <div class="form-group col-sm-12 col-md-2">
+            <button (click)="onClickCerca()" class="btn btn-outline-primary mt-lg-btn-form">Cerca</button>
+          </div>
+        </div>
+    </form>
+  <form [formGroup]="formGroupDecodifica">
+    <comonl-paginated-array-table *ngIf="list && list.length > 0" [columnNumber]="3" [pagedResponse]="list" [limit]="8">
+        <ng-template comonlPaginationHead>
+          <tr>
+            <th></th>
+            <th>Codice</th>
+            <th>Descrizione</th>
+          </tr>
+        </ng-template>
+        <ng-template comonlPaginationBody let-item>
+          <tr>
+            <td>
+              <input [value]="item" formControlName="decodifica" type="radio">
+            </td>
+            <td>{{item?.codDecodifica}}</td>
+            <td>{{item?.dsDecodifica}}</td>
+          </tr>
+        </ng-template>
+      </comonl-paginated-array-table>
+        <div *ngIf="!list || (list && list.length <= 0)" class="alert alert-warning" role="alert">
+          {{message}}
+        </div>
+    </form>
+  </div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="callback(modal)">{{ 'APP.FIND_CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onClickConferma()" [disabled]="!formGroupDecodifica?.controls?.decodifica?.value" class="btn btn-primary ml-auto">{{ 'APP.CONFIRM' | translate }}</button>
+</div>

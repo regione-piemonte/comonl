@@ -1,0 +1,86 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!--<h2>Legale rappresentante Comune di Beinasco</h2> -->
+
+
+<!-- <div class="alert alert-warning" role="alert">
+    warning alert
+  </div> -->
+
+<div class="row home">
+  <div class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToRicercaComunicazioni()">
+        <i class="fas fa-search"></i>{{ "HOME.FIELD.SEARCH_COMM" | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToComunicazioneMassiva()">
+        <i class="fas fa-file-upload"></i>
+          {{ "HOME.FIELD.MASSIVE_COMM" | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row home">
+  <div class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToRicercaVardator()">
+        <i class="fas fa-random"></i>{{ "HOME.FIELD.VARDATORI" | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToAnagraficaAzienda()">
+        <i class="fas fa-industry"></i>
+          {{ "HOME.FIELD.CORPORATE" | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row home">
+  <div *ngIf="!ilRuolo?.consulenteRespo" class="card col-auto">
+    <div *ngIf="!ilRuolo?.consulenteRespo" class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToAccreditamentoDeleghe()">
+        <i class="fas fa-check"></i>{{ "HOME.FIELD.PROXIES" | translate}}
+      </button>
+    </div>
+  </div>
+  <div class="card col-auto">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToAnagraficaLavoratore()">
+        <i class="fas fa-user-tie"></i>{{ "HOME.FIELD.WORKER" | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row home">
+  <div *ngIf="ilRuolo?.amministratore || ilRuolo?.operatoreProvinciale" class="card col">
+     <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToAccreditamentoAnagrafiche()">
+        <i class="fas fa-sign-out-alt"></i>{{ "HOME.FIELD.REGISTRY_ACCR" | translate}}
+      </button>
+    </div>
+  </div>
+  <div *ngIf="ilRuolo?.amministratore" class="card col">
+    <div class="card-body">
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="goToGestioneApplicativa()">
+        <i class="fas fa-cogs"></i>{{ "HOME.FIELD.APPLICATION_MANAGEMENT" | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="visibility: hidden;"  id="testErrore">
+  <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickTestError()">
+    <p class="nuovo-prospetto"> <span>Test error</span></p>
+    <!-- to enabled - document.getElementById("testErrore").style.visibility = 'visible' -->
+  </button>
+</div>

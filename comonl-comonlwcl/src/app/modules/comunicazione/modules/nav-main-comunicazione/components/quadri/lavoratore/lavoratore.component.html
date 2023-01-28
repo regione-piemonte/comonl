@@ -1,0 +1,448 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="lavoratore"></em>
+<div class="container">
+  <h2><i style="color: #005ca9;" class="fas fa-user-tie mr-2"></i>{{"ANAGRAFICA.TITLE" | translate}}</h2>
+  <comonl-alert-message></comonl-alert-message>
+  <div *ngIf="showForm" class="card">
+      <div class="card-body">
+        <form [formGroup]="form">
+            <!-- ************************* DATI ANAGRAFICI DEL LAVORATORE ************************* -->
+            <h1 class="dati-title">{{"ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.TITLE" | translate}}</h1>
+            <div class="col-sm-12 col-md-11" *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)">
+              <p>Inserire i dati personali del lavoratore oggetto della comunicazione. I campi contrassegnati dall’asterisco sono obbligatori.
+                Per le assunzioni non in somministrazione è possibile indicare più lavoratori. Nel caso di contratto ripartito è obbligatorio
+                inserire 2 lavoratori, il secondo della lista viene considerato il lavoratore co-obbligato.</p>
+            </div>
+            <table class="table table-responsive table-striped" *ngIf="showTable">
+              <thead>
+                  <th>Codice fiscale</th>
+                  <th>Cognome</th>
+                  <th>Nome</th>
+                  <th *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)">Azioni</th>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let lavoratore of elencoLavoratori; let i = index">
+                    <td>{{lavoratore?.codiceFiscale}}</td>
+                    <td>{{lavoratore?.cognome}}</td>
+                    <td>{{lavoratore?.nome}}</td>
+                    <td>
+                      <a><i (click)="patchInForm(lavoratore,i)" class="fas fa-eye mr-2"></i></a>
+                      <a *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)"><i (click)="eliminaLavoratore(i)" class="fas fa-trash-alt"></i></a>
+                      <a *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && (elencoLavoratori.length === 2 && i === 0)"><i (click)="onClickSwapLavoratore()" class="fas ml-2 fa-caret-down fa-4x"></i></a>
+                      <a *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && elencoLavoratori.length === 2 && i ===1"><i (click)="onClickSwapLavoratore()" class="fas ml-2 fa-caret-up fa-4x"></i></a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+            <div class="row">
+                <div class="form-group col-sm-11 col-md-3">
+                    <label class="field" for="codiceFiscale">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.CF" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="codiceFiscale"
+                            id="codiceFiscale"
+                            maxlength="16"
+                            minlength="11"
+                            oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cfImp" maxlength="16" required>
+                </div>
+                <div class="col-auto pt-0" *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE || AGGIORNAMENTO_MODE)">
+                  <button
+                    [disabled]="AGGIORNAMENTO_MODE || !SEARCH_BUTTON_ENABLE || this.f?.codiceFiscale?.value?.length < 11"
+                    type="button" (click)="onClickFindlavoratoreSilp()" class="btn btn-outline-primary btn-sm mt-4">
+                    {{ 'APP.SEARCH' | translate | uppercase}}</button>
+                </div>
+                <div class="col-auto pt-0" *ngIf="!(this.VIEW_MODE)">
+                  <button *ngIf="showBottoneinserisciLavoratore"
+                    type="button" (click)="onClickOpenModalAnagraficaLavoratore('ins')" class="btn btn-outline-primary btn-sm mt-4">
+                    {{ 'APP.INSERT' | translate | uppercase}}</button>
+                    <button *ngIf="showBottoneModificaLavoratore"
+                    type="button" (click)="onClickOpenModalAnagraficaLavoratore('edit')" class="btn btn-outline-primary btn-sm mt-4">
+                    {{ 'APP.MODIFICA' | translate | uppercase}}</button>
+                </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-8 col-md-3">
+                <label class="field" for="cognome">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COGNOME" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                    <input type="text"
+                        class="form-control"
+                        formControlName="cognome"
+                        id="cognome"
+                        maxlength="50"
+                        required>
+                    <div *ngIf="f?.cognome?.errors" class="text-danger">
+                      <div *ngIf="f?.cognome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                    </div>
+              </div>
+              <div class="form-group col-sm-8 col-md-3">
+                  <label class="field" for="nome">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.NOME" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                      <input type="text"
+                          class="form-control"
+                          formControlName="nome"
+                          id="nome"
+                          maxlength="50"
+                          required>
+                      <div *ngIf="f?.nome?.errors" class="text-danger">
+                        <div *ngIf="f?.nome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                      </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-3">
+                  <label class="field" for="sesso">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.SESSO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+              </div>
+                <div class="form-check form-check-inline ml-3">
+                  <input formControlName="sesso" type="radio" id="Maschio" [value]="'M'" required>
+                  <label class="radio-button" for="Maschio">M</label>
+                </div>
+                <div class="form-check form-check-inline ml-3">
+                  <input formControlName="sesso" type="radio" id="Femmina" [value]="'F'" required>
+                  <label class="radio-button" for="Femmina">F</label>
+                </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-12 col-md-3">
+                <label class="field" for="dtNascita">{{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.DATA_NASCITA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text"
+                        class="form-control"
+                        formControlName="dtNascita"
+                        id="dtNascita"
+                        required
+                        ngbDatepicker
+                        #dtNascita="ngbDatepicker"
+                        maxlength="10">
+
+                    </div>
+                    <div *ngIf="f?.dtNascita?.invalid && f?.dataNascita?.value?.length > 0" class="text-danger">
+                      {{'ERROR.INVALID_DATE' | translate}}
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-11 col-md-3" formGroupName="comuneNasc">
+                <label class="field" for="codComuneMin">{{ "LAVORATORE.FIELD.COD_COMUNE_NASC" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="codComuneMin"
+                      id="codComuneMin"
+                      maxlength="100"
+                      required>
+                  <div *ngIf="f?.codComuneMin?.errors" class="text-danger">
+                    <div *ngIf="f?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                  </div>
+              </div>
+              <div class="form-group col-sm-11 col-md-4" formGroupName="comuneNasc">
+                <label class="field" for="dsComTComune">{{ "LAVORATORE.FIELD.DS_COMUNE_NASC" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)"  class="asterisk">*</span></label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="dsComTComune"
+                      id="dsComTComune"
+                      maxlength="100"
+                      required>
+                  <div *ngIf="f?.dsComTComune?.errors" class="text-danger">
+                    <div *ngIf="f?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                  </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-8 col-md-3" formGroupName="statiEsteriNasc">
+                <label class="field" for="codNazioneMin">{{ "LAVORATORE.FIELD.COD_STATO_ESTERO_NASCITA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                    <input type="text"
+                        class="form-control"
+                        formControlName="codNazioneMin"
+                        id="codNazioneMin"
+                        maxlength="4">
+                    <div *ngIf="f?.codNazioneMin?.errors" class="text-danger">
+                      <div *ngIf="f?.codNazioneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                    </div>
+              </div>
+              <div class="form-group col-sm-8 col-md-4" formGroupName="statiEsteriNasc">
+                <label class="field" for="dsStatiEsteri">{{ "LAVORATORE.FIELD.DS_STATO_ESTERO_NASCITA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                    <input type="text"
+                        class="form-control"
+                        formControlName="dsStatiEsteri"
+                        id="dsStatiEsteri"
+                        maxlength="50">
+                    <div *ngIf="f?.dsStatiEsteri?.errors" class="text-danger">
+                      <div *ngIf="f?.dsStatiEsteri?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                    </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-11 col-md-6" formGroupName="cittadinanza">
+                  <label class="field" for="dsComTCittadinanza">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.CITTADINANZA" | translate}} <span *ngIf="flgExtraUe && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+              <input type="text"
+                  class="form-control"
+                  formControlName="dsComTCittadinanza"
+                  id="dsComTCittadinanza"
+                  maxlength="100"
+                  required>
+              <div *ngIf="f?.dsComTCittadinanza?.errors" class="text-danger">
+                <div *ngIf="f?.dsComTCittadinanza?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+              </div>
+            </div>
+            </div>
+            <!-- ************************* DATI TITOLO SOGGIORNO  DEL LAVORATORE ************************* -->
+          <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_TITOLO_SOGGIORNO.TITLE" | translate}}</h1>
+          <p><strong>{{"ANAGRAFICA.DATI_TITOLO_SOGGIORNO_LABEL" | translate}}</strong></p>
+            <div class="row">
+              <div class="form-group col-sm-8 col-md-5" formGroupName="statusStraniero">
+                <label class="field" for="dsComTStatusStraniero">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.TITOLO_SOGGIORNO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && flgExtraUe" class="asterisk">*</span></label>
+                    <input type="text"
+                        class="form-control"
+                        formControlName="dsComTStatusStraniero"
+                        id="dsComTStatusStraniero"
+                        maxlength="100">
+                    <div *ngIf="f?.dsComTStatusStraniero?.errors" class="text-danger">
+                      <div *ngIf="f?.dsComTStatusStraniero?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="flgExtraUe && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-8 col-md-3">
+                  <label class="field" for="numeroDocumento">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.NUMERO_DOCUMENTO" | translate}}</label>
+                      <input type="text"
+                          class="form-control"
+                          formControlName="numeroDocumento"
+                          id="numeroDocumento"
+                          maxlength="50"
+                          required>
+                      <div *ngIf="f?.numeroDocumento?.errors" class="text-danger">
+                        <div *ngIf="f?.numeroDocumento?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) flgExtraUe" class="asterisk">*</span></div>
+                  </div>
+                </div>
+                <div class="form-group col-sm-8 col-md-3">
+                  <label class="field cod" for="dtScadenzaPermessoSogg">{{ "LAVORATORE.FIELD.SCADENZA_TITOLO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && flgExtraUe" class="asterisk">*</span></label>
+                      <input type="text"
+                          class="form-control"
+                          formControlName="dtScadenzaPermessoSogg"
+                          id="dtScadenzaPermessoSogg"
+                          ngbDatepicker
+                          #dtScadenzaPermesso="ngbDatepicker"
+                          maxlength="10">
+                  </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-sm-12 col-md-6" formGroupName="motivoPermesso">
+                  <label class="field" for="dsComTMotivoPermesso">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.MOTIVO_PERMESSO" | translate}} <span *ngIf="flgExtraUe && !(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <div class="input-group">
+                      <input type="text"
+                      class="form-control"
+                      formControlName="dsComTMotivoPermesso"
+                      id="dsComTMotivoPermesso"
+                      required>
+                      <div *ngIf="f?.dsComTMotivoPermesso?.errors" class="text-danger">
+                          <div *ngIf="f?.dsComTMotivoPermesso?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                      </div>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+              <div class="form-group col-sm-8 col-md-6" formGroupName="questura">
+                  <label class="field" for="dsQuestura">{{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.QUESTURA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && OBBLIG_QUESTURA" class="asterisk">*</span></label>
+                      <input type="text"
+                          class="form-control"
+                          formControlName="dsQuestura"
+                          id="dsQuestura"
+                          maxlength="50"
+                          required>
+                      <div *ngIf="OBBLIG_QUESTURA && f?.questura?.controls?.dsQuestura?.length === 0" class="text-danger">
+                        <div>{{"LAVORATORE.ERROR.QUESTURA_REQUIRED" | translate}} </div>
+                     </div>
+              </div>
+          </div>
+          <!-- ************************* DATI MODELLO Q ************************* -->
+          <h1 *ngIf="IS_ASSUNZIONE" class="dati-anagrafici">{{"ANAGRAFICA.DATI_MODELLO_Q.TITLE" | translate}}</h1>
+          <p *ngIf="IS_ASSUNZIONE"><strong>{{"ANAGRAFICA.DATI_MODELLO_Q.SUBTITLE" | translate}}</strong></p>
+          <div *ngIf="IS_ASSUNZIONE" class="row">
+            <div class="form-group col-sm-12 col-md-3">
+              <label class="field" for="flgSistAlloggiativa">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.SIST_ALLOGIATIVA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && flgExtraUe" class="asterisk">*</span></label>
+              <div class="form-check form-check-inline">
+                <input formControlName="flgSistAlloggiativa" (change)="onClickflgAlloggiativa()" type="radio" id="Si" [value]="'S'" required>
+                <label class="radio-button" for="Si">Si</label>
+              </div>
+              <div class="form-check form-check-inline ml-3">
+                <input formControlName="flgSistAlloggiativa" (change)="onClickflgAlloggiativa()" type="radio" id="No" [value]="'N'" required>
+                <label class="radio-button" for="No">{{"LAVORATORE.FIELD.MODELLO_Q_NON_APPLICABILE" | translate}}</label>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-12 col-md-3">
+              <label class="field" for="flgRimborsoRimpatrio">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.RIMBORSO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE) && flgExtraUe" class="asterisk">*</span></label>
+              <div class="form-check form-check-inline">
+                <input formControlName="flgRimborsoRimpatrio" (change)="onClickFlgRimborso()" type="radio" id="Si" [value]="'S'" required>
+                <label class="radio-button" for="Si">Si</label>
+              </div>
+              <div class="form-check form-check-inline ml-3">
+                <input formControlName="flgRimborsoRimpatrio" (change)="onClickFlgRimborso()" type="radio" id="No" [value]="'N'" required>
+                <label class="radio-button" for="No">{{"LAVORATORE.FIELD.MODELLO_Q_NON_APPLICABILE" | translate}}</label>
+              </div>
+            </div>
+          </div>
+          <!-- ************************* DATI RESIDENZA DEL LAVORATORE ************************* -->
+          <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.TITLE" | translate}}</h1>
+          <div class="row">
+            <div class="form-group col-sm-8 col-md-3" formGroupName="statiEsteriRes">
+              <label class="field" for="codNazioneMin">{{ "LAVORATORE.DATI_RESIDENZA.COD_STATO_ESTERO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="codNazioneMin"
+                      id="codNazioneMin"
+                      maxlength="4">
+                  <div *ngIf="f?.codNazioneMin?.errors" class="text-danger">
+                    <div *ngIf="f?.codNazioneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                  </div>
+            </div>
+            <div class="form-group col-sm-8 col-md-4" formGroupName="statiEsteriRes">
+              <label class="field" for="dsStatiEsteri">{{ "LAVORATORE.DATI_RESIDENZA.DS_STATO_ESTERO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="dsStatiEsteri"
+                      id="dsStatiEsteri"
+                      maxlength="50">
+                  <div *ngIf="f?.dsStatiEsteri?.errors" class="text-danger">
+                    <div *ngIf="f?.dsStatiEsteri?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></div>
+                  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-3" formGroupName="comuneRes">
+              <label class="field" for="codComuneMin">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COD_COMUNE" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codComuneMin"
+                    id="codComuneMin"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.codComuneMin?.errors" class="text-danger">
+                  <div *ngIf="f?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-11 col-md-4" formGroupName="comuneRes">
+              <label class="field" for="dsComTComune">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="dsComTComune"
+                    id="dsComTComune"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.dsComTComune?.errors" class="text-danger">
+                  <div *ngIf="f?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-6">
+              <label class="field" for="dsIndirizzoRes">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="dsIndirizzoRes"
+                    id="dsIndirizzoRes"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.dsIndirizzoRes?.errors" class="text-danger">
+                  <div *ngIf="f?.dsIndirizzoRes?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-11 col-md-2">
+              <label class="field" for="codCapRes">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codCapRes"
+                    id="codCapRes"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.codCapRes?.errors" class="text-danger">
+                  <div *ngIf="f?.codCapRes?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+          </div>
+          <!-- ************************* DATI DOMICILIO DEL LAVORATORE ************************* -->
+          <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.TITLE" | translate}}</h1>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-3" formGroupName="comuneDom">
+              <label class="field" for="codComuneMin">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.COD_COMUNE" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codComuneMin"
+                    id="codComuneMin"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.codComuneMin?.errors" class="text-danger">
+                  <div *ngIf="f?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-11 col-md-4" formGroupName="comuneDom">
+              <label class="field" for="dsComTComune">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.COMUNE_DOMICILIO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="dsComTComune"
+                    id="dsComTComune"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.dsComTComune?.errors" class="text-danger">
+                  <div *ngIf="f?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-6">
+              <label class="field" for="dsIndirizzoDom">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.INDIRIZZO_DOMICILIO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="dsIndirizzoDom"
+                    id="dsIndirizzoDom"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.dsIndirizzoRes?.errors" class="text-danger">
+                  <div *ngIf="f?.dsIndirizzoRes?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+            <div class="form-group col-sm-11 col-md-2">
+              <label class="field" for="codCapDom">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.CAP_DOMICILIO" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codCapDom"
+                    id="codCapDom"
+                    maxlength="100"
+                    required>
+                <div *ngIf="f?.codCapDom?.errors" class="text-danger">
+                  <div *ngIf="f?.codCapDom?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+            </div>
+          </div>
+          <!-- ************************* DATI FORMAZIONE DEL LAVORATORE ************************* -->
+          <h1 class="dati-anagrafici">{{"ANAGRAFICA.DATI_FORMAZIONE_LAVORATORE.TITLE" | translate}}</h1>
+          <div class="row">
+            <div class="form-group col-sm-11 col-md-8" formGroupName="livelloStudio">
+              <label class="field" for="titoloDiStudio">{{ "ANAGRAFICA.DATI_FORMAZIONE_LAVORATORE.LIVELLO_ISTRUZIONE" | translate}} <span *ngIf="!(this.VIEW_MODE || this.ANNULLO_MODE)" class="asterisk">*</span></label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="titoloDiStudio"
+                      id="titoloDiStudio"
+                      maxlength="50">
+              </div>
+          </div>
+        </form>
+        <div *ngIf="!this.VIEW_MODE" class="row">
+          <div class="col">
+            <button type="button" class="btn btn-outline-secondary btn-sm"
+                (click)="reset()">{{ 'APP.FIND_CANCEL' | translate | uppercase}}</button>
+          </div>
+          <!-- {{FLG_OBBL_MODELLO_Q}} {{modelloQValid}} -->
+          <div class="col-auto">
+            <button type="submit"
+              [disabled]="(!ANNULLO_MODE && !CAMPI_VALIDI)"
+              (click)="confermaEprosegui()"
+              class="btn btn-primary ml-auto btn-lg"
+              >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="gestioneApplicativa"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-cogs mr-2"></i>{{"GESTIONE_APPLICATIVA.TITLE" | translate}}</h2>
+    <div class="card">
+        <div class="card-body">
+            <!-- <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p> -->
+            <p class="col-12 parametro"></p>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label>{{ 'GESTIONE_APPLICATIVA.FIELD.ELENCO_ID' | translate}} </label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="elencoID"
+                                        (keydown)="onKeyDownElencoId()"
+                                        (keyup)="onKeyUp()"
+                                        id="elencoID">
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2">
+                        <label>{{ 'GESTIONE_APPLICATIVA.FIELD.RANGE_DA' | translate}} </label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="rangeDa"
+                                        id="rangeDa"
+                                        (keydown)="onKeyDownRange()"
+                                        (keyup)="onKeyUp()"
+                                        maxlength="30">
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <label>{{ 'GESTIONE_APPLICATIVA.FIELD.RANGE_A' | translate}} </label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="rangeA"
+                                        (keydown)="onKeyDownRange()"
+                                        (keyup)="onKeyUp()"
+                                        id="rangeA"
+                                        maxlength="30">
+                            </div>
+                        </div>
+                </div>
+                <div *ngIf="f?.rangeA?.value?.length > 0 && !rangeValid" class="text-danger">
+                    {{'ERROR.RANGE_ID' | translate}}
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-secondary btn-sm"
+                            (click)="onClickBack()">{{ 'APP.BACK' | translate }}</button>
+                      </div>
+                    <div class="col-auto ml-auto">
+                        <button [disabled]="!conditionControlsEnable" class="btn btn-primary ml-auto btn-lg upload"
+                        >{{ 'APP.CONFIRM' | translate }}</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <div *ngFor="let esito of listaRecuperoComunicazioni" class="alert alert-info" role="alert" aria-atomic="true">
+                {{"esito: "+esito?.esitoInvio}}
+                <br>
+                {{"Id comunicazione: "+esito?.idComunicazione}}
+                <br>
+                {{(esito?.codiceRegionale ? "Codice regionale: "+esito?.codiceRegionale : "")}}
+                <br>
+                {{(esito?.email ? "email: "+ esito?.email : "")}}
+            </div>
+        </div>
+    </div>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card mt-2">
+        <div class="card-body">
+            <div class="right">
+                <button type="button" class="btn btn-primary"
+                    (click)="onClickRitrasmetti()">
+                    {{ 'APP.RITRASMETTI' | translate }}
+                </button>
+              </div>
+        </div>
+    </div>
+</div>

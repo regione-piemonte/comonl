@@ -1,0 +1,112 @@
+{
+  "extends": ["tslint:recommended", "codelyzer"],
+  "rules": {
+    "array-type": false,
+    "arrow-parens": false,
+    "component-class-suffix": true,
+    "component-max-inline-declarations": true,
+    "component-selector": [
+      true,
+      "element",
+      "comonl",
+      "kebab-case"
+    ],
+    "contextual-decorator": true,
+    "contextual-lifecycle": true,
+    "deprecation": {
+      "severity": "warning"
+    },
+    "directive-class-suffix": true,
+    "directive-selector": [
+      true,
+      "attribute",
+      "comonl",
+      "camelCase"
+    ],
+    "import-blacklist": [
+      true,
+      "rxjs/Rx"
+    ],
+    "import-destructuring-spacing": true,
+    "interface-name": false,
+    "max-classes-per-file": false,
+    "max-line-length": false,
+    "member-access": false,
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-conflicting-lifecycle": true,
+    "no-consecutive-blank-lines": false,
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "no-empty": false,
+    "no-host-metadata-property": true,
+    "no-inferrable-types": [
+      true,
+      "ignore-params"
+    ],
+    "no-input-rename": true,
+    "no-inputs-metadata-property": true,
+    "no-non-null-assertion": true,
+    "no-output-native": true,
+    "no-output-on-prefix": true,
+    "no-output-rename": true,
+    "no-outputs-metadata-property": true,
+    "no-queries-metadata-property": true,
+    "no-redundant-jsdoc": true,
+    "no-switch-case-fall-through": true,
+    "no-use-before-declare": true,
+    "no-unused-css": true,
+    "no-var-requires": false,
+    "object-literal-key-quotes": [
+      true,
+      "as-needed"
+    ],
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "pipe-prefix": [
+      true,
+      "comonl"
+    ],
+    "prefer-inline-decorator": true,
+    "prefer-output-readonly": true,
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "trailing-comma": false,
+    "template-accessibility-alt-text": true,
+    "template-accessibility-elements-content": true,
+    "template-banana-in-box": true,
+    "template-no-any": true,
+    "template-no-call-expression": false,
+    "template-no-negated-async": true,
+    "use-component-selector": true,
+    "use-component-view-encapsulation": true,
+    "use-lifecycle-interface": true,
+    "use-pipe-decorator": true,
+    "use-pipe-transform-interface": true
+  },
+  "rulesDirectory": [
+    "codelyzer"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "src/app/modules/comonlapi/**/*"
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="riepilogo-urg"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"RIEPILOGO.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div *ngIf="comunicazione" class="card-body">
+            <h4>{{"RIEPILOGO.SUB_TITLE.DATI_ISN" | translate}}</h4>
+            <div>
+               {{"RIEPILOGO.TEXT_WARNING" | translate }}
+            </div>
+
+                <h4>{{"RIEPILOGO.SUB_TITLE.DATI_CHI_EFF_COM" | translate}}</h4>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="emailNotifica">{{ "RIEPILOGO.FIELD.EMAIL_NOTIFICA"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.email}}</span>
+                    </div>
+                    <!-- <div class="form-group col-sm-12 col-md-6">
+                        <label for="eamilSogg">{{ "RIEPILOGO.FIELD.EMAIL_SOGG_ABILITATO"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.emailsoggetto}}</span>
+                    </div> -->
+                </div>
+                <div class="row lettura">
+                    <!-- <div class="form-group col-sm-12 col-md-6">
+                        <label for="codF">{{ "RIEPILOGO.FIELD.COD_F"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.codiceFiscaleSoggetto}}</span>
+                    </div> -->
+                    <div class="col-sm-12 col-md-3">
+                        <label for="dtInvio">{{ "RIEPILOGO.FIELD.DT_INVIO"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.dtInvio | date: "dd/MM/yyyy"}}</span>
+                    </div>
+                </div>
+                <h4>{{"RIEPILOGO.SUB_TITLE.DATI_SOGG_DI_CHI_EFFETTUA_COM" | translate}}</h4>
+                <div *ngIf="ruolo?.amministratore || ruolo?.operatoreProvinciale" class="row lettura">
+                    <div class="col-sm-12 col-md-6">{{ "RIEPILOGO.FIELD.COM_PER_DATORE"| translate}} <span class="valore">{{comunicazione?.flgComDatLav === 'S' ? 'SI' : 'NO'}}</span></div>
+                    <div class="col-sm-12 col-md-3">
+                        <label for="dtTimbroPost">{{ "RIEPILOGO.FIELD.DT_TIMBRO_POST"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.dtTimbroPostale | date: "dd/MM/yyyy"}}</span>
+                    </div>
+                </div>
+                <div *ngIf="ruolo?.amministratore || ruolo?.operatoreProvinciale" class="row lettura">
+                    <div *ngIf="comunicazioneToSave?.tipoSoggettoAbilitato" class="form-group col-sm-12 col-md-6">
+                        <label for="altroSogg">{{ "RIEPILOGO.FIELD.ALTRO_SOGG"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.tipoSoggettoAbilitato?.dsComTipoSoggettoAbilitato}}</span>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="altroSogg">{{ "RIEPILOGO.FIELD.CF_SOGG"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.codiceFiscaleSoggetto}}</span>
+                    </div>
+                </div>
+                <div *ngIf="ruolo?.amministratore || ruolo?.operatoreProvinciale" class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="emailSogg">{{ "RIEPILOGO.FIELD.EMAIL_SOGG"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.emailsoggetto}}</span>
+                    </div>
+                </div>
+                <h4>{{"RIEPILOGO.SUB_TITLE.DATI_IDENT_COM" | translate}}</h4>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="tipoCom">{{ "RIEPILOGO.FIELD.TIPO_COM"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.tipoComunicazioneTu?.dsComTTipoComunicazione}}</span>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="statoCom">{{ "RIEPILOGO.FIELD.STATO_COM"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.statoComunicazione?.dsComTStatoComunicazione}}</span>
+                    </div>
+                </div>
+                <h4>{{"RIEPILOGO.SUB_TITLE.DATORE_LAVORO" | translate}}</h4>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="cfDatore">{{ "RIEPILOGO.FIELD.COD_F" | translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.datoreAttuale?.codiceFiscale}}</span>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="denomCognomeNome">{{ "RIEPILOGO.FIELD.DENOM_COGNOME_NOME"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.datoreAttuale?.dsDenominazioneDatore}}</span>
+                    </div>
+                </div>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="comuneSedeOp">{{ "RIEPILOGO.FIELD.COMUNE_SEDE_OP"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeOperativa?.comune?.dsComTComune}}</span>
+                    </div>
+                </div>
+                <h4>{{"RIEPILOGO.SUB_TITLE.LAVORATORE" | translate}}</h4>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="cognomeNome">{{ "RIEPILOGO.FIELD.COGNOME_NOME"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.nome+' '+comunicazioneToSave?.lavoratori[0]?.cognome}}</span>
+                    </div>
+                </div>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="cfLav">{{ "RIEPILOGO.FIELD.COD_F"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.codiceFiscale}}</span>
+                    </div>
+                </div>
+                <h4>{{"RIEPILOGO.SUB_TITLE.DATI_RAPPORTO" | translate}}</h4>
+                <div class="row lettura">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="motivoUrg">{{ "RIEPILOGO.FIELD.MOTIVO_URG"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.dsMotivoUrgenza}}</span>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="dtInizioR">{{ "RIEPILOGO.FIELD.DT_INIZIO_R"| translate}}</label>
+                        <span class="valore">{{comunicazioneToSave?.rapporto?.dtInizioRapporto | date: "dd/MM/yyyy"}}</span>
+                    </div>
+                </div>
+                <div class="row lettura" *ngIf="this.comunicazioneToSave?.statoComunicazione?.id === 1">
+                    <div class="col-10"><p hidden>space</p></div>
+                    <div class="col-auto ml-auto">
+                      <button type="button"
+                          (click)="onClickInviaComunicazione(this.comunicazioneToSave, 'MESSAGES.SYS-SYS-A-0009')"
+                          class="btn btn-primary ml-auto btn-lg">{{ 'APP.SEND_COMUNICAZIONE' | translate }}</button>
+                      </div>
+                </div>
+        </div>
+    </div>

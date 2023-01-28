@@ -1,0 +1,27 @@
+﻿name,version,license,copyrights,language,URL repository
+@angular/animations,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/common,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/compiler,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/core,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/forms,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/platform-browser-dynamic,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/platform-browser,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@angular/router,8.2.14,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular
+@biesbjerg/ngx-translate-extract,4.2.0,MIT,,Typescript/Javascript,https://github.com/biesbjerg/ngx-translate-extract
+@biesbjerg/ngx-translate-extract-marker,1.0.0,MIT,,Typescript/Javascript,https://github.com/biesbjerg/ngx-translate-extract-marker
+@ng-bootstrap/ng-bootstrap,5.3.1,MIT,Copyright (c) 2015-2018 Angular ng-bootstrap team,Typescript/Javascript,https://github.com/ng-bootstrap/ng-bootstrap
+@ng-select/ng-select,3.7.2,MIT,Copyright (c) 2015-2018 Angular ng-bootstrap team,Typescript/Javascript,https://github.com/ng-select/ng-select
+@ngx-translate/core,11.0.1,MIT,,Typescript/Javascript,https://github.com/ngx-translate/core
+bignumber.js,9.0.0,MIT,,Javascript,https://github.com/MikeMcl/bignumber.js
+bootstrap,4.4.1,MIT,,Javascript/CSS/HTML,https://github.com/twbs/bootstrap
+deepmerge,2.1.1,MIT,Copyright (c) 2012 James Halliday, Josh Duff, and other contributors,Typescript/Javascript,https://github.com/KyleAMathews/deepmerge
+ng-sidebar,9.2.0,MIT,,Typescript/Javascript,https://github.com/arkon/ng-sidebar
+ngx-currency,2.3.3,MIT,,Typescript,https://github.com/nbfontana/ngx-currency
+ngx-mask,8.1.7,MIT,,Typescript/Javascript,https://github.com/JsDaddy/ngx-mask
+ngx-nestable,0.9.4,MIT,,Typescript/Javascript,https://github.com/cybercomet/ngx-nestable
+ngx-spinner,8.1.0,MIT,Copyright (c) 2018 Scott Cooper,Typescript/Javascript,https://github.com/Napster2210/ngx-spinner
+ngx-toastr,11.3.2,MIT,Copyright (c) 2018 Scott Cooper,Typescript/Javascript,https://github.com/scttcper/ngx-toastr
+ngx-translate-multi-http-loader,3.0.0,MIT,,Typescript/Javascript,https://github.com/denniske/ngx-translate-multi-http-loader
+rxjs,6.5.4,Apache-2.0,,Typescript/Javascript,https://github.com/reactivex/rxjs
+tslib,1.10.0,Apache-2.0,,Typescript,https://github.com/Microsoft/tslib
+zone.js,0.10.2,MIT,Copyright (c) 2017 Google Inc,Typescript/Javascript,https://github.com/angular/angular

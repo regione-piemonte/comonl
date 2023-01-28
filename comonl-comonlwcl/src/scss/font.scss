@@ -1,0 +1,39 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+
+  src: local('Open Sans'), local('OpenSans-Regular'),
+
+       url('assets/font/open_sans/OpenSans-Regular.ttf') format('truetype');
+
+}
+
+
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+
+  src: local('Titillium Web'), local('TitilliumWeb-Regular'),
+
+       url('assets/font/titillium_web/TitilliumWeb-Regular.ttf') format('truetype');
+
+}
+
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  font-style: normal;
+  font-weight: 400;
+
+  src: local('Barlow Semi Condensed'), local('Barlow-Semi-Condensed'),
+
+       url('assets/font/barlow_semi_condensed/BarlowSemiCondensed-Light.ttf') format('truetype');
+
+}
+

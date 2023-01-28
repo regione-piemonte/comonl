@@ -1,0 +1,74 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="dati-trasformazione"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_TRASFORMAZIONE.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div *ngIf="showForm" class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label>{{ "DATI_TRASFORMAZIONE.FIELD.DATA_TRASFORMAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control"
+                              formControlName="dtTrasformazione"
+                              id="dtTrasformazione"
+                              ngbDatepicker
+                              #dtTrasformazione="ngbDatepicker"
+                              maxlength="10">
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dtTrasformazione.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                          </div>
+                          <div *ngIf="f?.dtTrasformazione?.invalid && f?.dtTrasformazione?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                          </div> 
+                        </div>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="trasformazionerl">{{ "DATI_TRASFORMAZIONE.FIELD.TIPO_TRASFORMAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <select id="trasformazionerl"
+                            formControlName="trasformazionerl" 
+                            class="form-select">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let tipoT of listaTipoTrasformazione" [ngValue]="tipoT">{{tipoT.dsComTTrasformazionerl}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <!-- BOTTONI -->
+            <div *ngIf="!VIEW_MODE" class="row">
+              <div class="col-auto">
+                  <button 
+                  (click)="onClickReset()"
+                  type="button" class="btn btn-outline-primary btn-sm"
+                  >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                </div>
+              <div class="col-auto ml-auto">
+                <button type="button"
+                  class="btn btn-primary ml-auto btn-lg"
+                  (click)="onSubmit()"
+                  [disabled]="INVALIDITA_FORM || INVALIDITA_ANNULLO_MODE"
+                  >{{ 'APP.CONFIRM' | translate }}</button>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

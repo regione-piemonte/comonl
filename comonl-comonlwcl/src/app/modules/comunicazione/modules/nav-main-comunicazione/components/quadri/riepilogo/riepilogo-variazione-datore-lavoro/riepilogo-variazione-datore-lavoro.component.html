@@ -1,0 +1,42 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"VARIAZIONE_DATORE_LAVORO.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.TIPO_VARIAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.tipoTrasferimento?.dsComTTipoTrasferimento}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.DATA_INIZIO"| translate}} <span class="valore">{{comunicazioneToSave?.dtTrasferimentoVarDatori | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.DATA_FINE_AFFITTO"| translate}} <span class="valore">{{comunicazioneToSave?.dtFineAffittoRamo | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <h4 class="title">{{"VARIAZIONE_DATORE_LAVORO.FIELD.DATI_AZIENDA_PRECEDENTE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.CF_AZIENDA"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.codiceFiscale}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.P_IVA"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.partitaIva}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.DENOMINAZIONE_NOME_COGNOME"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.dsDenominazioneDatore}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.AZIENDA_ART"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.flgAzArtigiana === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.NATURA_GIURIDICA"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.naturaGiuridica?.descrizione}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.COD_ATECO"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.atecofin?.codAtecofinMin}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.DESCR_ATECO"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.atecofin?.dsComTAtecofin}}</span></div>
+    </div>
+    <h4 class="title">{{"VARIAZIONE_DATORE_LAVORO.SEDE_LEGALE_PREC" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.COD_COMUNE"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.comune?.codComuneMin}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.DESCR_COMUNE"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.INDIRIZZO"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.indirizzo}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.CAP"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.codCap}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.TELEFONO"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.FAX"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.fax}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "VARIAZIONE_DATORE_LAVORO.FIELD.EMAIL"| translate}} <span class="valore">{{comunicazioneToSave?.datorePrecedente?.sedeLegale?.email}}</span></div>
+    </div>
+</div>

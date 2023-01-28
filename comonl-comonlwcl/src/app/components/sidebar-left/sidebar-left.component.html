@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<ng-container *ngFor="let pm of possibleModules">
+</ng-container>
+
+
+
+<div [ngClass]="{'show-sidebar-left': close,'sidebar-nav': true }">
+  <a (click)="setClass()" class="navbar-toggle btn btn-link" data-toggle="collapse" id="menu-toggle">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+    <ul class="nav-pills nav-stacked" id="menu">
+      <li><!-- class="active" -->
+        <a [routerLink]="['/home']" title="Home"><i class="fas fa-home"></i> <span>{{"SIDEBAR.HOME" | translate}}</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/ricerca-comunicazioni']" title="Inserimento e ricerca comunicazioni"><i class="fas fa-search"></i> <span>{{"SIDEBAR.RICERCA_COMUNICAZIONI" | translate}}</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/comunicazione-massiva']" title="Comunicazione Massiva"><i class="fas fa-file-upload"></i> <span>{{"SIDEBAR.COMUNICAZIONE_MASSIVA" | translate}}</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/ricerca-vardatori']" title="Vardatori"><i class="fas fa-random"></i> <span>{{"SIDEBAR.VARDATORI" | translate}}</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/anagrafica-azienda']" title="Anagrafica Azienda"><i class="fas fa-industry"></i> <span>{{"SIDEBAR.ANAGRAFICA_AZIENDA" | translate}}</span></a>
+      </li>
+      <li *ngIf="!ilRuolo?.consulenteRespo">
+        <a [routerLink]="['/accreditamento-deleghe']"title="Accreditamento Deleghe"><i class="fas fa-check"></i> <span>{{"SIDEBAR.ACCREDITAMENTO_DELEGHE" | translate}}</span></a>
+      </li>
+      <li>
+        <a [routerLink]="['/anagrafica-lavoratore']" title="Anagrafica Lavoratore"><i class="fas fa-user-tie"></i> <span>{{"SIDEBAR.ANAGRAFICA_LAVORATORE" | translate}}</span></a>
+      </li>
+      <li *ngIf="ilRuolo.amministratore || ilRuolo.operatoreProvinciale">
+        <a [routerLink]="['/accreditamento-anagrafiche']" title="Accreditamento Anagrafiche"><i class="fas fa-sign-out-alt"></i> <span>{{"SIDEBAR.ACCREDITAMENTO_ANAGRAFICHE" | translate}}</span></a>
+      </li>
+      <li *ngIf="ilRuolo.amministratore">
+        <a [routerLink]="['/gestione-applicativa']" title="Gestione applicativa"><i class="fas fa-cogs"></i> <span>{{"SIDEBAR.GESTIONE_APPLICATIVA" | translate}}</span></a>
+      </li>
+    </ul>
+
+</div>
+
+

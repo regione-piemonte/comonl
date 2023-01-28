@@ -1,0 +1,90 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_AZIENDA" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.codiceFiscale}}</span></div>
+        <div *ngIf="comunicazione?.tipoTracciato?.id === 'US' && comunicazioneToSave?.datoreAttuale?.flgUtilEstera === 'S'" class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.STATO_ESTERO_CF" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.codiceFiscale?.substring(0,2)}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.P_IVA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.partitaIva}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.AGENZIA_EST" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.flgUtilEstera === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazione?.tipoTracciato?.id === 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.NUM_AG_SOMM" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.numAgenziaSommin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.ISCR_ALBO_NUM" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.numeroIscrizioneAlbo?.substring(0, 10)}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.ISCR_ALBO_DATA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.numeroIscrizioneAlbo?.substring(10, comunicazioneToSave?.datoreAttuale?.numeroIscrizioneAlbo?.length)}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DENOMINAZIONE" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.dsDenominazioneDatore}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.PUBB_AMM" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.flgPubAmm === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.AZIENDA_ART" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.flgAzArtigiana === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.NATURA_GIURIDICA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.naturaGiuridica?.descrizione}}</span></div>
+    </div>
+    <div class="row lettura">
+        <label class="col-sm-12 col-md-12">{{ "COMUNICAZIONE.AZIENDA.FIELD.ATTIVITA_ATECO" | translate}}</label>
+        <div class="col-sm-12 col-md-3"> <span class="valore">{{comunicazioneToSave?.datoreAttuale?.atecofin?.codAtecofinMin}}</span></div>
+        <div class="col-sm-12 col-md-7 mt-2"> <span class="valore">{{comunicazioneToSave?.datoreAttuale?.atecofin?.dsComTAtecofin}}</span></div>
+    </div>
+    <h4 *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="title">{{"COMUNICAZIONE.LEGALE_RAPPRESENTANTE" | translate}}</h4>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.RES_ITA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.flgSoggiornanteItalia | siNo }}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.EXTRA_COM" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.cittadinanza?.flgUe ? (comunicazioneToSave?.datoreAttuale?.legaleRappr?.cittadinanza?.flgUe === 'S' ? 'No' : 'Si') : '' }}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COGNOME" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.dsCognome}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.NOME" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.dsNome}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.DATA_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.dtNascita | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.SESSO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.sesso === 'M' ? 'Maschio' : comunicazioneToSave?.datoreAttuale?.legaleRappr?.sesso === 'F' ? 'Femmina' : ''}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.STATO_ESTERO_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.statiEsteri?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COMUNE_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.CITTADINANZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.cittadinanza?.dsComTCittadinanza}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.TITOLO_SOGGIORNO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.statusStraniero?.dsComTStatusStraniero}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.NUMERO_DOCUMENTO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.numeroDocumento}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.MOTIVO_PERMESSO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.motivoPermesso?.dsComTMotivoPermesso}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.datoreAttuale?.legaleRappr" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.SCADENZA_PERMESSO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.dtScadenzaPermessoSogg  | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.AZIENDA.FIELD.QUESTURA_TITOLO_SOGGIORNO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.legaleRappr?.questura?.dsQuestura}}</span></div>
+    </div>
+    <h4 class="title">{{"COMUNICAZIONE.SEDE_LEGALE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.STATO_ESTERO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.statiEsteri?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.codCap}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.indirizzo}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.email}}</span></div>
+    </div>
+    <h4 *ngIf="this.comunicazione.tipoTracciato.id !== 'VD'" class="title">{{"COMUNICAZIONE.SEDE_OPERATIVA" | translate}}</h4>
+    <div *ngIf="this.comunicazione.tipoTracciato.id !== 'VD'" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.STATO_ESTERO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeOperativa?.statiEsteri?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeOperativa?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div *ngIf="this.comunicazione.tipoTracciato.id !== 'VD'" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeOperativa?.codCap}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeOperativa?.indirizzo}}</span></div>
+    </div>
+    <div *ngIf="this.comunicazione.tipoTracciato.id !== 'VD'" class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.TELEFONO" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.FAX" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.EMAIL" | translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.sedeLegale?.email}}</span></div>
+    </div>
+</div>

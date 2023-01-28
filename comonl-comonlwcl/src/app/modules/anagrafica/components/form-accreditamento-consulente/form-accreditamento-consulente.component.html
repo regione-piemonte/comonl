@@ -1,0 +1,412 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="container">
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+              (click)="onClickGoBackToRicerca()">{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate | uppercase}}</button>
+    <!-- <a  clickable (click)="onClickGoBackToRicerca()"><i class="fas fa-arrow-left"></i><span>{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</span></a> -->
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"ACCREDITAMENTO_CONSULENTE.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form *ngIf="showForm" [formGroup]="form">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2">
+                        <label for="tipoAnagrafica">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.FLG_TIPO_PROFILAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-10" formGroupName="id">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" (change)="setFormricercaAzienda()" [value]="'C'" formControlName="tipoAnagrafica" type="radio" id="tipoAnagraficaC">
+                          <label class="form-check-label" for="tipoAnagraficaC">
+                            {{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_ANAGRAFICA_C"| translate}}
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" (change)="setFormricercaAzienda()" [value]="'D'" formControlName="tipoAnagrafica" type="radio" id="tipoAnagraficaD">
+                          <label class="form-check-label" for="tipoAnagraficaD">
+                            {{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_ANAGRAFICA_D"| translate}}
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" (change)="setFormricercaAzienda()" [value]="'E'"  formControlName="tipoAnagrafica" type="radio" id="tipoAnagraficaE">
+                            <label class="form-check-label" for="tipoAnagraficaE">
+                                {{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_ANAGRAFICA_E"| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.DATI_GENERALI" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="id">
+                        <label for="cf">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CF"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" formControlName="cfDelegato" oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cf" maxlength="16">
+                        <div *ngIf="f?.id?.controls?.cfDelegato?.errors" class="text-danger">
+                            <div *ngIf="f?.id?.controls?.cfDelegato?.errors?.pattern">{{"ERROR.FIELD.NOT_VALID_FORMAT" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2" *ngIf="!VIEW_MODE">
+                        <button
+                            [disabled]="EDIT_MODE || (f?.id?.controls.cfDelegato?.errors?.pattern || f?.id?.controls.cfDelegato?.value?.length === 0 || f?.id?.controls.cfDelegato?.value === null)"
+                            (click)="onClickPreCompila()"
+                            class="btn btn-outline-primary mt-lg-btn-form"
+                        >{{"APP.PRE_COMPILA" | translate}}</button>
+                    </div>
+                    <div class="col-sm-12 col-md-2" *ngIf="!INS_MODE && anagraficaDelegato?.dataAnnullamento">
+                        <label for="dataAnull">{{"ACCREDITAMENTO_CONSULENTE.FIELD.DATA_CANC" | translate}} </label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                 <label class="sr-only" for="dataAnull">{{ 'ACCREDITAMENTO_CONSULENTE.FIELD.DATA_ANULL' | translate}}</label>
+                                 <input class="form-control"
+                                 formControlName="dataAnnullamento"
+                                        name="dataAnull" ngbDatepicker #d_dataAnull="ngbDatepicker" id="dataAnull">
+                                <div class="input-group-append">
+                                    <button [disabled]="true" class="btn btn-outline-primary calendar" (click)="d_dataAnull.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cognome">Cognome&nbsp;<span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" class="form-control" formControlName="cognome" maxlength="30" id="cognome" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="nome">Nome&nbsp;<span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" formControlName="nome" maxlength="30" class="form-control" id="nome" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3 ">
+                        <label for="sesso">Sesso <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" [value]="'M'" type="radio" formControlName="sesso" id="sesso_m">
+                            <label class="form-check-label" for="sesso_m">
+                                M
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" [value]="'F'" type="radio" formControlName="sesso" id="sesso_f">
+                            <label class="form-check-label" for="sesso_f">
+                                F
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-2">
+                        <label for="dataNascita">Data di nascita <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                 <label class="sr-only" for="dataNascita">{{ 'ACCREDITAMENTO_CONSULENTE.FIELD.DATA_NASCITA' | translate}}</label>
+                                 <input
+                                    formControlName="dtNascita"
+                                    class="form-control"
+                                        name="dataNascita" ngbDatepicker #d_dataNascita="ngbDatepicker" id="dataNascita" maxlength="10">
+                                <div class="input-group-append">
+                                    <button [disabled]="VIEW_MODE" class="btn btn-outline-primary calendar" (click)="d_dataNascita.toggle()" type="button"><span class="sr-only">apri calendario</span> <i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                            <div *ngIf="f?.dtNascita?.invalid  && f?.dtNascita?.value?.length > 0 " class="text-danger">
+                                {{'ERROR.INVALID_DATE' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="comuneNasc">
+                        <label for="codComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE_NASCITA_COD"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" (change)="f?.comuneNasc?.controls?.id?.setValue(null)" class="form-control" formControlName="codComuneMin" maxlength="4" id="codComune">
+                        <div *ngIf="f?.comuneNasc?.controls?.codComuneMin?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneNasc?.controls?.codComuneMin?.errors?.minlength && f?.comuneNasc?.controls?.dsComTComune?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-7" formGroupName="comuneNasc">
+                        <label for="descrComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE_NASCITA"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" (change)="f?.comuneNasc?.controls?.id?.setValue(null)" class="form-control" id="descrComune" formControlName="dsComTComune" maxlength="100">
+                        <div *ngIf="f?.comuneNasc?.controls?.dsComTComune?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneNasc?.controls?.dsComTComune?.errors?.minlength && f?.comuneNasc?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <button
+                        *ngIf="!VIEW_MODE"
+                        [disabled]="!(f?.comuneNasc?.controls?.codComuneMin?.value?.length > 2 || f?.comuneNasc?.controls?.dsComTComune?.value?.length > 2)"
+                        (click)="onClickFindComune(f?.comuneNasc)"
+                        class="btn btn-outline-primary mt-lg-btn-form">{{"APP.SEARCH" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="statiEsteri">
+                        <label for="codStatoEst">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.STATO_EST_NASCITA_COD"| translate}}  <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" (change)="f?.statiEsteri?.controls?.id?.setValue(null)" formControlName="codNazioneMin" class="form-control" id="codStatoEst">
+                        <div *ngIf="f?.statiEsteri?.controls?.codNazioneMin?.errors" class="text-danger">
+                            <div *ngIf="f?.statiEsteri?.controls?.codNazioneMin?.errors?.minlength && f?.statiEsteri?.controls?.dsStatiEsteri?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-7" formGroupName="statiEsteri">
+                        <label for="descrStatoEstero">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.STATO_EST_NASCITA"| translate}}  <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" (change)="f?.statiEsteri?.controls?.id?.setValue(null)" formControlName="dsStatiEsteri" class="form-control" id="descrStatoEstero" maxlength="100">
+                        <div *ngIf="f?.statiEsteri?.controls?.dsStatiEsteri?.errors" class="text-danger">
+                            <div *ngIf="f?.statiEsteri?.controls?.dsStatiEsteri?.errors?.minlength  && f?.statiEsteri?.controls?.codNazioneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <button
+                        *ngIf="!VIEW_MODE"
+                        [disabled]="!(f?.statiEsteri?.controls?.dsStatiEsteri?.value?.length > 2 ||
+                                        f?.statiEsteri?.controls?.codNazioneMin?.value?.length > 2)"
+                        (click)="onClickFindStatoEstero()" class="btn btn-outline-primary mt-lg-btn-form">{{"APP.SEARCH" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="cittadinanza">{{ 'ACCREDITAMENTO_CONSULENTE.FIELD.CITTADINANZA' | translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                        <select
+                          class="form-select"
+                          formControlName="cittadinanza"
+                          id="cittadinanza">
+                              <option [ngValue]="null"></option>
+                              <option *ngFor="let cittadinanza of cittadinanze" [ngValue]="cittadinanza?.id">{{cittadinanza?.dsComTCittadinanza}}</option>
+                        </select>
+                    </div>
+                </div>
+                <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.DATI_DELLA_RESIDENZA" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="comuneRes">
+                        <label for="codComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE_COD"| translate}} <span class="oblg" title="campo obbligatorio">*</span> </label>
+                        <input type="text" (change)="f?.comuneRes?.controls?.id?.setValue(null)" formControlName="codComuneMin" maxlength="4" class="form-control" id="codComune" oninput="this.value = this.value.toUpperCase()">
+                        <div *ngIf="f?.comuneRes?.controls?.codComuneMin?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneRes?.controls?.codComuneMin?.errors?.minlength && f?.comuneRes?.controls?.dsComTComune?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-7" formGroupName="comuneRes">
+                        <label for="descrComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" (change)="f?.comuneRes?.controls?.id?.setValue(null)" formControlName="dsComTComune" class="form-control" id="descrComune" maxlength="100" oninput="this.value = this.value.toUpperCase()">
+                        <div *ngIf="f?.comuneRes?.controls?.dsComTComune?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneRes?.controls?.dsComTComune?.errors?.minlength && f?.comuneRes?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <button
+                        *ngIf="!VIEW_MODE"
+                        [disabled]="!(f?.comuneRes?.controls?.codComuneMin?.value?.length > 2 || f?.comuneRes?.controls?.dsComTComune?.value?.length > 2)"
+                        (click)="onClickFindComune(f?.comuneRes)"
+                        class="btn btn-outline-primary mt-lg-btn-form">{{"APP.SEARCH" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-7">
+                        <label for="indirizzo">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.INDIRIZZO"| translate}}  <span class="oblg" title="campo obbligatorio">*</span> </label>
+                        <input type="text" formControlName="indirizzoRes" maxlength="40" class="form-control" id="indirizzo" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cap">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CAP"| translate}}</label>
+                        <input type="text" formControlName="capRes" class="form-control" comonlDigitOnly id="cap" maxlength="5" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+                <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.DATI_DOMICILIO" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="comuneDom">
+                        <label for="codComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE_COD"| translate}}</label>
+                        <input type="text" (change)="f?.comuneDom?.controls?.id?.setValue(null)" formControlName="codComuneMin" class="form-control" id="codComune">
+                        <div *ngIf="f?.comuneDom?.controls?.codComuneMin?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneDom?.controls?.codComuneMin?.errors?.minlength && f?.comuneDom?.controls?.dsComTComune?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-7" formGroupName="comuneDom">
+                        <label for="descrComune">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE"| translate}}</label>
+                        <input type="text" (change)="f?.comuneDom?.controls?.id?.setValue(null)" formControlName="dsComTComune" class="form-control" id="descrComune" maxlength="100">
+                        <div *ngIf="f?.comuneDom?.controls?.dsComTComune?.touched && f?.comuneDom?.controls?.dsComTComune?.errors" class="text-danger">
+                            <div *ngIf="f?.comuneDom?.controls?.dsComTComune?.errors?.minlength && f?.comuneDom?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-2">
+                        <button
+                        *ngIf="!VIEW_MODE"
+                        [disabled]="!(f?.comuneDom?.controls?.codComuneMin?.value?.length > 2 || f?.comuneDom?.controls?.dsComTComune?.value?.length > 2)"
+                        (click)="onClickFindComune(f?.comuneDom)"
+                        class="btn btn-outline-primary mt-lg-btn-form">{{"APP.SEARCH" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-7">
+                        <label for="indirizzo">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.INDIRIZZO"| translate}} </label>
+                        <input type="text" formControlName="indirizzoDom" class="form-control" id="indirizzo" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cap">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CAP"| translate}}</label>
+                        <input type="text" formControlName="capDom" class="form-control" comonlDigitOnly id="cap" maxlength="5">
+                    </div>
+                </div>
+                <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.RECAPITI" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="tel">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.TEL"| translate}} </label>
+                        <input comonlDigitOnly type="text" formControlName="tel" maxlength="15" class="form-control" id="tel">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="fax">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.FAX"| translate}}</label>
+                        <input comonlDigitOnly type="text" formControlName="fax" maxlength="15" class="form-control" id="fax">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label for="mail">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.MAIL"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" formControlName="email" pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?" maxlength="50" class="form-control" id="mail"  oninput="this.value = this.value.toUpperCase()">
+                        <div *ngIf="f?.email?.errors" class="text-danger">
+                            <div *ngIf="f?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- solo per i consulenti -->
+                <div *ngIf="this.f?.id?.controls?.tipoAnagrafica?.value === 'C'">
+                    <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.STUDIO_PROF" | translate}}</h4>
+                    <div class="row" *ngIf="!VIEW_MODE">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="cfStudioP">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CF"| translate}}</label>
+                            <input type="text" (keyup)="disabeleButton($event)" #inputCfStudioProf oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cfStudioP" maxlength="16">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <button
+                            [disabled]="disableB"
+                            (click)="onClickFindCfStudioP(inputCfStudioProf.value)"
+                            class="btn btn-outline-primary mt-lg-btn-form"
+                            >{{ "APP.SEARCH"| translate}}</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="soggettoAbilitato">
+                            <label for="cfSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CF"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                            <input type="text" formControlName="cfSoggetto" maxlength="11" class="form-control" id="cfSp">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="soggettoAbilitato">
+                            <label for="pIvaSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.PIVA"| translate}}</label>
+                            <input type="text" formControlName="partitaIva" maxlength="11" class="form-control" id="pIvaSp">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6" formGroupName="soggettoAbilitato">
+                            <label for="denom">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.DENOM"| translate}}</label>
+                            <input type="text" formControlName="cognomeDenominazione" maxlength="100" class="form-control" id="denom" oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                    </div>
+                    <div class="row" formGroupName="soggettoAbilitato">
+                        <div class="form-group col-sm-12 col-md-6" formGroupName="tipoSoggettoAbilitato">
+                            <label for="tipoSogg">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_SOGG"| translate}}</label>
+                            <input type="text" formControlName="dsComTipoSoggettoAbilitato" maxlength="100" class="form-control" id="tipoSogg">
+                        </div>
+                    </div>
+                    <h5>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.SEDE_LEGALE" | translate}}</h5>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-7" formGroupName="soggettoAbilitato">
+                            <label for="indirizzoSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.INDIRIZZO"| translate}} </label>
+                            <input type="text" formControlName="indirizzo" maxlength="100" class="form-control" id="indirizzoSp"  oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="soggettoAbilitato">
+                            <label for="capSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CAP"| translate}}</label>
+                            <input type="text" formControlName="cap" maxlength="5" class="form-control" comonlDigitOnly id="capSp" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row" formGroupName="soggettoAbilitato">
+                        <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+                            <label for="comuneSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.COMUNE"| translate}} </label>
+                            <input type="text" formControlName="dsComTComune" maxlength="100" class="form-control" id="comuneSp">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+                            <label for="provSp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.PROV"| translate}}</label>
+                            <div formGroupName="provincia">
+                                <input type="text" formControlName="dsComTProvincia" class="form-control" id="provSp" maxlength="3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="soggettoAbilitato">
+                            <label for="tel">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.TEL"| translate}} </label>
+                            <input comonlDigitOnly type="text" formControlName="tel" class="form-control" maxlength="15" id="tel">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="soggettoAbilitato">
+                            <label for="fax">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.FAX"| translate}}</label>
+                            <input comonlDigitOnly type="text" formControlName="fax" class="form-control" maxlength="15" id="fax">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4" formGroupName="soggettoAbilitato">
+                            <label for="mail">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.MAIL"| translate}}</label>
+                            <input type="text" formControlName="email" class="form-control" maxlength="50" id="mail"  oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- solo per delegati e persone autorizzate -->
+            <form *ngIf="showForm && anagraficaDelegato && anagraficaDelegato?.id?.tipoAnagrafica !== 'C' && !INS_MODE"
+                    [formGroup]="formRicercaAzienda"
+                    (ngSubmit)="submitAddAzienda()">
+                <div>
+                    <h4>{{"ACCREDITAMENTO_CONSULENTE.SUB_TITLE.ELENCO_IMP" | translate}}</h4>
+                    <div class="row" *ngIf="!VIEW_MODE">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="cfImp">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.CF"| translate}}</label>
+                            <input formControlName="cfAzienda" type="text" oninput="this.value = this.value.toUpperCase().trim()" prodisHasValueClass class="form-control" id="cfImp" maxlength="16">
+                        </div>
+                        <div *ngIf="anagraficaDelegato && anagraficaDelegato?.id?.tipoAnagrafica === 'E' && !VIEW_MODE" class="form-group col-sm-12 col-md-6">
+                            <label for="tipoCarica">{{ 'ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_CARICA' | translate}}</label>
+                            <select
+                            class="form-select"
+                            formControlName="tipoCarica"
+                            id="tipoCarica">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let carica of caricaPersonaPvs" [ngValue]="carica?.id">{{carica?.descrizione}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <button
+                                [disabled]="!formRicercaAzienda?.valid"
+                                class="btn btn-outline-primary mt-lg-btn-form"
+                            >{{"ACCREDITAMENTO_CONSULENTE.BUTTON.ADD_AZ" | translate}}</button>
+                        </div>
+                    </div>
+                    <comonl-paginated-array-table *ngIf="delegatiImpresa" [columnNumber]="VIEW_MODE ? 4 : 5" [pagedResponse]="delegatiImpresa" [limit]="5">
+                        <ng-template comonlPaginationHead>
+                          <tr>
+                            <th>{{'ACCREDITAMENTO_CONSULENTE.TABLE.FIELD.CF' | translate }}</th>
+                            <th>{{'ACCREDITAMENTO_CONSULENTE.TABLE.FIELD.DENOM' | translate }}</th>
+                            <th>{{'ACCREDITAMENTO_CONSULENTE.TABLE.FIELD.CARICA' | translate }}</th>
+                            <th>{{'ACCREDITAMENTO_CONSULENTE.TABLE.FIELD.FLG_ANNULLATO' | translate }}</th>
+                            <th *ngIf="!VIEW_MODE">{{'ACCREDITAMENTO_CONSULENTE.TABLE.FIELD.AZIONI' | translate }}</th>
+                          </tr>
+                        </ng-template>
+                        <ng-template comonlPaginationBody let-item>
+                          <tr>
+                            <td>{{item?.id?.cfImpresa}}</td>
+                            <td>{{item?.denominazione}}</td>
+                            <td>{{item?.idCaricaPersonaPv}}</td>
+                            <td>{{item?.dataAnnullamento ? "Si" : "No"}}</td>
+                            <td class="azioni">
+                                <a><i *ngIf="!VIEW_MODE && !item?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0003')" title="Elimina" class="fas fa-trash-alt"></i></a>
+                                <a><i *ngIf="!VIEW_MODE && item?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0004')" title="Ripristina" class="fas fa-arrow-alt-circle-left"></i></a>
+                            </td>
+                          </tr>
+                        </ng-template>
+                      </comonl-paginated-array-table>
+                </div>
+            </form>
+            <div *ngIf="!VIEW_MODE && form" class="row">
+                <div class="col-auto">
+                    <button
+                    type="button"
+                    (click)="onClickReset()"
+                    class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    [disabled]="!form?.valid || !LUOGO_NASCITA_VALID || !SOGGETTO_ABILITATO_VALID"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onClickSubmit()"
+                    >{{ 'APP.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

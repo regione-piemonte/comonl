@@ -1,0 +1,33 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="ricercaVardatori"></em>
+<div class="row">
+  <h2 class="col-10"><i style="color: #005ca9;" class="fas fa-search mr-2"></i>{{"RICERCA_VARDATORI.TITLE" | translate}}</h2>
+  <div class="col-auto ml-auto">
+    <button type="button" class="btn btn-primary ml-auto btn-lg"
+    (click)="goToNuovaComunicazione()"
+    >{{ 'APP.NEW_VARD' | translate }}</button>
+  </div>
+</div>
+<comonl-alert-message></comonl-alert-message>
+
+
+<ngb-accordion #accordionRicercaVardatori
+  activeIds="panelRicercaVardatori"
+  id="accordion-ricerca-vardatori"
+  [closeOthers]="true"
+  [destroyOnHide]="false">
+  <ngb-panel title="Criteri ricerca" id="panelRicercaVardatori">
+      <ng-template ngbPanelContent let-opened="opened">
+       <comonl-form-ricerca-vardatori [formPristine]="formPristine" [formRicercaVardatori]="formRicercaVardatori"
+       (datiRicerca)="onCerca($event)" (resetForm)="onResetForm()" (eliminaComunicazioneNotify)="eliminaComunicazione($event)">
+       </comonl-form-ricerca-vardatori>
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+<comonl-risultati-ricerca-vardatori
+  *ngIf="ricercaEffettuata" [formRicercaVardatori]="ricercaVardatoriToSend" [pagedResponse]="pagedResponse" [currentPaginationData]="currentPaginationData"
+  (changePaginationData)="onChangePaginationData($event)" (eliminaComunicazioneNotify)="eliminaComunicazione($event)">
+</comonl-risultati-ricerca-vardatori>

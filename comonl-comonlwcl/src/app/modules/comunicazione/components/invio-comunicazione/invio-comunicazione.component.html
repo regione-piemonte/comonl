@@ -1,0 +1,17 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="invio-comunicazione"></em>
+<h3>Notifica invio comunicazione</h3>
+<div *ngFor="let comunicazione of listaComunicazioni">
+    <p>La comunicazione è stata inviata correttamente.</p>
+    <p>L'invio è avvenuto con protocollazione provinciale e il numero assegnato è {{comunicazione?.numProtCom}}, in data {{comunicazione?.dtProtocollo | date: 'dd/MM/yyyy' }}, per la provincia di {{this.comunicazione?.provincia?.dsComTProvincia}}.</p>
+    <p>La comunicazione ha identificativo regionale numero: {{comunicazione?.codiceComunicazioneReg}}</p>
+    <p>Seguirà e-mail di notifica dell'avvenuta ricezione della comunicazione</p>
+    <div *ngIf="comunicazione?.codiceComunicazioneReg">
+        <button 
+        class="btn btn-primary ml-auto btn-lg"
+        (click)="stampaComunicazione(comunicazione?.id)">Stampa comunicazione</button>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_RAPPORTO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_INIZIO_RAPPORTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.dtInizioRapporto | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.TIPO_RAPPORTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipoContratti.dsComTTipoContratto}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div *ngIf="!IS_DISTACCO && isDataVisibile" class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_RAPPORTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.dtFineRapporto | date: 'dd/MM/yyyy'}}</span></div>
+        <div *ngIf="isDataVisibile" class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_PERIODO_FORMATIVO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.dtFinePeriodoFormativo | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.LAVORO_STAGIONALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgLavStagionale === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.RAPPORTO.FIELD.GENERATO_DA_TIROCINIO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgTirocinio}}</span></div>
+    </div>
+    <h4 class="title" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">{{"COMUNICAZIONE.DATI_TIROCINIO" | translate}}</h4>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.TIPO_TIROCINIO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipologiaTirocinio?.descrTipologiaTirocinio}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.CATEGORIA_TIROCINANTE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.categTirocinante?.descrCategTirocinante}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.TIPO_ENTE_PROMOTORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipoEntePromTirocinio?.dsComTTipoEntePromTir}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.CPI_ENTE_PROMOTORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.cpi?.dsComTCpi}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.CF_ENTE_PROMOTORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.cfSoggPromotoreTirocinio}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.TIROCINIO.FIELD.SOGG_ENTE_PROMOTORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.dsSoggPromTirocinio}}</span></div>
+    </div>
+    <h4 class="title" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">{{"COMUNICAZIONE.DATI_INQUADRAMENTO" | translate}}</h4>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_CCNL" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.ccnl?.codCcnlMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_CCNL" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.ccnl?.dsCcnl}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_INQUADRAMENTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.livelloRetribuzione?.codLivello}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_INQUADRAMENTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.livelloRetribuzione?.desLivello}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.RETRIBUZIONE_LORDA_ANNUALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.retribuzioneCompenso}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.CODICE_ISTAT" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.istatLivello5?.codIstat2001livello5Min}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.DESCRIZIONE_ISTAT" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.istatLivello5?.dsComIstat2001livello5}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ASSUNZIONE_OBBLIGATORIA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgAssunzioneObbligatoria === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.PAT_INAIL" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.patInail}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ENTE_PREVIDENZIALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.entePrevidenziale?.dsComTEntePrevidenziale}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.COD_ENTE_PREVIDENZIALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.codiceEntePrev}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.TIPO_ORARIO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipoOrario?.dsComTTipoOrario}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ORE_SETTIMANALI_MEDIE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.numOreSettMed}}</span></div>
+    </div>
+    <h4 class="title">{{"COMUNICAZIONE.ALTRI_DATI" | translate}}</h4>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id === 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.NUM_MATRICOLA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.numMatricolaLav}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id === 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.ENTE_PREVIDENZIALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.entePrevidenziale?.dsComTEntePrevidenziale}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.COD_ENTE_PREVIDENZIALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.codiceEntePrev}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.CATEGORIA_LAVORATORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.categLavAssObbl?.dsComTCategLavAssObbl}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.LEGGE68_TIPO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipoAttoL68?.dsComTTipoAttoL68}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.LEGGE68_DATA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.dtLegge68 | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.LEGGE68_NUM" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.numeroAttoLegge68}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.SOCIO_LAVORATORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgSocioLavoratore === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.LAVORO_AGRICOLTURA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgLavoroAgricoltura === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.GIORNATE_LAVORATIVE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.giornateLavPreviste}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id !== 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.TIPO_LAVORAZIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tipoLavorazione}}</span></div>
+    </div>
+    <div class="row lettura" *ngIf="comunicazioneToSave?.tipoTracciato?.id === 'US'">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.INDENNITA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.numIndennitaSomm}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "COMUNICAZIONE.ALTRI.FIELD.LAVORATORE_MOBILITA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.flgLavInMobilita === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+</div>

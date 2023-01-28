@@ -1,0 +1,113 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+    <div class="col-12">
+      <h3>{{ 'RICERCA_COMUNICAZIONI.RESULTS.TITLE' | translate}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-2 col-lg-2">
+      <p class="filtri">{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.FILTERS_APPLY' | translate}}</p>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-7 filtri">
+      <label *ngIf="formRicercaComunicazione?.codiceFiscaleAzienda"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.CF_AZIENDA" | translate}}:
+            {{formRicercaComunicazione?.codiceFiscaleAzienda}}</label>
+            <label *ngIf="formRicercaComunicazione?.denominazioneAzienda"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.DENOM_AZIENDA" | translate}}:
+              {{formRicercaComunicazione?.denominazioneAzienda}}</label>
+            <label *ngIf="formRicercaComunicazione?.codiceFiscaleLavoratore"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.CF_LAVORATORE" | translate}}:
+              {{formRicercaComunicazione?.codiceFiscaleLavoratore}}</label>
+        <label *ngIf="formRicercaComunicazione?.cognomeLavoratore"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.COGNOME_LAVORATORE" | translate}}:
+            {{formRicercaComunicazione?.cognomeLavoratore}}</label>
+            <label *ngIf="formRicercaComunicazione?.nomeLavoratore"><i class="fas fa-check"></i>
+              {{ "COMUNICAZIONE.RICERCA.FIELD.NOME_LAVORATORE" | translate}}:
+              {{formRicercaComunicazione?.nomeLavoratore}}</label>
+        <label *ngIf="formRicercaComunicazione?.dataInvioInserimentoDa "><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_DA" | translate}}:
+            {{formRicercaComunicazione?.dataInvioInserimentoDa | date: 'dd/MM/yyyy'}}</label>
+        <label *ngIf="formRicercaComunicazione?.dataInvioInserimentoA"><i class="fas fa-check"></i>
+            {{ "COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_A" | translate}}:
+            {{formRicercaComunicazione?.dataInvioInserimentoA | date: 'dd/MM/yyyy'}}</label>
+        <label *ngIf="formRicercaComunicazione?.statoComunicaziones && formRicercaComunicazione?.statoComunicaziones.length > 0"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.STATO_COM" | translate}}:
+            <div *ngFor="let item of formRicercaComunicazione?.statoComunicaziones">
+              {{item?.dsComTStatoComunicazione}}
+            </div>
+        </label>
+        <label *ngIf="formRicercaComunicazione?.codiceRegionale"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.COD_REG" | translate}}:
+          {{formRicercaComunicazione?.codiceRegionale}}
+        </label>
+        <label *ngIf="formRicercaComunicazione?.tipoComunicazione"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.TIPO_COM" | translate}}:
+          {{formRicercaComunicazione?.tipoComunicazione?.dsComTTipoComunicazione}}
+        </label>
+        <label *ngIf="formRicercaComunicazione?.tipoComunicazioneTu"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.TIPO_COM_TU" | translate}}:
+          {{formRicercaComunicazione?.tipoComunicazioneTu?.dsComTTipoComunicazione}}
+        </label>
+        <label *ngIf="formRicercaComunicazione?.provinciaProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_PROV" | translate}}:
+          {{formRicercaComunicazione?.provinciaProtocollo?.dsComTProvincia}}
+        </label>
+        <label *ngIf="formRicercaComunicazione?.annoProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_ANNO" | translate}}:
+          {{formRicercaComunicazione?.annoProtocollo}}
+        </label>
+        <label *ngIf="formRicercaComunicazione?.numeroProtocollo"><i class="fas fa-check"></i>
+          {{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_NUMERO" | translate}}:
+          {{formRicercaComunicazione?.numeroProtocollo}}
+        </label>
+    </div>
+  </div>
+  <div class="mt-5 scrollbar-table scrollbar-primary">
+    <comonl-paginated-table [pagedResponse]="pagedResponse" (changePaginationData)="onChangePaginationData($event)" #pagedTable [columnNumber]="9" [limit]="currentPaginationData.limit">
+      <ng-template comonlPaginationHead>
+        <tr>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.AZIENDA' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.LAVORATORE' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_INVIO_INS' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_ASS' | translate }}</th>
+          <th>{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.DATA_EVENTO' | translate }}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.TIPO_COM' | translate}}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.STATO' | translate}}</th>
+          <th>{{'RICERCA_COMUNICAZIONI.RESULTS.FIELD.COD_COM' | translate}}</th>
+          <th>{{'APP.AZIONI' | translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template comonlPaginationBody let-el>
+        <tr>
+          <td>{{ el?.codiceFiscaleDatore}}</td>
+          <td>{{ el?.codiceFiscaleLavoratore}}</td>
+          <td>{{ (el?.dtInvio ? el?.dtInvio : el?.dtInsert )| date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dtInizioRapporto | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dtEvento | date: 'dd/MM/yyyy'}}</td>
+          <td>{{ el?.dsComTTipoComunicazione  }}</td>
+          <td>{{ el?.dsComTStatoComunicazione  }}</td>
+          <td>{{ el?.codiceComunicazioneReg  }}</td>
+          <td class="azioni">
+            <a *ngIf="showNuovaCoAggiornamento(el)" (click)="nuovaCoAggiornamento(el)" title="Nuova CO aggiornam."><i class="fas fa-plus"></i></a>
+            <a *ngIf="showNuovaAssunzione(el)" (click)="nuovaAssunzione(el)" title="Nuovo Assunzione"><i class="fas fa-plus"></i></a>
+            <a *ngIf="showDettaglio(el)" (click)="goToDettaglio(el,'view')" title="Dettaglio"><i class="fas fa-eye"></i></a>
+            <a *ngIf="showModifica(el)" (click)="goToDettaglio(el,'edit')" title="Modifica"><i class="fas fa-edit"></i></a>
+            <a *ngIf="showStampaPdf(el)" (click)="goToStampa(el?.idComDComunicazione)" title="stampa"><i class="fas fa-file-pdf"></i></a>
+            <a *ngIf="showRettifica(el)" (click)="goToDettaglio(el,'rettifica')" title="Rettifica"><i class="fas fa-hand-paper"></i></a>
+            <a *ngIf="showElimina(el)" (click)="onClickElimina(el?.idComDComunicazione)" title="Elimina"><i class="fas fa-trash-alt"></i></a>
+            <a *ngIf="showAnnulla(el)" (click)="goToDettaglio(el,'annullo')" title="Annulla"><i class="fas fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </ng-template>
+    </comonl-paginated-table>
+    <div class="row">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onClickEsportaElencoComunicazioni()">
+          ESPORTA PDF
+        </button>
+      </div>
+    </div>
+  </div>

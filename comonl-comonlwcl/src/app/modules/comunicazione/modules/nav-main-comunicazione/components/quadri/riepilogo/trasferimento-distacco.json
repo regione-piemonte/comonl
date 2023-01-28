@@ -1,0 +1,539 @@
+{
+    "ruolo": {
+        "amministratore": true,
+        "codiceFiscaleAzienda": "AAAAAA00A11I000Q",
+        "codiceFiscaleUtente": "AAAAAA00A11I000Q",
+        "consulenteRespo": false,
+        "delegaValida": false,
+        "delegatoRespo": false,
+        "denominazioneAzienda": "DEMO 28 CSI PIEMONTE",
+        "dsCognome": "DEMO 28",
+        "dsNome": "CSI PIEMONTE",
+        "flgConsulenteAccentrato": false,
+        "flgScuolaPubblica": false,
+        "ilRuolo": "Amministratore",
+        "legaleRappresentante": false,
+        "monitoraggio": false,
+        "operatoreProvinciale": false,
+        "personaAutorizzata": false
+    },
+    "comunicazione": {
+        "apiWarnings": [],
+        "id": 18343593,
+        "cfImpresa": "00349040287",
+        "codiceEnte": "BNCNLS81T68A859B",
+        "codiceFiscaleSoggetto": "BNCNLS81T68A859B",
+        "cpi": {
+            "apiWarnings": [],
+            "id": 165,
+            "codCpi": "0505401100",
+            "dsComTCpi": "PADOVA"
+        },
+        "dataRiferimento": "2022-05-31T22:00:00.000+0000",
+        "datoreAttuale": {
+            "apiWarnings": [],
+            "id": 20271531,
+            "atecofin": {
+                "apiWarnings": [],
+                "id": 3615,
+                "codAtecofinMin": "86.10.20",
+                "dsComTAtecofin": "Ospedali e case di cura specialistici",
+                "dtInizio": "2009-01-14T23:00:00.000+0000",
+                "dtTmst": "2009-01-14T23:00:00.000+0000"
+            },
+            "codiceFiscale": "00349040287",
+            "dsDenominazioneDatore": "AZIENDA OSPEDALIERA",
+            "flgAzArtigiana": "N",
+            "flgNoAaep": "N",
+            "flgPubAmm": "N",
+            "flgUtilEstera": "N",
+            "idAziendaSilp": 2158549,
+            "legaleRappr": {
+                "apiWarnings": [],
+                "id": 20271531,
+                "dtInsert": "2022-06-19T22:00:00.000+0000",
+                "dtUltMod": "2022-06-19T22:00:00.000+0000",
+                "flgSoggiornanteItalia": "N",
+                "idUserInsert": "AAAAAA00A11I000Q",
+                "idUserUltMod": "AAAAAA00A11I000Q"
+            },
+            "naturaGiuridica": {
+                "apiWarnings": [],
+                "id": "AI",
+                "descrizione": "ASSOCIAZIONE IMPRESA",
+                "dtFineVldt": "3999-12-30T23:00:00.000+0000",
+                "dtInizioVldt": "1900-12-31T23:00:00.000+0000",
+                "iscrizione": "A",
+                "naturaGiuridica": "AI"
+            },
+            "sedeLegale": {
+                "apiWarnings": [],
+                "id": 38377444,
+                "codCap": "35128",
+                "comune": {
+                    "apiWarnings": [],
+                    "id": 4931,
+                    "codCap": "35100",
+                    "codComuneMin": "G224",
+                    "codInps": "540000",
+                    "codIstat": "028060",
+                    "codPrefisso": "049",
+                    "cpi": {
+                        "apiWarnings": [],
+                        "id": 165,
+                        "codCpi": "0505401100",
+                        "dsComTCpi": "PADOVA"
+                    },
+                    "dsComTComune": "PADOVA",
+                    "dtInizio": "1900-01-01T23:00:00.000+0000",
+                    "dtTmst": "2004-11-17T23:00:00.000+0000",
+                    "provincia": {
+                        "apiWarnings": [],
+                        "id": 61,
+                        "codProvinciaMin": "028",
+                        "dsComTProvincia": "PADOVA",
+                        "dsTarga": "PD",
+                        "dtInizio": "2007-06-20T22:00:00.000+0000",
+                        "regione": {
+                            "apiWarnings": [],
+                            "id": 22,
+                            "codRegioneMin": "21",
+                            "dsComTRegione": "VENETO",
+                            "dtInizio": "2007-06-20T22:00:00.000+0000"
+                        }
+                    }
+                },
+                "email": "LUISA.FARINASSO@CSI.IT",
+                "flgSedeLegale": "S",
+                "idSedeSilp": 2067186,
+                "indirizzo": "GIUSTINIANI",
+                "telefono": "122233"
+            }
+        },
+        "dtInsert": "2022-06-19T22:00:00.000+0000",
+        "dtInvio": "2022-06-19T22:00:00.000+0000",
+        "dtTimbroPostale": "2022-06-19T22:00:00.000+0000",
+        "dtUltMod": "2022-06-19T22:00:00.000+0000",
+        "email": "DEMO24_CONS_TO@CSI.IT",
+        "emailsoggetto": "DEMO24_CONS_TO@CSI.IT",
+        "flgCausaForzamaggiore": "N",
+        "flgComDatLav": "N",
+        "flgComunSegUrgenza": "S",
+        "flgCurrentRecord": "S",
+        "flgInvioMinistero": "N",
+        "flgMultiLav": "N",
+        "flgRettifica": "N",
+        "flgSommin": "N",
+        "idRapportoLavoro": 7170870,
+        "idUserInsert": "AAAAAA00A11I000Q",
+        "idUserUltMod": "AAAAAA00A11I000Q",
+        "lavoratori": [
+            {
+                "apiWarnings": [],
+                "id": 18904254,
+                "cittadinanza": {
+                    "apiWarnings": [],
+                    "id": 13,
+                    "codCittadinanzaMin": "000",
+                    "codCittadinanzaOld": "ITA",
+                    "codMf": "0000",
+                    "dsComTCittadinanza": "ITALIANA",
+                    "dsNazione": "ITALIA",
+                    "dtInizio": "1964-12-31T23:00:00.000+0000",
+                    "flgUe": "S"
+                },
+                "codCapDom": "15100",
+                "codiceFiscale": "FRNDAE03A01L219X",
+                "cognome": "FARINASSO",
+                "comuneDom": {
+                    "apiWarnings": [],
+                    "id": 4600,
+                    "codCap": "15020",
+                    "codComuneMin": "F814",
+                    "codInps": "20001",
+                    "codIstat": "006113",
+                    "codPrefisso": "0141",
+                    "cpi": {
+                        "apiWarnings": [],
+                        "id": 3,
+                        "codCpi": "0100203100",
+                        "dsComTCpi": "CASALE MONFERRATO",
+                        "dtInizio": "2007-11-30T23:00:00.000+0000"
+                    },
+                    "dsComTComune": "MURISENGO",
+                    "dtInizio": "1900-01-01T23:00:00.000+0000",
+                    "dtTmst": "2004-11-17T23:00:00.000+0000",
+                    "provincia": {
+                        "apiWarnings": [],
+                        "id": 2,
+                        "codProvinciaMin": "006",
+                        "codiceFiscalePv": "80003870062",
+                        "dsComTProvincia": "ALESSANDRIA",
+                        "dsTarga": "AL",
+                        "dtInizio": "2007-06-20T22:00:00.000+0000",
+                        "regione": {
+                            "apiWarnings": [],
+                            "id": 14,
+                            "codRegioneMin": "13",
+                            "dsComTRegione": "PIEMONTE",
+                            "dtInizio": "2007-06-20T22:00:00.000+0000"
+                        }
+                    }
+                },
+                "comuneNasc": {
+                    "apiWarnings": [],
+                    "id": 7284,
+                    "codCap": "10100",
+                    "codComuneMin": "L219",
+                    "codInps": "810000",
+                    "codIstat": "001272",
+                    "codPrefisso": "011",
+                    "cpi": {
+                        "apiWarnings": [],
+                        "id": 31,
+                        "CUtente": "GECO_TO_01",
+                        "codCpi": "0108100100",
+                        "dsComTCpi": "TORINO",
+                        "dtInizio": "2005-07-17T22:00:00.000+0000"
+                    },
+                    "dsComTComune": "TORINO",
+                    "dtInizio": "1900-01-01T23:00:00.000+0000",
+                    "dtTmst": "2004-11-17T23:00:00.000+0000",
+                    "provincia": {
+                        "apiWarnings": [],
+                        "id": 90,
+                        "codProvinciaMin": "001",
+                        "codiceFiscalePv": "01907990012",
+                        "dsComTProvincia": "TORINO",
+                        "dsTarga": "TO",
+                        "dtInizio": "2007-06-20T22:00:00.000+0000",
+                        "regione": {
+                            "apiWarnings": [],
+                            "id": 14,
+                            "codRegioneMin": "13",
+                            "dsComTRegione": "PIEMONTE",
+                            "dtInizio": "2007-06-20T22:00:00.000+0000"
+                        }
+                    }
+                },
+                "dsIndirizzoDom": "CANALE LIGURIA",
+                "dsIndirizzoRes": "indirizzo res test",
+                "dtNascita": "2002-12-31T23:00:00.000+0000",
+                "idLavoratoreSilp": 3258978,
+                "livelloStudio": {
+                    "apiWarnings": [],
+                    "id": 3,
+                    "codiceLivelloMin": "20",
+                    "codiceTitoloStudio": "20000000",
+                    "dtFine": "9999-12-30T23:00:00.000+0000",
+                    "dtInizio": "2000-12-31T23:00:00.000+0000",
+                    "isced97": "2",
+                    "isced97LevelProgDest": "2A",
+                    "sinonimoTitoloStudio": "LICENZA DI AVVIAMENTO PROFESSIONALE",
+                    "tipoDiScuola": "SCUOLA MEDIA ",
+                    "titoloDiStudio": "LICENZA MEDIA"
+                },
+                "nome": "ADE",
+                "sesso": "M",
+                "statiEsteriRes": {
+                    "apiWarnings": [],
+                    "id": 215,
+                    "codNazioneMin": "Z347",
+                    "dsStatiEsteri": "SUDAFRICANA REPUBBLICA",
+                    "dtFine": "2020-11-15T23:00:00.000+0000",
+                    "dtInizio": "1984-12-30T23:00:00.000+0000",
+                    "siglaNazione": "RSA"
+                }
+            }
+        ],
+        "provincia": {
+            "apiWarnings": [],
+            "id": 61,
+            "codProvinciaMin": "028",
+            "dsComTProvincia": "PADOVA",
+            "dsTarga": "PD",
+            "dtInizio": "2007-06-20T22:00:00.000+0000",
+            "regione": {
+                "apiWarnings": [],
+                "id": 22,
+                "codRegioneMin": "21",
+                "dsComTRegione": "VENETO",
+                "dtInizio": "2007-06-20T22:00:00.000+0000"
+            }
+        },
+        "rapporto": {
+            "apiWarnings": [],
+            "id": 19832781,
+            "ccnl": {
+                "apiWarnings": [],
+                "id": 1107,
+                "codCcnlMin": "9440",
+                "dsCcnl": "COMMERCIO - Confesercenti",
+                "dtInizio": "2020-01-14T23:00:00.000+0000",
+                "settore": "Commercio"
+            },
+            "comunicazione": {
+                "apiWarnings": [],
+                "id": 18343593,
+                "cfImpresa": "00349040287",
+                "codiceEnte": "BNCNLS81T68A859B",
+                "codiceFiscaleSoggetto": "BNCNLS81T68A859B",
+                "cpi": {
+                    "apiWarnings": [],
+                    "id": 165,
+                    "codCpi": "0505401100",
+                    "dsComTCpi": "PADOVA"
+                },
+                "dataRiferimento": "2022-05-31T22:00:00.000+0000",
+                "dtInsert": "2022-06-19T22:00:00.000+0000",
+                "dtInvio": "2022-06-19T22:00:00.000+0000",
+                "dtTimbroPostale": "2022-06-19T22:00:00.000+0000",
+                "dtUltMod": "2022-06-19T22:00:00.000+0000",
+                "email": "DEMO24_CONS_TO@CSI.IT",
+                "emailsoggetto": "DEMO24_CONS_TO@CSI.IT",
+                "flgCausaForzamaggiore": "N",
+                "flgComDatLav": "N",
+                "flgComunSegUrgenza": "S",
+                "flgCurrentRecord": "S",
+                "flgInvioMinistero": "N",
+                "flgMultiLav": "N",
+                "flgRettifica": "N",
+                "flgSommin": "N",
+                "idRapportoLavoro": 7170870,
+                "idUserInsert": "AAAAAA00A11I000Q",
+                "idUserUltMod": "AAAAAA00A11I000Q",
+                "provincia": {
+                    "apiWarnings": [],
+                    "id": 61,
+                    "codProvinciaMin": "028",
+                    "dsComTProvincia": "PADOVA",
+                    "dsTarga": "PD",
+                    "dtInizio": "2007-06-20T22:00:00.000+0000",
+                    "regione": {
+                        "apiWarnings": [],
+                        "id": 22,
+                        "codRegioneMin": "21",
+                        "dsComTRegione": "VENETO",
+                        "dtInizio": "2007-06-20T22:00:00.000+0000"
+                    }
+                },
+                "statoComunicazione": {
+                    "apiWarnings": [],
+                    "id": 7,
+                    "dsComTStatoComunicazione": "TRANSITO"
+                },
+                "tipoAcquisizione": {
+                    "apiWarnings": [],
+                    "id": 1,
+                    "dsComTTipoAcquisizione": "Comunicazione completa"
+                },
+                "tipoComunicazione": {
+                    "apiWarnings": [],
+                    "id": "TRD",
+                    "dsComTTipoComunicazione": "TRASFERIMENTO / DISTACCO",
+                    "tipo": "5"
+                },
+                "tipoComunicazioneTu": {
+                    "apiWarnings": [],
+                    "id": 1,
+                    "codTipoComunicazioneMin": "01",
+                    "dsComTTipoComunicazione": "Comunicazione Obbligatoria",
+                    "dtInizio": "2007-06-20T22:00:00.000+0000"
+                },
+                "tipoProvenienza": {
+                    "apiWarnings": [],
+                    "id": 3,
+                    "codTipoProvenienzaMin": "GE",
+                    "dsComTTipoProvenienza": "COMONL VER 4"
+                },
+                "tipoSoggettoAbilitato": {
+                    "apiWarnings": [],
+                    "id": 5,
+                    "codSoggettoAbilitatoMin": "005",
+                    "dsComTipoSoggettoAbilitato": "Periti Commerciali (art. 1, co. 1, L.  12/79)",
+                    "dtInizio": "2007-06-20T22:00:00.000+0000"
+                },
+                "tipoTracciato": {
+                    "apiWarnings": [],
+                    "id": "UL",
+                    "dsComTTipoTracciato": "UNILAV"
+                }
+            },
+            "datoreDistaccatario": {
+                "apiWarnings": [],
+                "id": 20271532,
+                "atecofin": {
+                    "apiWarnings": [],
+                    "id": 3377,
+                    "codAtecofinMin": "56.10.12",
+                    "dsComTAtecofin": "Attività di ristorazione connesse alle aziende agricole",
+                    "dtInizio": "2009-01-14T23:00:00.000+0000",
+                    "dtTmst": "2009-01-14T23:00:00.000+0000"
+                },
+                "codiceFiscale": "07509870015",
+                "dsDenominazioneDatore": "DA GIOVANNI RISTORANTE S.R.L.",
+                "idAziendaSilp": 108981,
+                "patInail": "7875",
+                "sedeLegale": {
+                    "apiWarnings": [],
+                    "id": 38377445,
+                    "codCap": "12010",
+                    "comune": {
+                        "apiWarnings": [],
+                        "id": 7931,
+                        "codCap": "12010",
+                        "codComuneMin": "M055",
+                        "codInps": "270000",
+                        "codIstat": "004248",
+                        "codPrefisso": "0171",
+                        "cpi": {
+                            "apiWarnings": [],
+                            "id": 13,
+                            "codCpi": "0102704000",
+                            "dsComTCpi": "CUNEO",
+                            "dtInizio": "2007-01-13T23:00:00.000+0000"
+                        },
+                        "dsComTComune": "VINADIO",
+                        "dtInizio": "1900-01-01T23:00:00.000+0000",
+                        "dtTmst": "2004-11-17T23:00:00.000+0000",
+                        "provincia": {
+                            "apiWarnings": [],
+                            "id": 24,
+                            "codProvinciaMin": "004",
+                            "codiceFiscalePv": "00447820044",
+                            "dsComTProvincia": "CUNEO",
+                            "dsTarga": "CN",
+                            "dtInizio": "2007-06-20T22:00:00.000+0000",
+                            "regione": {
+                                "apiWarnings": [],
+                                "id": 14,
+                                "codRegioneMin": "13",
+                                "dsComTRegione": "PIEMONTE",
+                                "dtInizio": "2007-06-20T22:00:00.000+0000"
+                            }
+                        }
+                    },
+                    "fax": "0171/95800",
+                    "flgSedeLegale": "S",
+                    "indirizzo": "BAGNI DI VINADIO",
+                    "telefono": "89879"
+                }
+            },
+            "dtEvento": "2022-05-31T22:00:00.000+0000",
+            "dtFineRapporto": "2022-09-29T22:00:00.000+0000",
+            "dtInizioRapporto": "2021-12-31T23:00:00.000+0000",
+            "dtTrasformazione": "2022-05-31T22:00:00.000+0000",
+            "entePrevidenziale": {
+                "apiWarnings": [],
+                "id": 27,
+                "codEntePrevidenzialeMin": "27",
+                "dsComTEntePrevidenziale": "CASSA NOTARIATO",
+                "dtInizio": "2007-06-20T22:00:00.000+0000"
+            },
+            "flgAssunzioneObbligatoria": "N",
+            "flgDistaccoParziale": "S",
+            "flgDistaccoSuAziEstera": "N",
+            "flgLavInMobilita": "N",
+            "flgLavStagionale": "N",
+            "flgLavoroAgricoltura": "N",
+            "flgSocioLavoratore": "N",
+            "flgTirocinio": "N",
+            "istatLivello5": {
+                "apiWarnings": [],
+                "id": 16067,
+                "codIstat2001livello5Min": "4.1.2.3.0.2",
+                "dsComIstat2001livello5": "ADDETTO AL FAX",
+                "dtFine": "9999-12-30T23:00:00.000+0000",
+                "dtInizio": "2011-11-14T23:00:00.000+0000",
+                "flgVldUd": "N"
+            },
+            "livelloRetribuzione": {
+                "apiWarnings": [],
+                "id": 12417,
+                "ccnl": {
+                    "apiWarnings": [],
+                    "id": 1107,
+                    "codCcnlMin": "9440",
+                    "dsCcnl": "COMMERCIO - Confesercenti",
+                    "dtInizio": "2020-01-14T23:00:00.000+0000",
+                    "settore": "Commercio"
+                },
+                "codLivello": "000004",
+                "desLivello": "3",
+                "divisoreOrario": 168,
+                "dtInizio": "2017-07-31T22:00:00.000+0000",
+                "lordoMensile": 1791.04,
+                "mensilita": 14,
+                "ordinamento": 4
+            },
+            "numOreSettMed": 15,
+            "patInail": "1012231123",
+            "retribuzioneCompenso": 100,
+            "tipoContratti": {
+                "apiWarnings": [],
+                "id": 2,
+                "codTipoContrattoMin": "A.02.00",
+                "dsComTTipoContratto": "TEMPO DETERMINATO                  ",
+                "dtInizio": "2007-06-20T22:00:00.000+0000",
+                "flgForma": "D",
+                "tipo": "TD"
+            },
+            "tipoOrario": {
+                "apiWarnings": [],
+                "id": 2,
+                "codTipoorarioMin": "P",
+                "dsComTTipoOrario": "TEMPO PARZIALE ORIZZONTALE",
+                "dtInizio": "2000-12-31T23:00:00.000+0000"
+            },
+            "trasformazionerl": {
+                "apiWarnings": [],
+                "id": 6,
+                "codTrasformazionirlMin": "DL",
+                "dsComTTrasformazionerl": "DISTACCO/COMANDO",
+                "dtInizio": "2007-06-20T22:00:00.000+0000",
+                "tipo": "TRD"
+            }
+        },
+        "statoComunicazione": {
+            "apiWarnings": [],
+            "id": 7,
+            "dsComTStatoComunicazione": "TRANSITO"
+        },
+        "tipoAcquisizione": {
+            "apiWarnings": [],
+            "id": 1,
+            "dsComTTipoAcquisizione": "Comunicazione completa"
+        },
+        "tipoComunicazione": {
+            "apiWarnings": [],
+            "id": "TRD",
+            "dsComTTipoComunicazione": "TRASFERIMENTO / DISTACCO",
+            "tipo": "5"
+        },
+        "tipoComunicazioneTu": {
+            "apiWarnings": [],
+            "id": 1,
+            "codTipoComunicazioneMin": "01",
+            "dsComTTipoComunicazione": "Comunicazione Obbligatoria",
+            "dtInizio": "2007-06-20T22:00:00.000+0000"
+        },
+        "tipoProvenienza": {
+            "apiWarnings": [],
+            "id": 3,
+            "codTipoProvenienzaMin": "GE",
+            "dsComTTipoProvenienza": "COMONL VER 4"
+        },
+        "tipoSoggettoAbilitato": {
+            "apiWarnings": [],
+            "id": 5,
+            "codSoggettoAbilitatoMin": "005",
+            "dsComTipoSoggettoAbilitato": "Periti Commerciali (art. 1, co. 1, L.  12/79)",
+            "dtInizio": "2007-06-20T22:00:00.000+0000"
+        },
+        "tipoTracciato": {
+            "apiWarnings": [],
+            "id": "UL",
+            "dsComTTipoTracciato": "UNILAV"
+        }
+    }
+}

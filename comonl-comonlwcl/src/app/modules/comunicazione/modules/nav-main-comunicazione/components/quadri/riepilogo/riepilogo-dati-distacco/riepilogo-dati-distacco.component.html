@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_DISTACCO.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCO.FIELD.DATA_DISTACCO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.dtTrasformazione | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCO.FIELD.DATA_FINE_DISTACCO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.dtFineRapporto | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCO.FIELD.DISTACCO_PARZIALE" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.flgDistaccoParziale === "S" ? "Si" : "No"}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCO.FIELD.DISTACCO_AZ_ESTERA" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.flgDistaccoSuAziEstera === "S" ? "Si" : "No"}}</span></div>
+    </div>
+    <h4 class="title">{{"DATI_DISTACCO.DATI_DATORE_DISTACCATARIO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.CF_DATORE_DISTACCATARIO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.codiceFiscale}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.DENOMINAZIONE_DATORE_DISTACCATARIO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.dsDenominazioneDatore}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.ATECO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.atecofin?.codAtecofinMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.DESCR_ATECO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.atecofin?.dsComTAtecofin}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.PAT_INAIL" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.patInail}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.COD_STATO_ESTERO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.statiEsteri?.codNazioneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.DESCR_STATO_ESTERO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.statiEsteri?.dsStatiEsteri}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.COD_COMUNE" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.comune?.codComuneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.DESCR_COMUNE" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.INDIRIZZO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.indirizzo}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.CAP" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.codCap}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.TELEFONO" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.FAX" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DISTACCATARIO.FIELD.EMAIL" | translate}} <span class="valore">{{comunicazioneToSave?.rapporto?.datoreDistaccatario?.sedeLegale?.email}}</span></div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"MISSIONE.DATI_RAPPORTO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DATA_INIZIO_MISSIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dtInizioMissione | date: 'dd/MM/yyyy'}}</span></div>
+        <div *ngIf="isDataVisibile" class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DATA_FINE_MISSIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dtFineMissione | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <h4 class="title">{{"MISSIONE.DATI_INQUADRAMENTO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.COD_CCNL" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.ccnl?.codCcnlMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DESCR_CCNL" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.ccnl?.dsCcnl}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.CODICE_ISTAT" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.istatLivello5?.codIstat2001livello5Min}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DESCRIZIONE_ISTAT" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.istatLivello5?.dsComIstat2001livello5}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.LIV_INQUADRAMENTO_CODICE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.livelloRetribuzione?.codLivello}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.LIV_INQUADRAMENTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.livelloRetribuzione?.desLivello}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.RETRIBUZIONE_ANNUALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.retribuzioneCompenso}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.PAT_INAIL" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.patInail}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.ASSUNZIONE_OBBLIGATORIA" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.flgAssunzioneObbligatoria === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.CATEGORIA_LAVORATORE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.categLavAssObbl?.dsComTCategLavAssObbl}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.TIPO_ORARIO" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.tipoOrario?.dsComTTipoOrario}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.ORE_SETTIMANALI_MEDIE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.numOreSettMed}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.LAVORO_AGRICOLTURA" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.flgLavoroAgricoltura === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.GIORNATE_LAVORATIVE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.giornateLavPreviste}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DESCR_ATT_AGRICOLTURA" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dsAttivitaAgricoltura}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.SILICOSI" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.flgRischioSilicAsbe === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.VOCE_TARIFFA1" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dsVoceTariffa1}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.VOCE_TARIFFA2" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dsVoceTariffa2}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.VOCE_TARIFFA3" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dsVoceTariffa3}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "MISSIONE.FIELD.DESCR_ATT" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione?.dsAttivita}}</span></div>
+    </div>
+</div>

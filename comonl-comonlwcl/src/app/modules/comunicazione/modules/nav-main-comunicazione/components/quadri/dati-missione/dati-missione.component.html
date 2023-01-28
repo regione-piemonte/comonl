@@ -1,0 +1,397 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="dati-missione"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-user mr-2"></i>{{"DATI_MISSIONE.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div *ngIf="showForm" class="card-body">
+            <form [formGroup]="formDatiMissione" *ngIf="showForm">
+                <!-- ************************* DATI RAPPORTO DELLA MISSIONE ************************* -->
+                <h1 class="dati-anagrafici">{{"MISSIONE.DATI_RAPPORTO" | translate}}</h1>
+                <label *ngIf="!VIEW_MODE">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataInizioMissione">{{ "MISSIONE.FIELD.DATA_INIZIO_MISSIONE" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dtInizioMissione"
+                            id="dataInizioMissione"
+                            maxlength="10"
+                            ngbDatepicker
+                            #dataInizioMissione="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                *ngIf="!VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataInizioMissione.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtInizioMissione?.invalid && f?.dtInizioMissione?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                          </div> 
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataFineMissione">{{ "MISSIONE.FIELD.DATA_FINE_MISSIONE" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dtFineMissione"
+                            id="dataFineMissione"
+                            maxlength="10"
+                            ngbDatepicker
+                            #dataFineMissione="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                *ngIf="!VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataFineMissione.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dtFineMissione?.invalid && f?.dtFineMissione?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                          </div> 
+                    </div>
+                </div>
+                <h1 class="dati-anagrafici">{{"MISSIONE.DATI_INQUADRAMENTO" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="codCcnl">{{ "MISSIONE.FIELD.COD_CCNL" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="ccnl">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codCcnlMin"
+                                    (change)="f.ccnl.controls.id.setValue(null)"
+                                    id="codCCNL"
+                                    maxlength="7">
+                                <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors" class="text-danger">
+                                    <div *ngIf="f?.ccnl?.controls?.codCcnlMin?.errors?.minlength && f?.ccnl?.controls?.dsCcnl?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label class="field" for="descrCcnl">{{ "MISSIONE.FIELD.DESCR_CCNL" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="ccnl">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsCcnl"
+                                    (change)="f.ccnl.controls.id.setValue(null)"
+                                    id="descrCCNL"
+                                    maxlength="150">
+                                    <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors" class="text-danger">
+                                        <div *ngIf="f?.ccnl?.controls?.dsCcnl?.errors?.minlength && f?.ccnl?.controls?.codCcnlMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                    </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !ccnlScaduto))" class="col-auto">
+                        <button 
+                            type="button"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            [disabled]="!(f?.ccnl?.controls?.codCcnlMin?.value?.length > 1 || f?.ccnl?.controls?.dsCcnl?.value?.length > 2)"
+                            (click)="onClickFindCcnl()"
+                        >{{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="livInquadramento">{{ "MISSIONE.FIELD.LIV_INQUADRAMENTO_CODICE" | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="livelloRetribuzione">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codLivello"
+                                    id="livInquadramento"
+                                    maxlength="6">
+                                    <div *ngIf="f?.livelloRetribuzione?.controls?.codLivello?.errors" class="text-danger">
+                                        <div *ngIf="f?.livelloRetribuzione?.controls?.codLivello?.errors?.minlength && f?.livelloRetribuzione?.controls?.desLivello?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrLivInquadramento">{{ "MISSIONE.FIELD.LIV_INQUADRAMENTO_DS" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="livelloRetribuzione">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="desLivello"
+                                    id="descrLivInquadramento"
+                                    maxlength="200">
+                                <!-- <div *ngIf="f?.livelloRetribuzione?.controls?.desLivello?.errors" class="text-danger">
+                                    <div *ngIf="f?.livelloRetribuzione?.controls?.desLivello?.errors?.minlength && f?.livelloRetribuzione?.controls?.codLivello?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div> -->
+                        </div>
+                    </div>
+                    <div *ngIf="!(VIEW_MODE || (ANNULLO_MODE && !livelloRetribuzioneScaduto))" class="form-group col">
+                        <button 
+                            id="btnSearchInquadramento"
+                            [disabled]="!(f?.ccnl?.controls?.codCcnlMin?.value?.length > 1 || f?.ccnl?.controls?.dsCcnl?.value?.length > 2)"
+                            (click)="onClickFindLivelloRetr()"
+                            type="button"
+                            class="btn btn-outline-primary btn-sm search">
+                            {{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="codISTAT">{{ "MISSIONE.FIELD.CODICE_ISTAT" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="istatLivello5">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codIstat2001livello5Min"
+                                    (change)="f.istatLivello5.controls.id.setValue(null)"
+                                    id="codISTAT"
+                                    maxlength="12">
+                                <div *ngIf="f?.istatLivello5?.controls?.codIstat2001livello5Min?.errors" class="text-danger">
+                                    <div *ngIf="f?.istatLivello5?.controls?.codIstat2001livello5Min?.errors?.minlength && f?.istatLivello5?.controls?.dsComIstat2001livello5?.value?.minlength < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrISTAT">{{ "MISSIONE.FIELD.DESCRIZIONE_ISTAT" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group" formGroupName="istatLivello5">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComIstat2001livello5"
+                                    (change)="f.istatLivello5.controls.id.setValue(null)"
+                                    id="descrISTAT"
+                                    maxlength="150">
+                                <div *ngIf="f?.istatLivello5?.controls?.dsComIstat2001livello5?.errors" class="text-danger">
+                                    <div *ngIf="f?.istatLivello5?.controls?.dsComIstat2001livello5?.errors?.minlength && f?.istatLivello5?.controls?.codIstat2001livello5Min?.value?.minlength < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!(this.VIEW_MODE || (this.ANNULLO_MODE && !istatScaduto))" class="form-group col">
+                        <button 
+                            id="btnSearchISTAT"
+                            [disabled]="!(f?.istatLivello5?.controls?.codIstat2001livello5Min?.value?.length > 2 || f?.istatLivello5?.controls?.dsComIstat2001livello5?.value?.length > 2)"
+                            (click)="onClickFindIstat()"
+                            type="button"
+                            class="btn btn-outline-primary btn-sm search">
+                            {{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="retrib">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.RETRIBUZIONE_LORDA_ANNUALE" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="retribuzioneCompenso"
+                                    comonlDigitOnly
+                                    id="retrib"
+                                    maxlength="9">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="patINAIL">{{ "MISSIONE.FIELD.PAT_INAIL" | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="patInail"
+                                    id="patINAIL"
+                                    comonlDigitOnly
+                                    minlength="8"
+                                    maxlength="10">
+                                    <div *ngIf="f?.patInail?.errors" class="text-danger">
+                                        <div *ngIf="f?.patInail?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_NUMBER_8" | translate}}</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="assObbl">{{ "MISSIONE.FIELD.ASSUNZIONE_OBBLIGATORIA" | translate}}</label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgAssunzioneObbligatoria" (change)="setStatecategLavAssObbl()" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgAssunzioneObbligatoria"  (change)="setStatecategLavAssObbl()" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label id="catLav" class="field" for="categoriaLav">{{ 'MISSIONE.FIELD.CATEGORIA_LAVORATORE' | translate}}<span *ngIf="!VIEW_MODE && obbligCategLavAssObbl" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <select
+                            class="form-select"
+                            formControlName="categLavAssObbl"
+                            id="categoriaLav">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let categLavAssObbl of listaCategLavAssObbl" [ngValue]="categLavAssObbl">{{categLavAssObbl.dsComTCategLavAssObbl}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="field" for="tipoOrario">{{ 'MISSIONE.FIELD.TIPO_ORARIO' | translate}} <span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <select
+                            class="form-select"
+                            (change)="setStateNumOreSettimanaliMedie()"
+                            formControlName="tipoOrario"
+                            id="tipoOrario">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let tipoOrario of listaTipoOrario" [ngValue]="tipoOrario">{{tipoOrario.dsComTTipoOrario}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-2">
+                        <label class="field cod" for="oreSettimanaliMedie">{{ "MISSIONE.FIELD.ORE_SETTIMANALI_MEDIE" | translate}}  <span *ngIf="!VIEW_MODE && obbligNumOreSettMedie" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numOreSettMed"
+                                    comonlDigitOnly
+                                    id="oreSettimanaliMedie"
+                                    maxlength="2">
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="agricoltura">{{ "MISSIONE.FIELD.LAVORO_AGRICOLTURA" | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgLavoroAgricoltura" (change)="setStateGiornateLavPreviste()" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgLavoroAgricoltura" (change)="setStateGiornateLavPreviste()" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="giornateLav">{{ "MISSIONE.FIELD.GIORNATE_LAVORATIVE" | translate}}<span *ngIf="!VIEW_MODE && obbligGiornateLavPreviste" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="giornateLavPreviste"
+                                    id="giornateLav"
+                                    comonlDigitOnly
+                                    maxlength="4">
+                                <!-- <div *ngIf="f?.giornateLav?.errors" class="text-danger">
+                                <div *ngIf="f?.giornateLav?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div> -->
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrAttAgricoltura">{{ "MISSIONE.FIELD.DESCR_ATT_AGRICOLTURA" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsAttivitaAgricoltura"
+                                    id="descrAttAgricoltura"
+                                    maxlength="100">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="silicosi">{{ "MISSIONE.FIELD.SILICOSI" | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group ml-3">
+                            <div class="row">
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgRischioSilicAsbe" [value]="'S'" type="radio" id="Si">
+                                <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input formControlName="flgRischioSilicAsbe" [value]="'N'" type="radio" id="No">
+                                <label class="radio-button" for="No">No</label>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="voceTariffa1">{{ "MISSIONE.FIELD.VOCE_TARIFFA1" | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsVoceTariffa1"
+                                    id="voceTariffa1"
+                                    maxlength="4">
+                                <div *ngIf="f?.dsVoceTariffa1?.errors" class="text-danger">
+                                    <div *ngIf="f?.dsVoceTariffa1?.errors?.minlength">{{"ERROR.FIELD.LENGHT_4" | translate}}</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="voceTariffa2">{{ "MISSIONE.FIELD.VOCE_TARIFFA2" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsVoceTariffa2"
+                                    id="voceTariffa2"
+                                    maxlength="4">
+                                <div *ngIf="f?.dsVoceTariffa2?.errors" class="text-danger">
+                                    <div *ngIf="f?.dsVoceTariffa2?.errors?.minlength">{{"ERROR.FIELD.LENGHT_4" | translate}}</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="voceTariffa3">{{ "MISSIONE.FIELD.VOCE_TARIFFA3" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsVoceTariffa3"
+                                    id="voceTariffa3"
+                                    maxlength="4">
+                                <div *ngIf="f?.dsVoceTariffa3?.errors" class="text-danger">
+                                    <div *ngIf="f?.dsVoceTariffa3?.errors?.minlength">{{"ERROR.FIELD.LENGHT_4" | translate}}</div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrAtt">{{ "MISSIONE.FIELD.DESCR_ATT" | translate}}<span *ngIf="!VIEW_MODE" class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsAttivita"
+                                    id="descrAtt"
+                                    maxlength="100">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <div *ngIf="!VIEW_MODE" class="row">
+                <div class="col-auto">
+                    <button
+                        (click)="reset()"
+                        type="button" 
+                        class="btn btn-outline-secondary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate | uppercase}}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button 
+                    type="button"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onSubmit()"
+                    [disabled]="INVALIDITA_FORM || INVALIDITA_ANNULLO_MODE"
+                    >{{ 'MISSIONE.BUTTON.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

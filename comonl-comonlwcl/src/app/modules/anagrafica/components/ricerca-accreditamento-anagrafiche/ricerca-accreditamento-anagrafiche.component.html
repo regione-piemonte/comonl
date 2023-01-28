@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="ricercaAccreditamento"></em>
+<h2><i style="color: #005ca9;" class="fas fa-sign-out-alt mr-2"></i>{{"ACCREDITAMENTO_ANAGRAFICHE.TITLE" | translate}}</h2>
+<comonl-alert-message></comonl-alert-message>
+
+<ngb-accordion #accordionRicercaAccredAnag
+  activeIds="panelRicercaAccredAnag"
+  id="accordion-ricerca-accred-anag"
+  [closeOthers]="true"
+  [destroyOnHide]="false">
+  <ngb-panel title="Criteri ricerca" id="panelRicercaAccredAnag">
+      <ng-template ngbPanelContent let-opened="opened">
+       <comonl-form-ricerca-accreditamento-anagarfiche [formPristine]="formPristine" [formRicerca]="formRicerca"
+       (datiRicerca)="onCerca($event)" (resetForm)="onResetForm()"></comonl-form-ricerca-accreditamento-anagarfiche>
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+<comonl-risultati-ricerca-accreditamento-anagrafiche *ngIf="ricercaEffettuata"
+  [tipoRicerca]="tipoRicerca"
+  [formRicerca]="ricercaToSend"
+  [pagedResponseConsulente]="pagedResponseConsulente"
+  [pagedResponseAzienda]="pagedResponseAzienda"
+  [currentPaginationData]="currentPaginationData"
+  (changePaginationData)="onChangePaginationData($event)"
+  (ripristinaAnnulla)="ripristinaAnnulla()">
+</comonl-risultati-ricerca-accreditamento-anagrafiche>

@@ -1,0 +1,33 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"TUTORE.DATI_ANAGRAFICI" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.CF" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.cfTutore}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.NOME" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.nome}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.COGNOME" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.cognome}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.SESSO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.sesso === 'M' ? 'Maschio' : comunicazioneToSave?.rapporto?.tutore?.sesso === 'F' ? 'Femmina' : ''}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.DATA_NASCITA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.dtNascita | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.TITOLARE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.flgTitolare === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <h4 class="title">{{"TUTORE.QUALIFICA" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.COD_QUALIFICA_PROFESSIONALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.istat?.codIstat2001livello5Min}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.DESCR_QUALIFICA_PROFESSIONALE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.istat?.dsComIstat2001livello5}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.ANNI_ESPERIENZA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.numAnniEsperienza}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.LIV_INQUADRAMENTO" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.dsLivelloInquadramento}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.GRADO_QUALIFICAZIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.gradoContrattuale?.dsComTGradoContrattuale}}</span></div>
+    </div>
+    <h4 class="title">{{"TUTORE.VISITA" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "TUTORE.FIELD.DATA_VISITA" | translate}} <span class="valore">{{this.comunicazioneToSave?.rapporto?.tutore?.dtVisitaMedica | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+</div>

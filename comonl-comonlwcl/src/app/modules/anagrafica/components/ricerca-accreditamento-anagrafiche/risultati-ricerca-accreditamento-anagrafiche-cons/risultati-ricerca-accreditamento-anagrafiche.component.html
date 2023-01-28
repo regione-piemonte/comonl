@@ -1,0 +1,124 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+    <div class="col-12">
+      <h3>{{ 'RICERCA_ACCRED_ANAGRAFICHE.RESULTS.TITLE' | translate}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-2 col-lg-2">
+      <p class="filtri">{{ 'RICERCA_COMUNICAZIONI.RESULTS.FIELD.FILTERS_APPLY' | translate}}</p>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-7 filtri">
+      <label *ngIf="formRicerca?.cf"><i class="fas fa-check"></i>
+            {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}:
+            {{formRicerca?.cf}}</label>
+            <label *ngIf="formRicerca?.cfAzienda"><i class="fas fa-check"></i>
+              {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}:
+              {{formRicerca?.cfAzienda}}</label>
+            <label *ngIf="formRicerca?.getpIva"><i class="fas fa-check"></i>
+              {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.P_IVA" | translate}}:
+              {{formRicerca?.getpIva}}</label>
+        <label *ngIf="formRicerca?.cognome"><i class="fas fa-check"></i>
+            {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.COGNOME" | translate}}:
+            {{formRicerca?.cognome}}</label>
+            <label *ngIf="formRicerca?.nome"><i class="fas fa-check"></i>
+              {{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DENOMINAZIONE" | translate}}:
+              {{formRicerca?.nome}}
+            </label>
+    </div>
+  </div>
+  <div class="mt-5 scrollbar-table scrollbar-primary">
+    <div *ngIf="pagedResponseConsulente">
+      <comonl-paginated-table [pagedResponse]="pagedResponseConsulente" (changePaginationData)="onChangePaginationData($event)" #pagedTable [columnNumber]="8" [limit]="currentPaginationData.limit">
+        <ng-template comonlPaginationHead>
+          <tr>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.CF' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.COGNOME' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.NOME' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.TIPO_ANAGRAFICA' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.COMUNE_PROV_RES' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.COMUNE_PROV_DOM' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.ANNULLAMENTO' | translate }}</th> 
+            <th class="align-center">{{'APP.AZIONI' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template comonlPaginationBody let-el>
+          <tr>
+            <td>{{ el?.id?.cfDelegato}}</td>
+            <td>{{ el?.cognome}}</td>
+            <td>{{ el?.nome}}</td>
+            <td>{{ el?.id?.tipoAnagrafica | decodAnagrafica}}</td>
+            <td>{{  el?.comuneRes ? el?.comuneRes?.dsComTComune+" ("+el?.comuneRes?.provincia?.dsTarga+")" : "" }}</td>
+            <td>{{  el?.comuneDom ? el?.comuneDom?.dsComTComune+" ("+el?.comuneDom?.provincia?.dsTarga+")" : "" }}</td>
+            <td>{{ (el?.dataAnnullamento ? el?.dataAnnullamento : "" )| date: 'dd/MM/yyyy'}}</td>
+            <td class="azioni align-center">
+              <a (click)="goToDettaglioCons(el,'view')" title="Dettaglio"><i class="fas fa-eye"></i></a>
+              <a (click)="goToDettaglioCons(el,'edit')" title="modifica"><i class="fas fa-edit"></i></a>
+              <a *ngIf="!el?.dataAnnullamento" (click)="onClickAnnullaRipristinaAnagraficaDelegato(el?.id?.cfDelegato,el?.id?.tipoAnagrafica,'MESSAGES.SYS-SYS-A-0001')" title="Annulla"><i class="fas fa-trash-alt"></i></a>
+              <a *ngIf="el?.dataAnnullamento" (click)="onClickAnnullaRipristinaAnagraficaDelegato(el?.id?.cfDelegato,el?.id?.tipoAnagrafica,'MESSAGES.SYS-SYS-A-0002')" title="Ripristina"><i class="fas fa-arrow-alt-circle-left"></i></a>
+            </td>
+          </tr>
+        </ng-template>
+      </comonl-paginated-table>
+      <div class="row">
+        <div class="col-auto">
+          <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onClickEsportaAnagraficaDelegato('pdf')">
+            ESPORTA PDF
+        </button>
+        </div>
+        <div class="col-auto">
+          <div class="col-auto">
+            <button type="button"(click)="onClickEsportaAnagraficaDelegato('xsl')" class="btn btn-primary ml-auto btn-lg">
+              ESPORTA EXCEL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="pagedResponseAzienda">
+      <comonl-paginated-table  [pagedResponse]="pagedResponseAzienda" (changePaginationData)="onChangePaginationData($event)" #pagedTable [columnNumber]="6" [limit]="currentPaginationData.limit">
+        <ng-template comonlPaginationHead>
+          <tr>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.CF' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.DENOMINAZIONE' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.COMUNE_PROV_SEDE' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.TIPO_STUDIO' | translate }}</th>
+            <th>{{ 'RICERCA_ACCREDITAMENTO_ANAGRAFICHE.RESULTS.FIELD.ANNULLATO' | translate }}</th> 
+            <th class="align-center">{{'APP.AZIONI' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template comonlPaginationBody let-el>
+          <tr>
+            <td>{{ el?.codiceFiscale }}</td>
+            <td>{{ el?.denominazione }}</td>
+            <td>{{ el?.comune ? el?.comune+" ("+el.provincia+")" : ""}}</td>
+            <td>{{ el?.tipoStudio}}</td>
+            <td>{{ (el?.dataAnnullamento ? el?.dataAnnullamento : "" )| date: 'dd/MM/yyyy'}}</td>
+            <td class="azioni align-center">
+              <a (click)="goToDettaglioStudioPAzienda(el,'view')" title="Dettaglio"><i class="fas fa-eye"></i></a>
+              <a (click)="goToDettaglioStudioPAzienda(el,'edit')" title="modifica"><i class="fas fa-edit"></i></a>
+              <a *ngIf="!el?.dataAnnullamento" (click)="onClickAnnullaRipristinaSoggAbilitatoDelegatoImp(el,'MESSAGES.SYS-SYS-A-0003')" title="Annulla"><i class="fas fa-trash-alt"></i></a>
+              <a *ngIf="el?.dataAnnullamento" (click)="onClickAnnullaRipristinaSoggAbilitatoDelegatoImp(el,'MESSAGES.SYS-SYS-A-0004')" title="ripritina"><i class="fas fa-arrow-alt-circle-left"></i></a>
+            </td>
+          </tr>
+        </ng-template>
+      </comonl-paginated-table>
+      <div class="row">
+        <div class="col-auto">
+          <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onClickEsportAzienda('pdf')">
+            ESPORTA PDF
+        </button>
+        </div>
+        <div class="col-auto">
+          <div class="col-auto">
+            <button type="button"(click)="onClickEsportAzienda('xsl')" class="btn btn-primary ml-auto btn-lg">
+              ESPORTA EXCEL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

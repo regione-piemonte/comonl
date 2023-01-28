@@ -1,0 +1,295 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="datiGenerali"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_GENERALI.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div *ngIf="showForm" class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form [formGroup]="form">
+                <h4>{{"DATI_GENERALI.SUB_TITLE.DATI_COMUNICAZIONE" | translate}}</h4>
+                <div class="row lettura">
+                        <div class="col-sm-12 col-md-4">{{ "DATI_GENERALI.FIELD.SOMMINISTRAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.flgSommin === "S" ? "Si" : "No"}}</span></div>
+                        <div class="col-sm-12 col-md-4">{{ "DATI_GENERALI.FIELD.TIPO_COMUNICAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.tipoComunicazione?.dsComTTipoComunicazione}} </span></div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="emailNotifica">{{ "DATI_GENERALI.FIELD.EMAIL_NOTIFICATION"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" class="form-control" formControlName="email" id="emailNotifica" pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?" maxlength="80">
+                        <div *ngIf="f?.email?.errors" class="text-danger">
+                            <div *ngIf="f?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <h4>{{"DATI_GENERALI.SUB_TITLE.VISITA_ISPETTIVA" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-5">
+                        <label for="flgProvvedimentoIspettorato">{{ "DATI_GENERALI.FIELD.FLG_COMUNICAZIONE_PROV_ISPETTORATO"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-7">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" (change)="setStatesUrgenza()" formControlName="flgComunicazioneProvIsp" [value]="'S'" type="radio" id="flgComunicazioneProvSi">
+                          <label class="form-check-label" for="flgComunicazioneProvSi">
+                            Si
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" (change)="setStatesUrgenza()" formControlName="flgComunicazioneProvIsp" [value]="'N'" type="radio" id="flgComunicazioneProvNo">
+                          <label class="form-check-label" for="flgComunicazioneProvNo">
+                            No
+                          </label>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!flgNuovaCO">
+                    <h4 *ngIf="conditionCausaForzaMaggioreEnable">{{"DATI_GENERALI.SUB_TITLE.CAUSA_FORZA_MAGGIORE" | translate}}</h4>
+                    <div *ngIf="conditionCausaForzaMaggioreEnable" class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label>{{ "DATI_GENERALI.FIELD.FLG_CAUSA_FORZA_MAGGIORE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="desCausaForzaMaggiore">{{ "DATI_GENERALI.FIELD.DES_CAUSA_FORZA_MAGGIORE"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                    </div>
+                    <div *ngIf="conditionCausaForzaMaggioreEnable" class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <div class="form-check form-check-inline">
+                            <input class="form-check-input" (click)="onClickEnableDs()" [value]="'S'" type="radio" formControlName="flgCausaForzamaggiore" id="flgCausaForzamaggioreSi">
+                            <label class="form-check-label" for="flgComunicazioneProvSi">
+                                Si
+                            </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                            <input class="form-check-input" (click)="onClickDisableDs()"[value]="'N'" formControlName="flgCausaForzamaggiore" type="radio" id="flgCausaForzamaggioreNo">
+                            <label class="form-check-label" for="flgCausaForzamaggioreNo">
+                                No
+                            </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6">
+                            <input type="text" class="form-control" maxlength="100" formControlName="dsCausaForzamaggiore" id="desCausaForzaMaggiore">
+                        </div>
+                    </div>
+                </div>
+                <!-- SEZIONE COMUNICAZIONE A SEGUITO D'URGENZA, non presente in caso di annulla o rettirifca -->
+                <div>
+                    <h4 *ngIf="IS_ASSUNZIONE_UNILAV && (flgNuovaCOFromUrg || !flgNuovaCO)">{{"DATI_GENERALI.SUB_TITLE.COMUNICAZIONE_URG" | translate}}</h4>
+                    <div *ngIf="IS_ASSUNZIONE_UNILAV && (flgNuovaCOFromUrg || !flgNuovaCO)" class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="tipoComunicazioneTu">{{ "DATI_GENERALI.FIELD.COM_SEGUITO_URG"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                            <select id="tipoComunicazioneTu"
+                                    formControlName="tipoComunicazioneTu" 
+                                    (change)="setControlStateDatiProtoccollo(true)"
+                                    class="form-select">
+                            <option [ngValue]=null>No</option>
+                            <option *ngFor="let tipoC of tipoComunicazioneTus" [ngValue]="tipoC">{{tipoC?.dsComTTipoComunicazione}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="codRegComUrg">{{ "DATI_GENERALI.FIELD.COD_REG_COM_URG"| translate}}</label>
+                            <input type="text" formControlName="codiceComunRegPrec" maxlength="16" class="form-control" id="codRegComUrg">
+                            <div *ngIf="f?.codiceComunRegPrec?.invalid" class="text-danger">
+                                {{'ERROR.LENGTH_16' | translate}}
+                              </div> 
+                        </div>
+                    </div>
+                    <div *ngIf="IS_ASSUNZIONE_UNILAV && (flgNuovaCOFromUrg || !flgNuovaCO)" class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label>{{ "DATI_GENERALI.FIELD.PROTOCOLLO_PROV_ANNO_NUM"| translate}}</label>
+                        </div>
+                    </div>
+                    <div *ngIf="IS_ASSUNZIONE_UNILAV && (flgNuovaCOFromUrg || !flgNuovaCO)" class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <select
+                                class="form-select"
+                                formControlName="provincia"
+                                (change)="setControlstateAnnoNumeroProtocollo()"
+                                id="provinciaProtocollo">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let prov of provinces" [ngValue]="prov">{{prov?.dsComTProvincia}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <input type="text"
+                                class="form-control"
+                                formControlName="annoProtUrgenza"
+                                (change)="setControlStateNumeroProtocollo()"
+                                comonlDigitOnly
+                                id="annoProtUrg"
+                                maxlength="4">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <input type="text"
+                            class="form-control"
+                            comonlDigitOnly
+                            id="numeroProtUrg"
+                            formControlName="numProtComUrgenza"
+                            maxlength="7">
+                        </div>
+                    </div>
+                    <h4>{{"DATI_GENERALI.SUB_TITLE.RETTIFICA_ANNULL_COM" | translate}}</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="comRettAnnull">{{ "DATI_GENERALI.FIELD.RETTIFICA_ANNULL_COM"| translate}}</label>
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            [disabled]="true" 
+                            [value]="sezioneRettAnn?.tipoComunicazioneTu?.dsComTTipoComunicazione" id="comRettAnnull" maxlength="80">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label for="codRegComRettAnnull">{{ "DATI_GENERALI.FIELD.COD_REG_COM_RETT_ANULL"| translate}}</label>
+                            <input type="text" [disabled]="true" [value]="sezioneRettAnn?.codiceRegionale" class="form-control" id="codRegComRettAnnull">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-6">
+                            <label>{{ "DATI_GENERALI.FIELD.PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM"| translate}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <!-- Mai editabile -->
+                            <select
+                                [disabled]="true"
+                                class="form-select"
+                                id="provinciaProtocolloRettAnnull">
+                                <option>{{sezioneRettAnn?.provincia?.dsComTProvincia}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <input
+                                [disabled]="true"
+                                [value]="sezioneRettAnn?.annoProtCom" 
+                                type="text"
+                                class="form-control"
+                                comonlDigitOnly
+                                id="annoProtocolloRettAnnull"
+                                maxlength="4">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <input
+                            [disabled]="true"
+                            [value]="sezioneRettAnn?.numProtCom"  
+                            type="text"
+                            class="form-control"
+                            comonlDigitOnly
+                            id="numeroProtocolloRettAnnull"
+                            maxlength="7">
+                        </div>
+                    </div>
+                </div>
+                <!-- **************** PER RUOLO AMMINISTRATORE E APL **************** -->
+                <div *ngIf="ruolo?.amministratore || ruolo?.operatoreProvinciale">
+                    <h4>{{"DATI_GENERALI.SUB_TITLE.DATI_SOGGETTO" | translate}}</h4>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label>{{ "DATI_GENERALI.FIELD.FLG_COM_DATORE_LAVORO"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-7">
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" formControlName="flgComunicazioneDatore" (change)="setStateAltroSogg()" [value]="'S'" type="radio"  id="flgComunicazioneDatoreSi">
+                              <label class="form-check-label" for="flgComunicazioneDatoreSi">
+                                Si
+                              </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" formControlName="flgComunicazioneDatore" (change)="setStateAltroSogg()" [value]="'N'" type="radio"  id="flgComunicazioneDatoreNo">
+                              <label class="form-check-label" for="flgComunicazioneDatoreNo">
+                                No
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="tipoSoggettoAbilitato">{{ "DATI_GENERALI.FIELD.ALTRO_SOGG"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <select id="tipoSoggettoAbilitato"
+                                formControlName="tipoSoggettoAbilitato" 
+                                class="form-select">
+                                    <option [ngValue]="null"></option>
+                                    <option *ngFor="let tipoSogg of tipoSoggettoAbilitatos" [ngValue]="tipoSogg">{{tipoSogg?.dsComTipoSoggettoAbilitato}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="cfSoggetto">{{ "DATI_GENERALI.FIELD.CF_SOGGETTO"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <input type="text" 
+                                class="form-control" 
+                                formControlName="codiceFiscaleSoggetto" 
+                                oninput="this.value = this.value.toUpperCase()"
+                                id="cfSoggetto" 
+                                maxlength="80">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="emailSoggetto">{{ "DATI_GENERALI.FIELD.EMAIL_SOGGETTO"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <input type="text" class="form-control" pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?" formControlName="emailsoggetto"  id="emailSoggetto" maxlength="80">
+                            <div *ngIf="f?.emailsoggetto?.errors" class="text-danger">
+                                <div *ngIf="f?.emailsoggetto?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label>{{ "DATI_GENERALI.FIELD.DATA_TIMBRO_POSTALE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <div class="form-group">
+                              <div class="input-group">
+                                <input type="text"
+                                  class="form-control"
+                                  formControlName="dtTimbroPostale"
+                                  id="dataTimbroPostale"
+                                  [minDate]="{year: 2008, month: 01, day: 11}"
+                                  [maxDate]="{year: sysDate.getFullYear(), month: (sysDate.getMonth()) + 1, day: sysDate.getDate()}"
+                                  ngbDatepicker
+                                  #d_timbroPostale="ngbDatepicker"
+                                  maxlength="10">
+                                <div class="input-group-append">
+                                  <button
+                                    [disabled]="DISABLE_INTERACTIONS_VIEW"
+                                    class="btn btn-outline-primary calendar"
+                                    (click)="d_timbroPostale.toggle()"
+                                    type="button">
+                                    <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                              </div>
+                              <div *ngIf="f?.dtTimbroPostale?.invalid && f?.dtTimbroPostale?.value?.length > 0" class="text-danger">
+                                {{'ERROR.INVALID_DATE' | translate}}
+                              </div> 
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                
+            </form>
+            <!-- BOTTONI -->
+            <div *ngIf="!VIEW_MODE" class="row">
+                <div class="col-auto">
+                    <button type="button" (click)="onClickReset()" class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    class="btn btn-primary ml-auto btn-lg"
+                    [disabled]="!form?.valid"
+                    (click)="onClickSubmit()"
+                   >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

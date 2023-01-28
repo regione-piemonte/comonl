@@ -1,0 +1,84 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.TITLE" | translate}}</h4>
+    <table class="table table-responsive table-striped">
+        <thead>
+            <th>Codice fiscale</th>
+            <th>Cognome</th>
+            <th>Nome</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let lavoratore of this.comunicazioneToSave?.lavoratori">
+              <td>{{lavoratore?.codiceFiscale}}</td>
+              <td>{{lavoratore?.cognome}}</td>
+              <td>{{lavoratore?.nome}}</td>
+            </tr>
+            <tr *ngIf="this.comunicazioneToSave?.lavoratoreCoObbligato">
+                <td>{{this.comunicazioneToSave?.lavoratoreCoObbligato?.codiceFiscale}}</td>
+                <td>{{this.comunicazioneToSave?.lavoratoreCoObbligato?.cognome}}</td>
+                <td>{{this.comunicazioneToSave?.lavoratoreCoObbligato?.nome}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.CF" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.codiceFiscale}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COGNOME" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.cognome}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.NOME" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.nome}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.DATA_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.dtNascita | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.SESSO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.sesso === 'M' ? 'Maschio' : comunicazioneToSave?.lavoratori[0]?.sesso === 'F' ? 'Femmina' : ''}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.STATO_ESTERO_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.statiEsteriNasc?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_ANAGRAFICI_LAVORATORE.COMUNE_NASCITA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.comuneNasc?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.CITTADINANZA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.cittadinanza?.dsComTCittadinanza}}</span></div>
+    </div>
+    <h4 class="title">{{"ANAGRAFICA.DATI_TITOLO_SOGGIORNO.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.TITOLO_SOGGIORNO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.statusStraniero?.dsComTStatusStraniero}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.NUMERO_DOCUMENTO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.numeroDocumento}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-12"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.MOTIVO_PERMESSO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.motivoPermesso?.dsComTMotivoPermesso}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.SCADENZA_PERMESSO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.dtScadenzaPermessoSogg | date: 'dd/MM/yyy'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_CITTADINANZA_LAVORATORE.QUESTURA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.questura?.dsQuestura}}</span></div>
+    </div>
+    <h4 class="title">{{"ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.MODELLO_Q.SIST_ALLOGIATIVA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.flgSistAlloggiativa === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.MODELLO_Q.RIMBORSO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.flgRimborsoRimpatrio === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <h4 class="title">{{"ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.STATO_ESTERO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.statiEsteriRes?.dsStatiEsteri}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.COMUNE_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.comuneRes?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-2">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.CAP" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.codCapRes}}</span></div> 
+        <div class="col-sm-12 col-md-3">{{ "ANAGRAFICA.DATI_RESIDENZA_LAVORATORE.INDIRIZZO_RESIDENZA" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.dsIndirizzoRes}}</span></div> 
+        <!-- <div class="col-sm-12 col-md-3 mt-4"> <span class="valore">{{comunicazioneToSave?.lavoratori[0]}}</span></div> -->
+        <!-- <div class="col-sm-12 col-md-1 mt-4"> <span class="valore">{{comunicazioneToSave?.lavoratori[0]}}</span></div> -->
+    </div>
+    <h4 class="title">{{"ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.COMUNE_DOMICILIO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.comuneDom?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-2">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.CAP_DOMICILIO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.codCapDom}}</span></div> 
+        <div class="col-sm-12 col-md-3">{{ "ANAGRAFICA.DATI_DOMICILIO_LAVORATORE.INDIRIZZO_DOMICILIO" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.dsIndirizzoDom}}</span></div> 
+        <!-- <div class="col-sm-12 col-md-3 mt-4"> <span class="valore">{{comunicazioneToSave?.lavoratori[0]?}}</span></div> -->
+        <!-- <div class="col-sm-12 col-md-1 mt-4"> <span class="valore">{{comunicazioneToSave?.lavoratori[0]}}</span></div> -->
+    </div>
+    <h4 class="title">{{"ANAGRAFICA.DATI_FORMAZIONE_LAVORATORE.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-6">{{ "ANAGRAFICA.DATI_FORMAZIONE_LAVORATORE.LIVELLO_ISTRUZIONE" | translate}} <span class="valore">{{comunicazioneToSave?.lavoratori[0]?.livelloStudio?.titoloDiStudio}}</span></div> 
+    </div>
+</div>

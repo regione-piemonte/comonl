@@ -1,0 +1,117 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"SEDI_LAVORATORI.SUBTITLE.SEDE_LAVORO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.COD_COMUNE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.comune?.codComuneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.DS_COMUNE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.comune?.dsComTComune}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.COD_STATI_EST"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.statiEsteri?.codNazioneMin}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.DS_STATI_EST"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.statiEsteri?.dsStatiEsteri}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.INDIRIZZO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.indirizzo}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.CAP"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.codCap}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.TELEFONO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.telefono}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.FAX"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.fax}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "SEDI_LAVORATORI.FIELD.EMAIL"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.sedeLavoroVD?.email}}</span></div>
+    </div>
+    <h4 class="title">{{"SEDI_LAVORATORI.SUBTITLE.LAVORATORI" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.CF_LAVORATORE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.lavoratoreVD?.codiceFiscale}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.COGNOME"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.lavoratoreVD?.cognome}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.NOME"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.lavoratoreVD?.nome}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.COD_COMUNE_DOMICILIO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.lavoratoreVD?.comuneDom?.codComuneMin}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DS_COMUNE_DOMICILIO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.lavoratoreVD?.comuneDom?.dsComTComune}}</span></div>
+    </div>
+    <h4 class="title">{{"SEDI_LAVORATORI.SUBTITLE.DATI_RAPPORTO" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DATA_INIZIO_RAPPORTO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.dtInizioRapporto | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.TIPO_RAPPORTO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.tipoContratti?.dsComTTipoContratto}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DATA_FINE_RAPPORTO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.dtFineRapporto | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DATA_FINE_PERIODO_FORMATIVO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.dtFinePeriodoFormativo | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LAVORO_STAGIONALE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.flgLavStagionale === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.CF_ENTE_PROMOTORE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.cfSoggPromotoreTirocinio}}</span></div>
+    </div>
+    <h4 class="title"> {{"COMUNICAZIONE.DATI_INQUADRAMENTO" | translate}} </h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.CODICE_CCNL"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.ccnl?.codCcnlMin}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DESCRIZIONE_CCNL"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.ccnl?.dsCcnl}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.RETRIBUZIONE_LORDA_ANNUALE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.retribuzioneCompenso}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DESCRIZIONE_INQUADRAMENTO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.livelloInquadramento}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.CODICE_ISTAT"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.istatLivello5?.codIstat2001livello5Min}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.DESCRIZIONE_ISTAT"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.istatLivello5?.dsComIstat2001livello5}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.PAT_INAIL"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.patInail}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.ASSUNZIONE_OBBLIGATORIA"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.flgAssunzioneObbligatoria === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.ENTE_PREVIDENZIALE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.entePrevidenziale?.dsComTEntePrevidenziale}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.COD_ENTE_PREVIDENZIALE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.codiceEntePrev}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.TIPO_ORARIO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.tipoOrario?.dsComTTipoOrario}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.ORE_SETTIMANALI_MEDIE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.numOreSettMed}}</span></div>
+    </div>
+    <h4 class="title"> {{"SEDI_LAVORATORI.SUBTITLE.ALTRI" | translate}} </h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.CATEGORIA_LAVORATORE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.categLavAssObbl?.dsComTCategLavAssObbl}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LEGGE68_TIPO"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.tipoAttoL68?.dsComTTipoAttoL68}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LEGGE68_DATA"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.dtLegge68 | date: 'dd/MM/yyyy'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LEGGE68_NUM"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.numeroAttoLegge68}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.SOCIO_LAVORATORE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.flgSocioLavoratore === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LAVORO_AGRICOLTURA"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.flgLavoroAgricoltura === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.GIORNATE_LAVORATIVE"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.giornateLavPreviste}}</span></div>
+        <div class="col-sm-12 col-md-5"> {{ "SEDI_LAVORATORI.FIELD.LAVORATORE_MOBILITA"| translate}} <span class="valore">{{comunicazioneToSave?.rapLavSedeVD[0]?.rapportoVD?.flgLavInMobilita === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <comonl-paginated-array-table [columnNumber]="6" [pagedResponse]="this.comunicazioneToSave?.rapLavSedeVD" [limit]="8">
+                <ng-template comonlPaginationHead>
+                    <tr>
+                    <th scope="col">Sede (indirizzo)</th>
+                    <th scope="col">Codice fiscale</th>
+                    <th scope="col">Cognome</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Data inizio</th>
+                    <th scope="col">Tipo rapporto</th>
+                    </tr>
+                </ng-template>
+                <ng-template comonlPaginationBody let-lavoratore>
+                    <tr>
+                        <td>{{lavoratore?.sedeLavoroVD?.comune?.dsComTComune}} ({{lavoratore?.sedeLavoroVD?.indirizzo}})</td>
+                        <td>{{lavoratore?.lavoratoreVD?.codiceFiscale}}</td>
+                        <td>{{lavoratore?.lavoratoreVD?.cognome}}</td>
+                        <td>{{lavoratore?.lavoratoreVD?.nome}}</td>
+                        <td>{{lavoratore?.rapportoVD?.dtInizioRapporto | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{lavoratore?.rapportoVD?.tipoContratti?.dsComTTipoContratto}}</td>
+                    </tr>
+                </ng-template>
+            </comonl-paginated-array-table>
+        </div>
+    </div>
+</div>

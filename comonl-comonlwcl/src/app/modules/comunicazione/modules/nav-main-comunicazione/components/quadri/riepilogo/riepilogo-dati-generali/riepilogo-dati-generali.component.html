@@ -1,0 +1,68 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.DATI_COMUNICAZIONE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.SOMMINISTRAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.flgSommin === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.TIPO_COMUNICAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.tipoComunicazione?.dsComTTipoComunicazione}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.STATO_COMUNICAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.statoComunicazione?.dsComTStatoComunicazione}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.EMAIL_NOTIFICATION"| translate}} <span class="valore">{{comunicazioneToSave?.email}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.COD_REGIONALE"| translate}} <span class="valore">{{comunicazioneToSave?.codiceComunicazioneReg}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-5"> {{ "DATI_GENERALI.FIELD.PROVINCIA_PROTOCOLLO"| translate}} <span class="valore">{{comunicazioneToSave?.provincia?.dsComTProvincia}} / {{comunicazioneToSave?.annoProtCom}} / {{comunicazioneToSave?.numProtCom}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.tipoSoggettoAbilitato?.codSoggettoAbilitatoMin !== '012'">
+        <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.VISITA_ISPETTIVA" | translate}}</h4>
+        <div class="row lettura">
+            <div class="col-sm-12 col-md-5"> {{ "DATI_GENERALI.FIELD.FLG_COMUNICAZIONE_PROV_ISPETTORATO"| translate}} <span class="valore">{{comunicazioneToSave?.tipoComunicazioneTu && comunicazioneToSave.tipoComunicazioneTu.id === 6 ? 'Si' : 'No'}}</span></div>
+        </div>
+    </div>
+    <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.CAUSA_FORZA_MAGGIORE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.FLG_CAUSA_FORZA_MAGGIORE"| translate}} <span class="valore">{{comunicazioneToSave?.flgCausaForzamaggiore === 'S' ? 'Si' : 'No'}}</span></div>
+        <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.DES_CAUSA_FORZA_MAGGIORE"| translate}} <span class="valore">{{comunicazioneToSave?.dsCausaForzamaggiore}}</span></div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.tipoComunicazioneTu?.codTipoComunicazioneMin === '07' || comunicazioneToSave?.tipoComunicazioneTu?.codTipoComunicazioneMin === '08' || comunicazioneToSave?.tipoComunicazioneTu?.codTipoComunicazioneMin === '09'">
+        <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.COMUNICAZIONE_URG" | translate}}</h4>
+        <div class="row lettura">
+            <div class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.COM_SEGUITO_URG"| translate}} <span class="valore">{{comunicazioneToSave?.flgComunSegUrgenza === 'S' ? 'Si' : 'No'}}</span></div>
+            <div *ngIf="comunicazioneToSave?.flgComunSegUrgenza === 'S'" class="col-sm-12 col-md-4"> {{ "DATI_GENERALI.FIELD.COD_REG_COM_URG"| translate}} <span class="valore">{{comunicazioneToSave?.codiceComunRegPrec}}</span></div>
+        </div>
+        <div class="row lettura" *ngIf="comunicazioneToSave?.flgComunSegUrgenza === 'S'">
+            <label class="col-sm-12 col-md-12">{{ "DATI_GENERALI.FIELD.PROTOCOLLO_PROV_ANNO_NUM"| translate}}</label>
+            <div *ngIf="comunicazioneToSave?.numProtComUrgenza; else nonDefinito" class="col-sm-12 col-md-3"> <span class="valore">{{comunicazioneToSave?.provincia?.dsComTProvincia}} / {{comunicazioneToSave?.annoProtUrgenza}} / {{comunicazioneToSave?.numProtComUrgenza}}</span></div>
+            <ng-template #nonDefinito>
+                <div *ngIf="comunicazioneToSave?.numProtComUrgenza" class="col-sm-12 col-md-3"> <span class="valore">NON DEFINITO</span></div>
+            </ng-template>
+        </div>
+    </div>
+    <div *ngIf="comunicazioneToSave?.tipoComunicazioneTu?.codTipoComunicazioneMin === '03' || comunicazioneToSave?.tipoComunicazioneTu?.codTipoComunicazioneMin === '04'">
+        <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.RETTIFICA_ANNULL_COM" | translate}}</h4>
+        <div class="row lettura">
+            <div class="col-sm-12 col-md-4">{{ "DATI_GENERALI.FIELD.RETTIFICA_ANNULL_COM"| translate}} <span class="valore">{{comunicazioneToSave?.tipoComunicazioneTu?.dsComTTipoComunicazione}}</span></div>
+            <div *ngIf="this.comunicazioneToSave?.flgComunSegUrgenza !== 'S'" class="col-sm-12 col-md-6">{{ "DATI_GENERALI.FIELD.COD_REG_COM_RETT_ANULL"| translate}} <span class="valore">{{comunicazioneToSave?.codiceComunRegPrec}}</span></div>
+        </div>
+        <div class="row lettura">
+            <label class="col-sm-12 col-md-12">{{ "DATI_GENERALI.FIELD.PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM"| translate}}</label>
+            <div class="col-sm-12 col-md-3"> <span class="valore">{{comunicazioneToSave?.provinciaPrec?.dsComTProvincia}} / {{comunicazioneToSave?.annoProtComPrec}} / {{comunicazioneToSave?.numProtComPrec}}</span></div>
+        </div>
+    </div>
+    <h4 class="title">{{"DATI_GENERALI.SUB_TITLE.DATI_SOGGETTO" | translate}}</h4>
+    <div class="row lettura">
+        <!-- ************************************************ DA MODIFICARE************************************************  -->
+        <div class="col-sm-12 col-md-5">{{ "DATI_GENERALI.FIELD.FLG_COM_DATORE_LAVORO"| translate}} <span class="valore">{{comunicazioneToSave?.flgComDatLav === 'S' ? 'Si' : 'No'}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4">{{ "DATI_GENERALI.FIELD.ALTRO_SOGG"| translate}} <span class="valore">{{comunicazioneToSave?.tipoSoggettoAbilitato?.dsComTipoSoggettoAbilitato}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ "DATI_GENERALI.FIELD.CF_SOGGETTO"| translate}} <span class="valore">{{comunicazioneToSave?.codiceFiscaleSoggetto}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4">{{ "DATI_GENERALI.FIELD.EMAIL_SOGGETTO"| translate}} <span class="valore">{{comunicazioneToSave?.emailsoggetto}}</span></div>
+        <div class="col-sm-12 col-md-6">{{ "DATI_GENERALI.FIELD.DATA_TIMBRO_POSTALE"| translate}} <span class="valore">{{comunicazioneToSave?.dtTimbroPostale | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+</div>

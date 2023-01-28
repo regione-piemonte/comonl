@@ -1,0 +1,66 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+  <h4 class="modal-title">{{ titolo }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('CLOSE')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form ngForm>
+    <div class="row">
+      <div class="modal-footer col-12 col-md-6 col-lg-9 order-1 order-md-2 border-top-0">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('CLOSE')">{{ 'APP.EXIT' | translate }}</button>
+        <button type="button" class="btn btn-outline-info" (click)="confirm()">{{ 'APP.CONFIRM' | translate }}</button>
+      </div>
+      <div class="form-group col-12 col-md-6 col-lg-3 order-2 order-md-1">
+        <input type="text" class="form-control" comonlHasValueClass #searchField>
+        <span class="form-highlight"></span>
+        <span class="form-bar"></span>
+        <label class="float-label">{{ 'APP.SEARCH' | translate }}</label>
+      </div>
+       <!-- <div class="form-group col-xs-12 col-sm-6 col-md-3">
+        <button type="button" class="btn btn-outline-success ml-auto" (click)="confirm()">{{ 'APP.CONFIRM' | translate }}</button>
+      </div> -->
+    </div>
+
+    <ngx-nestable [(list)]="viewList" [options]="options" [template]="itemTemplate">
+      <ng-template #itemTemplate let-row>
+        <button class="btn pr-1" *ngIf="row.item.children && row.item.children.length; else nestableEmptyItem" [ngxNestableExpandCollapse]="row">
+          <i [ngClass]="{fa: true, 'fa-fw': true, 'fa-folder-open': row.item.$$expanded, 'fa-folder': !row.item.$$expanded}" style="color:#17a2b8"></i>
+        </button>
+        <ng-container [ngSwitch]="selectionType">
+          <div class="checkbox" *ngSwitchCase="'multi'">
+            <input type="checkbox" class="mr-1" [id]="generateId(row.item)" [value]="row.item.id" [checked]="row.item.checked" (change)="changeChecked(row.item)" [name]="'TreeModalComponent_' + instanceCounter" />
+            <!-- <label [for]="generateId(row.item)" comonlCustomCheckbox>{{row.item.codice}} - {{row.item.descrizione}}</label> -->
+            <label [for]="generateId(row.item)" comonlCustomCheckbox>{{row.item.shownText}}</label>
+          </div>
+          <div class="checkbox" *ngSwitchCase="'single'">
+            <!-- <label class="radio-label" [for]="generateId(row.item)" [class.text-success]="row.item.highlighted"> -->
+            <label class="radio-label" [for]="generateId(row.item)">
+              <input type="radio" class="d-none" [id]="generateId(row.item)" [value]="row.item" [(ngModel)]="checkedElement" [name]="'TreeModalComponent_' + instanceCounter" />
+              <span class="label"></span>{{row.item.codice}} - {{row.item.descrizione}}
+            </label>
+          </div>
+          <!-- <div *ngSwitchCase="'none'" [class.text-success]="row.item.highlighted">{{row.item.codice}} - {{row.item.descrizione}}</div> -->
+          <div *ngSwitchCase="'none'">{{row.item.codice}} - {{row.item.descrizione}}</div>
+          <!-- <div *ngSwitchDefault [class.text-success]="row.item.highlighted">{{row.item.codice}} - {{row.item.descrizione}}</div> -->
+          <div *ngSwitchDefault>{{row.item.codice}} - {{row.item.descrizione}}</div>
+        </ng-container>
+
+        <ng-template #nestableEmptyItem>
+          <span class="pr-1">
+            <i [ngClass]="{fa: true, 'fa-fw': true, 'fa-file': row.item.terminal, 'fa-folder': !row.item.terminal}" style="color:#17a2b8"></i>
+          </span>
+        </ng-template>
+      </ng-template>
+
+    </ngx-nestable>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('CLOSE')">{{ 'APP.EXIT' | translate }}</button>
+  <button type="button" class="btn btn-outline-info" (click)="confirm()">{{ 'APP.CONFIRM' | translate }}</button>
+</div>

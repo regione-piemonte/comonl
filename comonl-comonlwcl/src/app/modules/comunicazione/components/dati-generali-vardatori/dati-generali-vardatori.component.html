@@ -1,0 +1,229 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="datiGeneraliVardatori"></em>
+<div class="container">
+  <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_COMUNICAZIONE.TITLE" | translate}}</h2>
+  <comonl-alert-message></comonl-alert-message>
+      <div class="card">
+          <div class="card-body">
+              <form [formGroup]="form" *ngIf="showForm">
+                <h1 class="dati-anagrafici">{{"DATI_COMUNICAZIONE.TITLE" | translate}}</h1>
+                <!-- ************************* DATI COMUNICAZIONE ************************* -->
+                <label>I campi contrassegnati con <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-5" formGroupName="tipoComunicazione">
+                        <label class="field" for="dsComTTipoComunicazione">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.TIPO_COMUNICAZIONE" | translate}} </label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="dsComTTipoComunicazione"
+                                id="dsComTTipoComunicazione"
+                                maxlength="100">
+                            <div *ngIf="f?.dsComTTipoComunicazione?.errors" class="text-danger">
+                              <div *ngIf="f?.dsComTTipoComunicazione?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-5">
+                        <label class="field" for="email">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.EMAIL" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="email"
+                                pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?"
+                                id="email"
+                                maxlength="50">
+                                <div *ngIf="f?.email?.errors" class="text-danger">
+                                  <div *ngIf="f?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                              </div>
+                    </div>
+                </div>
+                <h1 class="dati-anagrafici">{{"COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.VISITA_ISPETTIVA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group gender col-sm-12 col-md-4">
+                        <label class="field" for="flgProvvedimentoIspettorato">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.PROVV_ISPETTORATO" | translate}} </label>
+                    </div>
+                    <div>
+                        <div class="row">
+                          <div class="form-check form-check-inline">
+                            <input formControlName="flgComunicazioneProvIsp" type="radio" [value]="'S'" id="Si">
+                            <label class="radio-button" for="Si">Si</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input formControlName="flgComunicazioneProvIsp" type="radio" [value]="'N'"  id="No">
+                            <label class="radio-button" for="No">No</label>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="dati-anagrafici">{{"COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.RETTIFICA_ANNULLAMENTO" | translate}}</h1>
+                <div class="row">
+                  <div class="form-group col-sm-12 col-md-5">
+                    <label class="field" for="dsComTTipoComunicazione">{{ 'COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.COM_RETTIFICA_ANNULLAMENTO' | translate}}</label>
+                    <div class="form-group">
+                      <input type="text"
+                      class="form-control"
+                      [disabled]="true" 
+                      [value]="RETTIFICA_MODE || ANNULLO_MODE ? sezioneRettAnn?.tipoComunicazioneTu?.dsComTTipoComunicazione : null"
+                      id="dsComTTipoComunicazione"
+                      maxlength="50">
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-5">
+                      <label class="field cod" for="codiceComunRegPrec">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.COD_REGIONALE" | translate}} </label>
+                      <div class="form-group">
+                        <input type="text"
+                        class="form-control"
+                        [disabled]="true" [value]="RETTIFICA_MODE || ANNULLO_MODE ? sezioneRettAnn?.codiceRegionale : null"
+                        id="codiceComunRegPrec"
+                        maxlength="50">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-sm-12 col-md-5" formGroupName="provinciaPrec">
+                          <label for="dsComTProvincia">{{ 'COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_PROV' | translate}}</label>
+                          <input 
+                                  [value]="sezioneRettAnn?.provincia?.dsComTProvincia" 
+                                  type="text"
+                                  class="form-control"
+                                  comonlDigitOnly
+                                  formControlName="dsComTProvincia"
+                                  id="dsComTProvincia"
+                                  maxlength="50">
+                      </div>
+                      <div class="form-group col-sm-12 col-md-2">
+                          <label for="annoProtComPrec">{{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_ANNO" | translate}}</label>
+                              <input 
+                                  [value]="sezioneRettAnn?.annoProtCom" 
+                                  type="text"
+                                  class="form-control"
+                                  comonlDigitOnly
+                                  formControlName="annoProtComPrec"
+                                  id="annoProtComPrec"
+                                  maxlength="4">
+                      </div>
+                      <div class="form-group col-sm-12 col-md-3">
+                          <label for="numProtComPrec">{{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_NUMERO" | translate}}</label>
+                              <input 
+                                 
+                                  [value]="sezioneRettAnn?.numProtCom"  
+                                  type="text"
+                                  class="form-control"
+                                  comonlDigitOnly
+                                  formControlName="numProtComPrec"
+                                  id="numProtComPrec"
+                                  maxlength="7">
+                      </div>
+                </div>
+                  <div *ngIf="ruolo?.amministratore || ruolo?.operatoreProvinciale">
+                    <h1 class="dati-anagrafici">{{"COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.DATI_SOGGETTO" | translate}}</h1>
+                    <div class="row">
+                      <div class="form-group gender col-sm-12 col-md-3">
+                          <label class="field cod" for="flgComDatLav">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.DATORE_LAVORO" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                      </div>
+                      <div>
+                          <div class="row">
+                            <div class="form-check form-check-inline">
+                              <input formControlName="flgComDatLav" type="radio" id="Si" (change)="setStateAltroSogg()" [value]="'S'">
+                              <label class="radio-button" for="Si">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input formControlName="flgComDatLav" type="radio" id="No" (change)="setStateAltroSogg()" [value]="'N'">
+                              <label class="radio-button" for="No">No</label>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="form-group col-sm-12 col-md-3">
+                          <label for="tipoSoggettoAbilitato">{{ "DATI_GENERALI.FIELD.ALTRO_SOGG"| translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                      </div>
+                      <div class="form-group col-sm-12 col-md-4">
+                          <select id="tipoSoggettoAbilitato"
+                              formControlName="tipoSoggettoAbilitato" 
+                              class="form-select">
+                                  <option [ngValue]="null"></option>
+                                  <option *ngFor="let tipoSogg of listaTipoSoggettoAbilitato" [ngValue]="tipoSogg">{{tipoSogg?.dsComTipoSoggettoAbilitato}}</option>
+                          </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-sm-12 col-md-3">
+                          <label for="codiceFiscaleSoggetto">{{ "DATI_GENERALI.FIELD.CF_SOGGETTO"| translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                      </div>
+                      <div class="form-group col-sm-12 col-md-4">
+                          <input 
+                          type="text" 
+                          class="form-control" 
+                          formControlName="codiceFiscaleSoggetto" 
+                          id="codiceFiscaleSoggetto" 
+                          maxlength="80">
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="form-group col-sm-12 col-md-3">
+                          <label for="emailSoggetto">{{ "DATI_GENERALI.FIELD.EMAIL_SOGGETTO"| translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                      </div>
+                      <div class="form-group col-sm-12 col-md-4">
+                          <input 
+                            type="text" 
+                            class="form-control"
+                            pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?"
+                            formControlName="emailsoggetto" id="emailSoggetto" maxlength="80">
+                          <div *ngIf="f?.emailsoggetto?.errors" class="text-danger">
+                              <div *ngIf="f?.emailsoggetto?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dtTimbroPostale">{{ "COMUNICAZIONE.VARDATORI.DATI_GENERALI.FIELD.DATA_TIMBRO_POSTALE" | translate}} <span *ngIf="!this.VIEW_MODE" class="asterisk">*</span></label>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <input type="text"
+                                class="form-control"
+                                formControlName="dtTimbroPostale"
+                                id="dataTimbroPostale"
+                                [minDate]="{year: 2008, month: 01, day: 11}"
+                                [maxDate]="{year: sysDate.getFullYear(), month: (sysDate.getMonth()) + 1, day: sysDate.getDate()}"
+                                ngbDatepicker
+                                #d_timbroPostale="ngbDatepicker"
+                                maxlength="10">
+                              <div class="input-group-append">
+                                <button
+                                  class="btn btn-outline-primary calendar"
+                                  (click)="d_timbroPostale.toggle()"
+                                  [disabled]="this.VIEW_MODE"
+                                  type="button">
+                                  <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                              </div>
+                            </div>
+                            <div *ngIf="f?.dtTimbroPostale?.invalid && f?.dtTimbroPostale?.value?.length > 0" class="text-danger">
+                              {{'ERROR.INVALID_DATE' | translate}}
+                            </div> 
+                          </div>
+                        </div>
+                </div>
+              </div>
+              </form>
+              <div *ngIf="!this.VIEW_MODE" class="row">
+                  <div class="col-auto">
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                      (click)="onClickReset()"
+                      >{{ 'APP.ANNULLA' | translate | uppercase}}</button>
+                    </div>
+                  <div class="col-auto ml-auto">
+                    <button type="button"
+                      [disabled]="!form?.valid && !ANNULLO_MODE"
+                      (click)="onClickSubmit()"
+                      class="btn btn-primary ml-auto btn-lg"
+                      >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>

@@ -1,0 +1,13 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"VARIAZIONE_RAGIONE_SOCIALE.TITLE" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "VARIAZIONE_RAGIONE_SOCIALE.FIELD.DENOMINAZIONE_PRECEDENTE"| translate}} <span class="valore">{{comunicazioneToSave?.datoreAttuale?.dsVariazioneRagSociale}}</span></div>
+    </div>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "VARIAZIONE_RAGIONE_SOCIALE.FIELD.DATA_INIZIO_VARIAZIONE"| translate}} <span class="valore">{{comunicazioneToSave?.dtTrasferimentoVarDatori | date: "dd/MM/yyyy"}}</span></div>
+    </div>
+</div>

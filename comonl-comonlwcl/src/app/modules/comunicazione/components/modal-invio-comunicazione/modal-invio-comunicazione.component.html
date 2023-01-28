@@ -1,0 +1,18 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h1 class="modal-title">Conferma invio comunicazione</h1>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+      <comonl-alert-message></comonl-alert-message>
+    <h4>Protocollo: {{this.comunicazione?.numProtCom}}</h4>
+    <h4>Data protocollo: {{this.comunicazione?.dtProtocollo}}</h4>
+    <h4>Provincia protocollazione: {{this.comunicazione?.provincia?.dsComTProvincia}}</h4>
+    <h4>Codice regionale: {{this.comunicazione?.codiceComunicazioneReg}}</h4>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Ok</button>
+</div>

@@ -1,0 +1,81 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="dati-cessazione"></em>
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_CESSAZIONE.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form *ngIf="form" [formGroup]="form">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label>{{ "DATI_CESSAZIONE.FIELD.DATA_CESSAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <div class="form-group">
+                          <div class="input-group">
+                            <input type="text"
+                              class="form-control"
+                              formControlName="dataCessazione"
+                              id="dataCessazione"
+                              ngbDatepicker
+                              #dataCessazione="ngbDatepicker"
+                              maxlength="10">
+                            <div class="input-group-append">
+                              <button
+                                [disabled]="this.VIEW_MODE"
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataCessazione.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                          </div>
+                          <div *ngIf="f?.dataCessazione?.invalid && f?.dataCessazione?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                          </div> 
+                        </div>
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cessazionerl">{{ "DATI_CESSAZIONE.FIELD.MOTIVO_CESSAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <select id="cessazionerl"
+                            formControlName="cessazionerl" 
+                            class="form-select">
+                                <option [ngValue]="null"></option>
+                                <option *ngFor="let motivo of listaMotiviCessazione" [ngValue]="motivo">{{motivo?.dsComTCessazionerl}}</option>
+                        </select>
+                    </div>
+                    <!-- <ng-template #field>
+                      <div class="form-group col-sm-12 col-md-5">
+                        <input type="text"
+                        class="form-control"
+                        [value]=""
+                        id="cessazionerl"
+                        maxlength="50">
+                    </div>
+                    </ng-template> -->
+                </div>
+            </form>
+            <!-- BOTTONI -->
+            <div *ngIf="!VIEW_MODE" class="row">
+              <div class="col-auto">
+                  <button type="button" (click)="onClickReset()" class="btn btn-outline-primary btn-sm"
+                  >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                </div>
+              <div class="col-auto ml-auto">
+                <button type="button"
+                  class="btn btn-primary ml-auto btn-lg"
+                  [disabled]="INVALIDITA_FORM || INVALIDITA_ANNULLO_MODE"
+                  (click)="onClickSubmit()"
+                 >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>

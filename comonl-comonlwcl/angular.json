@@ -1,0 +1,329 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "comonlwcl": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "spec": false,
+          "styleext": "scss"
+        },
+        "@schematics/angular:module": {
+          "spec": false
+        },
+        "@schematics/angular:guard": {
+          "spec": false
+        },
+        "@schematics/angular:service": {
+          "spec": false
+        },
+        "@schematics/angular:pipe": {
+          "spec": false
+        },
+        "@schematics/angular:directive": {
+          "spec": false
+        },
+        "@schematics/angular:class": {
+          "spec": false
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "comonl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "baseHref": "/",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "outputHashing": "all",
+            "aot": false,
+            "sourceMap": true,
+            "extractLicenses": false,
+            "extractCss": true,
+            "namedChunks": true,
+            "vendorChunk": true,
+            "optimization": false,
+            "commonChunk": true,
+            "deleteOutputPath": true,
+            "showCircularDependencies": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "vendorSourceMap": true,
+            "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.local.ts"
+                }
+              ]
+            },
+            "local-jboss": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.local-jboss.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "buildOptimizer": true,
+              "extractLicenses": true,
+              "baseHref": "/comonlweb/",
+              "statsJson": true
+            },
+            "local-wildfly": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.local-wildfly.ts"
+                }
+              ],
+              "aot": true,
+              "extractLicenses": true,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "dev-cmto-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.dev-cmto-01.ts"
+                }
+              ],
+              "aot": true,
+              "extractLicenses": true,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "dev-int-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.dev-int-01.ts"
+                }
+              ],
+              "aot": true,
+              "extractLicenses": true,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "dev-rp-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.dev-rp-01.ts"
+                }
+              ],
+              "aot": true,
+              "extractLicenses": true,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "test-cmto-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.test-cmto-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "extractLicenses": true,
+              "namedChunks": false,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "test-int-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.test-int-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "extractLicenses": true,
+              "namedChunks": false,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "test-rp-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.test-rp-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "extractLicenses": true,
+              "namedChunks": false,
+              "baseHref": "/comonlweb/",
+              "buildOptimizer": true
+            },
+            "prod-cmto-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.prod-cmto-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "buildOptimizer": true,
+              "baseHref": "/comonlweb/",
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "prod-int-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.prod-int-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "buildOptimizer": true,
+              "baseHref": "/comonlweb/",
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "prod-rp-01": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "buildfiles/environment.prod-rp-01.ts"
+                }
+              ],
+              "aot": true,
+              "optimization": true,
+              "buildOptimizer": true,
+              "baseHref": "/comonlweb/",
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "comonlwcl:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "comonlwcl:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "comonlwcl:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "src/app/modules/comonlapi/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "comonlwcl:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "comonlwcl:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "comonlwcl",
+  "cli": {
+    "analytics": "75681629-4777-4d09-98f6-1f55ef202165"
+  }
+}

@@ -1,0 +1,1185 @@
+{
+  "ACCREDITAMENTO_ANAGRAFICHE": {
+    "RICERCA": {
+      "DESCR_CRITERI": null,
+      "FIELD": {
+        "ANN": null,
+        "CF": null,
+        "COGNOME": null,
+        "DATI_CONS": null,
+        "DENOMINAZIONE": null,
+        "EMAIL": null,
+        "FAX": null,
+        "ISCR_ALBO_DATA": null,
+        "ISCR_ALBO_NUM": null,
+        "NOME": null,
+        "NUM_AG_SOMM": null,
+        "P_IVA": null,
+        "STATO_ESTERO_CF": null,
+        "STUDIO_PROF": null,
+        "TELEFONO": null
+      }
+    },
+    "TITLE": null
+  },
+  "ACCREDITAMENTO_CONSULENTE": {
+    "BUTTON": {
+      "ADD_AZ": null
+    },
+    "FIELD": {
+      "CAP": null,
+      "CF": null,
+      "CITTADINANZA": null,
+      "COMUNE": null,
+      "COMUNE_COD": null,
+      "COMUNE_NASCITA": null,
+      "COMUNE_NASCITA_COD": null,
+      "DATA_ANULL": null,
+      "DATA_CANC": null,
+      "DATA_NASCITA": null,
+      "DENOM": null,
+      "FAX": null,
+      "FLG_TIPO_PROFILAZIONE": null,
+      "INDIRIZZO": null,
+      "MAIL": null,
+      "PIVA": null,
+      "PROV": null,
+      "STATO_EST": null,
+      "STATO_EST_COD": null,
+      "STATO_EST_NASCITA": null,
+      "STATO_EST_NASCITA_COD": null,
+      "TEL": null,
+      "TIPO_ANAGRAFICA_C": null,
+      "TIPO_ANAGRAFICA_D": null,
+      "TIPO_ANAGRAFICA_E": null,
+      "TIPO_CARICA": null,
+      "TIPO_SOGG": null
+    },
+    "SUB_TITLE": {
+      "DATI_DELLA_RESIDENZA": null,
+      "DATI_DOMICILIO": null,
+      "DATI_GENERALI": null,
+      "ELENCO_IMP": null,
+      "RECAPITI": null,
+      "SEDE_LEGALE": null,
+      "STUDIO_PROF": null
+    },
+    "TABLE": {
+      "FIELD": {
+        "AZIONI": null,
+        "CARICA": null,
+        "CF": null,
+        "DENOM": null,
+        "FLG_ANNULLATO": null
+      }
+    },
+    "TITLE": null
+  },
+  "ACCREDITAMENTO_DELEGHE": {
+    "DELEGANTE": null,
+    "DELEGATO": null,
+    "IMPRESA": null,
+    "RICERCA": {
+      "FIELD": {
+        "CF_DELEGATO": null,
+        "COGNOME_DELEGATO": null,
+        "DENOMINAZIONE": null,
+        "NOME_DELEGATO": null,
+        "STATO_DELEGA": null
+      }
+    },
+    "STATO_DELEGA": null,
+    "TITLE": null
+  },
+  "ANAGRAFICA": {
+    "DATI_ANAGRAFICI_LAVORATORE": {
+      "CF": null,
+      "COD_COMUNE_NASCITA": null,
+      "COD_STATO_ESTERO_NASCITA": null,
+      "COGNOME": null,
+      "COMUNE_NASCITA": null,
+      "DATA_NASCITA": null,
+      "NOME": null,
+      "SESSO": null,
+      "STATO_ESTERO_NASCITA": null,
+      "TITLE": null
+    },
+    "DATI_CITTADINANZA_LAVORATORE": {
+      "CITTADINANZA": null,
+      "MOTIVO_PERMESSO": null,
+      "NUMERO_DOCUMENTO": null,
+      "QUESTURA": null,
+      "SCADENZA_PERMESSO": null,
+      "TITOLO_SOGGIORNO": null
+    },
+    "DATI_DOMICILIO_LAVORATORE": {
+      "CAP_DOMICILIO": null,
+      "COD_COMUNE": null,
+      "COMUNE_DOMICILIO": null,
+      "DOMICILIO_UGUALE": null,
+      "INDIRIZZO_DOMICILIO": null,
+      "PROVINCIA_DOMICILIO": null,
+      "TITLE": null
+    },
+    "DATI_FORMAZIONE_LAVORATORE": {
+      "LIVELLO_ISTRUZIONE": null,
+      "TITLE": null
+    },
+    "DATI_MODELLO_Q": {
+      "SUBTITLE": null,
+      "TITLE": null
+    },
+    "DATI_RESIDENZA_LAVORATORE": {
+      "CAP": null,
+      "COD_COMUNE": null,
+      "COD_STATO_ESTERO_RESIDENZA": null,
+      "COMUNE_RESIDENZA": null,
+      "EMAIL": null,
+      "FAX": null,
+      "INDIRIZZO_RESIDENZA": null,
+      "MOTIVO_INVALIDA": null,
+      "NUM_CIVICO_RESIDENZA": null,
+      "STATO_ESTERO_RESIDENZA": null,
+      "TELEFONO": null,
+      "TITLE": null,
+      "TOPONIMO": null
+    },
+    "DATI_SEDE_LAVORO": {
+      "CAP": null
+    },
+    "DATI_TITOLO_SOGGIORNO": {
+      "TITLE": null
+    },
+    "DATI_TITOLO_SOGGIORNO_LABEL": null,
+    "DETTAGLIO_AZIENDA": {
+      "DATI_GENERALI": null,
+      "DETTAGLIO_SEDE": null,
+      "ELENCO_SEDI": null,
+      "FIELD": {
+        "AZIENDA_ART": null,
+        "CF": null,
+        "CITTADINANZA_LR": null,
+        "COD_ATECO": null,
+        "COD_CCNL": null,
+        "COD_COMUNE_NASCITA": null,
+        "COD_COMUNE_SEDE": null,
+        "COD_STATO_ESTERO": null,
+        "COD_STATO_ESTERO_SEDE": null,
+        "COGNOME_LR": null,
+        "DATA_NASCITA_LR": null,
+        "DENOM_AZIENDA": null,
+        "DESCR": null,
+        "DESCR_COMUNE_NASCITA": null,
+        "DESCR_COMUNE_SEDE": null,
+        "DESCR_STATO_ESTERO": null,
+        "DESCR_STATO_ESTERO_SEDE": null,
+        "EXTRA_COM": null,
+        "FLG_VALIDA": null,
+        "ISCR_ALBO_DATA": null,
+        "ISCR_ALBO_NUM": null,
+        "MOTIVO_PERMESSO": null,
+        "NATURA_GIURIDICA": null,
+        "NOME_LR": null,
+        "NUMERO_DOCUMENTO": null,
+        "NUM_AG_SOMM": null,
+        "PAT_INAIL": null,
+        "PUBBL_AMM": null,
+        "P_IVA": null,
+        "QUESTURA": null,
+        "RES_ITA": null,
+        "SCADENZA_PERMESSO": null,
+        "SESSO_LR": null,
+        "STATO_ESTERO_CF": null,
+        "TIPO_SEDE": null,
+        "TITOLO_SOGGIORNO": null
+      },
+      "LEGALE_RAPPRESENTANTE": null,
+      "NUOVA_SEDE": null,
+      "TITLE": null
+    },
+    "DETTAGLIO_DELEGA": {
+      "DATI_DELEGA": null,
+      "DATI_DELEGANTE": null,
+      "DATI_DELEGATO": null,
+      "FIELD": {
+        "ANNO": null,
+        "CAP": null,
+        "CF_DELEGATO": null,
+        "CF_IMPRESA": null,
+        "COD_COMUNE": null,
+        "COGNOME_DELEGANTE": null,
+        "DATA": null,
+        "DATA_ANN_REV": null,
+        "DENOMINAZIONE": null,
+        "DESCR_COMUNE": null,
+        "EMAIL": null,
+        "FAX": null,
+        "INDIRIZZO_RESIDENZA": null,
+        "NOME_DELEGANTE": null,
+        "NUM_PROTOCOLLO": null,
+        "P_IVA": null,
+        "QUALITA": null,
+        "STATO": null,
+        "TELEFONO": null
+      },
+      "IMPRESA": null,
+      "TITLE": null
+    },
+    "MODELLO_Q": {
+      "RIMBORSO": null,
+      "SIST_ALLOGIATIVA": null
+    },
+    "TITLE": null
+  },
+  "ANAGRAFICA_AZIENDA": {
+    "BUTTON": {
+      "CONFIRM_AZIENDA": null,
+      "CONFIRM_AZIENDA_E_SEDE": null
+    },
+    "FIELD": {
+      "ACCENTRATA": null,
+      "AZIENDA_ART": null,
+      "CAP": null,
+      "CF": null,
+      "COMUNE": null,
+      "DENOMINAZIONE": null,
+      "FAX": null,
+      "FLG_TIPO_ANAGRAFICA": null,
+      "INDIRIZZO": null,
+      "MAIL": null,
+      "NATURA_GIURIDICA": null,
+      "PARTITA_IVA": null,
+      "PROV": null,
+      "TEL": null
+    },
+    "SUB_TITLE": {
+      "DATI_IMPTRESA": null,
+      "ELENCO_DELEGATI_PA": null,
+      "SEDE_LEGALE": null
+    },
+    "TABLE": {
+      "FIELD": {
+        "ANNULLATO": null,
+        "AZIONI": null,
+        "CARICA": null,
+        "CF": null,
+        "COGNOME": null,
+        "DELEGA_VALIDA": null,
+        "NOME": null,
+        "TIPO": null
+      }
+    },
+    "TITLE": null
+  },
+  "ANAGRAFICA_LAVORATORE": {
+    "BUTTON": {
+      "NEW_LAVORATORE": null
+    },
+    "TITLE": null
+  },
+  "ANAGRAFICA_LAV_MODAL": {
+    "TITLE": {
+      "EDIT": null
+    }
+  },
+  "APP": {
+    "ANNULLA": null,
+    "AZIONI": null,
+    "BACK": "Back",
+    "CANCEL": null,
+    "COMUNICAZIONE_RETURN": null,
+    "CONFIRM": "Confirm",
+    "DATE_PICKER": {
+      "APRI_CALENADRIO": null
+    },
+    "ELIMINA": null,
+    "EXIT": "Exit",
+    "FIND_CANCEL": null,
+    "INSERT": null,
+    "LOADING": "Loading...",
+    "MODIFICA": null,
+    "NEW": null,
+    "NEW_AZIENDA": null,
+    "NEW_COM": null,
+    "NEW_DELEGA": null,
+    "NEW_STUDIO": null,
+    "NEW_VARD": null,
+    "NO": null,
+    "NO_DATA_FOUND": "No data found.",
+    "OBLIGATORIETA_CAMPI": null,
+    "OK": null,
+    "PRE_COMPILA": null,
+    "REMOVE_FILTERS": null,
+    "RETURN": null,
+    "REVOCA": null,
+    "RITRASMETTI": null,
+    "SAVE": null,
+    "SEARCH": "Search",
+    "SEND": null,
+    "SEND_COMUNICAZIONE": null,
+    "TITLE": "Monitoring Transversal Intervention - Piemonte",
+    "VALID": null,
+    "YES": null
+  },
+  "AZIENDA_UTILIZZATRICE": {
+    "SUB_TITLE": {
+      "SOMMIN": null
+    }
+  },
+  "CESSAZIONE": {
+    "FIELD": {
+      "DATA_CESSAZIONE": null,
+      "MOTIVO_CESSAZIONE": null
+    }
+  },
+  "COMUNICAZIONE": {
+    "ALTRI": {
+      "FIELD": {
+        "CATEGORIA_LAVORATORE": null,
+        "GIORNATE_LAVORATIVE": null,
+        "INDENNITA": null,
+        "LAVORATORE_MOBILITA": null,
+        "LAVORO_AGRICOLTURA": null,
+        "LEGGE68_DATA": null,
+        "LEGGE68_NUM": null,
+        "LEGGE68_TIPO": null,
+        "NUM_MATRICOLA": null,
+        "SOCIO_LAVORATORE": null,
+        "TIPO_LAVORAZIONE": null
+      }
+    },
+    "ALTRI_DATI": null,
+    "AZIENDA": {
+      "BUTTON": {
+        "SEARCH_SEDE_OPERATIVA": null
+      },
+      "FIELD": {
+        "AGENZIA_EST": null,
+        "ATTIVITA_ATECO": null,
+        "ATTIVITA_ATECO_COD": null,
+        "ATTIVITA_ATECO_DESC": null,
+        "AZIENDA_ART": null,
+        "DATA_FINE_CONTRATTO": null,
+        "DATA_INIZIO_CONTRATTO": null,
+        "DESCR_ATTIVITA_ATECO": null,
+        "EXTRA_COM": null,
+        "NATURA_GIURIDICA": null,
+        "NUM_CONTRATTO": null,
+        "PUBB_AMM": null,
+        "QUESTURA_TITOLO_SOGGIORNO": null,
+        "RES_ITA": null,
+        "SEDE_ITALIANA": null,
+        "SEDE_LEGALE_ESTERO": null,
+        "SGG_ITA": null
+      }
+    },
+    "DATI_AZIENDA": null,
+    "DATI_CESSAZIONE": null,
+    "DATI_DISTACCO": {
+      "TITLE": null
+    },
+    "DATI_INQUADRAMENTO": null,
+    "DATI_PROROGA": null,
+    "DATI_RAPPORTO": null,
+    "DATI_RAPPORTO_FIELD_NUM_MATR_LAV": null,
+    "DATI_RAPPORTO_SOMM": null,
+    "DATI_TIROCINIO": null,
+    "DATI_TRASFERIMENTO": {
+      "TITLE": null
+    },
+    "DATI_TRASFORMAZIONE": null,
+    "DETTAGLIO": {
+      "BUTTON": {
+        "AGG_LAV": null,
+        "COMPILE": null,
+        "CONFIRM": null,
+        "CONFIRM_ONLY": null,
+        "INSERT_LAV": null,
+        "SEARCH": null,
+        "SEARCH_SEDE_OPERATIVA": null,
+        "SEL_LAV": null
+      },
+      "DATI_ANAGRAFICI": null,
+      "FIELD": {
+        "ACCETTAZIONE": null,
+        "ANNI_ESPERIENZA": null,
+        "CF": null,
+        "COD_QUALIFICA_PROFESSIONALE": null,
+        "COGNOME": null,
+        "COMUNICAZIONE_FORMALE": null,
+        "DATA_NASCITA": null,
+        "DATA_VISITA": null,
+        "DESCR_QUALIFICA_PROFESSIONALE": null,
+        "GRADO_QUALIFICAZIONE": null,
+        "LIV_INQUADRAMENTO": null,
+        "NOME": null,
+        "RIMBORSO": null,
+        "SESSO": null,
+        "SIST_ALLOGIATIVA": null,
+        "TITOLARE": null
+      },
+      "QUALIFICA": null,
+      "VISITA": null
+    },
+    "INQUADRAMENTO": {
+      "FIELD": {
+        "ASSUNZIONE_OBBLIGATORIA": null,
+        "CODICE_CCNL": null,
+        "CODICE_INQUADRAMENTO": null,
+        "CODICE_ISTAT": null,
+        "COD_ENTE_PREVIDENZIALE": null,
+        "DESCRIZIONE_CCNL": null,
+        "DESCRIZIONE_INQUADRAMENTO": null,
+        "DESCRIZIONE_ISTAT": null,
+        "ENTE_PREVIDENZIALE": null,
+        "ORE_SETTIMANALI_MEDIE": null,
+        "PAT_INAIL": null,
+        "RETRIBUZIONE_LORDA_ANNUALE": null,
+        "TIPO_ORARIO": null
+      }
+    },
+    "LEGALE_RAPPRESENTANTE": null,
+    "RAPPORTO": {
+      "FIELD": {
+        "DATA_FINE_PERIODO_FORMATIVO": null,
+        "DATA_FINE_RAPPORTO": null,
+        "DATA_INIZIO_RAPPORTO": null,
+        "GENERATO_DA_TIROCINIO": null,
+        "INDENN_DISP": null,
+        "LAVORO_MOBILITA": null,
+        "LAVORO_STAGIONALE": null,
+        "TIPO_RAPPORTO": null
+      }
+    },
+    "RICERCA": {
+      "FIELD": {
+        "ANNULL_RETT": null,
+        "CF_AZIENDA": null,
+        "CF_LAVORATORE": null,
+        "COD_REG": null,
+        "COGNOME_LAVORATORE": null,
+        "DATA_INVIO_A": null,
+        "DATA_INVIO_DA": null,
+        "DATA_INVIO_INS": {
+          "TITLE": null
+        },
+        "DENOM_AZIENDA": null,
+        "NOME_LAVORATORE": null,
+        "PROTOCOLLO_ANNO": null,
+        "PROTOCOLLO_NUMERO": null,
+        "PROTOCOLLO_PROV": null,
+        "STATO_COM": null,
+        "TIPO_COM": null,
+        "TIPO_COM_TU": null
+      },
+      "VALIDATORS": {
+        "PROTOCOLLO_ANNO_REQUIRED": null,
+        "PROTOCOLLO_NUMERO_REQUIRED": null
+      }
+    },
+    "SEDE_LEGALE": null,
+    "SEDE_OPERATIVA": null,
+    "SEDE_OPERATIVA_NO_LEGALE": null,
+    "TIROCINIO": {
+      "FIELD": {
+        "CATEGORIA_TIROCINANTE": null,
+        "CF_ENTE_PROMOTORE": null,
+        "CPI_ENTE_PROMOTORE": null,
+        "SOGG_ENTE_PROMOTORE": null,
+        "TIPO_ENTE_PROMOTORE": null,
+        "TIPO_TIROCINIO": null
+      }
+    },
+    "VARDATORI": {
+      "DATI_GENERALI": {
+        "FIELD": {
+          "COD_REGIONALE": null,
+          "COM_RETTIFICA_ANNULLAMENTO": null,
+          "DATA_TIMBRO_POSTALE": null,
+          "DATI_SOGGETTO": null,
+          "DATORE_LAVORO": null,
+          "EMAIL": null,
+          "PROVV_ISPETTORATO": null,
+          "RETTIFICA_ANNULLAMENTO": null,
+          "TIPO_COMUNICAZIONE": null,
+          "VISITA_ISPETTIVA": null
+        }
+      }
+    }
+  },
+  "COMUNICAZIONE_MASSIVA": {
+    "BUTTON": {
+      "CONFIRM": null,
+      "VALIDATE": null
+    },
+    "FIELD": {
+      "EMAIL": null,
+      "FILE_XML": null,
+      "INVALID": null
+    },
+    "TITLE": null
+  },
+  "DATI_AZIENDA": {
+    "FIELD": {
+      "COD_COMUNE": null,
+      "COD_COMUNE_NASC": null,
+      "COD_STATI_EST": null,
+      "COD_STATI_EST_NASC": null,
+      "DS_COMUNE": null,
+      "DS_COMUNE_NASC": null,
+      "DS_STATI_EST": null,
+      "DS_STATI_EST_NASC": null
+    },
+    "TITLE": null
+  },
+  "DATI_AZIENDA_UTILIZZATRICE": {
+    "TITLE": null
+  },
+  "DATI_CESSAZIONE": {
+    "FIELD": {
+      "DATA_CESSAZIONE": null,
+      "MOTIVO_CESSAZIONE": null
+    },
+    "TITLE": null
+  },
+  "DATI_COMUNICAZIONE": {
+    "TITLE": null
+  },
+  "DATI_DISTACCO": {
+    "DATI_DATORE_DISTACCATARIO": null
+  },
+  "DATI_GENERALI": {
+    "FIELD": {
+      "ALTRO_SOGG": null,
+      "CF_SOGGETTO": null,
+      "COD_REGIONALE": null,
+      "COD_REG_COM_RETT_ANULL": null,
+      "COD_REG_COM_URG": null,
+      "COM_SEGUITO_URG": null,
+      "DATA_TIMBRO_POSTALE": null,
+      "DES_CAUSA_FORZA_MAGGIORE": null,
+      "EMAIL_NOTIFICATION": null,
+      "EMAIL_SOGGETTO": null,
+      "FLG_CAUSA_FORZA_MAGGIORE": null,
+      "FLG_COMUNICAZIONE_PROV_ISPETTORATO": null,
+      "FLG_COM_DATORE_LAVORO": null,
+      "PROTOCOLLO_PROV_ANNO_NUM": null,
+      "PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM": null,
+      "PROVINCIA_PROTOCOLLO": null,
+      "RETTIFICA_ANNULL_COM": null,
+      "SOMMINISTRAZIONE": null,
+      "STATO_COMUNICAZIONE": null,
+      "TIPO_COMUNICAZIONE": null
+    },
+    "SUB_TITLE": {
+      "CAUSA_FORZA_MAGGIORE": null,
+      "COMUNICAZIONE_URG": null,
+      "DATI_COMUNICAZIONE": null,
+      "DATI_SOGGETTO": null,
+      "RETTIFICA_ANNULL_COM": null,
+      "VISITA_ISPETTIVA": null
+    },
+    "TITLE": null
+  },
+  "DATI_GENERALI_COM_URG": {
+    "FIELD": {
+      "CF": null,
+      "COGNOME_LAVORATORE": null,
+      "COMUNE": null,
+      "COMUNE_SEDE_COD": null,
+      "COMUNE_SEDE_DES": null,
+      "DATA_INIZIO_RAPP": null,
+      "DENOM_COG_NOM": null,
+      "MOTIVO_URG": null,
+      "NOME_LAVORATORE": null
+    },
+    "SUB_TITLE": {
+      "DATI_EFFETTUA_COM": null,
+      "DATI_RAPPORTO": null,
+      "DATORE_LAVORO": null,
+      "LAVORATORE": null
+    },
+    "TITLE": null
+  },
+  "DATI_GENERALI_VARDATORI": {
+    "FIELD": {
+      "ALTRO_SOGG": null,
+      "CF_SOGGETTO": null,
+      "COD_REGIONALE": null,
+      "COD_REG_COM_RETT_ANULL": null,
+      "DATA_TIMBRO_POSTALE": null,
+      "EMAIL_NOTIFICATION": null,
+      "EMAIL_SOGGETTO": null,
+      "FLG_COMUNICAZIONE_PROV_ISPETTORATO": null,
+      "FLG_COM_DATORE_LAVORO": null,
+      "PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM": null,
+      "PROVINCIA_PROTOCOLLO": null,
+      "RETTIFICA_ANNULL_COM": null,
+      "TIPO_COMUNICAZIONE": null
+    },
+    "SUB_TITLE": {
+      "DATI_COMUNICAZIONE": null,
+      "DATI_SOGGETTO": null,
+      "RETTIFICA_ANNULL_COM": null,
+      "VISITA_ISPETTIVA": null
+    }
+  },
+  "DATI_MISSIONE": {
+    "TITLE": null
+  },
+  "DATI_PROROGA": {
+    "FIELD": {
+      "DATA_PROROGA": null
+    },
+    "TITLE": null
+  },
+  "DATI_RAPPORTO": {
+    "TITLE": null
+  },
+  "DATI_TRASFERIMENTO": {
+    "DATI_DATORE_LAVORO": null,
+    "DATI_DISTACCATO": {
+      "FIELD": {
+        "CAP": null,
+        "CF_DATORE_DISTACCATARIO": null,
+        "COD_ATECO": null,
+        "COD_COMUNE_DISTACCATO": null,
+        "COD_COMUNE_SEDE": null,
+        "COD_STATO_ESTERO_DISTACCATO": null,
+        "COD_STATO_ESTERO_SEDE": null,
+        "DENOMINAZIONE": null,
+        "DESCR_ATECO": null,
+        "DESCR_COMUNE_DISTACCATO": null,
+        "DESCR_COMUNE_SEDE": null,
+        "DESCR_STATO_ESTERO_DISTACCATO": null,
+        "DESCR_STATO_ESTERO_SEDE": null,
+        "EMAIL": null,
+        "FAX": null,
+        "INDIRIZZO": null,
+        "PAT_INAIL": null,
+        "TELEFONO": null
+      }
+    },
+    "DATI_SEDE_LAV_PREC": null,
+    "FIELD": {
+      "DATA_FINE_DISTACCO": null,
+      "DATA_TRASFERIMENTO": null,
+      "DISTACCO_AZIENDA_ESTERA": null,
+      "DISTACCO_PARZIALE": null,
+      "TIPO_SPOSTAMENTO": null
+    },
+    "TITLE": null
+  },
+  "DATI_TRASFORMAZIONE": {
+    "FIELD": {
+      "DATA_TRASFORMAZIONE": null,
+      "TIPO_TRASFORMAZIONE": null
+    },
+    "TITLE": null
+  },
+  "DATI_TUTORE": {
+    "TITLE": null
+  },
+  "DELEGA": {
+    "RICERCA": {
+      "FIELD": {
+        "CF_DELEGANTE": null,
+        "CF_DELEGATO": null,
+        "CF_IMPRESA": null,
+        "COGNOME_DELEGANTE": null,
+        "COGNOME_DELEGATO": null,
+        "DENOMINAZIONE": null,
+        "NOME_DELEGANTE": null,
+        "NOME_DELEGATO": null,
+        "STATO": null
+      }
+    }
+  },
+  "DETTAGLIO_COMUNICAZIONE": {
+    "TITLE": null
+  },
+  "DISTACCATARIO": {
+    "FIELD": {
+      "ATECO": null,
+      "CAP": null,
+      "CF_DATORE_DISTACCATARIO": null,
+      "COD_COMUNE": null,
+      "COD_STATO_ESTERO": null,
+      "DENOMINAZIONE_DATORE_DISTACCATARIO": null,
+      "DESCR_ATECO": null,
+      "DESCR_COMUNE": null,
+      "DESCR_STATO_ESTERO": null,
+      "EMAIL": null,
+      "FAX": null,
+      "INDIRIZZO": null,
+      "PAT_INAIL": null,
+      "TELEFONO": null
+    }
+  },
+  "DISTACCO": {
+    "FIELD": {
+      "DATA_DISTACCO": null,
+      "DATA_FINE_DISTACCO": null,
+      "DISTACCO_AZ_ESTERA": null,
+      "DISTACCO_PARZIALE": null
+    }
+  },
+  "ERROR": {
+    "DATE_MINORE_2000": null,
+    "ERROR_TITLE": "Error",
+    "FIELD": {
+      "FISCAL_CODE": {
+        "INVALID": "Fiscal code invalid",
+        "INVALID_CHAR": "Fiscal code contains invalid chars",
+        "INVALID_LENGTH": "Fiscal code length error"
+      },
+      "LENGHT_10": null,
+      "LENGHT_100": null,
+      "LENGHT_11": null,
+      "LENGHT_4": null,
+      "LENGHT_5": null,
+      "LENGHT_8": null,
+      "LENGHT_COD_REG": null,
+      "LENGTH_11_OR_16": null,
+      "MIN_LENGHT_11": null,
+      "MIN_LENGHT_2": null,
+      "MIN_LENGHT_3": null,
+      "MIN_LENGHT_4": null,
+      "MIN_LENGHT_5": null,
+      "MIN_LENGHT_6": null,
+      "MIN_LENGHT_8": null,
+      "MIN_LENGHT_NUMBER_8": null,
+      "NOT_VALID_FORMAT": null,
+      "REQUIRED": null
+    },
+    "FUTURE_DATE": null,
+    "INVALID_DATE": null,
+    "INVALID_EMAIL": null,
+    "LENGTH_16": null,
+    "POPUP_BLOCKED": "Please disable your Pop-up blocker and try again.",
+    "RANGE_DATE": null,
+    "RANGE_ID": null
+  },
+  "FOOTER": {
+    "ACCESSIBILITY": "Accessibility",
+    "COOKIE_POLICY": "Cookie policy",
+    "PRIVACY": "Privacy"
+  },
+  "GESTIONE_APPLICATIVA": {
+    "FIELD": {
+      "ELENCO_ID": null,
+      "RANGE_A": null,
+      "RANGE_DA": null
+    },
+    "TITLE": null
+  },
+  "HEADER": {
+    "ROLE": "Role",
+    "SETTORE": {
+      "DEFAULT_DESCRIPTION": "Please choose a Sector"
+    }
+  },
+  "HOME": {
+    "FIELD": {
+      "APPLICATION_MANAGEMENT": null,
+      "CORPORATE": null,
+      "MASSIVE_COMM": null,
+      "PROXIES": null,
+      "REGISTRY_ACCR": null,
+      "SEARCH_COMM": null,
+      "VARDATORI": null,
+      "WORKER": null
+    }
+  },
+  "LANGUAGE": {
+    "ENGLISH": "ENG",
+    "ITALIAN": "ITA"
+  },
+  "LAVORATORE": {
+    "DATI_RESIDENZA": {
+      "COD_STATO_ESTERO": null,
+      "DS_STATO_ESTERO": null
+    },
+    "ERROR": {
+      "QUESTURA_REQUIRED": null
+    },
+    "FIELD": {
+      "COD_COMUNE_NASC": null,
+      "COD_STATO_ESTERO_NASCITA": null,
+      "DS_COMUNE_NASC": null,
+      "DS_STATO_ESTERO_NASCITA": null,
+      "MODELLO_Q_NON_APPLICABILE": null,
+      "SCADENZA_TITOLO": null
+    }
+  },
+  "MESSAGES": {
+    "COM-COM-E-0003": null,
+    "COM-COM-E-0006": null,
+    "COM-COM-E-0015": null,
+    "COM-COM-E-0017": null,
+    "COM-COM-E-0022": null,
+    "COM-COM-E-1027": null,
+    "COM-RAP-E-0182": null,
+    "COM-RAP-W-0055": null,
+    "COM-RAP-W-0146": null,
+    "COM-RAP-W-0147": null,
+    "COM-RAP-W-0148": null,
+    "COM-RAP-W-0149": null,
+    "COM-RAP-W-0150": null,
+    "COM-RAP-W-0151": null,
+    "COM-RAP-W-0152": null,
+    "COM-RAP-W-0153": null,
+    "SYS-SYS-A-0011": null,
+    "SYS-SYS-E-0001": null,
+    "SYS-SYS-E-0002": null,
+    "SYS-SYS-E-0003": null,
+    "SYS-SYS-E-0005": null,
+    "SYS-SYS-E-0007": null,
+    "SYS-SYS-E-0012": null,
+    "SYS-SYS-W-0001": null
+  },
+  "MISSIONE": {
+    "BUTTON": {
+      "CONFIRM": null
+    },
+    "DATI_INQUADRAMENTO": null,
+    "DATI_RAPPORTO": null,
+    "FIELD": {
+      "ASSUNZIONE_OBBLIGATORIA": null,
+      "CATEGORIA_LAVORATORE": null,
+      "CODICE_ISTAT": null,
+      "COD_CCNL": null,
+      "DATA_FINE_MISSIONE": null,
+      "DATA_INIZIO_MISSIONE": null,
+      "DESCRIZIONE_ISTAT": null,
+      "DESCR_ATT": null,
+      "DESCR_ATT_AGRICOLTURA": null,
+      "DESCR_CCNL": null,
+      "GIORNATE_LAVORATIVE": null,
+      "LAVORO_AGRICOLTURA": null,
+      "LIV_INQUADRAMENTO": null,
+      "LIV_INQUADRAMENTO_CODICE": null,
+      "LIV_INQUADRAMENTO_DS": null,
+      "ORE_SETTIMANALI_MEDIE": null,
+      "PAT_INAIL": null,
+      "RETRIBUZIONE_ANNUALE": null,
+      "SILICOSI": null,
+      "TIPO_ORARIO": null,
+      "VOCE_TARIFFA1": null,
+      "VOCE_TARIFFA2": null,
+      "VOCE_TARIFFA3": null
+    }
+  },
+  "MODAL": {
+    "NUOVA_VARDATORI": {
+      "TITLE": null
+    }
+  },
+  "NAV_MAIN_COMUNICAZIONE": {
+    "FIELD": {
+      "TORNA_ELENCO": null
+    }
+  },
+  "PAGINATION": {
+    "FIRST": "First",
+    "INFO_FOOTER": null,
+    "INFO_FOOTER_DESC": null,
+    "INFO_HEADER": null,
+    "LAST": "Last",
+    "NEXT": "Next",
+    "PREV": "Prev."
+  },
+  "PROROGA": {
+    "FIELD": {
+      "DATA_FINE_PROROGA": null
+    }
+  },
+  "RICERCA_ACCREDITAMENTO_ANAGRAFICHE": {
+    "RESULTS": {
+      "FIELD": {
+        "ANNULLAMENTO": null,
+        "ANNULLATO": null,
+        "CF": null,
+        "COGNOME": null,
+        "COMUNE_PROV_DOM": null,
+        "COMUNE_PROV_RES": null,
+        "COMUNE_PROV_SEDE": null,
+        "DENOMINAZIONE": null,
+        "NOME": null,
+        "TIPO_ANAGRAFICA": null,
+        "TIPO_STUDIO": null
+      }
+    }
+  },
+  "RICERCA_ACCRED_ANAGRAFICHE": {
+    "RESULTS": {
+      "TITLE": null
+    }
+  },
+  "RICERCA_AZIENDA": {
+    "RESULTS": {
+      "TITLE": null
+    }
+  },
+  "RICERCA_COMUNICAZIONI": {
+    "RESULTS": {
+      "FIELD": {
+        "AZIENDA": null,
+        "AZIENDA_PREC": null,
+        "COD_COM": null,
+        "DATA_ASS": null,
+        "DATA_EVENTO": null,
+        "DATA_INVIO_INS": null,
+        "DATA_TRASF": null,
+        "FILTERS_APPLY": null,
+        "LAVORATORE": null,
+        "STATO": null,
+        "TIPO": null,
+        "TIPO_COM": null
+      },
+      "TITLE": null
+    },
+    "TITLE": null
+  },
+  "RICERCA_DELEGA": {
+    "RESULTS": {
+      "FIELD": {
+        "DELEGANTE": null,
+        "DELEGATO": null,
+        "DENOMINAZIONE": null,
+        "FILTERS_APPLY": null,
+        "STATO": null
+      },
+      "TITLE": null
+    }
+  },
+  "RICERCA_VARDATORI": {
+    "TITLE": null
+  },
+  "RIEPILOGO": {
+    "FIELD": {
+      "ALTRO_SOGG": null,
+      "CF_SOGG": null,
+      "COD_F": null,
+      "COGNOME_NOME": null,
+      "COMUNE_SEDE_OP": null,
+      "COM_PER_DATORE": null,
+      "DENOM_COGNOME_NOME": null,
+      "DT_INIZIO_R": null,
+      "DT_INVIO": null,
+      "DT_TIMBRO_POST": null,
+      "EMAIL_NOTIFICA": null,
+      "EMAIL_SOGG": null,
+      "EMAIL_SOGG_ABILITATO": null,
+      "MOTIVO_URG": null,
+      "STATO_COM": null,
+      "TIPO_COM": null
+    },
+    "SUB_TITLE": {
+      "DATI_CHI_EFF_COM": null,
+      "DATI_IDENT_COM": null,
+      "DATI_ISN": null,
+      "DATI_RAPPORTO": null,
+      "DATI_SOGG_DI_CHI_EFFETTUA_COM": null,
+      "DATORE_LAVORO": null,
+      "LAVORATORE": null
+    },
+    "TEXT_WARNING": null,
+    "TITLE": null
+  },
+  "SEDI_LAVORATORI": {
+    "BUTTON": {
+      "AGGIUNGI_LAVORATORE": null,
+      "CONFIRM_SEDE_E_LAVORATORE": null,
+      "FIND": null,
+      "NEW_LAVORATORE": null,
+      "RICERCA_LAVORATORE": null,
+      "RICERCA_SEDI": null
+    },
+    "FIELD": {
+      "ASSUNZIONE_OBBLIGATORIA": null,
+      "CAP": null,
+      "CATEGORIA_LAVORATORE": null,
+      "CF_ENTE_PROMOTORE": null,
+      "CF_LAVORATORE": null,
+      "CODICE_CCNL": null,
+      "CODICE_ISTAT": null,
+      "COD_COMUNE": null,
+      "COD_COMUNE_DOMICILIO": null,
+      "COD_ENTE_PREVIDENZIALE": null,
+      "COD_STATI_EST": null,
+      "COGNOME": null,
+      "DATA_FINE_PERIODO_FORMATIVO": null,
+      "DATA_FINE_RAPPORTO": null,
+      "DATA_INIZIO_RAPPORTO": null,
+      "DESCRIZIONE_CCNL": null,
+      "DESCRIZIONE_INQUADRAMENTO": null,
+      "DESCRIZIONE_ISTAT": null,
+      "DS_COMUNE": null,
+      "DS_COMUNE_DOMICILIO": null,
+      "DS_STATI_EST": null,
+      "EMAIL": null,
+      "ENTE_PREVIDENZIALE": null,
+      "FAX": null,
+      "GIORNATE_LAVORATIVE": null,
+      "INDIRIZZO": null,
+      "LAVORATORE_MOBILITA": null,
+      "LAVORO_AGRICOLTURA": null,
+      "LAVORO_STAGIONALE": null,
+      "LEGGE68_DATA": null,
+      "LEGGE68_NUM": null,
+      "LEGGE68_TIPO": null,
+      "NOME": null,
+      "ORE_SETTIMANALI_MEDIE": null,
+      "PAT_INAIL": null,
+      "RETRIBUZIONE_LORDA_ANNUALE": null,
+      "SOCIO_LAVORATORE": null,
+      "TELEFONO": null,
+      "TIPO_LAVORAZIONE": null,
+      "TIPO_ORARIO": null,
+      "TIPO_RAPPORTO": null
+    },
+    "SUBTITLE": {
+      "ALTRI": null,
+      "DATI_RAPPORTO": null,
+      "LAVORATORI": null,
+      "SEDE_LAVORO": null
+    },
+    "TITLE": null
+  },
+  "SIDEBAR": {
+    "ACCREDITAMENTO_ANAGRAFICHE": null,
+    "ACCREDITAMENTO_DELEGHE": null,
+    "ANAGRAFICA_AZIENDA": null,
+    "ANAGRAFICA_LAVORATORE": null,
+    "COMUNICAZIONE_MASSIVA": null,
+    "DATI_RAPPORTO": null,
+    "GESTIONE_APPLICATIVA": null,
+    "HOME": "Home",
+    "INT": {
+      "INTERVENTION": {
+        "INSERT": null,
+        "SEARCH": null
+      },
+      "TITLE": null
+    },
+    "RICERCA_COMUNICAZIONI": null,
+    "VARDATORI": null
+  },
+  "STUDIO_PROF": {
+    "BUTTON": {
+      "ADD_CONS": null,
+      "ADD_DELEGATO_PA": null
+    },
+    "FIELD": {
+      "ACCENTRAMENTO": null,
+      "ACCENTR_S": null,
+      "CAP": null,
+      "CF": null,
+      "COMUNE": null,
+      "COMUNE_COD": null,
+      "DENOMINAZIONE": null,
+      "FLG_ACCENTR_N": null,
+      "INDIRIZZO": null,
+      "PARTITA_IVA": null,
+      "TIPO_STUDIO_PROF": null
+    },
+    "SUB_TITLE": {
+      "DATI_GENERALI": null,
+      "ELENCO_CONS": null,
+      "SEDE_LEGALE": null
+    },
+    "TABLE": {
+      "FIELD": {
+        "ANNULLATO": null,
+        "AZIONI": null,
+        "CF": null,
+        "COGNOME": null,
+        "NOME": null
+      }
+    },
+    "TITLE": null
+  },
+  "TRASFERIMENTO": {
+    "FIELD": {
+      "COD_COMUNE": null,
+      "COD_STATO_ESTERO": null,
+      "DATA_TRASFERIMENTO": null,
+      "DESCR_COMUNE": null,
+      "DESCR_STATO_ESTERO": null,
+      "INDIRIZZO": null
+    }
+  },
+  "TRASFORMAZIONE": {
+    "FIELD": {
+      "DATA_TRASFORMAZIONE": null,
+      "TIPO_TRASFORMAZIONE": null
+    }
+  },
+  "TUTORE": {
+    "BUTTON": {
+      "COMPILE": null,
+      "CONFIRM": null,
+      "SEARCH": null
+    },
+    "DATI_ANAGRAFICI": null,
+    "FIELD": {
+      "ANNI_ESPERIENZA": null,
+      "CF": null,
+      "COD_QUALIFICA_PROFESSIONALE": null,
+      "COGNOME": null,
+      "DATA_NASCITA": null,
+      "DATA_VISITA": null,
+      "DESCR_QUALIFICA_PROFESSIONALE": null,
+      "GRADO_QUALIFICAZIONE": null,
+      "LIV_INQUADRAMENTO": null,
+      "NOME": null,
+      "SESSO": null,
+      "TITOLARE": null
+    },
+    "QUALIFICA": null,
+    "VISITA": null
+  },
+  "VARDATORI": {
+    "RICERCA": {
+      "FIELD": {
+        "DATORE_LAVORO": null,
+        "RAGIONE_SOC": null,
+        "TIPO_VARIAZIONE": null
+      }
+    }
+  },
+  "VARIAZIONE_DATORE_LAVORO": {
+    "FIELD": {
+      "AZIENDA_ART": null,
+      "CAP": null,
+      "CF_AZIENDA": null,
+      "COD_ATECO": null,
+      "COD_COMUNE": null,
+      "DATA_FINE_AFFITTO": null,
+      "DATA_INIZIO": null,
+      "DATI_AZIENDA_PRECEDENTE": null,
+      "DENOMINAZIONE_NOME_COGNOME": null,
+      "DESCR_ATECO": null,
+      "DESCR_COMUNE": null,
+      "EMAIL": null,
+      "FAX": null,
+      "INDIRIZZO": null,
+      "NATURA_GIURIDICA": null,
+      "P_IVA": null,
+      "SEDE_LEGALE_PREC": null,
+      "TELEFONO": null,
+      "TIPO_VARIAZIONE": null
+    },
+    "SEDE_LEGALE_PREC": null,
+    "TITLE": null
+  },
+  "VARIAZIONE_RAGIONE_SOCIALE": {
+    "FIELD": {
+      "DATA_INIZIO_VARIAZIONE": null,
+      "DENOMINAZIONE_PRECEDENTE": null
+    },
+    "TITLE": null
+  },
+  "Variazione Sede Legale": null
+}

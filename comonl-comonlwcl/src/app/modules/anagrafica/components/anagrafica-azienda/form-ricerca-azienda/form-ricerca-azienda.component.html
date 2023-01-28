@@ -1,0 +1,52 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+<form [formGroup]="formRicercaAzienda" *ngIf="showForm">
+  <div class="row">
+    <div class="form-group col-sm-12 col-md-3">
+      <label for="cfAzienda">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.CF" | translate}} <span class="asterisk">*</span></label>
+      <input type="text" class="form-control" formControlName="cfAzienda" id="cfAzienda" maxlength="100" minlength="6"
+        required
+        oninput="this.value = this.value.toUpperCase().trim()"
+        minlength="11"
+        maxlength="100">
+      <div *ngIf="f?.cfAzienda?.errors" class="text-danger">
+        <div *ngIf="f?.cfAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_11" | translate}}</div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-outline-secondary btn-sm" (click)="onClickReset()">{{ 'APP.REMOVE_FILTERS' |
+      translate | uppercase}}</button>
+  </div>
+  <div class="col-auto">
+    <button type="button" class="btn btn-primary ml-auto btn-lg" (click)="onSubmit()"
+      [disabled]="!formRicercaAzienda?.valid">{{ 'APP.SEARCH' | translate }}</button>
+  </div>
+</div>
+<div *ngIf="showTable" class="mt-4">
+  <table class="table table-responsive table-striped">
+    <thead>
+      <th>Codice fiscale</th>
+      <th>Partita IVA</th>
+      <th>Ragione Sociale</th>
+      <th>Azioni</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{this.aziendaSilp?.cfAzienda | uppercase}}</td>
+        <td>{{this.aziendaSilp?.partitaIva}}</td>
+        <td>{{this.aziendaSilp?.denominazioneDatoreLavoro}}</td>
+        <td class="azioni">
+          <a><i class="fas fa-eye mr-2" (click)="goToAnagrafica('visualizza')" title="Visualizza"></i></a>
+          <a><i *ngIf="!wrapperHelper" class="fas fa-edit ml-2 mr-2" (click)="goToAnagrafica('modifica')" title="Modifica"></i></a>
+          <a><i *ngIf="wrapperHelper" class="fas fa-check-double ml-2" (click)="goBackNavmain()"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

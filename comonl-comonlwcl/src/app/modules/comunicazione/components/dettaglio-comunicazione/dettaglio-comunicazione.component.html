@@ -1,0 +1,263 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="container">
+<h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DETTAGLIO_COMUNICAZIONE.TITLE" | translate}}</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="formDettaglioComunicazione" *ngIf="showForm">
+                <!-- ************************* DATI ANAGRAFICI DEL TUTORE ************************* -->
+                <h1 class="dati-anagrafici">{{"COMUNICAZIONE.DETTAGLIO.DATI_ANAGRAFICI" | translate}}</h1>
+                <label>I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="cfTutore">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.CF" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="cfTutore"
+                                id="cfTutore"
+                                pattern="^[a-zA-Z]{6}[0-9]{2}[a-zA-Z][0-9]{2}[a-zA-Z][0-9]{3}[a-zA-Z]$"
+                                maxlength="100"
+                                required>
+                            <div *ngIf="f?.cfTutore?.errors" class="text-danger">
+                              <div *ngIf="f?.cfTutore?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                            </div>
+                    </div>
+                    <div class="form-group col">
+                        <button id="btnCompile" type="button" class="btn btn-outline-primary btn-sm" [disabled]="this.f.cfTutore.errors" (click)="onClickPreCompila()">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.COMPILE' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field" for="nome">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.NOME" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="nome"
+                                id="nome"
+                                maxlength="50"
+                                required>
+                            <div *ngIf="f?.nome?.errors" class="text-danger">
+                              <div *ngIf="f?.nome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field" for="cognome">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.COGNOME" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="cognome"
+                                id="cognome"
+                                maxlength="50"
+                                required>
+                            <div *ngIf="f?.nome?.errors" class="text-danger">
+                              <div *ngIf="f?.nome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group gender col-sm-12 col-md-3">
+                        <label class="field" for="sesso">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.SESSO" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div>
+                        <div class="row">
+                          <div class="form-check form-check-inline">
+                            <input name="sesso" type="radio" id="Maschio" [checked]="this.f.sesso.value === 'M'" required>
+                            <label class="radio-button" for="Maschio">M</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input name="sesso" type="radio" id="Femmina" [checked]="this.f.sesso.value === 'F'" required>
+                            <label class="radio-button" for="Femmina">F</label>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataNascita">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.DATA_NASCITA" | translate}} <span class="asterisk">*</span></label>
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dataNascita"
+                            id="dataNascita"
+                            ngbDatepicker
+                            #dataNascita="ngbDatepicker"
+                            required>
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataNascita.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                            <div *ngIf="f?.dataNascita?.errors" class="text-danger">
+                                <div *ngIf="f?.dataNascita?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group gender col-sm-12 col-md-3">
+                        <label class="field" for="titolare">{{ 'COMUNICAZIONE.DETTAGLIO.FIELD.TITOLARE' | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div>
+                        <div class="row">
+                            <div class="form-check form-check-inline">
+                              <input name="gruppo3" type="radio" id="radio4" required>
+                              <label class="radio-button" for="radio4">Si</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input name="gruppo3" type="radio" id="radio5" required>
+                              <label class="radio-button" for="radio5">No</label>
+                            </div>
+                          </div>
+                        </div>
+                </div>
+                <!-- ************************* QUALIFICA DEL TUTORE ************************* -->
+                <h1 class="dati-anagrafici">{{"COMUNICAZIONE.DETTAGLIO.QUALIFICA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="codQualifica">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.COD_QUALIFICA_PROFESSIONALE" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="codQualifica"
+                                id="codQualifica"
+                                maxlength="100"
+                                required>
+                            <div *ngIf="f?.codQualifica?.errors" class="text-danger">
+                              <div *ngIf="f?.codQualifica?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}} <span class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-6">
+                        <label class="field" for="descrQualifica">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.DESCR_QUALIFICA_PROFESSIONALE" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="descrQualifica"
+                                id="descrQualifica"
+                                maxlength="50"
+                                required>
+                            <div *ngIf="f?.descrQualifica?.errors" class="text-danger">
+                              <div *ngIf="f?.descrQualifica?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}} <span class="asterisk">*</span></div>
+                            </div>
+                    </div>
+                    <div class="form-group col-auto">
+                        <button id="btnSearchQualifica" type="button" class="btn btn-outline-primary">
+                            {{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.SEARCH' | translate | uppercase}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="anniEsperienza">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.ANNI_ESPERIENZA" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="anniEsperienza"
+                                id="anniEsperienza"
+                                maxlength="50"
+                                required>
+                            <div *ngIf="f?.anniEsperienza?.errors" class="text-danger">
+                              <div *ngIf="f?.anniEsperienza?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="livInquadramento">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.LIV_INQUADRAMENTO" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="livInquadramento"
+                                id="livInquadramento"
+                                maxlength="50">
+                            <div *ngIf="f?.livInquadramento?.errors" class="text-danger">
+                              <div *ngIf="f?.livInquadramento?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="grado">{{ 'COMUNICAZIONE.DETTAGLIO.FIELD.GRADO_QUALIFICAZIONE' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <select
+                          class="form-select"
+                          formControlName="grado"
+                          id="grado">
+                              <option [ngValue]="null"></option>
+                              <!-- TODO aggiungere l'output a schermo-->
+                              <!-- <option *ngFor="let prov of listaProvince" [ngValue]="prov"></option> -->
+                              <option value="1">option 1</option>
+                              <option value="2">option 2</option>
+                              <option value="3">option 3</option>
+                              <option value="4">option 4</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- ************************* VISITA MEDICA ************************* -->
+                <h1 class="dati-anagrafici">{{"COMUNICAZIONE.DETTAGLIO.VISITA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="dataVisita">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.DATA_VISITA" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-3">
+                        <div class="input-group">
+                            <input type="text"
+                              class="form-control"
+                              formControlName="dataVisita"
+                              id="dataVisita"
+                              ngbDatepicker
+                              #dataVisita="ngbDatepicker"
+                              maxlength="10"
+                              required>
+                            <div class="input-group-append">
+                              <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataVisita.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-12">
+                    <label class="field">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.COMUNICAZIONE_FORMALE" | translate}}</label>
+                    <!-- ************************* TESTO DINAMICO DA DB ************************* -->
+                    <p>Nel caso in cui l'impresa voglia avvalersi dell'offerta formativa pubblica per la formazione di base e trasversale, e tenuta a iscrivere 
+                        l'apprendista presso uno degli operatori di formazione presenti nei Cataloghi Provinciali dell'offerta formativa
+                        per l'apprendistato, indicando la presenza per una o più sedi tra quelle presenti a catalogo.
+                        L'iscrizione deve avvenire entro 10 giorni dalla data di assunzione, tramite il portale "Gestione apprendistato" accessibile
+                        all'indirizzo: <strong>http://www.sistemapiemonte.it/formazione_professionale/apprendistato/</strong></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field">{{ "COMUNICAZIONE.DETTAGLIO.FIELD.ACCETTAZIONE" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="checkbox" [ngModel]="false"
+                        formControlName="accettazione" required>
+                        </label>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-auto">
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                    >{{ 'APP.BACK' | translate | uppercase}}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onSubmit()"
+                    [disabled]="!formDettaglioComunicazione?.valid"
+                    >{{ 'COMUNICAZIONE.DETTAGLIO.BUTTON.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

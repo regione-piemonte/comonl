@@ -1,0 +1,564 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="container">
+    <div class="mb-4">
+      <button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickGoBackToRicerca()">{{ 'APP.RETURN' | translate | uppercase}}</button>
+      <!--     <a  clickable (click)="onClickGoBackToRicerca()"><i class="fas fa-arrow-left"></i><span>{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</span></a>-->
+    </div>
+    <h2><i style="color: #005ca9;" class="fas fa-check mr-2"></i>{{"ANAGRAFICA.DETTAGLIO_DELEGA.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="form">
+                <!-- ************************* DATI DELEGANTE ************************* -->
+                <label *ngIf="!this.READ_MODE" class="mb-2">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <label *ngIf="!this.READ_MODE" class="mb-2">La delega ha validità fino alla sua revoca limitatamente alla provincia di ubicazione della sede Legale dell'azienda o di una sua unità locale</label>
+                <h1 class="dati-anagrafici">{{"ANAGRAFICA.DETTAGLIO_DELEGA.DATI_DELEGANTE" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cfDelegante">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.CF" | translate}} <span class="asterisk">*</span></label>
+                            <input type="text"
+                                class="form-control"
+                                formControlName="cfDelegante"
+                                oninput="this.value = this.value.toUpperCase().trim()"
+                                id="cfDelegante"
+                                pattern="[A-Z]{6}[0-9LMNPQRSTUV]{2}[A-Z][0-9LMNPQRSTUV]{2}[A-Z][0-9LMNPQRSTUV]{3}[A-Z]"
+                                maxlength="16"
+                                minlength="11">
+                            <div *ngIf="f?.cfDelegante?.errors" class="text-danger">
+                                <div *ngIf="f?.cfDelegante?.errors?.minlength || f?.cfDelegante?.errors?.pattern">{{"ERROR.FIELD.FISCAL_CODE.INVALID" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field cod" for="cognomeDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.COGNOME_DELEGANTE" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="cognomeDelegante"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="cognomeDelegante"
+                                    maxlength="30">
+                                <div *ngIf="f?.cognomeDelegante?.errors" class="text-danger">
+                                <div *ngIf="f?.cognomeDelegante?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="nomeDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.NOME_DELEGANTE" | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="nomeDelegante"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="nomeDelegante"
+                                    maxlength="30">
+                                <div *ngIf="f?.nomeDelegante?.errors" class="text-danger">
+                                <div *ngIf="f?.nomeDelegante?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2" formGroupName="comDelegante">
+                        <label for="codComuneMin">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.COD_COMUNE' | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codComuneMin"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="codComuneMin"
+                                    maxlength="4">
+                                <div *ngIf="f?.codComuneMin?.errors" class="text-danger">
+                                <div *ngIf="f?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-5" formGroupName="comDelegante">
+                        <label for="dsComTComune">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.DESCR_COMUNE' | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTComune"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="dsComTComune">
+                                <div *ngIf="f?.dsComTComune?.errors" class="text-danger">
+                                <div *ngIf="f?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto" *ngIf="!this.READ_MODE">
+                        <button type="button"
+                        class="btn btn-primary ml-auto btn-lg btnSearch"
+                        (click)="onClickFindComune('delegante')"
+                        >{{ 'APP.SEARCH' | translate }}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-5">
+                    <label class="field" for="indirizzoDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.INDIRIZZO_RESIDENZA" | translate}} <span class="asterisk">*</span></label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="indirizzoDelegante"
+                            oninput="this.value = this.value.toUpperCase()"
+                            id="indirizzoDelegante"
+                            maxlength="40"
+                            >
+                        <div *ngIf="f?.indirizzoDelegante?.errors" class="text-danger">
+                        <div *ngIf="f?.indirizzoDelegante?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-2">
+                    <label class="field" for="capDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CAP" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="capDelegante"
+                            id="capDelegante"
+                            minlength="5"
+                            maxlength="5"
+                            comonlDigitOnly>
+                            <div *ngIf="f?.indirizzoDelegante?.errors" class="text-danger">
+                                <div *ngIf="f?.indirizzoDelegante?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="telefonoDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.TELEFONO" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="telefonoDelegante"
+                            id="telefonoDelegante"
+                            pattern="^\s*(?:\+?(\d{1,3}))?([-./ (]*(\d{3})[-./ )]*)?((\d{3})[-./ ]*(\d{2,4})(?:[-./x ]*(\d+))?)\s*$"
+                            maxlength="100"
+                            comonlDigitOnly>
+                        <div *ngIf="f?.telefonoDelegante?.errors" class="text-danger">
+                            <div *ngIf="f?.telefonoDelegante?.errors?.pattern || f?.telefonoDelegante?.errors?.maxlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-4">
+                        <label class="field" for="emailDelegante">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.EMAIL" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="emailDelegante"
+                            id="emailDelegante"
+                            pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?"
+                            maxlength="50">
+                        <div *ngIf="f?.emailDelegante?.errors" class="text-danger">
+                            <div *ngIf="f?.emailDelegante?.errors?.pattern">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-7">
+                        <label class="field" for="carica">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.QUALITA' | translate}} <span *ngIf="!this.READ_MODE" class="asterisk">*</span></label>
+                    <div class="form-group" *ngIf="!this.READ_MODE">
+                        <select
+                        class="form-select"
+                        formControlName="carica"
+                        id="carica">
+                            <option [ngValue]="null"></option>
+                            <option *ngFor="let carica of listaCariche" [ngValue]="carica?.descrizione">{{carica?.descrizione}} ({{carica?.id}})</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* DATI DELEGATO ************************* -->
+                <form [formGroup]="formCf">
+                <h1 class="dati-anagrafici mt-4">{{"ANAGRAFICA.DETTAGLIO_DELEGA.DATI_DELEGATO" | translate}}</h1>
+                <div class="row" *ngIf="!this.READ_MODE">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="cfDelegatoImpresa">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CF_DELEGATO' | translate}} <span class="asterisk">*</span></label>
+                            <div class="form-group">
+                                <input type="text"
+                                        class="form-control"
+                                        formControlName="cfDelegatoImpresa"
+                                        oninput="this.value = this.value.toUpperCase().trim()"
+                                        id="cfDelegatoImpresa"
+                                        pattern="[A-Z]{6}[0-9LMNPQRSTUV]{2}[A-Z][0-9LMNPQRSTUV]{2}[A-Z][0-9LMNPQRSTUV]{3}[A-Z]"
+                                        maxlength="16"
+                                        minlength="11">
+                                    <div *ngIf="fCf?.cfDelegatoImpresa?.errors" class="text-danger">
+                                    <div *ngIf="fCf?.cfDelegatoImpresa?.errors?.minlength || fCf?.cfDelegatoImpresa?.errors?.pattern">{{"ERROR.FIELD.FISCAL_CODE.INVALID" | translate}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto" *ngIf="this.EDIT_MODE || this.INS_MODE">
+                            <button type="button"
+                           [disabled]="fCf?.cfDelegatoImpresa.value === null || fCf?.cfDelegatoImpresa.value === '' || fCf?.cfDelegatoImpresa?.errors?.pattern"
+                            (click)="onClickFindDelegato(fCf?.cfDelegatoImpresa.value)"
+                            class="btn btn-primary ml-auto btn-lg btnSearch"
+                            >{{ 'APP.SEARCH' | translate }}</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cfDelegato">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CF_DELEGATO' | translate}} <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="cfDelegato"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="cfDelegato"
+                                    maxlength="30">
+                                <div *ngIf="f?.cfDelegato?.errors" class="text-danger">
+                                <div *ngIf="f?.cfDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-4">
+                        <label class="field cod" for="cognomeDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.COGNOME_DELEGANTE" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="cognomeDelegato"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="cognomeDelegato"
+                                    maxlength="30">
+                                <div *ngIf="f?.cognomeDelegato?.errors" class="text-danger">
+                                <div *ngIf="f?.cognomeDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field cod" for="nomeDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.NOME_DELEGANTE" | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="nomeDelegato"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="nomeDelegato"
+                                    maxlength="30">
+                                <div *ngIf="f?.nomeDelegato?.errors" class="text-danger">
+                                <div *ngIf="f?.nomeDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                    <label class="field cod" for="pivaDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.P_IVA" | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="pivaDelegato"
+                                    id="pivaDelegato"
+                                    maxlength="50">
+                                <div *ngIf="f?.pivaDelegato?.errors" class="text-danger">
+                                <div *ngIf="f?.pivaDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2" formGroupName="comDelegato">
+                        <label for="codComuneMin">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.COD_COMUNE' | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="codComuneMin"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="codComuneMin"
+                                    maxlength="4">
+                                <div *ngIf="f?.codComuneMin?.errors" class="text-danger">
+                                <div *ngIf="f?.codComuneMin?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-5" formGroupName="comDelegato">
+                        <label for="dsComTComune">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.DESCR_COMUNE' | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsComTComune"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="dsComTComune">
+                                <div *ngIf="f?.dsComTComune?.errors" class="text-danger">
+                                <div *ngIf="f?.dsComTComune?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-5">
+                    <label class="field" for="indirizzoDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.INDIRIZZO_RESIDENZA" | translate}}</label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="indirizzoDelegato"
+                            oninput="this.value = this.value.toUpperCase()"
+                            id="indirizzoDelegato"
+                            maxlength="40"
+                            >
+                        <div *ngIf="f?.indirizzoDelegato?.errors" class="text-danger">
+                        <div *ngIf="f?.indirizzoDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-2">
+                    <label class="field" for="capDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CAP" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="capDelegato"
+                            id="capDelegato"
+                            maxlength="5"
+                            minlength="5"
+                            comonlDigitOnly
+                            >
+                        <div *ngIf="f?.capDelegato?.errors" class="text-danger">
+                        <div *ngIf="f?.capDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-3">
+                        <label class="field" for="telefonoDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.TELEFONO" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="telefonoDelegato"
+                            id="telefonoDelegato"
+                            maxlength="15"
+                            comonlDigitOnly>
+                        <div *ngIf="f?.telefonoDelegato?.errors" class="text-danger">
+                            <div *ngIf="f?.telefonoDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-11 col-md-4">
+                        <label class="field" for="faxDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.FAX" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="faxDelegato"
+                            id="faxDelegato"
+                            maxlength="15">
+                        <div *ngIf="f?.faxDelegato?.errors" class="text-danger">
+                            <div *ngIf="f?.faxDelegato?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-11 col-md-7">
+                        <label class="field" for="emailDelegato">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.EMAIL" | translate}} </label>
+                        <input type="text"
+                            class="form-control"
+                            formControlName="emailDelegato"
+                            id="emailDelegato"
+                            pattern="\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b"
+                            maxlength="50"
+                            >
+                        <div *ngIf="f?.emailDelegato?.errors" class="text-danger">
+                            <div *ngIf="f?.emailDelegato?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* IMPRESA DA DELEGARE ************************* -->
+                <h1 class="dati-anagrafici mt-4">{{"ANAGRAFICA.DETTAGLIO_DELEGA.IMPRESA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-7" *ngIf="this.INS_MODE || (this.EDIT_MODE && this.delega?.statoDelega?.dsStatoDelega === 'INSERITA')">
+                        <label class="field" for="codFiscImpresa">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CF_IMPRESA' | translate}} <span class="asterisk">*</span></label>
+                    <div class="form-group" *ngIf="this.INS_MODE || (this.EDIT_MODE && this.delega?.statoDelega?.dsStatoDelega === 'INSERITA')">
+                        <select
+                        (change)="compilaImpresa(f?.codFiscImpresa)"
+                        class="form-select"
+                        formControlName="codFiscImpresa"
+                        id="codFiscImpresa">
+                            <option [ngValue]="null"></option>
+                            <option *ngFor="let impresa of listaCfImprese" [ngValue]="impresa">{{impresa?.id?.cfImpresa}} - {{impresa?.denominazione}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                    <label class="field cod" for="cfImpresa">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.CF_IMPRESA" | translate}}  <span class="asterisk">*</span></label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="cfImpresa"
+                                    oninput="this.value = this.value.toUpperCase().trim()"
+                                    id="cfImpresa"
+                                    maxlength="50">
+                                <div *ngIf="f?.cfImpresa?.errors" class="text-danger">
+                                <div *ngIf="f?.cfImpresa?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                    <label class="field cod" for="pivaImpresa">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.P_IVA" | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="pivaImpresa"
+                                    id="pivaImpresa"
+                                    maxlength="50">
+                                <div *ngIf="f?.pivaImpresa?.errors" class="text-danger">
+                                <div *ngIf="f?.pivaImpresa?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-7">
+                        <label for="denominazioneImpresa">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.DENOMINAZIONE' | translate}}</label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="denominazioneImpresa"
+                                    oninput="this.value = this.value.toUpperCase()"
+                                    id="denominazioneImpresa"
+                                    maxlength="50">
+                                <div *ngIf="f?.denominazioneImpresa?.errors" class="text-danger">
+                                <div *ngIf="f?.denominazioneImpresa?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ************************* DATI DELEGA ************************* -->
+                <h1 class="dati-anagrafici mt-4">{{"ANAGRAFICA.DETTAGLIO_DELEGA.DATI_DELEGA" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="statoDelega">
+                        <label for="dsStatoDelega">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.STATO' | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="dsStatoDelega"
+                                    id="dsStatoDelega"
+                                    maxlength="50">
+                                <div *ngIf="f?.dsStatoDelega?.errors" class="text-danger">
+                                <div *ngIf="f?.dsStatoDelega?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="dtRevoca">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.DATA_ANN_REV' | translate}}</label>
+                        <div class="input-group">
+                            <input
+                            formControlName="dtRevoca"
+                            type="text"
+                            class="form-control"
+                            id="dtRevoca"
+                            ngbDatepicker
+                            #dtRevoca="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dtRevoca.toggle()"
+                                type="button"
+                                [disabled] = "READ_MODE">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dtProtocollo">{{ "ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.DATA" | translate}}</label>
+                        <div class="input-group">
+                            <input
+                            formControlName="dtProtocollo"
+                            type="text"
+                            class="form-control"
+                            id="dtProtocollo"
+                            ngbDatepicker
+                            #dtProtocollo="ngbDatepicker">
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dtProtocollo.toggle()"
+                                type="button"
+                                [disabled] = "READ_MODE"
+                            >
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-1">
+                        <label for="annoProtocollo">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.ANNO' | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="annoProtocollo"
+                                    id="annoProtocollo"
+                                    maxlength="50">
+                                <div *ngIf="f?.annoProtocollo?.errors" class="text-danger">
+                                <div *ngIf="f?.annoProtocollo?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="numeroProtocollo">{{ 'ANAGRAFICA.DETTAGLIO_DELEGA.FIELD.NUM_PROTOCOLLO' | translate}} </label>
+                        <div class="form-group">
+                            <input type="text"
+                                    class="form-control"
+                                    formControlName="numeroProtocollo"
+                                    id="numeroProtocollo"
+                                    maxlength="50">
+                                <div *ngIf="f?.numeroProtocollo?.errors" class="text-danger">
+                                <div *ngIf="f?.numeroProtocollo?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row" *ngIf="this.EDIT_MODE">
+                <!-- <div class="col">
+                <button type="button" class="btn btn-outline-secondary btn-sm"
+                    (click)="onClickGoBackToRicerca()">{{ 'APP.BACK' | translate | uppercase}}</button>
+                </div> -->
+                <div class="col-auto" *ngIf="this.delega?.statoDelega?.dsStatoDelega === 'VALIDATA'; else annulla">
+                    <button type="button"
+                        class="btn btn-primary ml-auto btn-lg mr-5"
+                        (click)="onClickOpenModalOperazione(this.delega, 'revoca', 'MESSAGES.SYS-SYS-A-0005')"
+                        >{{ 'APP.REVOCA' | translate }}</button>
+                </div>
+                <ng-template #annulla>
+                    <div class="col-auto" *ngIf="this.delega?.statoDelega?.dsStatoDelega === 'INSERITA'">
+                        <button type="button"
+                            class="btn btn-primary ml-auto btn-lg mr-5"
+                            (click)="onClickOpenModalOperazione(this.delega, 'elimina', 'MESSAGES.SYS-SYS-A-0007')"
+                            [disabled]="!form?.valid">{{ 'APP.ELIMINA' | translate }}</button>
+                    </div>
+                </ng-template>
+                <div class="col-auto" *ngIf="this.delega?.statoDelega?.dsStatoDelega === 'INSERITA'">
+                    <button type="button"
+                        class="btn btn-primary ml-auto btn-lg mr-5"
+                        (click)="onClickOpenModalOperazione(this.delega, 'valida', 'MESSAGES.SYS-SYS-A-0006')"
+                        [disabled]="!form?.valid">{{ 'APP.VALID' | translate }}</button>
+                </div>
+                <div class="col-auto" *ngIf="this.delega?.statoDelega?.dsStatoDelega !== 'VALIDATA'">
+                    <button type="button"
+                    class="btn btn-primary ml-auto btn-lg mr-5"
+                    (click)="aggiornaDelega('MESSAGES.SYS-SYS-A-0008')"
+                    [disabled]="!form?.valid">{{ 'APP.SAVE' | translate }}</button>
+                </div>
+            </div>
+            <div *ngIf="this.INS_MODE">
+                <div class="row">
+                    <!-- <div class="col">
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                        (click)="onClickGoBackToRicerca()">{{ 'APP.BACK' | translate | uppercase}}</button>
+                    </div> -->
+                    <div *ngIf="!this.delega?.id || (this.delega?.id && this.delega?.statoDelega.id === '1')" class="col-auto">
+                        <button type="button"
+                            class="btn btn-primary ml-auto btn-lg mr-5"
+                            (click)="onClickOpenModalOperazione(this.delega, 'valida', 'MESSAGES.SYS-SYS-A-0006')"
+                            [disabled]="!form?.valid || !this.delega?.id">{{ 'APP.VALID' | translate }}</button>
+                    </div>
+                    
+                    <div *ngIf="!this.delega?.id || (this.delega?.id && this.delega?.statoDelega.id === '1')" class="col-auto">
+                        <button type="button"
+                            class="btn btn-primary ml-auto btn-lg mr-5"
+                            (click)="aggiornaDelega('MESSAGES.SYS-SYS-A-0008')"
+                            [disabled]="!form?.valid">{{ 'APP.SAVE' | translate }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

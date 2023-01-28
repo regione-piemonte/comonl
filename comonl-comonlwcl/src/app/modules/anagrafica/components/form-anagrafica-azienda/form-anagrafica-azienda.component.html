@@ -1,0 +1,230 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickGoBackToRicerca()">{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate | uppercase}}</button>
+<!-- <a  clickable (click)="onClickGoBackToRicerca()"><i class="fas fa-arrow-left"></i><span>{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</span></a> -->
+
+
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"ANAGRAFICA_AZIENDA.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form *ngIf="form" [formGroup]="form">
+                <h4>{{"ANAGRAFICA_AZIENDA.SUB_TITLE.DATI_IMPTRESA" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cf">{{ "ANAGRAFICA_AZIENDA.FIELD.CF"| translate}} </label>
+                        <input type="text" formControlName="cfAzienda" oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cf" maxlength="16">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="partitaIva">{{ "ANAGRAFICA_AZIENDA.FIELD.PARTITA_IVA"| translate}}</label>
+                        <input type="text" formControlName="partitaIva" class="form-control" id="partitaIva" maxlength="11">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label for="denom">{{ "ANAGRAFICA_AZIENDA.FIELD.DENOMINAZIONE"| translate}}</label>
+                        <input type="text" formControlName="denominazioneDatoreLavoro" class="form-control" id="denom" maxlength="300">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-12" formGroupName="naturaGiuridica">
+                        <label for="denom">{{ "ANAGRAFICA_AZIENDA.FIELD.NATURA_GIURIDICA"| translate}}</label>
+                        <input type="text" formControlName="descrizione" class="form-control" id="denom" maxlength="300">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="denom">{{ "ANAGRAFICA_AZIENDA.FIELD.AZIENDA_ART"| translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="denom">{{ "ANAGRAFICA_AZIENDA.FIELD.ACCENTRATA"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="flagArtigiana" [value]="'S'" type="radio" id="flgrtigianaS">
+                          <label class="form-check-label" for="flgrtigianaS">
+                            {{ "STUDIO_PROF.FIELD.ACCENTR_S"| translate}}
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="flagArtigiana" [value]="'N'" type="radio" id="flgrtigianaN">
+                          <label class="form-check-label" for="flgrtigianaN">
+                            {{ "STUDIO_PROF.FIELD.FLG_ACCENTR_N"| translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input"  formControlName="accentrata" [value]="true" type="radio" id="flgAccentrataS">
+                          <label class="form-check-label" for="flgAccentrataS">
+                            {{ "STUDIO_PROF.FIELD.ACCENTR_S"| translate}}
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="accentrata" [value]="false" type="radio" id="flgAccentrataN">
+                          <label class="form-check-label" for="flgAccentrataN">
+                            {{ "STUDIO_PROF.FIELD.FLG_ACCENTR_N"| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2" formGroupName="atecofin">
+                        <label for="codAteco">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.COD_ATECO" | translate}} </label>
+                            <input
+                            formControlName="codAtecofinMin"
+                                type="text"
+                                class="form-control"
+                                id="codAteco"
+                                maxlength="100">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="atecofin">
+                        <label for="descrAteco">{{ "ANAGRAFICA.DETTAGLIO_AZIENDA.FIELD.DESCR" | translate}} </label>
+                            <input
+                                formControlName="dsComTAtecofin"
+                                type="text"
+                                class="form-control"
+                                id="descrAteco"
+                                maxlength="100">
+                    </div>
+                </div>
+                <h4>{{"ANAGRAFICA_AZIENDA.SUB_TITLE.SEDE_LEGALE" | translate}}</h4>
+                <div class="row" formGroupName="sedeLegale">
+                    <div class="form-group col-sm-12 col-md-6"  formGroupName="comune">
+                        <label for="tel">{{ "ANAGRAFICA_AZIENDA.FIELD.COMUNE"| translate}} </label>
+                        <input type="text" formControlName="dsComTComune" class="form-control" maxlength="80" id="tel">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+                        <div formGroupName="provincia">
+                            <label for="tel">{{ "ANAGRAFICA_AZIENDA.FIELD.PROV"| translate}} </label>
+                            <input type="text" formControlName="dsTarga" class="form-control" maxlength="80" id="tel">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="tel">{{ "ANAGRAFICA_AZIENDA.FIELD.CAP"| translate}} </label>
+                        <input type="text" formControlName="cap" class="form-control" maxlength="80" id="tel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-8" formGroupName="sedeLegale">
+                        <label for="tel">{{ "ANAGRAFICA_AZIENDA.FIELD.INDIRIZZO"| translate}} </label>
+                        <input formControlName="indirizzo" type="text" class="form-control" maxlength="80" id="tel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="sedeLegale">
+                        <label for="tel">{{ "ANAGRAFICA_AZIENDA.FIELD.TEL"| translate}} </label>
+                        <input formControlName="telefono" type="text" class="form-control" maxlength="15" id="tel">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="sedeLegale">
+                        <label for="fax">{{ "ANAGRAFICA_AZIENDA.FIELD.FAX"| translate}}</label>
+                        <input formControlName="fax" type="text" class="form-control" maxlength="15" id="fax">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4" formGroupName="sedeLegale">
+                        <label for="mail">{{ "ANAGRAFICA_AZIENDA.FIELD.MAIL"| translate}}</label>
+                        <input type="text" formControlName="email" class="form-control" maxlength="50" id="mail">
+                    </div>
+                </div>
+            </form>
+            <h4>{{"ANAGRAFICA_AZIENDA.SUB_TITLE.ELENCO_DELEGATI_PA" | translate}}</h4>
+            <form [formGroup]="formDelegatoPe" *ngIf="mode === 'edit' && formDelegatoPe">
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3" formGroupName="id">
+                        <label for="cfImp">{{ "STUDIO_PROF.FIELD.CF"| translate}}</label>
+                        <input formControlName="cfDelegato" type="text" oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cfImp" maxlength="16">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <button
+                        [disabled]="!formDelegatoPe.valid"
+                        (click)="onClickAddDelegatoPa()"
+                        class="btn btn-outline-primary mt-lg-btn-form"
+                        >{{"STUDIO_PROF.BUTTON.ADD_DELEGATO_PA" | translate}}</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-2">
+                        <label for="tipoAnagrafica">{{ "ANAGRAFICA_AZIENDA.FIELD.FLG_TIPO_ANAGRAFICA"| translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-10" formGroupName="id">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" (change)="onChangeTipoCarica()" formControlName="tipoAnagrafica" [value]="'D'" type="radio" id="tipoAnagraficaD">
+                          <label class="form-check-label" for="tipoAnagraficaD">
+                            {{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_ANAGRAFICA_D"| translate}}
+                        </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" (change)="onChangeTipoCarica()" formControlName="tipoAnagrafica" [value]="'E'" type="radio" id="tipoAnagraficaE">
+                            <label class="form-check-label" for="tipoAnagraficaE">
+                                {{ "ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_ANAGRAFICA_E"| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="tipoCarica">{{ 'ACCREDITAMENTO_CONSULENTE.FIELD.TIPO_CARICA' | translate}}<span *ngIf="this.formDelegatoPe.controls.id.get('tipoAnagrafica').value ==='E'" class="oblg">*</span></label>
+                        <select
+                        class="form-select"
+                        formControlName="idCaricaPersonaPv"
+                        id="tipoCarica">
+                            <option [ngValue]="null"></option>
+                            <option *ngFor="let carica of caricaPersonaPvs" [ngValue]="carica?.id">{{carica?.descrizione}}</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+            <comonl-paginated-array-table *ngIf="listDelegatoImpresaSpec && listDelegatoImpresaSpec.length > 0" [columnNumber]="8" [pagedResponse]="listDelegatoImpresaSpec" [limit]="5">
+                <ng-template comonlPaginationHead>
+                  <tr>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.CF' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.NOME' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.COGNOME' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.TIPO' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.DELEGA_VALIDA' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.ANNULLATO' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.CARICA' | translate }}</th>
+                    <th>{{'ANAGRAFICA_AZIENDA.TABLE.FIELD.AZIONI' | translate }}</th>
+                  </tr>
+                </ng-template>
+                <ng-template comonlPaginationBody let-item>
+                  <tr>
+                    <td>{{item?.anagraficaDelegato.id?.cfDelegato}}</td>
+                    <td>{{item?.anagraficaDelegato.nome}}</td>
+                    <td>{{item?.anagraficaDelegato?.cognome}}</td>
+                    <td>{{item?.anagraficaDelegato?.id?.tipoAnagrafica | decodAnagrafica}}</td>
+                    <td>{{isDelegaValida(item?.delegas) ? "Si" : " No"}}</td>
+                    <td>{{ (item?.anagraficaDelegato?.dataAnnullamento ? item?.anagraficaDelegato?.dataAnnullamento : "" )| date: 'dd/MM/yyyy'}}</td>
+                    <td>{{getCarica(item)}}</td>
+                    <td class="azioni">
+                        <a *ngIf="!item?.anagraficaDelegato?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0001')" title="Elimina"><i class="fas fa-trash-alt"></i></a>
+                        <a *ngIf="item?.anagraficaDelegato?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0002')" title="ripristina"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                    </td>
+                  </tr>
+                </ng-template>
+              </comonl-paginated-array-table>
+              <div *ngIf="mode ==='edit' && form" class="row">
+                <div class="col-auto">
+                    <button
+                    type="button"
+                    (click)="onClickReset()"
+                    class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    [disabled]="!form?.valid"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onClickSubmit()"
+                    >{{ 'APP.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

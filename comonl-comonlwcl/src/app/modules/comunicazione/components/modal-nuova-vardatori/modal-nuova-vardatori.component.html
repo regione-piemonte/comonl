@@ -1,0 +1,33 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="modal-header">
+    <h3 class="modal-title">{{ 'MODAL.NUOVA_VARDATORI.TITLE' | translate }}</h3>
+    <button type="button" class="btn btn-primary" style="box-shadow: none !important; border: none; outline: none; background-color: white; color: #000; font-size: 20pt; font-weight: bold" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formNuovaVardatori" *ngIf="showForm">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <label>Tipo comunicazione</label>
+            </div>
+            <div class="row">
+                <div class="form-check form-check-inline">
+                <input type="radio" id="ragSoc" formControlName="comunicazione" [value]="'RS'" required>
+                <label class="radio-button" for="ragSoc">Variazione ragione sociale</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input type="radio" id="trasf" formControlName="comunicazione" [value]="'T'" checked required>
+                <label class="radio-button" for="trasf">Vardatori Trasferimento</label>
+                </div>
+            </div>
+          </div>
+          </form>
+        </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="activeModal.close()">{{ 'APP.FIND_CANCEL' | translate }}</button>
+    <button type="button" class="btn btn-primary ml-auto" [disabled]="conditionConfermaBtnDisable" (click)="goToNuovaComunicazione()">{{ 'APP.CONFIRM' | translate }}</button>
+  </div>

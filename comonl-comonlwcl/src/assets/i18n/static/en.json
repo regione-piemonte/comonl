@@ -1,0 +1,22 @@
+{
+  "MESSAGES": {
+    "SYS-SYS-E-0001": "Generic error: {{error}}",
+    "SYS-SYS-E-0002": "System error: {{error}}",
+    "SYS-SYS-E-0003": "Required parameter omitted: {{parameter}}",
+    "SYS-SYS-E-0004": "Required parameter omitted or empty: {{parameter}}",
+    "SYS-SYS-E-0005": "{{fieldname}} must be {{operator}} {{value}}",
+    "SYS-SYS-E-0006": "{{entity}} not mapped on system",
+    "SYS-SYS-E-0007": "Access forbidden",
+    "SYS-SYS-E-0008": "Concurrency error",
+    "SYS-SYS-E-0009": "The following errors have been encountered: {{errori}}",
+    "SYS-SYS-E-0010": "Errors were encountered during processing {{elaborazione_id}}",
+    "SYS-SYS-P-0011": "The processing was taken over. The outcome will be shown on the asynchronous notifications page",
+    "SYS-SYS-E-0012": null,
+
+  },
+  "DATEPICKER": {
+    "WEEKDAYS": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "MONTHS_SHORT": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "MONTHS_LONG": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  }
+}

@@ -1,0 +1,208 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"DATI_RAPPORTO.TITLE" | translate}}</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <form [formGroup]="formDatiRapportoSomm" *ngIf="showFormSomm">
+                <h1 class="dati-title">{{"COMUNICAZIONE.DATI_RAPPORTO_SOMM" | translate}}</h1>
+                <label class="mt-2 mb-4">I campi contrassegnati con <span class="asterisk">*</span> sono obbligatori</label>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataInizioRapportoSomm">{{ 'COMUNICAZIONE.RAPPORTO.FIELD.DATA_INIZIO_RAPPORTO' | translate}}</label>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-group">
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dataInizioRapportoSomm"
+                            pattern="/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g"
+                            id="dataInizioRapportoSomm"
+                            ngbDatepicker
+                            #dataInizioRapportoSomm="ngbDatepicker"
+                            maxlength="10"
+                            >
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataInizioRapportoSomm.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dataInizioRapportoSomm?.invalid && f?.dataInizioRapportoSomm?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="tipoRapportoSomm">{{ 'COMUNICAZIONE.RAPPORTO.FIELD.TIPO_RAPPORTO' | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <select
+                        class="form-select"
+                        formControlName="tipoRapportoSomm"
+                        id="tipoRapportoSomm">
+                            <option [ngValue]="null"></option>
+                            <!-- TODO aggiungere l'output a schermo-->
+                            <!-- <option *ngFor="let tipoRapp of listaTipiRapporto" [ngValue]="tipoRapp"></option> -->
+                            <option value="1">option 1</option>
+                            <option value="2">option 2</option>
+                            <option value="3">option 3</option>
+                            <option value="4">option 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataFineRapportoSomm">{{ 'COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_RAPPORTO' | translate}}</label>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text"
+                                class="form-control"
+                                formControlName="dataFineRapportoSomm"
+                                pattern="/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g"
+                                id="dataFineRapportoSomm"
+                                ngbDatepicker
+                                #dataFineRapportoSomm="ngbDatepicker"
+                                maxlength="10"
+                                >
+                                <div class="input-group-append">
+                                <button
+                                    class="btn btn-outline-primary calendar"
+                                    (click)="dataFineRapportoSomm.toggle()"
+                                    type="button">
+                                    <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                                </div>
+                            </div>
+                            <div *ngIf="f?.dataFineRapportoSomm?.invalid && f?.dataFineRapportoSomm?.value?.length > 0" class="text-danger">
+                                {{'ERROR.INVALID_DATE' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="dataFinePeriodoFormativoSomm">{{ 'COMUNICAZIONE.RAPPORTO.FIELD.DATA_FINE_PERIODO_FORMATIVO' | translate}}</label>
+                    </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                        <div class="form-group">
+                        <div class="input-group">
+                            <input type="text"
+                            class="form-control"
+                            formControlName="dataFinePeriodoFormativoSomm"
+                            pattern="/^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g"
+                            id="dataFinePeriodoFormativoSomm"
+                            ngbDatepicker
+                            #dataFinePeriodoFormativoSomm="ngbDatepicker"
+                            maxlength="10"
+                            >
+                            <div class="input-group-append">
+                            <button
+                                class="btn btn-outline-primary calendar"
+                                (click)="dataFinePeriodoFormativoSomm.toggle()"
+                                type="button">
+                                <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                            </div>
+                        </div>
+                        <div *ngIf="f?.dataFinePeriodoFormativoSomm?.invalid && f?.dataFinePeriodoFormativoSomm?.value?.length > 0" class="text-danger">
+                            {{'ERROR.INVALID_DATE' | translate}}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ALTRI DATI SOMM -->
+                <h1 class="dati-title">{{"COMUNICAZIONE.ALTRI_DATI" | translate}}</h1>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="numMatricola">{{ "COMUNICAZIONE.ALTRI.FIELD.NUM_MATRICOLA" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="numMatricola"
+                                id="numMatricola"
+                                maxlength="50">
+                            <div *ngIf="f?.numMatricola?.errors" class="text-danger">
+                            <div *ngIf="f?.numMatricola?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="entePrevidenzialeSomm">{{ 'COMUNICAZIONE.INQUADRAMENTO.FIELD.ENTE_PREVIDENZIALE' | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <select
+                        class="form-select"
+                        formControlName="entePrevidenzialeSomm"
+                        id="entePrevidenzialeSomm">
+                            <option [ngValue]="null"></option>
+                            <!-- TODO aggiungere l'output a schermo-->
+                            <!-- <option *ngFor="let tipoRapp of listaTipiRapporto" [ngValue]="tipoRapp"></option> -->
+                            <option value="1">option 1</option>
+                            <option value="2">option 2</option>
+                            <option value="3">option 3</option>
+                            <option value="4">option 4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="codEntePrevidenzialeSomm">{{ "COMUNICAZIONE.INQUADRAMENTO.FIELD.COD_ENTE_PREVIDENZIALE" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="codEntePrevidenzialeSomm"
+                                id="codEntePrevidenzialeSomm"
+                                maxlength="50">
+                            <div *ngIf="f?.codEntePrevidenzialeSomm?.errors" class="text-danger">
+                            <div *ngIf="f?.codEntePrevidenzialeSomm?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-8 col-md-3">
+                        <label class="field" for="indennita">{{ "COMUNICAZIONE.ALTRI.FIELD.INDENNITA" | translate}}</label>
+                    </div>
+                    <div class="form-group col-sm-8 col-md-3">
+                        <input type="text"
+                                class="form-control"
+                                formControlName="indennita"
+                                id="indennita"
+                                maxlength="50">
+                            <div *ngIf="f?.indennita?.errors" class="text-danger">
+                            <div *ngIf="f?.indennita?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="field" for="lavoratoreMob">{{ "COMUNICAZIONE.ALTRI.FIELD.LAVORATORE_MOBILITA" | translate}} <span class="asterisk">*</span></label>
+                    </div>
+                    <div class="form-group ml-4">
+                        <div class="row">
+                        <div class="form-check form-check-inline">
+                            <input name="lavoratoreMob" type="radio" id="Si">
+                            <label class="radio-button" for="Si">Si</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="lavoratoreMob" type="radio" id="No">
+                            <label class="radio-button" for="No">No</label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

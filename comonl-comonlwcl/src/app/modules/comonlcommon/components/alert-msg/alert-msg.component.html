@@ -1,0 +1,18 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div *ngIf="hide">
+  <div *ngIf="typeMsg === 'S'" class="alert alert-success" role="alert" aria-atomic="true">
+    <span *ngFor="let msg of listMsg" [innerHTML]= "msg | escapeHtml"></span>
+  </div>
+  <div *ngIf="typeMsg === 'D'" class="alert alert-danger" role="alert" aria-atomic="true">
+    <span *ngFor="let msg of listMsg" [innerHTML]= "msg | escapeHtml"></span>
+  </div>
+  <div *ngIf="typeMsg === 'W'" class="alert alert-warning" role="alert" aria-atomic="true">
+    <span *ngFor="let msg of listMsg" [innerHTML]= "msg | escapeHtml"></span>
+  </div>
+  <div *ngIf="typeMsg === 'I'" class="alert alert-info" role="alert" aria-atomic="true">
+    <span *ngFor="let msg of listMsg" [innerHTML]= "msg | escapeHtml"></span>
+  </div>
+</div>

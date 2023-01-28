@@ -1,0 +1,244 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg"> *</span> sono obbligatori</p>
+<form [formGroup]="formRicerca" *ngIf="showForm">
+    <div class="row">
+      <div class="form-group col-sm-12 col-md-2">
+        <label for="tipoVariazione">{{ 'VARDATORI.RICERCA.FIELD.TIPO_VARIAZIONE' | translate}}</label>
+      </div>
+      <div class="form-group col-sm-12 col-md-4">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="tipoVariazione" [value]="'A'" type="radio" name="tipoVariazione" id="cons">
+            <label class="form-check-label" for="anagrafico">
+              {{ 'VARDATORI.RICERCA.FIELD.RAGIONE_SOC' | translate}}
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" formControlName="tipoVariazione" [value]="'T'" type="radio" name="tipoVariazione" id="studioProf">
+            <label class="form-check-label" for="trasferimento">
+              {{ 'VARDATORI.RICERCA.FIELD.DATORE_LAVORO' | translate}}
+            </label>
+          </div>
+          <!-- div *ngIf="fDatiAzienda.controls.flgProspettoDaCapogruppo.errors" class="text-danger">
+            <div *ngIf="fDatiAzienda.controls.flgProspettoDaCapogruppo.errors.required">{{'ERROR.FIELD.REQUIRED' | translate}}</div>
+          </div -->
+    </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cfAzienda">{{ "COMUNICAZIONE.RICERCA.FIELD.CF_AZIENDA" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codiceFiscaleAzienda"
+                    oninput="this.value = this.value.toUpperCase().trim()"
+                    id="cfAzienda"
+                    maxlength="16">
+                <div *ngIf="f?.codiceFiscaleAzienda?.errors" class="text-danger">
+                  <div *ngIf="f?.codiceFiscaleAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-8">
+            <label for="denomAzienda">{{ "COMUNICAZIONE.RICERCA.FIELD.DENOM_AZIENDA" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="denominazioneAzienda"
+                    oninput="this.value = this.value.toUpperCase().trim()"
+                    id="denomAzienda"
+                    maxlength="305">
+                <div *ngIf="f?.denominazioneAzienda?.errors" class="text-danger">
+                  <div *ngIf="f?.denominazioneAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="cfLavoratore">{{ "COMUNICAZIONE.RICERCA.FIELD.CF_LAVORATORE" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codiceFiscaleLavoratore"
+                    oninput="this.value = this.value.toUpperCase().trim()"
+                    maxlength="16"
+                    id="cfLavoratore">
+                <div *ngIf="f?.codiceFiscaleLavoratore?.errors" class="text-danger">
+                  <div *ngIf="f?.codiceFiscaleLavoratore?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="cognomeLavoratore">{{ "COMUNICAZIONE.RICERCA.FIELD.COGNOME_LAVORATORE" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="cognomeLavoratore"
+                    oninput="this.value = this.value.toUpperCase()"
+                    id="cognomeLavoratore"
+                    maxlength="70">
+                <div *ngIf="f?.cognomeLavoratore?.errors" class="text-danger">
+                  <div *ngIf="f?.cognomeLavoratore?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="nomeLavoratore">{{ "COMUNICAZIONE.RICERCA.FIELD.NOME_LAVORATORE" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="nomeLavoratore"
+                    oninput="this.value = this.value.toUpperCase()"
+                    id="nomeLavoratore"
+                    maxlength="70">
+                <div *ngIf="f?.nomeLavoratore?.errors" class="text-danger">
+                  <div *ngIf="f?.nomeLavoratore?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-5">
+            <label>{{ 'COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_INS.TITLE' | translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="text"
+                          class="form-control"
+                          formControlName="dataInvioInserimentoDa"
+                          id="dataInvioInserimentoDa"
+                          placeholder="{{ 'COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_DA' | translate}}"
+                          ngbDatepicker
+                          #d_invioInserimentoDa="ngbDatepicker"
+                          maxlength="10">
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-outline-primary calendar"
+                            (click)="d_invioInserimentoDa.toggle()"
+                            type="button">
+                            <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                        </div>
+                      </div>
+                      <div *ngIf="(f?.dataInvioInserimentoDa?.invalid && f?.dataInvioInserimentoDa?.value?.length > 0)" class="text-danger">
+                        {{'ERROR.INVALID_DATE' | translate}}
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="text"
+                          class="form-control"
+                          formControlName="dataInvioInserimentoA"
+                          id="dataInvioInserimentoA"
+                          placeholder="{{ 'COMUNICAZIONE.RICERCA.FIELD.DATA_INVIO_A' | translate}}"
+                          ngbDatepicker
+                          #d_invioInserimentoA="ngbDatepicker"
+                          maxlength="10">
+                        <div class="input-group-append">
+                          <button
+                            class="btn btn-outline-primary calendar"
+                            (click)="d_invioInserimentoA.toggle()"
+                            type="button">
+                            <span class="sr-only">{{"APP.DATE_PICKER.APRI_CALENADRIO" | translate}}</span><i class="far fa-calendar-alt fa-lg"></i></button>
+                        </div>
+                      </div>
+                      <div *ngIf="f?.dataInvioInserimentoA?.invalid && f?.dataInvioInserimentoA?.value?.length > 0" class="text-danger">
+                        {{'ERROR.INVALID_DATE' | translate}}
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-6">
+            <label for="statoComunicaziones">{{ 'COMUNICAZIONE.RICERCA.FIELD.STATO_COM' | translate}}</label>
+              <ul class="list-inline">
+                <li *ngFor="let statoC of statiComunicazione; index as i" class="list-inline-item">
+                  <input type="checkbox"
+                  formControlName="statoComunicaziones"
+                  [checked]="checkSelectedStates(statoC?.id)"
+                  (change)="selectRemoveStato(statoC)"
+                  class="form-check-input" id="{{'option'+i}}">
+                  <label for="{{'option'+i}}">{{statoC?.dsComTStatoComunicazione}}</label></li>
+              </ul>
+          </div>
+    </div>
+    <div *ngIf="isInvalidDate(f?.dataInvioInserimentoDa?.value, f?.dataInvioInserimentoA?.value)" class="text-danger">
+      {{'ERROR.RANGE_DATE' | translate}}
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="codiceRegionale">{{ "COMUNICAZIONE.RICERCA.FIELD.COD_REG" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="codiceRegionale"
+                    oninput="this.value = this.value.toUpperCase().trim()"
+                    id="codiceRegionale"
+                    maxlength="16">
+            <div *ngIf="f?.codiceRegionale?.errors" class="text-danger">
+              <div *ngIf="f?.codiceRegionale?.errors?.minlength">{{"ERROR.FIELD.LENGHT_COD_REG" | translate}}</div>
+            </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-3">
+            <label for="tipoComunicazioneTu">{{ 'COMUNICAZIONE.RICERCA.FIELD.ANNULL_RETT' | translate}}</label>
+            <select
+              class="form-select"
+              formControlName="tipoComunicazioneTu"
+              id="tipoComunicazioneTu">
+                  <option [ngValue]="null"></option>
+                  <option *ngFor="let tipoCTu of listaTipoComunicazioneTU" [ngValue]="tipoCTu">{{tipoCTu?.dsComTTipoComunicazione}}</option>
+                </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-12 col-md-4">
+            <label for="provinciaProtocollo">{{ 'COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_PROV' | translate}}</label>
+            <select
+              class="form-select"
+              (change)="setControlStateDatiProtoccollo()"
+              formControlName="provinciaProtocollo"
+              id="provinciaProtocollo">
+                  <option [ngValue]="null"></option>
+                  <option *ngFor="let prov of listaProvince" [ngValue]="prov">{{prov?.dsComTProvincia}}</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="annoProtocollo">{{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_ANNO" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    (change)="setControlStateNumeroProtocollo()"
+                    comonlDigitOnly
+                    formControlName="annoProtocollo"
+                    id="annoProtocollo"
+                    maxlength="4">
+                    <div *ngIf="f?.annoProtocollo?.errors" class="text-danger">
+                      <div *ngIf="f?.annoProtocollo?.errors?.required">{{ "COMUNICAZIONE.RICERCA.VALIDATORS.PROTOCOLLO_ANNO_REQUIRED" | translate}}</div>
+                    </div>
+        </div>
+        <div class="form-group col-sm-12 col-md-2">
+            <label for="numeroProtocollo">{{ "COMUNICAZIONE.RICERCA.FIELD.PROTOCOLLO_NUMERO" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    comonlDigitOnly
+                    formControlName="numeroProtocollo"
+                    id="numeroProtocollo"
+                    maxlength="7">
+                    <div *ngIf="f?.numeroProtocollo?.errors" class="text-danger">
+                      <div *ngIf="f?.numeroProtocollo?.errors?.required">{{ "COMUNICAZIONE.RICERCA.VALIDATORS.PROTOCOLLO_NUMERO_REQUIRED" | translate}}</div>
+                    </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickReset()">{{ 'APP.REMOVE_FILTERS' | translate | uppercase}}</button>
+    </div>
+    <!-- <div class="col-auto">
+        <button type="button"
+          class="btn btn-primary ml-auto btn-lg"
+          (click)="goToNuovaComunicazione()"
+          >{{ 'APP.NEW_COM' | translate }}</button>
+      </div> -->
+    <div class="col-auto">
+      <button type="button"
+        class="btn btn-primary ml-auto btn-lg"
+        (click)="onSubmit()"
+        [disabled]="!formRicerca?.valid || dataNonValida === true"
+        >{{ 'APP.SEARCH' | translate }}</button>
+    </div>
+</div>

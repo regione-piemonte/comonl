@@ -1,0 +1,8 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="alert alert-danger mt-5 mb-5" role="alert">
+  <h4>{{ 'ERROR.ERROR_TITLE' | translate }}</h4>
+  <p *ngFor="let error of errors">{{ error.code | translate:error.params }}</p>
+</div>

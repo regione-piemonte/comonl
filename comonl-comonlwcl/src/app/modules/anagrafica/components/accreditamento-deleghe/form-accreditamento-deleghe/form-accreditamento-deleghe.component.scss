@@ -1,0 +1,45 @@
+/*
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+* SPDX-License-Identifier: EUPL-1.2
+*/
+.titolo {
+    font-size: 1.5rem;
+}
+
+i {
+    color: #005ca9;
+    font-size: 14pt;
+}
+
+#delete {
+    color: rgb(170, 44, 36);;
+}
+
+table {
+    display: table;
+}
+
+thead {
+    font-size: large;
+}
+
+.asterisk {
+    color: rgb(170, 44, 36);
+    font-weight: bold;
+}
+
+.form-control {
+    text-transform: uppercase;
+}
+
+#search {
+    width: 6rem;
+}
+
+#new {
+    width: 10rem;
+}
+
+#export {
+    width: 16rem;
+}

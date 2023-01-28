@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<!-- <a  clickable (click)="onClickGoBackToRicerca()"><i class="fas fa-arrow-left"></i><span>{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</span></a> -->
+<!-- <em data-scroll-marker="navMainComunicazione"></em> -->
+<div class="container">
+  <div class="torna">
+    <button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickGoBackToRicerca()">{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</button>
+  </div>
+
+  <ul ngbNav #nav="ngbNav" [(activeId)]="this.currentIndex" (navChange)="onNavChange($event)" class="stepper">
+    <li *ngFor="let q of quadri;index as index"[ngbNavItem]="index" [disabled]=" !VIEW_MODE && index > currentIndex" >
+      <!-- <li *ngFor="let q of quadri;index as index"[ngbNavItem]="index" > -->
+        <a ngbNavLink> <span>{{getTabIndex(index)}}</span> {{q?.data?.title | translate}}</a>
+      </li>
+    </ul>
+  <br>
+  <br>
+  <ng-template
+    ngbNavContent
+    comonlAddQuadro>
+  </ng-template>
+  <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  <div class="mb-3 text-right">
+    <button class="btn btn-sm btn-primary" (click)="onClickNavChange(nav)">{{ nextButtonText }}</button>
+  </div> -->
+</div>

@@ -1,0 +1,28 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+  <h2 class="col-10"><i style="color: #005ca9;" class="fas fa-user-tie mr-2"></i>{{"ANAGRAFICA_LAVORATORE.TITLE" | translate}}</h2>
+  <div class="col-auto ml-auto">
+    <button type="button" (click)="goToAnagrafica('inserimento')" class="btn btn-primary ml-auto btn-lg">{{
+      'ANAGRAFICA_LAVORATORE.BUTTON.NEW_LAVORATORE' | translate }}</button>
+    </div>
+  </div>
+  <comonl-alert-message></comonl-alert-message>
+
+<ngb-accordion #accordionRicerca
+  activeIds="panelRicerca"
+  id="accordion-ricerca"
+  [closeOthers]="true"
+  [destroyOnHide]="false">
+  <ngb-panel title="Criteri ricerca" id="panelRicerca">
+      <ng-template ngbPanelContent let-opened="opened">
+       <comonl-form-ricerca-lavoratore
+        [wrapperHelper]="wrapperHelper"
+        [parametriNavigazione]="parametriNavigazione"
+        [cfLavoratoreSilp]="cfLavoratoreSilp"
+       ></comonl-form-ricerca-lavoratore>
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>

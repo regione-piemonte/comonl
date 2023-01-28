@@ -1,0 +1,13 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_CESSAZIONE" | translate}}</h4>
+        <div class="row lettura">
+            <div class="col-sm-12 col-md-4"> {{ "CESSAZIONE.FIELD.DATA_CESSAZIONE" | translate}} <span class="valore">{{(this.comunicazioneToSave?.missione ? this.comunicazioneToSave?.missione?.dtCessazione : this.comunicazioneToSave?.rapporto?.dtCessazione) | date: 'dd/MM/yyyy'}}</span></div>
+        </div>
+        <div class="row lettura">
+            <div class="col-sm-12 col-md-4"> {{ "CESSAZIONE.FIELD.MOTIVO_CESSAZIONE" | translate}} <span class="valore">{{this.comunicazioneToSave?.missione ? this.comunicazioneToSave?.missione?.cessazionerl?.dsComTCessazionerl : this.comunicazioneToSave?.rapporto?.cessazionerl?.dsComTCessazionerl}}</span></div>
+        </div>
+</div>

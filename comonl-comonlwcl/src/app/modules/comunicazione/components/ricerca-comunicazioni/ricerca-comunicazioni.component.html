@@ -1,0 +1,29 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="row">
+  <h2 class="col-10"><i style="color: #005ca9;" class="fas fa-user-tie mr-2"></i>{{"RICERCA_COMUNICAZIONI.TITLE" | translate}}</h2>
+  <div class="col-auto ml-auto">
+    <button type="button" (click)="openModal()" class="btn btn-primary ml-auto btn-lg">{{
+      'APP.NEW_COM' | translate }}</button>
+    </div>
+  </div>
+  <comonl-alert-message></comonl-alert-message>
+
+<ngb-accordion #accordionRicercaComunicazioni
+  activeIds="panelRicercaComunicazioni"
+  id="accordion-ricerca-comunicazioni"
+  [closeOthers]="true"
+  [destroyOnHide]="false">
+  <ngb-panel title="Criteri ricerca" id="panelRicercaComunicazioni">
+      <ng-template ngbPanelContent let-opened="opened">
+       <comonl-form-ricerca-comunicazioni [formPristine]="formPristine" [formRicercaComunicazione]="formRicercaComunicazione"
+       (datiRicerca)="onCerca($event)" (resetForm)="onResetForm()">
+       </comonl-form-ricerca-comunicazioni>
+      </ng-template>
+    </ngb-panel>
+</ngb-accordion>
+<comonl-risultati-ricerca-comunicazioni 
+  *ngIf="ricercaEffettuata" [formRicercaComunicazione]="ricercaComunicazioneToSend" [pagedResponse]="pagedResponse" [currentPaginationData]="currentPaginationData"
+  (changePaginationData)="onChangePaginationData($event)" (eliminaComunicazioneNotify)="eliminaComunicazione($event)"></comonl-risultati-ricerca-comunicazioni>

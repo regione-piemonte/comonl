@@ -1,0 +1,180 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<button type="button" class="btn btn-outline-secondary btn-sm"
+          (click)="onClickGoBackToRicerca()">{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate | uppercase}}</button>
+<!-- <a  clickable (click)="onClickGoBackToRicerca()"><i class="fas fa-arrow-left"></i><span>{{ 'NAV_MAIN_COMUNICAZIONE.FIELD.TORNA_ELENCO' | translate}}</span></a> -->
+
+<div class="container">
+    <h2><i style="color: #005ca9;" class="fas fa-edit mr-2"></i>{{"STUDIO_PROF.TITLE" | translate}}</h2>
+    <comonl-alert-message></comonl-alert-message>
+    <div class="card">
+        <div class="card-body">
+            <p>{{"APP.OBLIGATORIETA_CAMPI" | translate}}<span class="oblg">*</span> sono obbligatori</p>
+            <form *ngIf="form" [formGroup]="form">
+                <h4>{{"STUDIO_PROF.SUB_TITLE.DATI_GENERALI" | translate}}</h4>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="cf">{{ "STUDIO_PROF.FIELD.CF"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" formControlName="cfSoggetto" oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cf" maxlength="16">
+                        <!-- <div *ngIf="f?.cfSoggetto?.touched && f?.cfSoggetto?.errors" class="text-danger">
+                            <div *ngIf="f?.cfSoggetto?.errors?.pattern">{{"ERROR.FIELD.NOT_VALID_FORMAT" | translate}}</div>
+                        </div> -->
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label for="partitaIva">{{ "STUDIO_PROF.FIELD.PARTITA_IVA"| translate}}</label>
+                        <input type="text" formControlName="partitaIva" class="form-control" id="partitaIva" maxlength="11">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label for="denom">{{ "STUDIO_PROF.FIELD.DENOMINAZIONE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                        <input type="text" formControlName="cognomeDenominazione" class="form-control" id="denom" maxlength="300">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <label for="denom">{{ "STUDIO_PROF.FIELD.ACCENTRAMENTO"| translate}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-6">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="flgAccentramento" [value]="'S'" type="radio" id="flgAccertamentoS">
+                          <label class="form-check-label" for="flgAccertamentoS">
+                            {{ "STUDIO_PROF.FIELD.ACCENTR_S"| translate}}
+                          </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" formControlName="flgAccentramento"  [value]="'N'" type="radio" id="flgAccertamentoN">
+                          <label class="form-check-label" for="flgAccertamentoN">
+                            {{ "STUDIO_PROF.FIELD.FLG_ACCENTR_N"| translate}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-12 col-md-8">
+                        <label for="tipoStudioProf">{{ 'STUDIO_PROF.FIELD.TIPO_STUDIO_PROF' | translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                        <select
+                          class="form-select"
+                          formControlName="tipoSoggettoAbilitato"
+                          id="tipoStudioProf">
+                              <option [ngValue]="null"></option>
+                              <option *ngFor="let tipoS of tipoSoggettoAbilitatos" [ngValue]="tipoS">{{tipoS?.dsComTipoSoggettoAbilitato}}</option>
+                        </select>
+                    </div>
+                </div>
+                <h5>{{"STUDIO_PROF.SUB_TITLE.SEDE_LEGALE" | translate}}</h5>
+                    <div class="row">
+                            <div class="form-group col-sm-12 col-md-3" formGroupName="comune">
+                                <label for="codComune">{{ "STUDIO_PROF.FIELD.COMUNE_COD"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                                <input type="text" (change)="f?.comune?.controls?.id?.setValue(null)" formControlName="codComuneMin" class="form-control" maxlength="4" id="codComune">
+                                <div *ngIf="f?.comune?.controls?.codComuneMin?.errors" class="text-danger">
+                                    <div *ngIf="f?.comune?.controls?.codComuneMin?.errors?.minlength && f?.comune?.controls?.dsComTComune?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-7" formGroupName="comune">
+                                <label for="descrComune">{{ "STUDIO_PROF.FIELD.COMUNE"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                                <input type="text" (change)="f?.comune?.controls?.id?.setValue(null)" formControlName="dsComTComune" class="form-control" id="descrComune" maxlength="100">
+                                <div *ngIf="f?.comune?.controls?.dsComTComune?.errors" class="text-danger">
+                                    <div *ngIf="f?.comune?.controls?.dsComTComune?.errors?.minlength && f?.comune?.controls?.codComuneMin?.value?.length < 3">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-2">
+                                <button
+                                *ngIf="!VIEW_MODE"
+                                [disabled]="!(f?.comune?.controls?.codComuneMin?.value?.length > 2 || f?.comune?.controls?.dsComTComune?.value?.length > 2)"
+                                (click)="onClickFindComune()"
+                                class="btn btn-outline-primary mt-lg-btn-form">{{"APP.SEARCH" | translate}}</button>
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-7">
+                            <label for="indirizzoSp">{{ "STUDIO_PROF.FIELD.INDIRIZZO"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                            <input type="text" formControlName="indirizzo" maxlength="100" class="form-control" id="indirizzoSp">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="capSp">{{ "STUDIO_PROF.FIELD.CAP"| translate}}<span class="oblg" title="campo obbligatorio">*</span></label>
+                            <input type="text" formControlName="cap" maxlength="5" class="form-control" comonlDigitOnly id="capSp" maxlength="5">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label for="tel">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.TEL"| translate}} </label>
+                            <input comonlDigitOnly type="text" formControlName="tel" class="form-control" maxlength="15" id="tel">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label for="fax">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.FAX"| translate}}</label>
+                            <input comonlDigitOnly type="text" formControlName="fax" class="form-control" maxlength="15" id="fax">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-4">
+                            <label for="mail">{{ "ACCREDITAMENTO_CONSULENTE.FIELD.MAIL"| translate}} <span class="oblg" title="campo obbligatorio">*</span></label>
+                            <input type="text" formControlName="email" pattern="([A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-z0-9!#-'\*\+\-/=\?\^_`\{-~]+)*)?" class="form-control" maxlength="50" id="mail">
+                            <div *ngIf="f?.email?.errors" class="text-danger">
+                                <div *ngIf="f?.email?.errors?.pattern">{{"ERROR.INVALID_EMAIL" | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+            <!-- solo in modifica e visualizzazione -->
+            <div *ngIf="!INS_MODE">
+                <h4>{{"STUDIO_PROF.SUB_TITLE.ELENCO_CONS" | translate}}</h4>
+                <form *ngIf="cfForm" [formGroup]="cfForm" (ngSubmit)="onClickAddConsulente()">
+                <div class="row" *ngIf="EDIT_MODE">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <label for="cfImp">{{ "STUDIO_PROF.FIELD.CF"| translate}}</label>
+                            <input type="text" formControlName="cf" oninput="this.value = this.value.toUpperCase().trim()" class="form-control" id="cfImp" maxlength="16">
+                        </div>
+                        <div class="form-group col-sm-12 col-md-3">
+                            <button
+                            [disabled]="cfF?.cf?.value?.length < 11"
+                            class="btn btn-outline-primary mt-lg-btn-form"
+                            >{{"STUDIO_PROF.BUTTON.ADD_CONS" | translate}}</button>
+                        </div>
+                    </div>
+                </form>
+                <comonl-paginated-array-table [columnNumber]="VIEW_MODE ? 4 : 5" [pagedResponse]="anagraficaDelegatos" [limit]="5">
+                    <ng-template comonlPaginationHead>
+                      <tr>
+                        <th>{{'STUDIO_PROF.TABLE.FIELD.CF' | translate }}</th>
+                        <th>{{'STUDIO_PROF.TABLE.FIELD.NOME' | translate }}</th>
+                        <th>{{'STUDIO_PROF.TABLE.FIELD.COGNOME' | translate }}</th>
+                        <th>{{'STUDIO_PROF.TABLE.FIELD.ANNULLATO' | translate }}</th>
+                        <th *ngIf="!VIEW_MODE">{{'STUDIO_PROF.TABLE.FIELD.AZIONI' | translate }}</th>
+                      </tr>
+                    </ng-template>
+                    <ng-template comonlPaginationBody let-item>
+                      <tr>
+                        <td>{{item?.id?.cfDelegato}}</td>
+                        <td>{{item?.nome}}</td>
+                        <td>{{item?.cognome}}</td>
+                        <td>{{ (item?.dataAnnullamento ? item?.dataAnnullamento : "" )| date: 'dd/MM/yyyy'}}</td>
+                        <td *ngIf="!VIEW_MODE">
+                            <a *ngIf="!VIEW_MODE && !item?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0001')" title="Elimina"><i class="fas fa-trash-alt"></i></a>
+                            <a *ngIf="!VIEW_MODE && item?.dataAnnullamento" (click)="onClickAnnullaRipristina(item,'MESSAGES.SYS-SYS-A-0002')" title="ripristina"><i class="fas fa-arrow-alt-circle-left"></i></a>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </comonl-paginated-array-table>
+            </div>
+            <div *ngIf="!VIEW_MODE && form" class="row">
+                <div class="col-auto">
+                    <button
+                    type="button"
+                    (click)="onClickReset()"
+                    class="btn btn-outline-primary btn-sm"
+                    >{{ 'APP.FIND_CANCEL' | translate }}</button>
+                  </div>
+                <div class="col-auto ml-auto">
+                  <button type="button"
+                    [disabled]="!form?.valid"
+                    class="btn btn-primary ml-auto btn-lg"
+                    (click)="onClickSubmit()"
+                    >{{ 'APP.CONFIRM' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

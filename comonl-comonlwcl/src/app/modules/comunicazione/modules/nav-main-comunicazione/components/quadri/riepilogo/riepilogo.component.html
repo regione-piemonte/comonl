@@ -1,0 +1,170 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="riepilogo"></em>
+<div class="container">
+  <h2><i style="color: #005ca9;" class="fas fa-list-alt mr-2"></i>{{"RIEPILOGO.TITLE" | translate}}</h2>
+  <comonl-alert-message></comonl-alert-message>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="formRiepilogo" (ngSubmit)="onSubmit()">
+        <ngb-accordion #accordionRiepilogoDatiGenerali activeIds="panelDatiGenerali" id="comonl-riepilogo-dati-generali"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="!this.REQUIRED_DATI_GENERALI_VARDATORI">
+          <ngb-panel title="Dati Generali">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-generali [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-generali>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <!-- DATI GENERALI VARDATORI -->
+        <ngb-accordion #accordionRiepilogoDatiGeneraliVardatori activeIds="panelDatiGeneraliVardatori"
+          id="comonl-riepilogo-dati-generali-vardatori" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_DATI_GENERALI_VARDATORI">
+          <ngb-panel title="Dati Generali Vardatori">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-generali-vardatori [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-generali-vardatori>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiAzienda activeIds="panelDatiAzienda" id="comonl-riepilogo-dati-azienda"
+          [closeOthers]="true" [destroyOnHide]="false">
+          <ngb-panel title="Dati azienda">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-azienda [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-azienda>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiAziendaUtilizzatrice activeIds="panelDatiAziendaUtilizzatrice"
+          id="comonl-riepilogo-dati-azienda-utilizzatrice" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_AZIENDA_UTILIZZATRICE">
+          <ngb-panel title="Dati azienda utilizzatrice">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-azienda-utilizzatrice [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-azienda-utilizzatrice>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiLavoratore activeIds="panelDatiLavoratore"
+          id="comonl-riepilogo-dati-lavoratore" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_LAVORATORE">
+          <ngb-panel title="Dati Lavoratore">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-lavoratore [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-lavoratore>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiRapporto activeIds="panelDatiRapporto" id="comonl-riepilogo-dati-rapporto"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_RAPPORTO_LAVORO">
+          <ngb-panel title="Dati Rapporto">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-rapporto [variazioneSomm]="variazioneSomm" [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-rapporto>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion  #accordionRiepilogoDatiTutore activeIds="panelDatiTutore" id="comonl-riepilogo-dati-tutore"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="TUTORE">
+          <ngb-panel title="Dati Tutore">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-tutore [comunicazione]="comunicazione" [comunicazioneToSave]="comunicazioneToSave">
+              </comonl-riepilogo-dati-tutore>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiMissione activeIds="panelDatiMissione" id="comonl-riepilogo-dati-missione"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_DATI_MISSIONE">
+          <ngb-panel title="Dati Missione">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-missione [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-missione>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiTrasformazione activeIds="panelDatiTrasformazione"
+          id="comonl-riepilogo-dati-trasformazione" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_TRASFORMAZIONE">
+          <ngb-panel title="Dati Trasformazione">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-trasformazione [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-trasformazione>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiTrasferimento activeIds="panelDatiTrasferimento"
+          id="comonl-riepilogo-dati-trasferimento" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_TRASFERIMENTO">
+          <ngb-panel title="Dati Trasferimento">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-trasferimento [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-trasferimento>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiDistacco activeIds="panelDatiDistacco" id="comonl-riepilogo-dati-distacco"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_DISTACCO">
+          <ngb-panel title="Dati Distacco">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-distacco [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-distacco>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiProroga activeIds="panelDatiProroga" id="comonl-riepilogo-dati-proroga"
+          [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_PROROGA">
+          <ngb-panel title="Dati Proroga">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-proroga [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-proroga>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiCessazione activeIds="panelDatiCessazione"
+          id="comonl-riepilogo-dati-cessazione" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_CESSAZIONE">
+          <ngb-panel title="Dati Cessazione">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-dati-cessazione [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-dati-cessazione>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <!-- VARDATORI -->
+        <ngb-accordion #accordionRiepilogoDatiVariazioneRagioneSociale activeIds="panelDatiVariazioneRagioneSociale"
+          id="comonl-riepilogo-dati-variazione-ragione-sociale" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_VARIAZIONE_RAGIONE_SOCIALE">
+          <ngb-panel title="Dati Variazione Ragione sociale">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-variazione-ragione-sociale [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-variazione-ragione-sociale>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiVariazioneDatoreLavoro activeIds="panelDatiVariazioneDatoreLavoro"
+          id="comonl-riepilogo-dati-variazione-datore-lavoro" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_VARIAZIONE_DATORE_LAVORO">
+          <ngb-panel title="Dati Variazione Datore lavoro">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-variazione-datore-lavoro [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-variazione-datore-lavoro>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+        <ngb-accordion #accordionRiepilogoDatiSediLavoratoriVardatori activeIds="panelDatiSediLavoratoriVardatori"
+          id="comonl-riepilogo-dati-sedi-lavoratori-vardatori" [closeOthers]="true" [destroyOnHide]="false" *ngIf="this.REQUIRED_VARIAZIONE_SEDI_LAVORATORI">
+          <ngb-panel title="Dati Sedi e lavoratori Vardatori">
+            <ng-template ngbPanelContent>
+              <comonl-riepilogo-sedi-lavoratori-vardatori [comunicazione]="comunicazione"
+                [comunicazioneToSave]="comunicazioneToSave"></comonl-riepilogo-sedi-lavoratori-vardatori>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </form>
+      <div *ngIf="this.comunicazioneToSave?.statoComunicazione?.dsComTStatoComunicazione=== 'INSERITA'">
+        <div class="row">
+          <div class="col-10"><p hidden>space</p></div>
+          <div class="col-auto ml-auto">
+            <button type="button"
+                (click)="onClickInviaComunicazione(this.comunicazioneToSave, 'MESSAGES.SYS-SYS-A-0009')"
+                class="btn btn-primary ml-auto btn-lg">{{ 'APP.SEND_COMUNICAZIONE' | translate }}</button>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>

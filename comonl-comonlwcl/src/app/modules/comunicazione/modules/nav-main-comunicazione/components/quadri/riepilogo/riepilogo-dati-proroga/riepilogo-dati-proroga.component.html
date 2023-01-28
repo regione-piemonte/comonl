@@ -1,0 +1,10 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<div class="card-body p-1">
+    <h4 class="title">{{"COMUNICAZIONE.DATI_PROROGA" | translate}}</h4>
+    <div class="row lettura">
+        <div class="col-sm-12 col-md-4"> {{ "PROROGA.FIELD.DATA_FINE_PROROGA" | translate}} <span class="valore">{{(comunicazioneToSave?.missione ? comunicazioneToSave?.missione?.dtFineProroga : comunicazioneToSave?.rapporto?.dtFineProroga) | date: 'dd/MM/yyyy'}}</span></div>
+    </div>
+</div>

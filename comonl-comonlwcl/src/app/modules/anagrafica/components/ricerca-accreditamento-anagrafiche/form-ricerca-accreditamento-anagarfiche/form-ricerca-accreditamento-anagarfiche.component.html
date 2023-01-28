@@ -1,0 +1,161 @@
+<!--
+SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
+SPDX-License-Identifier: EUPL-1.2
+-->
+<em data-scroll-marker="top-page"></em>
+<div class="row">
+  <div class="col-auto">
+    <fieldset>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <input type="radio"
+          name="tipoRicerca"
+          data-group='tipo'
+          id="tipoRicerca_1"
+          (change)="selectTipoForm('Consulente')"
+          [checked]="tipoForm === 'Consulente'"
+          class="form-check-input">
+          <label for="tipoRicerca_1">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DATI_CONS" | translate}}</label>
+        </li>
+        <li class="list-inline-item ml-4">
+          <input type="radio"
+          name="tipoRicerca"
+          data-group='tipo'
+          id="tipoRicerca_2"
+          (change)="selectTipoForm('StudioProf')"
+          [checked]="tipoForm === 'StudioProf'"
+          class="form-check-input">
+          <label for="tipoRicerca_2">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.STUDIO_PROF" | translate}}</label>
+        </li>
+      </ul>
+    </fieldset>
+  </div>
+</div>
+<div>
+  <div *ngIf="showForm" class="card col-11 mx-auto">
+    <div class="card-body">
+      <form *ngIf="showForm" [formGroup]="formRicercaConsulenteProf" (ngSubmit)="onSubmit()">
+        <p>{{"ACCREDITAMENTO_ANAGRAFICHE.RICERCA.DESCR_CRITERI" | translate}}</p>
+        <div class="row">
+            <div *ngIf="this.tipoForm === 'Consulente'" class="form-group col-sm-12 col-md-4">
+                <label for="cf">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}</label>
+                    <input type="text"
+                        class="form-control"
+                        formControlName="cf"
+                        id="cf">
+                    <div *ngIf="f?.cf?.errors" class="text-danger">
+                      <div *ngIf="f?.cf?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_3" | translate}}</div>
+                    </div>
+            </div>
+            <div *ngIf="this.tipoForm === 'StudioProf'" class="form-group col-sm-12 col-md-4">
+              <label for="cfAzienda">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.CF" | translate}}</label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="cfAzienda"
+                      id="cfAzienda"
+                      maxlength="70">
+                  <div *ngIf="f?.cfAzienda?.errors" class="text-danger">
+                    <div *ngIf="f?.cfAzienda?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                  </div>
+            </div>
+            <div *ngIf="this.tipoForm === 'StudioProf'" class="form-group col-sm-12 col-md-4">
+              <label for="pIva">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.P_IVA" | translate}}</label>
+                  <input type="text"
+                      class="form-control"
+                      formControlName="pIva"
+                      id="pIva"
+                      maxlength="70">
+                  <div *ngIf="f?.pIva?.errors" class="text-danger">
+                    <div *ngIf="f?.pIva?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                  </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+          <div *ngIf="this.tipoForm === 'Consulente'" class="form-group col-sm-12 col-md-4">
+            <label for="cognome">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.COGNOME" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="cognome"
+                    id="cognome"
+                    maxlength="70">
+                <div *ngIf="f?.cognome?.errors" class="text-danger">
+                  <div *ngIf="f?.cognome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+        </div>
+          <div *ngIf="this.tipoForm === 'StudioProf'" class="form-group col-sm-12 col-md-4">
+            <label for="denom">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.DENOMINAZIONE" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="denom"
+                    id="denom"
+                    maxlength="70">
+                <div *ngIf="f?.denom?.errors" class="text-danger">
+                  <div *ngIf="f?.denom?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+          </div>
+          <div *ngIf="this.tipoForm === 'Consulente'" class="form-group col-sm-12 col-md-4">
+            <label for="nome">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.NOME" | translate}}</label>
+                <input type="text"
+                    class="form-control"
+                    formControlName="nome"
+                    id="nome"
+                    maxlength="70">
+                <div *ngIf="f?.nome?.errors" class="text-danger">
+                  <div *ngIf="f?.nome?.errors?.minlength">{{"ERROR.FIELD.MIN_LENGHT_2" | translate}}</div>
+                </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-auto">
+                <label for="annullateConsulente">{{ "ACCREDITAMENTO_ANAGRAFICHE.RICERCA.FIELD.ANN" | translate}}</label>
+            </div>
+            <div class="col-auto">
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                  <input type="checkbox"
+                  formControlName="annullate"
+                  class="form-check-input" id="annullateConsulente">
+                  <!-- <label for="{{'option'+i}}">{{statoC?.descrizione}}</label></li> -->
+              </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-outline-secondary btn-sm"
+                  (click)="onClickReset()">{{ 'APP.REMOVE_FILTERS' | translate | uppercase}}</button>
+            </div>
+            <div *ngIf="tipoForm === 'Consulente'" class="col-auto">
+              <button
+                type="button"
+                class="btn btn-primary ml-auto btn-lg"
+                (click)="onClickNuovoConsulenteDelegatoPersona()"
+                >{{ 'APP.NEW' | translate }}</button>
+            </div>
+            <div *ngIf="tipoForm === 'StudioProf'" class="col-auto">
+              <button
+                style="margin-right: 1em"
+                type="button"
+                class="btn btn-primary ml-auto btn-lg"
+                (click)="onClickNuovaAzienda()"
+                >{{ 'APP.NEW_AZIENDA' | translate }}</button>
+                <button
+                style="margin-left: 1em"
+                type="button"
+                class="btn btn-primary ml-auto btn-lg"
+                (click)="oncClickNuovoStudio()"
+                >{{ 'APP.NEW_STUDIO' | translate }}</button>
+            </div>
+            <div class="col-auto">
+              <button
+                class="btn btn-primary ml-auto btn-lg"
+                (click)="onSubmit()"
+                [disabled]="!formRicercaConsulenteProf?.valid"
+                >{{ 'APP.SEARCH' | translate }}</button>
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+

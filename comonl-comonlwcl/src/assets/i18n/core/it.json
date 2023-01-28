@@ -1,0 +1,1185 @@
+{
+  "ACCREDITAMENTO_ANAGRAFICHE": {
+    "RICERCA": {
+      "DESCR_CRITERI": "Per ricercare, completare i criteri di ricerca premere il pulsante \"Cerca\". Se nessun criterio viene indicato, verranno ricercate tutte le anagrafiche accreditate",
+      "FIELD": {
+        "ANN": "Annullate",
+        "CF": "Codice fiscale",
+        "COGNOME": "Cognome",
+        "DATI_CONS": "Dati consulente / Persona autorizzata / Delegato",
+        "DENOMINAZIONE": "Denominazione",
+        "EMAIL": "Email",
+        "FAX": "FAX",
+        "ISCR_ALBO_DATA": "Iscrizione all'albo per le agenzie di somministrazione (data)",
+        "ISCR_ALBO_NUM": "Iscrizione all'albo per le agenzie di somministrazione (numero)",
+        "NOME": "Nome",
+        "NUM_AG_SOMM": "Numero Agenzia somministrazione",
+        "P_IVA": "Partita IVA",
+        "STATO_ESTERO_CF": "Codice fiscale stato estero",
+        "STUDIO_PROF": "Dati studio professionale / Azienda",
+        "TELEFONO": "Telefono"
+      }
+    },
+    "TITLE": "Accreditamento anagrafiche"
+  },
+  "ACCREDITAMENTO_CONSULENTE": {
+    "BUTTON": {
+      "ADD_AZ": "Aggiungi azienda"
+    },
+    "FIELD": {
+      "CAP": "CAP",
+      "CF": "Codice fiscale",
+      "CITTADINANZA": "Cittadinanza",
+      "COMUNE": "Comune",
+      "COMUNE_COD": "Codice comune",
+      "COMUNE_NASCITA": "Comune di nascita",
+      "COMUNE_NASCITA_COD": "Codice comune di nascita",
+      "DATA_ANULL": "Annullato",
+      "DATA_CANC": "Data cancellazione",
+      "DATA_NASCITA": "Data di nascita",
+      "DENOM": "Denominazione",
+      "FAX": "Fax",
+      "FLG_TIPO_PROFILAZIONE": "Tipo profilazione",
+      "INDIRIZZO": "Indirizzo",
+      "MAIL": "Mail",
+      "PIVA": "Partita iva",
+      "PROV": "Provincia",
+      "STATO_EST": "Stato estero",
+      "STATO_EST_COD": "Codice stato estero",
+      "STATO_EST_NASCITA": "Stato estero di nascita",
+      "STATO_EST_NASCITA_COD": "Codice stato estero di nascita",
+      "TEL": "Tel.",
+      "TIPO_ANAGRAFICA_C": "Consulente",
+      "TIPO_ANAGRAFICA_D": "Delegato",
+      "TIPO_ANAGRAFICA_E": "Persona autorizzata",
+      "TIPO_CARICA": "Tipo carica",
+      "TIPO_SOGG": "Tipo soggetto"
+    },
+    "SUB_TITLE": {
+      "DATI_DELLA_RESIDENZA": "Dati della residenza",
+      "DATI_DOMICILIO": "Dati del domicilio",
+      "DATI_GENERALI": "Dati Generali",
+      "ELENCO_IMP": "Elenco imprese",
+      "RECAPITI": "RECAPITI",
+      "SEDE_LEGALE": "Sede legale",
+      "STUDIO_PROF": "Studio professionale"
+    },
+    "TABLE": {
+      "FIELD": {
+        "AZIONI": "Azioni",
+        "CARICA": "Carica",
+        "CF": "Codice fiscale",
+        "DENOM": "Denominazione",
+        "FLG_ANNULLATO": "Annullato"
+      }
+    },
+    "TITLE": "Accreditamento consulente, delegato, persona autorizzata"
+  },
+  "ACCREDITAMENTO_DELEGHE": {
+    "DELEGANTE": "Delegante",
+    "DELEGATO": "Delegato",
+    "IMPRESA": "Impresa",
+    "RICERCA": {
+      "FIELD": {
+        "CF_DELEGATO": "Codice fiscale",
+        "COGNOME_DELEGATO": "Cognome",
+        "DENOMINAZIONE": "Denominazione",
+        "NOME_DELEGATO": "Nome",
+        "STATO_DELEGA": "Stato Delega"
+      }
+    },
+    "STATO_DELEGA": "Stato Delega",
+    "TITLE": "Accreditamento Deleghe"
+  },
+  "ANAGRAFICA": {
+    "DATI_ANAGRAFICI_LAVORATORE": {
+      "CF": "Codice fiscale",
+      "COD_COMUNE_NASCITA": "Codice comune di nascita",
+      "COD_STATO_ESTERO_NASCITA": "Codice stato estero di nascita",
+      "COGNOME": "Cognome",
+      "COMUNE_NASCITA": "Comune di nascita",
+      "DATA_NASCITA": "Data di nascita",
+      "NOME": "Nome",
+      "SESSO": "Sesso",
+      "STATO_ESTERO_NASCITA": "Stato estero di nascita",
+      "TITLE": "Dati Anagrafici"
+    },
+    "DATI_CITTADINANZA_LAVORATORE": {
+      "CITTADINANZA": "Cittadinanza",
+      "MOTIVO_PERMESSO": "Motivo del permesso/provvedimento",
+      "NUMERO_DOCUMENTO": "Numero documento",
+      "QUESTURA": "Questura di rilascio",
+      "SCADENZA_PERMESSO": "Scadenza permesso (in assenza data rilascio)",
+      "TITOLO_SOGGIORNO": "Titolo soggiorno"
+    },
+    "DATI_DOMICILIO_LAVORATORE": {
+      "CAP_DOMICILIO": "CAP",
+      "COD_COMUNE": "Codice Comune",
+      "COMUNE_DOMICILIO": "Comune",
+      "DOMICILIO_UGUALE": "Domicilio uguale a residenza",
+      "INDIRIZZO_DOMICILIO": "Indirizzo",
+      "PROVINCIA_DOMICILIO": "Provincia",
+      "TITLE": "Dati del domicilio"
+    },
+    "DATI_FORMAZIONE_LAVORATORE": {
+      "LIVELLO_ISTRUZIONE": "Livello di istruzione",
+      "TITLE": "Formazione"
+    },
+    "DATI_MODELLO_Q": {
+      "SUBTITLE": "(Compilare in caso di lavoratore extra-comunitario)",
+      "TITLE": "Modello Q"
+    },
+    "DATI_RESIDENZA_LAVORATORE": {
+      "CAP": "CAP",
+      "COD_COMUNE": "Codice Comune",
+      "COD_STATO_ESTERO_RESIDENZA": "Codice stato estero",
+      "COMUNE_RESIDENZA": "Comune",
+      "EMAIL": "Email",
+      "FAX": "Fax",
+      "INDIRIZZO_RESIDENZA": "Indirizzo",
+      "MOTIVO_INVALIDA": "Motivo invalidazione sede",
+      "NUM_CIVICO_RESIDENZA": "Civico",
+      "STATO_ESTERO_RESIDENZA": "Stato estero",
+      "TELEFONO": "Telefono",
+      "TITLE": "Dati della residenza",
+      "TOPONIMO": "Toponimo"
+    },
+    "DATI_SEDE_LAVORO": {
+      "CAP": "Cap"
+    },
+    "DATI_TITOLO_SOGGIORNO": {
+      "TITLE": "Dati Titolo di soggiorno"
+    },
+    "DATI_TITOLO_SOGGIORNO_LABEL": "(Compilare se cittadinanza extra UE o neo-comunitaria in regime transitorio)",
+    "DETTAGLIO_AZIENDA": {
+      "DATI_GENERALI": "Dati Azienda",
+      "DETTAGLIO_SEDE": "Dettaglio Sede",
+      "ELENCO_SEDI": "Elenco sedi",
+      "FIELD": {
+        "AZIENDA_ART": "Azienda artigiana",
+        "CF": "Codice fiscale",
+        "CITTADINANZA_LR": "Cittadinanza",
+        "COD_ATECO": "ATECO",
+        "COD_CCNL": "CCNL",
+        "COD_COMUNE_NASCITA": "Codice comune di nascita",
+        "COD_COMUNE_SEDE": "Codice comune",
+        "COD_STATO_ESTERO": "Codice Stato estero di nascita",
+        "COD_STATO_ESTERO_SEDE": "Codice stato estero",
+        "COGNOME_LR": "Cognome",
+        "DATA_NASCITA_LR": "Data di nascita",
+        "DENOM_AZIENDA": "Denominazione",
+        "DESCR": "Descrizione",
+        "DESCR_COMUNE_NASCITA": "Comune di nascita",
+        "DESCR_COMUNE_SEDE": "Comune",
+        "DESCR_STATO_ESTERO": "Stato estero di nascita",
+        "DESCR_STATO_ESTERO_SEDE": "Stato estero",
+        "EXTRA_COM": "Extra comunitario",
+        "FLG_VALIDA": "Valida",
+        "ISCR_ALBO_DATA": "Iscrizione all'albo per le agenzie di somministrazione (data)",
+        "ISCR_ALBO_NUM": "Iscrizione all'albo per le agenzie di somministrazione (numero)",
+        "MOTIVO_PERMESSO": "Motivo permesso",
+        "NATURA_GIURIDICA": "Natura giuridica",
+        "NOME_LR": "Nome",
+        "NUMERO_DOCUMENTO": "Numero documento",
+        "NUM_AG_SOMM": "Num. Agenzia somministrazione",
+        "PAT_INAIL": "P.A.T INAIL",
+        "PUBBL_AMM": "Pubblica amministrazione",
+        "P_IVA": "Partita IVA",
+        "QUESTURA": "Questura rilascio titolo soggiorno",
+        "RES_ITA": "Soggiornante in Italia",
+        "SCADENZA_PERMESSO": "Scadenza permesso",
+        "SESSO_LR": "Sesso",
+        "STATO_ESTERO_CF": "Stato estero del codice fiscale",
+        "TIPO_SEDE": "Tipo Sede",
+        "TITOLO_SOGGIORNO": "Titolo soggiorno"
+      },
+      "LEGALE_RAPPRESENTANTE": "Legale Rappresentante",
+      "NUOVA_SEDE": "Nuova Sede",
+      "TITLE": "Dettaglio Azienda"
+    },
+    "DETTAGLIO_DELEGA": {
+      "DATI_DELEGA": "Dati delega",
+      "DATI_DELEGANTE": "Delegante",
+      "DATI_DELEGATO": "Delegato",
+      "FIELD": {
+        "ANNO": "Anno",
+        "CAP": "CAP",
+        "CF_DELEGATO": "Codice fiscale",
+        "CF_IMPRESA": "Codice fiscale",
+        "COD_COMUNE": "Codice comune",
+        "COGNOME_DELEGANTE": "Cognome",
+        "DATA": "Data Protocollo",
+        "DATA_ANN_REV": "Data Annullo o Revoca",
+        "DENOMINAZIONE": "Denominazione",
+        "DESCR_COMUNE": "Comune",
+        "EMAIL": "Email",
+        "FAX": "Fax",
+        "INDIRIZZO_RESIDENZA": "Indirizzo",
+        "NOME_DELEGANTE": "Nome",
+        "NUM_PROTOCOLLO": "Numero protocollo",
+        "P_IVA": "Partita IVA",
+        "QUALITA": "In qualita' di",
+        "STATO": "Stato",
+        "TELEFONO": "Telefono"
+      },
+      "IMPRESA": "Impresa da delegare",
+      "TITLE": "Dettaglio Delega"
+    },
+    "MODELLO_Q": {
+      "RIMBORSO": "Impegno del datore di lavoro al pagamento spese per il rimpatrio",
+      "SIST_ALLOGIATIVA": "Sussistenza della sistemazione alloggiativa"
+    },
+    "TITLE": "Dati Lavoratore"
+  },
+  "ANAGRAFICA_AZIENDA": {
+    "BUTTON": {
+      "CONFIRM_AZIENDA": "Conferma azienda",
+      "CONFIRM_AZIENDA_E_SEDE": "Conferma azienda e sede legale"
+    },
+    "FIELD": {
+      "ACCENTRATA": "Accentrata",
+      "AZIENDA_ART": "Azienda artigiana",
+      "CAP": "CAP",
+      "CF": "Codice fiscale",
+      "COMUNE": "Comune",
+      "DENOMINAZIONE": "Denominazione",
+      "FAX": "Fax",
+      "FLG_TIPO_ANAGRAFICA": "Tipo anagrafica",
+      "INDIRIZZO": "Indirizzo",
+      "MAIL": "Email",
+      "NATURA_GIURIDICA": "Natura giuridica",
+      "PARTITA_IVA": "Partita iva",
+      "PROV": "Prov",
+      "TEL": "Telefono"
+    },
+    "SUB_TITLE": {
+      "DATI_IMPTRESA": "Dati impresa",
+      "ELENCO_DELEGATI_PA": "Elenco delegati/persone autorizzate",
+      "SEDE_LEGALE": "Sede legale"
+    },
+    "TABLE": {
+      "FIELD": {
+        "ANNULLATO": "Annullato",
+        "AZIONI": "Azioni",
+        "CARICA": "Carica",
+        "CF": "Codice fiscale",
+        "COGNOME": "Cognome",
+        "DELEGA_VALIDA": "Delega valida",
+        "NOME": "Nome",
+        "TIPO": "Tipo"
+      }
+    },
+    "TITLE": "Anagrafica Azienda"
+  },
+  "ANAGRAFICA_LAVORATORE": {
+    "BUTTON": {
+      "NEW_LAVORATORE": "Nuovo lavoratore"
+    },
+    "TITLE": "Anagrafica Lavoratore"
+  },
+  "ANAGRAFICA_LAV_MODAL": {
+    "TITLE": {
+      "EDIT": "Aggiornare l'anagrafica lavoratore"
+    }
+  },
+  "APP": {
+    "ANNULLA": "Annulla",
+    "AZIONI": "Azioni",
+    "BACK": "Indietro",
+    "CANCEL": "Cancella",
+    "COMUNICAZIONE_RETURN": "Torna alla comunicazione",
+    "CONFIRM": "Conferma",
+    "DATE_PICKER": {
+      "APRI_CALENADRIO": "Apri calendario"
+    },
+    "ELIMINA": "Elimina",
+    "EXIT": "Esci",
+    "FIND_CANCEL": "Annulla",
+    "INSERT": "Inserisci",
+    "LOADING": "Caricamento...",
+    "MODIFICA": "Modifica",
+    "NEW": "Nuovo",
+    "NEW_AZIENDA": "Nuova azienda",
+    "NEW_COM": "Nuova comunicazione",
+    "NEW_DELEGA": "Nuova delega",
+    "NEW_STUDIO": "Nuovo studio",
+    "NEW_VARD": "Nuovo vardatori",
+    "NO": "No",
+    "NO_DATA_FOUND": "Non ci sono dati",
+    "OBLIGATORIETA_CAMPI": "I campi contrassegnati con",
+    "OK": "Ok",
+    "PRE_COMPILA": "Precompila",
+    "REMOVE_FILTERS": "Rimuovi filtri",
+    "RETURN": "Torna all'elenco",
+    "REVOCA": "Revoca",
+    "RITRASMETTI": "Avvia ritrasmissione comunicazioni massive",
+    "SAVE": "Salva",
+    "SEARCH": "Cerca",
+    "SEND": "Invia",
+    "SEND_COMUNICAZIONE": "Invia comunicazione",
+    "TITLE": "Comunicazioni obbligatorie",
+    "VALID": "Valida",
+    "YES": "Si"
+  },
+  "AZIENDA_UTILIZZATRICE": {
+    "SUB_TITLE": {
+      "SOMMIN": "Somministrazione"
+    }
+  },
+  "CESSAZIONE": {
+    "FIELD": {
+      "DATA_CESSAZIONE": "Data cessazione",
+      "MOTIVO_CESSAZIONE": "Motivo cessazione"
+    }
+  },
+  "COMUNICAZIONE": {
+    "ALTRI": {
+      "FIELD": {
+        "CATEGORIA_LAVORATORE": "Legge 68 categoria lavoratore",
+        "GIORNATE_LAVORATIVE": "Giornate lavorative previste",
+        "INDENNITA": "Indennita' disponibilita'",
+        "LAVORATORE_MOBILITA": "Lavoratore in mobilita'",
+        "LAVORO_AGRICOLTURA": "Lavoro in agricoltura",
+        "LEGGE68_DATA": "Legge 68 data atto",
+        "LEGGE68_NUM": "Legge 68 num atto",
+        "LEGGE68_TIPO": "Legge 68 tipo atto",
+        "NUM_MATRICOLA": "Num. matricola lavoratore",
+        "SOCIO_LAVORATORE": "Socio lavoratore",
+        "TIPO_LAVORAZIONE": "Tipo lavorazione"
+      }
+    },
+    "ALTRI_DATI": "Altri Dati",
+    "AZIENDA": {
+      "BUTTON": {
+        "SEARCH_SEDE_OPERATIVA": "Cerca sede operativa"
+      },
+      "FIELD": {
+        "AGENZIA_EST": "Agenzia estera",
+        "ATTIVITA_ATECO": "Attivita' Ateco",
+        "ATTIVITA_ATECO_COD": "Attività ateco codice",
+        "ATTIVITA_ATECO_DESC": "Attività ateco descrizione",
+        "AZIENDA_ART": "Azienda artigiana",
+        "DATA_FINE_CONTRATTO": "Data fine contratto",
+        "DATA_INIZIO_CONTRATTO": "Data inizio contratto",
+        "DESCR_ATTIVITA_ATECO": "Descrizione",
+        "EXTRA_COM": "Extra comunitario",
+        "NATURA_GIURIDICA": "Natura giuridica",
+        "NUM_CONTRATTO": "Numero contratto",
+        "PUBB_AMM": "Pubblica amministrazione",
+        "QUESTURA_TITOLO_SOGGIORNO": "Questura rilascio titolo soggiorno",
+        "RES_ITA": "Soggiornante in Italia",
+        "SEDE_ITALIANA": "Sede Italiana",
+        "SEDE_LEGALE_ESTERO": "Sede legale all'estero",
+        "SGG_ITA": "Soggiornante in Italia"
+      }
+    },
+    "DATI_AZIENDA": "Dati Generali Azienda",
+    "DATI_CESSAZIONE": "Dati Cessazione",
+    "DATI_DISTACCO": {
+      "TITLE": "Dati Distacco"
+    },
+    "DATI_INQUADRAMENTO": "Dati Inquadramento",
+    "DATI_PROROGA": "Dati Proroga",
+    "DATI_RAPPORTO": "Dati del Rapporto",
+    "DATI_RAPPORTO_FIELD_NUM_MATR_LAV": "Num. matricola lavoratore",
+    "DATI_RAPPORTO_SOMM": "Dati del rapporto con agenzia di somministrazione",
+    "DATI_TIROCINIO": "Dati del Tirocinio",
+    "DATI_TRASFERIMENTO": {
+      "TITLE": "Dati Trasferimento"
+    },
+    "DATI_TRASFORMAZIONE": "Dati Trasformazione",
+    "DETTAGLIO": {
+      "BUTTON": {
+        "AGG_LAV": "Aggiorna lavoratore",
+        "COMPILE": "Pre-compila",
+        "CONFIRM": "Conferma e prosegui",
+        "CONFIRM_ONLY": "Conferma",
+        "INSERT_LAV": "Inserisci lavoratore",
+        "SEARCH": "Cerca",
+        "SEARCH_SEDE_OPERATIVA": "Ricerca sedi",
+        "SEL_LAV": "Seleziona lavoratore per la comunicazione"
+      },
+      "DATI_ANAGRAFICI": "Dati anagrafici del tutore",
+      "FIELD": {
+        "ACCETTAZIONE": "Accettazione per presa visione",
+        "ANNI_ESPERIENZA": "Anni di esperienza",
+        "CF": "Codice fiscale",
+        "COD_QUALIFICA_PROFESSIONALE": "Qualifica professionale istat codice",
+        "COGNOME": "Cognome",
+        "COMUNICAZIONE_FORMALE": "Comunicazione formale offerta formativa",
+        "DATA_NASCITA": "Data di nascita",
+        "DATA_VISITA": "Data visita medica",
+        "DESCR_QUALIFICA_PROFESSIONALE": "Qualifica professionale istat descrizione",
+        "GRADO_QUALIFICAZIONE": "Grado di qualificazione",
+        "LIV_INQUADRAMENTO": "Livello di inquadramento",
+        "NOME": "Nome",
+        "RIMBORSO": "Impegno del datore di lavoro al pagamento spese per il rimpatrio",
+        "SESSO": "Sesso",
+        "SIST_ALLOGIATIVA": "Sussistenza della sistemazione alloggiativa",
+        "TITOLARE": "Titolare"
+      },
+      "QUALIFICA": "Qualifica del tutore",
+      "VISITA": "Visita medica"
+    },
+    "INQUADRAMENTO": {
+      "FIELD": {
+        "ASSUNZIONE_OBBLIGATORIA": "Assunzione obbligatoria",
+        "CODICE_CCNL": "Codice CCNL",
+        "CODICE_INQUADRAMENTO": "Codice Inquadramento",
+        "CODICE_ISTAT": "Codice Qualifica professionale (ISTAT)",
+        "COD_ENTE_PREVIDENZIALE": "Codice ente previdenziale",
+        "DESCRIZIONE_CCNL": "Descrizione CCNL",
+        "DESCRIZIONE_INQUADRAMENTO": "Livello Inquadramento",
+        "DESCRIZIONE_ISTAT": "Descrizione Qualifica professionale (ISTAT)",
+        "ENTE_PREVIDENZIALE": "Ente previdenziale",
+        "ORE_SETTIMANALI_MEDIE": "Ore settimanali medie",
+        "PAT_INAIL": "P.A.T INAIL",
+        "RETRIBUZIONE_LORDA_ANNUALE": "Retribuzione lorda annuale",
+        "TIPO_ORARIO": "Tipo orario"
+      }
+    },
+    "LEGALE_RAPPRESENTANTE": "Legale Rappresentante",
+    "RAPPORTO": {
+      "FIELD": {
+        "DATA_FINE_PERIODO_FORMATIVO": "Data fine periodo formativo",
+        "DATA_FINE_RAPPORTO": "Data fine Rapporto",
+        "DATA_INIZIO_RAPPORTO": "Data inizio Rapporto",
+        "GENERATO_DA_TIROCINIO": "Il rapporto di lavoro e' stato generato da tirocinio",
+        "INDENN_DISP": "Indennità di disponibilità",
+        "LAVORO_MOBILITA": "Lavoratore in mobilità",
+        "LAVORO_STAGIONALE": "Lavoro Stagionale?",
+        "TIPO_RAPPORTO": "Tipo Rapporto"
+      }
+    },
+    "RICERCA": {
+      "FIELD": {
+        "ANNULL_RETT": "Rettifica / Annullamento ",
+        "CF_AZIENDA": "Codice fiscale azienda",
+        "CF_LAVORATORE": "Codice fiscale lavoratore",
+        "COD_REG": "Codice regionale",
+        "COGNOME_LAVORATORE": "Cognome lavoratore",
+        "DATA_INVIO_A": "Data a",
+        "DATA_INVIO_DA": "Data da",
+        "DATA_INVIO_INS": {
+          "TITLE": "Data invio / inserimento comunicazione"
+        },
+        "DENOM_AZIENDA": "Denominazione azienda",
+        "NOME_LAVORATORE": "Nome lavoratore",
+        "PROTOCOLLO_ANNO": "Anno",
+        "PROTOCOLLO_NUMERO": "Numero",
+        "PROTOCOLLO_PROV": "Protocollo: Provincia",
+        "STATO_COM": "Stato comunicazione",
+        "TIPO_COM": "Tipo comunicazione",
+        "TIPO_COM_TU": "Rettifica/Annullamento"
+      },
+      "VALIDATORS": {
+        "PROTOCOLLO_ANNO_REQUIRED": "Specificare l'anno del protocollo",
+        "PROTOCOLLO_NUMERO_REQUIRED": "Specificare il numero del protocollo"
+      }
+    },
+    "SEDE_LEGALE": "Sede Legale",
+    "SEDE_OPERATIVA": "Sede Operativa",
+    "SEDE_OPERATIVA_NO_LEGALE": "Sede Operativa (se diversa da quella legale)",
+    "TIROCINIO": {
+      "FIELD": {
+        "CATEGORIA_TIROCINANTE": "Categoria del tirocinante",
+        "CF_ENTE_PROMOTORE": "Codice fiscale ente promotore tirocinio",
+        "CPI_ENTE_PROMOTORE": "Cpi come ente promotore tirocinio",
+        "SOGG_ENTE_PROMOTORE": "Soggetto ente promotore tirocinio",
+        "TIPO_ENTE_PROMOTORE": "Tipo ente promotore tirocinio",
+        "TIPO_TIROCINIO": "Tipologia tirocinio"
+      }
+    },
+    "VARDATORI": {
+      "DATI_GENERALI": {
+        "FIELD": {
+          "COD_REGIONALE": "Codice regionale della comunicazione da rettificare o da annullare",
+          "COM_RETTIFICA_ANNULLAMENTO": "Comunicazione rettifica / annullamento",
+          "DATA_TIMBRO_POSTALE": "Data timbro postale",
+          "DATI_SOGGETTO": "Dati del soggetto per cui si effettua la comunicazione",
+          "DATORE_LAVORO": "Si effettua la comunicazione per il datore di Lavoro",
+          "EMAIL": "Indirizzo e-mail per la notifica",
+          "PROVV_ISPETTORATO": "Comunicazione a seguito di provvedimento dell’ispettorato",
+          "RETTIFICA_ANNULLAMENTO": "Rettifica / Annullamento della comunicazione",
+          "TIPO_COMUNICAZIONE": "Tipo Comunicazione",
+          "VISITA_ISPETTIVA": "Visita ispettiva"
+        }
+      }
+    }
+  },
+  "COMUNICAZIONE_MASSIVA": {
+    "BUTTON": {
+      "CONFIRM": "UPLOAD",
+      "VALIDATE": "VERIFICA"
+    },
+    "FIELD": {
+      "EMAIL": "mail del mittente",
+      "FILE_XML": "seleziona il file xml o il file zip",
+      "INVALID": "Il file non è valido"
+    },
+    "TITLE": "Caricamento file di comunicazioni"
+  },
+  "DATI_AZIENDA": {
+    "FIELD": {
+      "COD_COMUNE": "Codice comune",
+      "COD_COMUNE_NASC": "Codice comune di nascita",
+      "COD_STATI_EST": "Codice stato estero",
+      "COD_STATI_EST_NASC": "Codice stato estero di nascita",
+      "DS_COMUNE": "Comune",
+      "DS_COMUNE_NASC": "Comune di nascita",
+      "DS_STATI_EST": "Stato estero",
+      "DS_STATI_EST_NASC": "Stato estero di nascita"
+    },
+    "TITLE": "Dati Anagrafica azienda"
+  },
+  "DATI_AZIENDA_UTILIZZATRICE": {
+    "TITLE": "Dati Azienda utilizzatrice"
+  },
+  "DATI_CESSAZIONE": {
+    "FIELD": {
+      "DATA_CESSAZIONE": "Data cessazione",
+      "MOTIVO_CESSAZIONE": "Motivo cessazione"
+    },
+    "TITLE": "Dati cessazione"
+  },
+  "DATI_COMUNICAZIONE": {
+    "TITLE": "Dati Comunicazione"
+  },
+  "DATI_DISTACCO": {
+    "DATI_DATORE_DISTACCATARIO": "Dati del datore presso il quale il lavoratore viene distaccato"
+  },
+  "DATI_GENERALI": {
+    "FIELD": {
+      "ALTRO_SOGG": "Altro soggetto",
+      "CF_SOGGETTO": "Codice fiscale del soggetto",
+      "COD_REGIONALE": "Codice regionale",
+      "COD_REG_COM_RETT_ANULL": "Codice regionale della comunicazione da rettificare o da annullare",
+      "COD_REG_COM_URG": "Codice regionale della comunicazione d'urgenza",
+      "COM_SEGUITO_URG": "Comunicazione a seguito d'urgenza",
+      "DATA_TIMBRO_POSTALE": "Data timbro postale",
+      "DES_CAUSA_FORZA_MAGGIORE": "Descrizione causa forza maggiore",
+      "EMAIL_NOTIFICATION": "Indirizzo e-mail per la notifica",
+      "EMAIL_SOGGETTO": "Email del soggetto",
+      "FLG_CAUSA_FORZA_MAGGIORE": "Assunzione per causa di forza maggiore ",
+      "FLG_COMUNICAZIONE_PROV_ISPETTORATO": "Comunicazione a seguito di provvedimento dell'ispettorato",
+      "FLG_COM_DATORE_LAVORO": "Si effettua la comunicazione per il datore di Lavoro",
+      "PROTOCOLLO_PROV_ANNO_NUM": "Protocollo della comunicazione d’urgenza (provincia / anno / numero)",
+      "PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM": "Protocollo comunicazione da rettificare o annullare (provincia / anno / num)",
+      "PROVINCIA_PROTOCOLLO": "Protocollo della comunicazione (provincia / anno / numero)",
+      "RETTIFICA_ANNULL_COM": "Comunicazione rettifica/annullamento",
+      "SOMMINISTRAZIONE": "Somministrazione",
+      "STATO_COMUNICAZIONE": "Stato comunicazione",
+      "TIPO_COMUNICAZIONE": "Tipo comunicazione"
+    },
+    "SUB_TITLE": {
+      "CAUSA_FORZA_MAGGIORE": "Causa di forza maggiore",
+      "COMUNICAZIONE_URG": "Comunicazione d'urgenza",
+      "DATI_COMUNICAZIONE": "Dati comunicazione",
+      "DATI_SOGGETTO": "Dati del soggetto per cui si effettua la comunicazione",
+      "RETTIFICA_ANNULL_COM": "Rettifica / Annullamento della comunicazione",
+      "VISITA_ISPETTIVA": "Visita ispettiva"
+    },
+    "TITLE": "Dati generali"
+  },
+  "DATI_GENERALI_COM_URG": {
+    "FIELD": {
+      "CF": "Codice fiscale",
+      "COGNOME_LAVORATORE": "Cognome",
+      "COMUNE": "Comune sede operativa",
+      "COMUNE_SEDE_COD": "Codice",
+      "COMUNE_SEDE_DES": "Descrizione",
+      "DATA_INIZIO_RAPP": "Data inizio rapporto",
+      "DENOM_COG_NOM": "Denominazione/Cognome e Nome",
+      "MOTIVO_URG": "Motivo dell'urgenza",
+      "NOME_LAVORATORE": "Nome"
+    },
+    "SUB_TITLE": {
+      "DATI_EFFETTUA_COM": "Dati di chi effettua la comunicazione",
+      "DATI_RAPPORTO": "Dati rapporto",
+      "DATORE_LAVORO": "Datore di lavoro",
+      "LAVORATORE": "Lavoratore"
+    },
+    "TITLE": "Comunicazione di urgenza"
+  },
+  "DATI_GENERALI_VARDATORI": {
+    "FIELD": {
+      "ALTRO_SOGG": "Altro soggetto",
+      "CF_SOGGETTO": "Codice fiscale del soggetto",
+      "COD_REGIONALE": "Codice regionale",
+      "COD_REG_COM_RETT_ANULL": "Codice regionale della comunicazione da rettificare o da annullare",
+      "DATA_TIMBRO_POSTALE": "Data timbro postale",
+      "EMAIL_NOTIFICATION": "Indirizzo e-mail per la notifica",
+      "EMAIL_SOGGETTO": "Email del soggetto",
+      "FLG_COMUNICAZIONE_PROV_ISPETTORATO": "Comunicazione a seguito di provvedimento dell'ispettorato",
+      "FLG_COM_DATORE_LAVORO": "Si effettua la comunicazione per il datore di Lavoro",
+      "PROTOCOLLO_RETT_ANNULL_PROV_ANNO_NUM": "Protocollo comunicazione da rettificare o annullare (provincia / anno / num)",
+      "PROVINCIA_PROTOCOLLO": "Protocollo della comunicazione (provincia / anno / numero)",
+      "RETTIFICA_ANNULL_COM": "Rettifica / Annullamento della comunicazione",
+      "TIPO_COMUNICAZIONE": "Tipo Comunicazione"
+    },
+    "SUB_TITLE": {
+      "DATI_COMUNICAZIONE": "Dati comunicazione",
+      "DATI_SOGGETTO": "Dati del soggetto per cui si effettua la comunicazione",
+      "RETTIFICA_ANNULL_COM": "Rettifica / Annullamento della comunicazione",
+      "VISITA_ISPETTIVA": "Visita ispettiva"
+    }
+  },
+  "DATI_MISSIONE": {
+    "TITLE": "Dati missione"
+  },
+  "DATI_PROROGA": {
+    "FIELD": {
+      "DATA_PROROGA": "Data fine proroga"
+    },
+    "TITLE": "Dati Proroga"
+  },
+  "DATI_RAPPORTO": {
+    "TITLE": "Dati Rapporto"
+  },
+  "DATI_TRASFERIMENTO": {
+    "DATI_DATORE_LAVORO": "Dati del datore presso il quale il lavoratore viene distaccato",
+    "DATI_DISTACCATO": {
+      "FIELD": {
+        "CAP": "CAP",
+        "CF_DATORE_DISTACCATARIO": "Codice fiscale datore distaccatario",
+        "COD_ATECO": "Attivita' ATECO",
+        "COD_COMUNE_DISTACCATO": "Codice comune",
+        "COD_COMUNE_SEDE": "Codice comune",
+        "COD_STATO_ESTERO_DISTACCATO": "Codice Stato estero",
+        "COD_STATO_ESTERO_SEDE": "Codice stato estero",
+        "DENOMINAZIONE": "Denominazione datore lavoro distaccatario",
+        "DESCR_ATECO": "Descrizione",
+        "DESCR_COMUNE_DISTACCATO": "Comune",
+        "DESCR_COMUNE_SEDE": "Comune",
+        "DESCR_STATO_ESTERO_DISTACCATO": "Stato estero",
+        "DESCR_STATO_ESTERO_SEDE": "Stato estero",
+        "EMAIL": "Email",
+        "FAX": "FAX",
+        "INDIRIZZO": "Indirizzo",
+        "PAT_INAIL": "P.A.T INAIL",
+        "TELEFONO": "Telefono"
+      }
+    },
+    "DATI_SEDE_LAV_PREC": "Dati della sede di lavoro precedente",
+    "FIELD": {
+      "DATA_FINE_DISTACCO": "Data fine rapporto",
+      "DATA_TRASFERIMENTO": "Data trasferimento/distacco (gg/mm/aaa)",
+      "DISTACCO_AZIENDA_ESTERA": "Distacco su azienda estera",
+      "DISTACCO_PARZIALE": "Distacco parziale",
+      "TIPO_SPOSTAMENTO": "Tipo spostamento"
+    },
+    "TITLE": "Dati Trasferimento"
+  },
+  "DATI_TRASFORMAZIONE": {
+    "FIELD": {
+      "DATA_TRASFORMAZIONE": "Data della trasformazione (gg/mm/aaaa)",
+      "TIPO_TRASFORMAZIONE": "Tipo di trasformazione"
+    },
+    "TITLE": "Dati Trasformazione"
+  },
+  "DATI_TUTORE": {
+    "TITLE": "Dati Tutore"
+  },
+  "DELEGA": {
+    "RICERCA": {
+      "FIELD": {
+        "CF_DELEGANTE": "Codice fiscale Delegante",
+        "CF_DELEGATO": "Codice fiscale Delegato",
+        "CF_IMPRESA": "Codice fiscale Impresa",
+        "COGNOME_DELEGANTE": "Cognome Delegante",
+        "COGNOME_DELEGATO": "Cognome Delegato",
+        "DENOMINAZIONE": "Denominazione",
+        "NOME_DELEGANTE": "Nome Delegante",
+        "NOME_DELEGATO": "Nome Delegato",
+        "STATO": "Stato"
+      }
+    }
+  },
+  "DETTAGLIO_COMUNICAZIONE": {
+    "TITLE": "Dettaglio comunicazione"
+  },
+  "DISTACCATARIO": {
+    "FIELD": {
+      "ATECO": "Attivita' Ateco",
+      "CAP": "CAP",
+      "CF_DATORE_DISTACCATARIO": "Codice fiscale datore distaccatario",
+      "COD_COMUNE": "Codice Comune",
+      "COD_STATO_ESTERO": "Codice Stato estero",
+      "DENOMINAZIONE_DATORE_DISTACCATARIO": "Denominazione",
+      "DESCR_ATECO": "",
+      "DESCR_COMUNE": "Comune",
+      "DESCR_STATO_ESTERO": "Stato estero",
+      "EMAIL": "Email",
+      "FAX": "FAX",
+      "INDIRIZZO": "Indirizzo",
+      "PAT_INAIL": "P.A.T INAIL",
+      "TELEFONO": "Telefono"
+    }
+  },
+  "DISTACCO": {
+    "FIELD": {
+      "DATA_DISTACCO": "Data distacco",
+      "DATA_FINE_DISTACCO": "Data fine distacco",
+      "DISTACCO_AZ_ESTERA": "Distacco su azienda estera",
+      "DISTACCO_PARZIALE": "Distacco parziale"
+    }
+  },
+  "ERROR": {
+    "DATE_MINORE_2000": "La data di scadenza titolo deve essere maggiore o uguale al 01/01/2000",
+    "ERROR_TITLE": "Errore",
+    "FIELD": {
+      "FISCAL_CODE": {
+        "INVALID": "Codice fiscale non valido",
+        "INVALID_CHAR": "Codice fiscale non valido: deve essere un alfanumerico",
+        "INVALID_LENGTH": "Codice fiscale non valido: deve essere un alfanumerico di 16 caratteri"
+      },
+      "LENGHT_10": "Inserire 10 caratteri",
+      "LENGHT_100": "Inserire un numero massimo di 100 caratteri",
+      "LENGHT_11": "Inserire 11 caratteri",
+      "LENGHT_4": "Inserire 4 caratteri",
+      "LENGHT_5": "Inserire 5 caratteri",
+      "LENGHT_8": "Il codice deve essere di 8 caratteri",
+      "LENGHT_COD_REG": "Il codice deve essere di 16 caratteri",
+      "LENGTH_11_OR_16": "Inserire 11 o 16 caratteri",
+      "MIN_LENGHT_11": "Inserire almeno 11 caratteri",
+      "MIN_LENGHT_2": "Inserire almeno 2 caratteri",
+      "MIN_LENGHT_3": "Inserire almeno 3 caratteri",
+      "MIN_LENGHT_4": "Il codice deve essere di 4 caratteri",
+      "MIN_LENGHT_5": "Inserire 5 caratteri",
+      "MIN_LENGHT_6": "Inserire almeno 6 caratteri",
+      "MIN_LENGHT_8": "Inserire minimo 8 caratteri e massimo 10",
+      "MIN_LENGHT_NUMBER_8": "Inserire minimo 8 cifre e massimo 10",
+      "NOT_VALID_FORMAT": "Formato non valido",
+      "REQUIRED": null
+    },
+    "FUTURE_DATE": "La data di nascita non puo' essere maggiore della data odierna",
+    "INVALID_DATE": "Data non valida",
+    "INVALID_EMAIL": "Indirizzo email non valido",
+    "LENGTH_16": "Inserire 16 cifre",
+    "POPUP_BLOCKED": "Si prega di disabilitare il blocco dei Pop-up e di riprovare.",
+    "RANGE_DATE": "La data inizio deve essere minore della data fine",
+    "RANGE_ID": "Range ID non valido: ID Da deve essere minore o uguale a ID A"
+  },
+  "FOOTER": {
+    "ACCESSIBILITY": "Dichiarazione di accessibilità",
+    "COOKIE_POLICY": "Cookie policy",
+    "PRIVACY": "Note legali e privacy"
+  },
+  "GESTIONE_APPLICATIVA": {
+    "FIELD": {
+      "ELENCO_ID": "Elenco ID (separati da virgola)",
+      "RANGE_A": "A",
+      "RANGE_DA": "Range ID: Da"
+    },
+    "TITLE": "Recupero comunicazioni"
+  },
+  "HEADER": {
+    "ROLE": "Ruolo",
+    "SETTORE": {
+      "DEFAULT_DESCRIPTION": null
+    }
+  },
+  "HOME": {
+    "FIELD": {
+      "APPLICATION_MANAGEMENT": "Gestione applicativa",
+      "CORPORATE": "Anagrafica azienda",
+      "MASSIVE_COMM": "Comunicazione massiva",
+      "PROXIES": "Accreditamento - deleghe",
+      "REGISTRY_ACCR": "Accreditamento - anagrafiche",
+      "SEARCH_COMM": "Inserimento e ricerca comunicazioni",
+      "VARDATORI": "Vardatori",
+      "WORKER": "Anagrafica lavoratore"
+    }
+  },
+  "LANGUAGE": {
+    "ENGLISH": "ENG",
+    "ITALIAN": "ITA"
+  },
+  "LAVORATORE": {
+    "DATI_RESIDENZA": {
+      "COD_STATO_ESTERO": "Codice Stato estero",
+      "DS_STATO_ESTERO": "Stato estero"
+    },
+    "ERROR": {
+      "QUESTURA_REQUIRED": "La questura è obbligatoria per il motivo di permesso di soggiorno indicato"
+    },
+    "FIELD": {
+      "COD_COMUNE_NASC": "Codice comune di nascita",
+      "COD_STATO_ESTERO_NASCITA": "Codice stato estero di nascita",
+      "DS_COMUNE_NASC": "Comune di nascita",
+      "DS_STATO_ESTERO_NASCITA": "Stato estero di nascita",
+      "MODELLO_Q_NON_APPLICABILE": "Non applicabile",
+      "SCADENZA_TITOLO": "Scadenza Titolo di soggiorno (gg/mm/aaaa)"
+    }
+  },
+  "MESSAGES": {
+    "COM-COM-E-0003": null,
+    "COM-COM-E-0006": null,
+    "COM-COM-E-0015": null,
+    "COM-COM-E-0017": null,
+    "COM-COM-E-0022": null,
+    "COM-COM-E-1027": null,
+    "COM-RAP-E-0182": null,
+    "COM-RAP-W-0055": null,
+    "COM-RAP-W-0146": null,
+    "COM-RAP-W-0147": null,
+    "COM-RAP-W-0148": null,
+    "COM-RAP-W-0149": null,
+    "COM-RAP-W-0150": null,
+    "COM-RAP-W-0151": null,
+    "COM-RAP-W-0152": null,
+    "COM-RAP-W-0153": null,
+    "SYS-SYS-A-0011": null,
+    "SYS-SYS-E-0001": null,
+    "SYS-SYS-E-0002": null,
+    "SYS-SYS-E-0003": null,
+    "SYS-SYS-E-0005": null,
+    "SYS-SYS-E-0007": null,
+    "SYS-SYS-E-0012": null,
+    "SYS-SYS-W-0001": null
+  },
+  "MISSIONE": {
+    "BUTTON": {
+      "CONFIRM": "Conferma"
+    },
+    "DATI_INQUADRAMENTO": "Dati Inquadramento",
+    "DATI_RAPPORTO": "Dati del rapporto",
+    "FIELD": {
+      "ASSUNZIONE_OBBLIGATORIA": "Assunzione obbligatoria",
+      "CATEGORIA_LAVORATORE": "Categoria lavoratore assunzione obbligatoria",
+      "CODICE_ISTAT": "Codice Qualifica professionale (ISTAT)",
+      "COD_CCNL": "CCNL",
+      "DATA_FINE_MISSIONE": "Data fine missione",
+      "DATA_INIZIO_MISSIONE": "Data inizio missione",
+      "DESCRIZIONE_ISTAT": "Descrizione Qualifica professionale (ISTAT)",
+      "DESCR_ATT": "Descrizione attivita'",
+      "DESCR_ATT_AGRICOLTURA": "Descrizione attivita' agricoltura",
+      "DESCR_CCNL": "Descrizione CCNL",
+      "GIORNATE_LAVORATIVE": "Giornate lavorative previste",
+      "LAVORO_AGRICOLTURA": "Lavoro in agricoltura",
+      "LIV_INQUADRAMENTO": "Livello di inquadramento",
+      "LIV_INQUADRAMENTO_CODICE": "Livello di inquadramento codice",
+      "LIV_INQUADRAMENTO_DS": "Livello di inquadramento",
+      "ORE_SETTIMANALI_MEDIE": "Ore settimanali medie",
+      "PAT_INAIL": "P.A.T INAIL",
+      "RETRIBUZIONE_ANNUALE": "Retribuzione lorda annuale",
+      "SILICOSI": "Rischio silicosi e asbestosi",
+      "TIPO_ORARIO": "Tipo orario",
+      "VOCE_TARIFFA1": "Voce tariffa (1)",
+      "VOCE_TARIFFA2": "Voce tariffa (2)",
+      "VOCE_TARIFFA3": "Voce tariffa (3)"
+    }
+  },
+  "MODAL": {
+    "NUOVA_VARDATORI": {
+      "TITLE": "Selezione Tipo Comunicazione"
+    }
+  },
+  "NAV_MAIN_COMUNICAZIONE": {
+    "FIELD": {
+      "TORNA_ELENCO": "Torna all'elenco"
+    }
+  },
+  "PAGINATION": {
+    "FIRST": "Inizio",
+    "INFO_FOOTER": "{{first}} - {{last}} di {{total}}",
+    "INFO_FOOTER_DESC": "Righe per pagina",
+    "INFO_HEADER": "{{total}}",
+    "LAST": "Fine",
+    "NEXT": "Succ.",
+    "PREV": "Prec."
+  },
+  "PROROGA": {
+    "FIELD": {
+      "DATA_FINE_PROROGA": "Data fine proroga"
+    }
+  },
+  "RICERCA_ACCREDITAMENTO_ANAGRAFICHE": {
+    "RESULTS": {
+      "FIELD": {
+        "ANNULLAMENTO": "Annullato",
+        "ANNULLATO": "Annullato",
+        "CF": "Codice fiscale",
+        "COGNOME": "Cognome",
+        "COMUNE_PROV_DOM": "Domicilio (comune (pv))",
+        "COMUNE_PROV_RES": "Residenza (comune (pv))",
+        "COMUNE_PROV_SEDE": "Comune PV",
+        "DENOMINAZIONE": "Denominazione",
+        "NOME": "Nome",
+        "TIPO_ANAGRAFICA": "Tipo anagrafica",
+        "TIPO_STUDIO": "Tipo studio"
+      }
+    }
+  },
+  "RICERCA_ACCRED_ANAGRAFICHE": {
+    "RESULTS": {
+      "TITLE": "Anagrafiche"
+    }
+  },
+  "RICERCA_AZIENDA": {
+    "RESULTS": {
+      "TITLE": null
+    }
+  },
+  "RICERCA_COMUNICAZIONI": {
+    "RESULTS": {
+      "FIELD": {
+        "AZIENDA": "Azienda",
+        "AZIENDA_PREC": "Azienda precedente",
+        "COD_COM": "Cod. comunic.",
+        "DATA_ASS": "Data assunz.",
+        "DATA_EVENTO": "Data evento",
+        "DATA_INVIO_INS": "Data invio / ins.",
+        "DATA_TRASF": "Data variaz. / trasf.",
+        "FILTERS_APPLY": "Filtri applicati",
+        "LAVORATORE": "Lavoratore",
+        "STATO": "Stato",
+        "TIPO": "Tipo",
+        "TIPO_COM": "Tipo comunicazione"
+      },
+      "TITLE": "Comunicazioni"
+    },
+    "TITLE": "Inserimento e ricerca comunicazioni"
+  },
+  "RICERCA_DELEGA": {
+    "RESULTS": {
+      "FIELD": {
+        "DELEGANTE": "Delegante",
+        "DELEGATO": "Delegato",
+        "DENOMINAZIONE": "Denominazione Impresa",
+        "FILTERS_APPLY": "Filtri applicati",
+        "STATO": "Stato"
+      },
+      "TITLE": "Deleghe"
+    }
+  },
+  "RICERCA_VARDATORI": {
+    "TITLE": "Ricerca Vardatori"
+  },
+  "RIEPILOGO": {
+    "FIELD": {
+      "ALTRO_SOGG": "Altro soggetto",
+      "CF_SOGG": "Codice fiscale del soggetto",
+      "COD_F": "Codice fiscale",
+      "COGNOME_NOME": "Cognome e nome",
+      "COMUNE_SEDE_OP": "Comune sede operativa",
+      "COM_PER_DATORE": "Si effettua la comunicazione per il datore di lavoro",
+      "DENOM_COGNOME_NOME": "Denominazione / cognome e nome",
+      "DT_INIZIO_R": "Data inizio rapporto",
+      "DT_INVIO": "Data di invio",
+      "DT_TIMBRO_POST": "Data timbro postale",
+      "EMAIL_NOTIFICA": "E-mail notifica",
+      "EMAIL_SOGG": "E-mail del soggetto",
+      "EMAIL_SOGG_ABILITATO": "E-mail soggetto abilitato",
+      "MOTIVO_URG": "Motivo dell'urgenza",
+      "STATO_COM": "Stato della comunicazione",
+      "TIPO_COM": "Tipo comunicazione"
+    },
+    "SUB_TITLE": {
+      "DATI_CHI_EFF_COM": "Dati di chi effettua la comunicazione",
+      "DATI_IDENT_COM": "Dati identificativi della comunicazione",
+      "DATI_ISN": "Riepilogo dei dati inseriti",
+      "DATI_RAPPORTO": "Dati del Rapporto",
+      "DATI_SOGG_DI_CHI_EFFETTUA_COM": "Dati del soggetto per cui si effettua la comunicazione",
+      "DATORE_LAVORO": "Datore di lavoro",
+      "LAVORATORE": "Lavoratore"
+    },
+    "TEXT_WARNING": "Prima di confermare l'inserimento della comunicazione, controllare la correttezza dei dati inseriti: per modificarli, accedere direttamente alla sezione dei Dati Generali e ri-confermare le informazioni.",
+    "TITLE": "Riepilogo"
+  },
+  "SEDI_LAVORATORI": {
+    "BUTTON": {
+      "AGGIUNGI_LAVORATORE": "Aggiungi lavoratore",
+      "CONFIRM_SEDE_E_LAVORATORE": "Conferma sede e lavoratore",
+      "FIND": null,
+      "NEW_LAVORATORE": "Nuovo lavoratore",
+      "RICERCA_LAVORATORE": "Ricerca lavoratore",
+      "RICERCA_SEDI": "Ricerca sedi"
+    },
+    "FIELD": {
+      "ASSUNZIONE_OBBLIGATORIA": "Assunzione obbligatoria",
+      "CAP": "CAP",
+      "CATEGORIA_LAVORATORE": "Categoria lavoratore assunzione obbligatoria",
+      "CF_ENTE_PROMOTORE": "Codice fiscale ente promotore tirocinio",
+      "CF_LAVORATORE": "Codice fiscale lavoratore",
+      "CODICE_CCNL": "Codice CCNL",
+      "CODICE_ISTAT": "Codice Qualifica professionale (ISTAT)",
+      "COD_COMUNE": "Codice Comune",
+      "COD_COMUNE_DOMICILIO": "Codice Comune Domicilio",
+      "COD_ENTE_PREVIDENZIALE": "Codice ente previdenziale",
+      "COD_STATI_EST": "Codice stato estero",
+      "COGNOME": "Cognome",
+      "DATA_FINE_PERIODO_FORMATIVO": "Data fine periodo formativo",
+      "DATA_FINE_RAPPORTO": "Data fine Rapporto",
+      "DATA_INIZIO_RAPPORTO": "Data inizio Rapporto",
+      "DESCRIZIONE_CCNL": "Descrizione CCNL",
+      "DESCRIZIONE_INQUADRAMENTO": "Livello Inquadramento",
+      "DESCRIZIONE_ISTAT": "Descrizione Qualifica professionale (ISTAT)",
+      "DS_COMUNE": "Comune",
+      "DS_COMUNE_DOMICILIO": "Comune Domicilio",
+      "DS_STATI_EST": "Stato estero",
+      "EMAIL": "Email",
+      "ENTE_PREVIDENZIALE": "Ente previdenziale",
+      "FAX": "FAX",
+      "GIORNATE_LAVORATIVE": "Giornate lavorative previste",
+      "INDIRIZZO": "Indirizzo",
+      "LAVORATORE_MOBILITA": "Lavoratore in mobilita'",
+      "LAVORO_AGRICOLTURA": "Lavoro in agricoltura",
+      "LAVORO_STAGIONALE": "Lavoro Stagionale?",
+      "LEGGE68_DATA": "Legge 68 data atto",
+      "LEGGE68_NUM": "Legge 68 num. atto",
+      "LEGGE68_TIPO": "Legge 68 tipo atto",
+      "NOME": "Nome",
+      "ORE_SETTIMANALI_MEDIE": "Ore settimanali medie",
+      "PAT_INAIL": "P.A.T INAIL",
+      "RETRIBUZIONE_LORDA_ANNUALE": "Retribuzione lorda annuale",
+      "SOCIO_LAVORATORE": "Socio lavoratore",
+      "TELEFONO": "Telefono",
+      "TIPO_LAVORAZIONE": "Tipo lavorazione",
+      "TIPO_ORARIO": "Tipo orario",
+      "TIPO_RAPPORTO": "Tipo Rapporto"
+    },
+    "SUBTITLE": {
+      "ALTRI": "Altri dati",
+      "DATI_RAPPORTO": "Dati del Rapporto",
+      "LAVORATORI": "Lavoratori",
+      "SEDE_LAVORO": "Sede di Lavoro"
+    },
+    "TITLE": "Sedi e lavoratori interessati al trasferimento"
+  },
+  "SIDEBAR": {
+    "ACCREDITAMENTO_ANAGRAFICHE": "Accreditamento anagrafiche",
+    "ACCREDITAMENTO_DELEGHE": "Accreditamento - deleghe",
+    "ANAGRAFICA_AZIENDA": "Anagrafica azienda",
+    "ANAGRAFICA_LAVORATORE": "Anagrafica lavoratore",
+    "COMUNICAZIONE_MASSIVA": "Comunicazione massiva",
+    "DATI_RAPPORTO": "Dati rapporto",
+    "GESTIONE_APPLICATIVA": "Gestione applicativa",
+    "HOME": "Home",
+    "INT": {
+      "INTERVENTION": {
+        "INSERT": null,
+        "SEARCH": null
+      },
+      "TITLE": null
+    },
+    "RICERCA_COMUNICAZIONI": "Inserimento e ricerca comunicazioni",
+    "VARDATORI": "Vardatori"
+  },
+  "STUDIO_PROF": {
+    "BUTTON": {
+      "ADD_CONS": "Aggiungi consulente",
+      "ADD_DELEGATO_PA": "Aggiungi delegato/persona autorizzata"
+    },
+    "FIELD": {
+      "ACCENTRAMENTO": "Accentramento",
+      "ACCENTR_S": "Si",
+      "CAP": "CAP",
+      "CF": "Codice fiscale",
+      "COMUNE": "Comune",
+      "COMUNE_COD": "Codice comune",
+      "DENOMINAZIONE": "Denominazione",
+      "FLG_ACCENTR_N": "No",
+      "INDIRIZZO": "Indirizzo",
+      "PARTITA_IVA": "Partita iva",
+      "TIPO_STUDIO_PROF": "Tipo studio professionale"
+    },
+    "SUB_TITLE": {
+      "DATI_GENERALI": "Dati Generali",
+      "ELENCO_CONS": "ELENCO CONSULENTI",
+      "SEDE_LEGALE": "Sede legale"
+    },
+    "TABLE": {
+      "FIELD": {
+        "ANNULLATO": "Annullato",
+        "AZIONI": "Azioni",
+        "CF": "Codice fiscale",
+        "COGNOME": "Cognome",
+        "NOME": "Nome"
+      }
+    },
+    "TITLE": "Anagrafica studio professionale"
+  },
+  "TRASFERIMENTO": {
+    "FIELD": {
+      "COD_COMUNE": "Codice Comune",
+      "COD_STATO_ESTERO": "Codice Stato estero",
+      "DATA_TRASFERIMENTO": "Data trasferimento (gg/mm/aaa)",
+      "DESCR_COMUNE": "Comune",
+      "DESCR_STATO_ESTERO": "Stato estero",
+      "INDIRIZZO": "Indirizzo"
+    }
+  },
+  "TRASFORMAZIONE": {
+    "FIELD": {
+      "DATA_TRASFORMAZIONE": "Data della trasformazione (gg/mm/aaaa)",
+      "TIPO_TRASFORMAZIONE": "Tipo di trasformazione"
+    }
+  },
+  "TUTORE": {
+    "BUTTON": {
+      "COMPILE": "Pre-compila",
+      "CONFIRM": "Conferma",
+      "SEARCH": "Cerca"
+    },
+    "DATI_ANAGRAFICI": "Dati anagrafici del Tutore",
+    "FIELD": {
+      "ANNI_ESPERIENZA": "Anni di esperienza",
+      "CF": "Codice fiscale",
+      "COD_QUALIFICA_PROFESSIONALE": "Qualifica professionale istat codice",
+      "COGNOME": "Cognome",
+      "DATA_NASCITA": "Data di nascita",
+      "DATA_VISITA": "Data visita medica",
+      "DESCR_QUALIFICA_PROFESSIONALE": "Qualifica professionale istat descrizione",
+      "GRADO_QUALIFICAZIONE": "Grado di qualificazione",
+      "LIV_INQUADRAMENTO": "Livello di inquadramento",
+      "NOME": "Nome",
+      "SESSO": "Sesso",
+      "TITOLARE": "Titolare"
+    },
+    "QUALIFICA": "Qualifica del tutore",
+    "VISITA": "Visita medica"
+  },
+  "VARDATORI": {
+    "RICERCA": {
+      "FIELD": {
+        "DATORE_LAVORO": "Datore lavoro",
+        "RAGIONE_SOC": "Ragione sociale",
+        "TIPO_VARIAZIONE": "Tipo variazione"
+      }
+    }
+  },
+  "VARIAZIONE_DATORE_LAVORO": {
+    "FIELD": {
+      "AZIENDA_ART": "Azienda artigiana",
+      "CAP": "CAP",
+      "CF_AZIENDA": "Codice fiscale",
+      "COD_ATECO": "Codice Attivita' ATECO",
+      "COD_COMUNE": "Codice comune",
+      "DATA_FINE_AFFITTO": "Data fine affitto ramo d'azienda",
+      "DATA_INIZIO": "Data inizio (gg/mm/aaaa)",
+      "DATI_AZIENDA_PRECEDENTE": "Dati dell'azienda precedente",
+      "DENOMINAZIONE_NOME_COGNOME": "Denominazione / cognome e nome",
+      "DESCR_ATECO": "Descrizione ATECO",
+      "DESCR_COMUNE": "Comune",
+      "EMAIL": "Email",
+      "FAX": "FAX",
+      "INDIRIZZO": "Indirizzo",
+      "NATURA_GIURIDICA": "Natura giuridica",
+      "P_IVA": "Partita Iva",
+      "SEDE_LEGALE_PREC": "Sede legale azienda precedente",
+      "TELEFONO": "Telefono",
+      "TIPO_VARIAZIONE": "Tipo variazione"
+    },
+    "SEDE_LEGALE_PREC": "Sede legale azienda precedente",
+    "TITLE": "Variazione datore di Lavoro"
+  },
+  "VARIAZIONE_RAGIONE_SOCIALE": {
+    "FIELD": {
+      "DATA_INIZIO_VARIAZIONE": "Data inizio variazione",
+      "DENOMINAZIONE_PRECEDENTE": "Denominazione precedente"
+    },
+    "TITLE": "Variazione ragione sociale"
+  },
+  "Variazione Sede Legale": null
+}
