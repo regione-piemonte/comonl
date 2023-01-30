@@ -87,7 +87,7 @@ javax.ws.rs-api-2.0.1.jar,"CDDL-1.1, GPL-2.0 w/cpe",Copyright non presente,,,Jav
 javax.xml.soap-api-1.4.0.jar,"CDDL, GPL-2.0 w/cpe",Copyright non presente,,,Java,,,https://github.com/javaee/javax.xml.soap/blob/master/LICENSE
 jaxb-api-2.3.1.jar,"CDDL-1.1, GPL-1.1",Copyright non presente,,,Java,,,
 jaxb-core-2.2.7.jar,"CDDL-1.1, GPL-1.1",Copyright non presente,,,Java,,,
-jaxb-impl-2.2.7.jar,"""CDDL-1.1, GPL-2.0 w/cpe""",Copyright non presente,,,Java,,,,,
+jaxb-impl-2.2.7.jar,"CDDL-1.1, GPL-2.0 w/cpe",Copyright non presente,,,Java,,,
 jaxws-api-2.3.1.jar,"CDDL, GPL-2.0 w/cpe",Copyright non presente,,,Java,,,
 jboss-annotations-api_1.3_spec-1.0.1.Final.jar,CDDL-1.1,Copyright non presente,,,Java,,,
 jboss-jaxb-api_2.3_spec-1.0.1.Final.jar,"CDDL, GPL-2.0 w/cpe",Redhat,,,Java,,,
