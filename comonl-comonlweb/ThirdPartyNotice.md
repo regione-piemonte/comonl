@@ -89,7 +89,8 @@ curvesapi-1.06.jar\
 stax2-api-4.2.jar\
 threetenbp-1.3.5.jar
 
-[BSD, WTFPL](https://opensource.org/licenses/BSD-3-Clause  http://www.wtfpl.net/)\
+[BSD, WTFPL](https://opensource.org/licenses/BSD-3-Clause)\
+[BSD, WTFPL](http://www.wtfpl.net/)\
 reflections-0.9.11.jar
 
 [BouncyCastle License](https://www.bouncycastle.org/licence.html)\
@@ -99,7 +100,7 @@ bcprov-jdk15on-1.68.jar
 [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode)\
 reactive-streams,1.0.2
 
-[CDDL; GPL-2.0 w/cpe](CDDL + GPLv2 with classpath exception: https://javaee.github.io/glassfish/LICENSE)\
+[CDDL; GPL-2.0 w/cpe: CDDL + GPLv2 with classpath exception] (https://javaee.github.io/glassfish/LICENSE)\
 javaee-api-8.0.1.jar\
 javaee-web-api-8.0.1.jar\
 javax.annotation-api-1.3.2.jar\
