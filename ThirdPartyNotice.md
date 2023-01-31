@@ -86,6 +86,18 @@ xmlgraphics-commons-2.4.jar\
 xmlsec-2.2.1.jar\
 xmpbox-2.0.24.jar
 
+[Apache-2.0; MIT (Rilasciata da CSI Piemonte su richiesta)](https://www.apache.org/licenses/LICENSE-2.0)\)\
+aaepsv-client-3.7.0.jar\
+csi-apachesoap-1.4.6.jar\
+csi-core-1.4.6.jar\
+csi-stadapter-1.4.6.jar\
+iridev2-pep-intf-2.0.0.jar\
+util-perf-1.0.1.jar\
+iupsv-cxfclient-1.0.0.jar\
+silpsvaa-cxfclient-3.3.0.jar\
+silpsval-cxfclient-3.4.0.jar\
+spicom-client-2.13.2.jar
+
 [BSD](https://opensource.org/licenses/BSD-3-Clause)\
 curvesapi-1.06.jar\
 stax2-api-4.2.jar\
@@ -158,7 +170,7 @@ jackson-coreutils-1.0.jar\
 json-patch-1.3.jar\
 jxl-2.6.12.jar
 
-[Libreria Java di Base]\
+[Libreria Java di Base](https://opensource.org/licenses/category)\
 soap-2.3.1.jar
 
 [MIT](https://opensource.org/licenses/MIT)\
@@ -194,3 +206,9 @@ slf4j-api-1.7.25.jar
 [MIT, GPL-2.0](https://opensource.org/licenses/MIT)\
 checker-compat-qual-2.5.5.jar
 
+[MPL-1.1, LGPL-2.1, Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)\
+javassist-3.20.0-GA.jar\
+javassist-3.21.0-GA.jar
+
+[Public Domain](https://wiki.creativecommons.org/wiki/Public_domain)\
+jcip-annotations,1.0
