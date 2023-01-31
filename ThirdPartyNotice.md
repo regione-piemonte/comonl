@@ -102,7 +102,7 @@ bcprov-jdk15on-1.68.jar
 [CC0](https://creativecommons.org/publicdomain/zero/1.0/legalcode)\
 reactive-streams,1.0.2
 
-[CDDL, GPL-2.0 w/ CPE: CDDL + GPLv2 with classpath exception] (https://javaee.github.io/glassfish/LICENSE)\
+[CDDL and GPLv2 with Classpath Exception](https://javaee.github.io/glassfish/LICENSE)\
 javaee-api-8.0.1.jar\
 javaee-web-api-8.0.1.jar\
 javax.annotation-api-1.3.2.jar\
