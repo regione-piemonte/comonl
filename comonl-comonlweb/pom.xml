@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>it.csi.comonl</groupId>
+  <artifactId>comonlweb</artifactId>
+  <version>${revision}</version>
+  <packaging>pom</packaging>
+
+  <name>COMONL BackEnd</name>
+
+  <properties>
+    <!-- Modules version -->
+    <revision>1.0.0</revision>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Compiler configuration -->
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+
+    <!-- Configuration for the remote repository -->
+    <repository.url>http://repart.xxx.yy/artifactory/maven2</repository.url>
+
+    <!-- Dependencies configuration -->
+    <dependencies.version.jboss.bom>23.0.1.Final</dependencies.version.jboss.bom>
+    <dependencies.version.jexcelapi>2.6.12</dependencies.version.jexcelapi>
+    <dependencies.version.logging-log4j>2.13.1</dependencies.version.logging-log4j>
+    <dependencies.version.jee>8.0.1</dependencies.version.jee>
+    <dependencies.version.mapstruct>1.3.1.Final</dependencies.version.mapstruct>
+    <dependencies.version.jws-api>1.1</dependencies.version.jws-api>
+    <dependencies.version.jaxws-api>2.3.1</dependencies.version.jaxws-api>
+
+    <dependencies.version.javax-cache-api>1.0.0</dependencies.version.javax-cache-api>
+    <dependencies.version.jaxb-api>2.3.1</dependencies.version.jaxb-api>
+    <dependencies.version.commons-text>1.8</dependencies.version.commons-text>
+    <dependencies.version.commons-lang>2.5</dependencies.version.commons-lang>
+    <dependencies.version.shrinkwrap-resolver-bom>2.1.1</dependencies.version.shrinkwrap-resolver-bom>
+
+    <dependencies.version.joda-time>2.3</dependencies.version.joda-time>
+    <dependencies.version.gson-fire>1.8.0</dependencies.version.gson-fire>
+    <dependencies.version.swagger-core>1.6.6</dependencies.version.swagger-core>
+    <dependencies.version.okhttp>2.7.5</dependencies.version.okhttp>
+    <dependencies.version.gson>2.8.1</dependencies.version.gson>
+    <dependencies.version.threetenbp>1.3.5</dependencies.version.threetenbp>
+    <dependencies.version.httpclient>4.5.12</dependencies.version.httpclient>
+    
+    
+
+
+    <!-- per integrazione AAEP, Comonl -->
+    <!-- <dependencies.version.aaepsv-client>3.5.0</dependencies.version.aaepsv-client> -->
+    <dependencies.version.aaepsv-client>3.7.0</dependencies.version.aaepsv-client>
+    <!-- <dependencies.version.comonl-comprof-cxfclient>2.1.0</dependencies.version.comonl-comprof-cxfclient> -->
+
+    <!-- spicom e iup -->
+    <dependencies.version.spicom-client>2.13.2</dependencies.version.spicom-client> 
+    <dependencies.version.iupsv-cxfclient>1.0.0</dependencies.version.iupsv-cxfclient>
+    <dependencies.version.csi-apachesoap>1.4.6</dependencies.version.csi-apachesoap>
+    <dependencies.version.csi-core>1.4.6</dependencies.version.csi-core>
+    <dependencies.version.csi-stadapter>1.4.6</dependencies.version.csi-stadapter>
+    <dependencies.version.cxf>2.7.7</dependencies.version.cxf>
+    <dependencies.version.iridev2-pep-intf>2.0.0</dependencies.version.iridev2-pep-intf>
+    <dependencies.version.log4j>1.2.14</dependencies.version.log4j>
+    <dependencies.version.util-perf>1.0.1</dependencies.version.util-perf>
+    <dependencies.version.wsdl4j>1.6.3</dependencies.version.wsdl4j>
+    <dependencies.version.soap>2.3.1</dependencies.version.soap>
+
+
+    <!-- SILP -->
+    <dependencies.version.silpsv.aa>3.3.0</dependencies.version.silpsv.aa>
+    <dependencies.version.silpsv.al>3.4.0</dependencies.version.silpsv.al>
+
+    <dependencies.version.apache.poi>4.1.2</dependencies.version.apache.poi>
+    <swagger-codegen-maven-plugin-version>3.0.34</swagger-codegen-maven-plugin-version>
+    
+   
+    
+
+
+    <!-- Module configuration -->
+    <!-- <module.ear.context-root.angular>/comonl</module.ear.context-root.angular> 
+      <module.ear.context-root.rest>/rest</module.ear.context-root.rest> -->
+    <module.ear.context-root.rest>/comonlweb</module.ear.context-root.rest>
+    
+    <module.ear.context-root.srv.rest>/comonlsrv</module.ear.context-root.srv.rest>
+
+    <!-- Plugin configuration -->
+    <plugin.version.compiler>3.8.0</plugin.version.compiler>
+    <plugin.version.clean>3.1.0</plugin.version.clean>
+    <plugin.version.ear>3.0.1</plugin.version.ear>
+    <plugin.version.ejb>3.0.0</plugin.version.ejb>
+    <plugin.version.jar>3.2.0</plugin.version.jar>
+    <plugin.version.surefire>2.22.1</plugin.version.surefire>
+    <plugin.version.failsafe>2.22.1</plugin.version.failsafe>
+    <plugin.version.war>3.2.2</plugin.version.war>
+    <plugin.version.assembly>3.3.0</plugin.version.assembly>
+    <plugin.version.wildfly.maven>2.0.0.Final</plugin.version.wildfly.maven>
+    <plugin.version.license>2.0.0</plugin.version.license>
+    <plugin.version.owasp.dependency-check>5.3.2</plugin.version.owasp.dependency-check>
+    <plugin.version.build-helper>3.1.0</plugin.version.build-helper>
+    <plugin.version.jaxws>2.3.3</plugin.version.jaxws>
+    <plugin.version.xjc>3.3.0</plugin.version.xjc>
+
+  </properties>
+
+  <modules>
+    <module>lib</module>
+    <module>integ</module>
+    <module>integ-silp</module>
+    <module>integ-spicom</module>
+    <module>ejb</module>
+    <module>web</module>
+	<module>srv</module>
+    <!-- <module>angular</module> -->
+    <module>ear</module>
+    <module>tar</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Define the version of the liLIBar so that we don't need to repeat 
+        ourselves in every module -->
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-lib</artifactId>
+        <version>${revision}</version>
+        <type>jar</type>
+      </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-integ</artifactId>
+        <version>${revision}</version>
+        <type>jar</type>
+      </dependency>
+
+      <dependency> <groupId>${project.groupId}</groupId> <artifactId>comonlweb-integ-spicom</artifactId> 
+        <version>${revision}</version> <type>jar</type> </dependency>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-integ-silp</artifactId>
+        <version>${revision}</version>
+        <type>jar</type>
+      </dependency>
+
+      <!-- Define the version of the EJB jar so that we don't need to repeat 
+        ourselves in every module -->
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-ejb</artifactId>
+        <version>${revision}</version>
+        <type>ejb</type>
+      </dependency>
+      <!-- Define the version of the WAR so that we don't need to repeat 
+        ourselves in every module -->
+      
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-srv</artifactId>
+        <version>${revision}</version>
+        <type>war</type>
+        <scope>compile</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-web</artifactId>
+        <version>${revision}</version>
+        <type>war</type>
+        <scope>compile</scope>
+      </dependency>
+      
+      
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-angular</artifactId>
+        <version>${revision}</version>
+        <type>war</type>
+        <scope>compile</scope>
+      </dependency>
+      <!-- Define the version of the EAR so that we don't need to repeat 
+        ourselves in every module -->
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>comonlweb-ear</artifactId>
+        <version>${revision}</version>
+        <type>ear</type>
+      </dependency>
+
+      <!-- JBoss distributes a complete set of Java EE 8 APIs including a 
+        Bill of Materials (BOM). A BOM specifies the versions of a "stack" (or a 
+        collection) of artifacts. We use this here so that we always get the correct 
+        versions of artifacts. Here we use the wildfly-javaee8-with-tools stack (you 
+        can read this as the WildFly stack of the Java EE 8 APIs) -->
+        
+       <!--  
+      <dependency>
+        <groupId>org.wildfly.bom</groupId>
+        <artifactId>wildfly-javaee8-with-tools</artifactId>
+        <version>${dependencies.version.jboss.bom}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      -->
+      
+      
+<!-- https://mvnrepository.com/artifact/org.wildfly.bom/wildfly-jakartaee8-with-tools -->
+<dependency>
+    <groupId>org.wildfly.bom</groupId>
+    <artifactId>wildfly-jakartaee8-with-tools</artifactId>
+    <version>23.0.1.Final</version>
+    <type>pom</type>
+</dependency>
+
+      <!-- Project transversal dependencies -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>${dependencies.version.logging-log4j}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-to-slf4j</artifactId>
+        <version>${dependencies.version.logging-log4j}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-api</artifactId>
+        <version>${dependencies.version.jee}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax</groupId>
+        <artifactId>javaee-web-api</artifactId>
+        <version>${dependencies.version.jee}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.cache</groupId>
+        <artifactId>cache-api</artifactId>
+        <version>${dependencies.version.javax-cache-api}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${dependencies.version.jaxb-api}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.ws</groupId>
+        <artifactId>jaxws-api</artifactId>
+        <version>${dependencies.version.jaxws-api}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.jws</groupId>
+        <artifactId>javax.jws-api</artifactId>
+        <version>${dependencies.version.jws-api}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.mapstruct</groupId>
+        <artifactId>mapstruct</artifactId>
+        <version>${dependencies.version.mapstruct}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>it.csi.spicom</groupId>
+        <artifactId>spicom-client</artifactId>
+        <version>${dependencies.version.spicom-client}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>it.csi.iup</groupId>
+        <artifactId>iupsv-cxfclient</artifactId>
+        <version>${dependencies.version.iupsv-cxfclient}</version>
+      </dependency>
+
+      <!-- per integrazione AAEP, Comonl, Iride -->
+      <dependency>
+        <!-- <groupId>it.csi</groupId> -->
+        <groupId>csipiemonte</groupId>
+        <artifactId>aaepsv-client</artifactId>
+        <version>${dependencies.version.aaepsv-client}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>${dependencies.version.commons-lang}</version>
+      </dependency>
+
+      <dependency>
+        <!-- <groupId>it.csi</groupId> -->
+        <groupId>it.csi.comonl</groupId>
+        <!-- <artifactId>comonl-comprof-cxfclient</artifactId> -->
+        <artifactId>comprof-cxfclient</artifactId>
+        <version>${dependencies.version.comonl-comprof-cxfclient}</version>
+      </dependency>
+      <dependency>
+        <groupId>it.csi.csi</groupId>
+        <artifactId>csi-apachesoap</artifactId>
+        <version>${dependencies.version.csi-apachesoap}</version>
+      </dependency>
+      <dependency>
+        <groupId>it.csi.csi</groupId>
+        <artifactId>csi-core</artifactId>
+        <version>${dependencies.version.csi-core}</version>
+      </dependency>
+      <dependency>
+        <groupId>it.csi.csi</groupId>
+        <artifactId>csi-stadapter</artifactId>
+        <version>${dependencies.version.csi-stadapter}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf</artifactId>
+        <version>${dependencies.version.cxf}</version>
+      </dependency>
+      <!-- <dependency> <groupId>org.apache.cxf</groupId> <artifactId>cxf-rt-frontend-jaxws</artifactId> 
+        <version>2.7.7</version> </dependency> -->
+
+
+      <dependency>
+        <groupId>it.csi.iridev2</groupId>
+        <artifactId>iridev2-pep-intf</artifactId>
+        <version>${dependencies.version.iridev2-pep-intf}</version>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${dependencies.version.log4j}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>soap</groupId>
+        <artifactId>soap</artifactId>
+        <version>${dependencies.version.soap}</version>
+      </dependency>
+      <dependency>
+        <groupId>it.csi.util</groupId>
+        <artifactId>util-perf</artifactId>
+        <version>${dependencies.version.util-perf}</version>
+      </dependency>
+      <dependency>
+        <groupId>wsdl4j</groupId>
+        <artifactId>wsdl4j</artifactId>
+        <version>${dependencies.version.wsdl4j}</version>
+      </dependency>
+
+      <!-- SILP -->
+      <dependency>
+        <groupId>it.csi.silpsv</groupId>
+        <artifactId>silpsvaa-cxfclient</artifactId>
+        <version>${dependencies.version.silpsv.aa}</version>
+      </dependency>
+      <dependency>
+        <groupId>it.csi.silpsv</groupId>
+        <artifactId>silpsval-cxfclient</artifactId>
+        <version>${dependencies.version.silpsv.al}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>net.sourceforge.jexcelapi</groupId>
+        <artifactId>jxl</artifactId>
+        <version>${dependencies.version.jexcelapi}</version>
+      </dependency>
+      <!-- swagger -->
+      
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-annotations</artifactId>
+        <version>${dependencies.version.swagger-core}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.swagger</groupId>
+        <artifactId>swagger-jaxrs</artifactId>
+        <version>${dependencies.version.swagger-core}</version>
+        <!-- 
+        <exclusions>
+        	<exclusion>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+			</exclusion>
+		</exclusions>
+		 -->
+      </dependency>
+      
+
+	    
+
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- The WildFly plugin deploys your ear to a local JBoss AS container -->
+        <!-- Due to Maven's lack of intelligence with 
+        s we need to configure 
+          the wildfly maven plugin to skip deployment for all modules. We then enable 
+          it specifically in the ear module. -->
+        <plugin>
+          <groupId>org.wildfly.plugins</groupId>
+          <artifactId>wildfly-maven-plugin</artifactId>
+          <version>${plugin.version.wildfly.maven}</version>
+          <inherited>true</inherited>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${plugin.version.license}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>maven2</name>
+      <url>${repository.url}</url>
+    </repository>
+    <repository>
+      <snapshots></snapshots>
+      <id>snapshots</id>
+      <name>maven2</name>
+      <url>${repository.url}</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>maven2</name>
+      <url>${repository.url}</url>
+    </pluginRepository>
+    <pluginRepository>
+      <snapshots></snapshots>
+      <id>snapshots</id>
+      <name>maven2</name>
+      <url>${repository.url}</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <profiles>
+    <profile>
+      <id>local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <build.profile.id>local</build.profile.id>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>local-wildfly</id>
+      <properties>
+        <build.profile.id>local-wildfly</build.profile.id>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dev-cmto-01</id>
+      <properties>
+        <build.profile.id>dev-cmto-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>dev-int-01</id>
+      <properties>
+        <build.profile.id>dev-int-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>dev-rp-01</id>
+      <properties>
+        <build.profile.id>dev-rp-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>test-cmto-01</id>
+      <properties>
+        <build.profile.id>test-cmto-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>test-int-01</id>
+      <properties>
+        <build.profile.id>test-int-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>test-rp-01</id>
+      <properties>
+        <build.profile.id>test-rp-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod-int-01</id>
+      <properties>
+        <build.profile.id>prod-int-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod-cmto-01</id>
+      <properties>
+        <build.profile.id>prod-cmto-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <id>prod-rp-01</id>
+      <properties>
+        <build.profile.id>prod-rp-01</build.profile.id>
+      </properties>
+    </profile>
+    <profile>
+      <!-- An optional Arquillian testing profile that executes tests in 
+        your Wildfly instance. This profile will start a new Wildfly instance, and 
+        execute the test, shutting it down when done. Run with: mvn clean verify 
+        -Parq-managed -->
+      <id>arq-managed</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.wildfly.arquillian</groupId>
+          <artifactId>wildfly-arquillian-container-managed</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${version.failsafe.plugin}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <systemPropertyVariables>
+                <arquillian.launch>managed</arquillian.launch>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- An optional Arquillian testing profile that executes tests in 
+        a remote Wildfly instance. Run with: mvn clean verify -Parq-remote -->
+      <id>arq-remote</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.wildfly.arquillian</groupId>
+          <artifactId>wildfly-arquillian-container-remote</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${version.failsafe.plugin}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <systemPropertyVariables>
+                <arquillian.launch>remote</arquillian.launch>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!-- An optional Arquillian testing profile that executes tests in 
+        an embedded Wildfly instance. Run with: mvn clean verify -Parq-embedded -->
+      <id>arq-embedded</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.wildfly.arquillian</groupId>
+          <artifactId>wildfly-arquillian-container-embedded</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>${version.failsafe.plugin}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <systemPropertyVariables>
+                <arquillian.launch>embedded</arquillian.launch>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- Invoke via mvn clean package org.owasp:dependency-check-maven:aggregate 
+      -P owasp -->
+    <profile>
+      <id>owasp</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <build.profile.id>dev-rp-01</build.profile.id>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>${plugin.version.owasp.dependency-check}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <formats>
+                <format>XML</format>
+                <format>HTML</format>
+                <format>CSV</format>
+                <format>JSON</format>
+              </formats>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>generate-adapters</id>
+      <properties>
+        <build.profile.id>local</build.profile.id>
+      </properties>
+    </profile>
+    
+    
+    <!-- Invoke via ./mvnw clean package -P add-license -->
+    <profile>
+      <id>add-license</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <build.profile.id>test-rp-01</build.profile.id>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>rootlocation</id>
+                <phase>validate</phase>
+                <goals>
+                  <goal>rootlocation</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>add-licenses</id>
+                <goals>
+                  <goal>update-file-header</goal>
+                </goals>
+                <phase>process-sources</phase>
+              </execution>
+            </executions>
+            <configuration>
+				<organizationName>CSI Piemonte</organizationName>
+				<inceptionYear>2022</inceptionYear>
+              <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
+              <canUpdateLicense>false</canUpdateLicense>
+              <licenseName>eupl-1.2</licenseName>
+              <licenseResolver>file:///${rootlocation}/docs/license</licenseResolver>
+              <processStartTag>========================LICENSE_START=================================</processStartTag>
+              <processEndTag>=========================LICENSE_END==================================</processEndTag>
+              <roots>
+                <root>src</root>
+                <root>profiles</root>
+              </roots>
+              <excludes>
+                <exclude>main/angular/**/*</exclude>
+                <exclude>main/**/*.xml</exclude>
+                <!-- <exclude>main/java/it/csi/siac/**/*</exclude> -->
+              </excludes>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>generate-bom</id>
+      <properties>
+        <build.profile.id>dev</build.profile.id>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jboss.maven.plugins</groupId>
+            <artifactId>bom-builder-maven-plugin</artifactId>
+            <version>1.2.0</version>
+            <executions>
+              <execution>
+                <id>build-bom</id>
+                <goals>
+                  <goal>build-bom</goal>
+                </goals>
+                <configuration>
+                  <bomGroupId>${project.groupId}</bomGroupId>
+                  <bomArtifactId>${project.artifactId}-bom</bomArtifactId>
+                  <bomVersion>${revision}</bomVersion>
+                  <bomDescription>${project.description}</bomDescription>
+                  <bomName>${project.name}</bomName>
+                  <outputFilename>${project.artifactId}.bom-pom.xml</outputFilename>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>

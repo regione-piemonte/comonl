@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  COMONL BackEnd - EAR submodule
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<jboss-deployment-structure>
+
+<!-- 
+https://developer.jboss.org/thread/277927
+Caused by: org.jboss.weld.exceptions.DefinitionException: WELD-000071: Managed bean with a parameterized bean class must be @Dependent: class org.apache.cxf.jaxrs.provider.DataSourceProvider
+Caused by: org.jboss.weld.exceptions.DefinitionException: WELD-000071: Managed bean with a parameterized bean class must be @Dependent: class org.apache.cxf.jaxrs.provider.FormEncodingProvider
+
+ -->
+
+	<ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+
+	<deployment>
+	
+		<!-- 
+		<exclude-subsystems>
+			<subsystem name="jaxrs" />
+		</exclude-subsystems>
+
+	 
+		<exclusions>
+            <module name="org.jboss.resteasy.resteasy-jackson2-provider" />
+            <module name="org.jboss.resteasy.resteasy-jackson-provider" />
+        </exclusions>
+     
+      -->
+        
+	</deployment>
+
+</jboss-deployment-structure>

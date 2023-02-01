@@ -1,0 +1,46 @@
+/*-
+ * ========================LICENSE_START=================================
+ * COMONL BackEnd - EJB submodule
+ * %%
+ * Copyright (C) 2022 CSI Piemonte
+ * %%
+ * SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+ * SPDX-License-Identifier: EUPL-1.2
+ * =========================LICENSE_END==================================
+ */
+package it.csi.comonl.comonlweb.ejb.mapper;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.mapstruct.IterableMapping;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+
+import it.csi.comonl.comonlweb.ejb.entity.ComRDatoreSede;
+import it.csi.comonl.comonlweb.lib.dto.comunicazione.Datore;
+import it.csi.comonl.comonlweb.lib.dto.comunicazione.DatoreSede;
+import it.csi.comonl.comonlweb.lib.dto.comunicazione.SedeLavoro;
+import it.csi.comonl.comonlweb.lib.mapper.BaseMapperInterface;
+
+/**
+ * Mapper between DatoreSede and ComRDatoreSede
+ */
+@Mapper(uses = {DatoreMapper.class, SedeLavoroMapper.class})
+public interface DatoreSedeMapper extends BaseMapperInterface<DatoreSede, ComRDatoreSede> {
+
+	@Override
+	// @Mapping(source = "entityName", target = "modelName")
+	@Mapping(source = "comDSedeLavoro", target = "sedeLavoro")
+	@Mapping(source = "comDDatore", target = "datore")
+	DatoreSede toModel(ComRDatoreSede entity);
+
+	@Override
+	@IterableMapping(elementTargetType = DatoreSede.class)
+	List<DatoreSede> toModels(Collection<ComRDatoreSede> entities);
+
+	@Override
+	@IterableMapping(elementTargetType = ComRDatoreSede.class)
+	List<ComRDatoreSede> toEntities(Collection<DatoreSede> models);
+
+}

@@ -1,0 +1,203 @@
+<porta-delegata name="AAEPInterface2">
+	<services>
+		<service name="AAEPInterface2" public-interface-class="it.csi.servizioaaep2.interfaces.AAEPInterface2">
+			<operations>
+				<operation name="cercaPerCodiceFiscaleAAEP" type="synch-call">
+				  <param-list>
+					<param name="codiceFiscale" type="java.lang.String" />
+					<param name="comune" type="java.lang.String" />
+					<param name="siglaProv" type="java.lang.String" />
+				  </param-list>
+				  <ret-val type="it.csi.servizioaaep2.vo.AziendaAAEP"/>
+				</operation>
+				<operation name="cercaPerCodiceFiscaleFonteInail" type="synch-call">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="fonte" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.AziendaINAIL" />
+				</operation>
+				<operation name="cercaPerCodiceFiscaleFonteFp" type="synch-call">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="fonte" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.AziendaFP" />
+				</operation>
+				<operation name="cercaPerCodiceFiscaleFonteInfoc" type="synch-call">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="fonte" type="java.lang.String" />
+						<param name="cognome" type="java.lang.String" />
+						<param name="codIstatComune" type="java.lang.String" />
+						<param name="siglaProvUL" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.AziendaInfoc" />
+				</operation>
+				<operation name="cercaPerFiltri" type="synch-call">
+					<param-list>
+						<param name="denominazione" type="java.lang.String" />
+						<param name="codiceAteco" type="java.lang.String" />
+						<param name="provincia" type="java.lang.String" />
+						<param name="comune" type="java.lang.String" />
+						<param name="codiceASL" type="java.lang.String" />
+						<param name="tipoCodiceAteco" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ListaAzienda[]" />
+				</operation>
+				<operation name="cercaPerFiltriCodFiscFonte" type="synch-call">
+					<param-list>
+						<param name="codiceFiscalePersFisica" type="java.lang.String" />
+						<param name="fonteFiltri" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ListaPersonaCaricaInfoc[]" />
+				</operation>
+                       <operation name="cercaPuntualeSede" type="synch-call">
+			  <param-list>
+				<param name="idAAEPAzienda" type="java.lang.String" />
+				<param name="idAAEPFonteDato" type="java.lang.String" />
+                                <param name="progrSede" type="java.lang.String" />
+			  </param-list>
+			  <ret-val type="it.csi.servizioaaep2.vo.SedeInfoc"/>
+			</operation>
+				<operation name="cercaPuntualePersonaRI" type="synch-call">
+					<param-list>
+						<param name="idAAEPAzienda" type="java.lang.String" />
+						<param name="idAAEPFonteDato" type="java.lang.String" />
+						<param name="progrPers" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.PersonaRIInfoc" />
+				</operation>
+				<operation name="cercaPuntualeSedeAAEP" type="synch-call">
+					<param-list>
+						<param name="idAAEPAzienda" type="java.lang.String" />
+						<param name="idAAEPSede" type="java.lang.String" />
+						<param name="dataInizioVal" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.Sede" />
+				</operation>
+				<operation name="cercaPerCodiceFiscaleVarAnag" type="synch-call">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="dataInizioPeriodo" type="java.lang.String" />
+						<param name="dataFinePeriodo" type="java.lang.String" />
+						<param name="tipoVariazione" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.AziendaVarAnag" />
+				</operation>
+				<operation name="cercaPerCodiceFiscalePersConCaricaFonteInfoc"
+					type="synch-call">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="soloCaricaRL" type="java.lang.String" />
+						<param name="codFonte" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ListaPersona" />
+				</operation>
+
+				<operation name="isAlive" type="synch-call">
+					<param-list />
+					<ret-val type="boolean" />
+				</operation>
+				<operation name="testResources" type="synch-call">
+					<param-list />
+					<ret-val type="boolean" />
+				</operation>
+
+				<!-- PER SILP START  -->
+
+				<operation name="cercaPerCodiceFiscaleSILP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+						<param name="comune" type="java.lang.String" />
+						<param name="siglaProv" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.AziendaSILP" />
+				</operation>
+
+				<operation name="cercaUbicazioneSediSILP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="codiceFiscale" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ProvinciaSILP[]" />
+				</operation>
+
+				<operation name="cercaSedeSILP" type="synch-call" since="3.5.0">
+					<param-list>
+						<param name="idSILPSede" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.SedeSILP" />
+				</operation>
+
+				<operation name="cercaProspDisabSILP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="idSILPProspDisab" type="java.lang.String" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ProspDisabSILP" />
+				</operation>
+
+				<!-- PER SILP STOP  -->
+				<!-- nuova versione -->
+				<operation name="cercaNAddettiAAEP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="criteri" type="it.csi.servizioaaep2.vo.FiltroRicerca[]" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.NAddettiAAEP" />
+				</operation>
+
+				<operation name="cercaPosizReaAAEP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="criteri" type="it.csi.servizioaaep2.vo.FiltroRicerca[]" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.PosizReaAAEP[]" />
+				</operation>
+
+				<operation name="cercaUbicazioneSediAAEP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="criteri" type="it.csi.servizioaaep2.vo.FiltroRicerca[]" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.ProvinciaAAEP[]" />
+				</operation>
+
+				<operation name="cercaMovimAddettiAAEP" type="synch-call"
+					since="3.5.0">
+					<param-list>
+						<param name="criteri" type="it.csi.servizioaaep2.vo.FiltroRicerca[]" />
+					</param-list>
+					<ret-val type="it.csi.servizioaaep2.vo.MovimAddettiAAEP[]" />
+				</operation>
+
+			<operation name="cercaPerCodiceFiscaleINFOC" type="synch-call">
+			  <param-list>
+					<param name="codiceFiscale" type="java.lang.String" />
+					<param name="codFonte" type="java.lang.String" />
+					<param name="cognome" type="java.lang.String" />
+					<param name="codIstatComune" type="java.lang.String" />
+					<param name="siglaProvUL" type="java.lang.String" />
+			  </param-list>
+			  <ret-val type="it.csi.servizioaaep2.vo.ImpresaInfoc"/>
+			</operation>
+
+				<!-- nuova versione END -->
+			</operations>
+		</service>
+	</services>
+	<config>
+		<url-pa>multi://pc41012.csi.it</url-pa>
+		<pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+			<pluggable-pd 
+				name="bridgeAAEP2" 
+				class="it.csi.csi.porte.soap.apache.PortaDelegataSoap" 
+				url-pa="${aaep.url}"
+			>
+			</pluggable-pd>
+		</pluggable-pd-list>
+		<queue-manager url="rmi://:2001/QMgrCli" />
+	</config>
+</porta-delegata>

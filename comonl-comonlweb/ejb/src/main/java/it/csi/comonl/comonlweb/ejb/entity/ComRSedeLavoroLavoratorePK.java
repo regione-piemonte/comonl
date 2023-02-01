@@ -1,0 +1,73 @@
+/*-
+ * ========================LICENSE_START=================================
+ * COMONL BackEnd - EJB submodule
+ * %%
+ * Copyright (C) 2022 CSI Piemonte
+ * %%
+ * SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+ * SPDX-License-Identifier: EUPL-1.2
+ * =========================LICENSE_END==================================
+ */
+package it.csi.comonl.comonlweb.ejb.entity;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+/**
+ * The primary key class for the COM_R_RAPPORTO_LAVORATORE database table.
+ * 
+ */
+@Embeddable
+public class ComRSedeLavoroLavoratorePK implements Serializable {
+	//default serial version id, required for serializable classes.
+	private static final long serialVersionUID = 1L;
+
+	@Column(name="ID_COM_D_SEDE_LAVORO", insertable=false, updatable=false)
+	private long idComDSedeLavoro;
+
+	@Column(name="ID_COM_D_LAVORATORE", insertable=false, updatable=false)
+	private long idComDLavoratore;
+
+	public ComRSedeLavoroLavoratorePK() {
+	}
+
+	public long getIdComDSedeLavoro() {
+		return idComDSedeLavoro;
+	}
+
+	public void setIdComDSedeLavoro(long idComDSedeLavoro) {
+		this.idComDSedeLavoro = idComDSedeLavoro;
+	}
+
+	public long getIdComDLavoratore() {
+		return idComDLavoratore;
+	}
+
+	public void setIdComDLavoratore(long idComDLavoratore) {
+		this.idComDLavoratore = idComDLavoratore;
+	}
+
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof ComRSedeLavoroLavoratorePK)) {
+			return false;
+		}
+		ComRSedeLavoroLavoratorePK castOther = (ComRSedeLavoroLavoratorePK)other;
+		return 
+			(this.idComDLavoratore == castOther.idComDLavoratore)
+			&& (this.idComDSedeLavoro == castOther.idComDSedeLavoro);
+	}
+
+	public int hashCode() {
+		final int prime = 31;
+		int hash = 17;
+		hash = hash * prime + ((int) (this.idComDLavoratore ^ (this.idComDLavoratore >>> 32)));
+		hash = hash * prime + ((int) (this.idComDSedeLavoro ^ (this.idComDSedeLavoro >>> 32)));
+		
+		return hash;
+	}
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  COMONL BackEnd - EJB submodule
+  %%
+  Copyright (C) 2022 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2
+  =========================LICENSE_END==================================
+  -->
+
+<datasources xmlns="http://www.jboss.org/ironjacamar/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.jboss.org/ironjacamar/schema http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
+  <datasource jta="true" jndi-name="java:jboss/datasources/comonlwebDS" pool-name="comonlwebDSPool" enabled="true" use-ccm="false">
+    <connection-url>jdbc:postgresql://aaa.bbb.ccc.ddd:5432/comonl</connection-url>
+    <driver-class>org.postgresql.Driver</driver-class>
+    <datasource-class>org.postgresql.ds.PGPoolingDataSource</datasource-class>
+    <connection-property name="connectTimeout">5</connection-property>
+    <connection-property name="socketTimeout">180</connection-property>
+    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+    <driver>postgresql</driver>
+    <pool>
+      <min-pool-size>5</min-pool-size>
+      <max-pool-size>25</max-pool-size>
+    </pool>
+    <security>
+      <user-name>inserireutentecomonltest</user-name>
+      <password>************</password>
+    </security>
+    <validation>
+      <check-valid-connection-sql>SELECT 1</check-valid-connection-sql>
+      <validate-on-match>true</validate-on-match>
+      <background-validation>false</background-validation>
+    </validation>
+    <statement>
+      <share-prepared-statements>false</share-prepared-statements>
+    </statement>
+  </datasource>
+</datasources>
