@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 

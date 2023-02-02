@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { GradoContrattuale } from './../../../../../../comonlapi/model/gradoContrattuale';
 import { Istat2001livello5 } from './../../../../../../comonlapi/model/istat2001livello5';

@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { Pipe, PipeTransform, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';

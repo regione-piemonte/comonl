@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { ComonlStorageService } from 'src/app/services/storage/comonl-storage.service';
 import { StatoDelega } from './../../../../comonlapi/model/statoDelega';

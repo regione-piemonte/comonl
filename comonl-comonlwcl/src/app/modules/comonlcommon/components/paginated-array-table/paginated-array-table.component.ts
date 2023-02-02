@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { Component, ContentChild, Directive, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChildren } from '@angular/core';
 import { PaginationDataChange, SortEvent } from 'src/app/models';

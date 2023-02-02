@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { ModalInvioComunicazioneComponent } from './modules/comunicazione/components/modal-invio-comunicazione/modal-invio-comunicazione.component';
 import { ModalNuovaVardatoriComponent } from './modules/comunicazione/components/modal-nuova-vardatori/modal-nuova-vardatori.component';

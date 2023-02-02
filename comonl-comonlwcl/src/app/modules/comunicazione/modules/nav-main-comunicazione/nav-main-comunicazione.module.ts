@@ -1,6 +1,6 @@
 /*
-* SPDX-FileCopyrightText: Copyright 2019 - 2022 | CSI Piemonte
-* SPDX-License-Identifier: EUPL-1.2
+* SPDX-FileCopyrightText: Copyright 2019 - 2022 | Regione Piemonte
+* SPDX-License-Identifier: EUPL-1.2-or-later
 */
 import { RiepilogoDatiGeneraliVardatoriComponent } from './components/quadri/riepilogo/riepilogo-dati-generali-vardatori/riepilogo-dati-generali-vardatori.component';
 import { NgModule } from '@angular/core';
