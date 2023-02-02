@@ -1,2 +1,2 @@
 SPDX-FileCopyrightText: Copyright ${copyright.years} | ${organizationName}
-SPDX-License-Identifier: EUPL-1.2
+SPDX-License-Identifier: EUPL-1.2-or-later

@@ -1,0 +1,570 @@
+swagger: "2.0"
+info:
+  description: "API per silprest"
+  version: "1.0.0"
+  title: "silprest"
+host: "localhost:8080"
+basePath: "/silprest/api"
+tags:
+- name: "Servizi"
+schemes:
+- "http"
+paths:
+  /lavoratori/save:
+    post:
+      operationId: saveLavoratore
+      description: Restituisce dati registrati su sistema.
+      produces:
+        - application/json
+      tags:
+        - lavoratori
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/LavoratoreParam'
+      responses:
+        '200':
+          description: Dati registrati su sistema.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/LavoratoreResponse'
+        default:
+          description: Errore generico.
+          schema:
+            $ref: '#/definitions/ApiError'
+  /aziende/create:
+    post:
+      operationId: inserisciAzienda
+      description: Restituisce dati registrati su sistema.
+      produces:
+        - application/json
+      tags:
+        - aziende
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/AziendaParam'
+      responses:
+        '200':
+          description: Dati registrati su sistema.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AziendaResponse'
+        default:
+          description: Errore generico.
+          schema:
+            $ref: '#/definitions/ApiError'
+  /referenti/save:
+    post:
+      operationId: saveReferente
+      description: Restituisce dati registrati su sistema.
+      produces:
+        - application/json
+      tags:
+        - referenti
+      parameters:
+        - in: body
+          name: arg0
+          required: true
+          schema:
+            $ref: '#/definitions/ReferenteParam'
+      responses:
+        '200':
+          description: Dati registrati su sistema.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferenteResponse'
+        default:
+          description: Errore generico.
+          schema:
+            $ref: '#/definitions/ApiError'            
+  /referenti/find:
+    post:
+      operationId: findReferente
+      description: Restituisce dati registrati su sistema.
+      produces:
+        - application/json
+      tags:
+        - referenti
+      parameters:
+        - in: body
+          name: arg0
+          required: true
+          schema:
+            $ref: '#/definitions/ReferenteFindParam'
+      responses:
+        '200':
+          description: Dati registrati su sistema.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferenteFindResponse'
+        default:
+          description: Errore generico.
+          schema:
+            $ref: '#/definitions/ApiError'
+  /referenti/delete:
+    post:
+      operationId: deleteReferente
+      description: Restituisce dati registrati su sistema.
+      produces:
+        - application/json
+      tags:
+        - referenti
+      parameters:
+        - in: body
+          name: arg0
+          required: true
+          schema:
+            $ref: '#/definitions/ReferenteDeleteParam'
+      responses:
+        '200':
+          description: Dati registrati su sistema.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ReferenteResponse'
+        default:
+          description: Errore generico.
+          schema:
+            $ref: '#/definitions/ApiError'              
+definitions:
+  CallInfoParam:
+    type: object
+    properties:
+      codApplicativo:
+        type: string
+      codUser:
+        type: string
+  LavoratoreParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      codCapDom:
+        type: string
+      codCapRes:
+        type: string
+      codFiscale:
+        type: string
+      dataNasc:
+        type: string
+        format: date-time
+      dataScadPermSogg:
+        type: string
+        format: date-time
+      dsCognome:
+        type: string
+      dsIndirizzoDom:
+        type: string
+      dsIndirizzoRes:
+        type: string
+      dsLocalitaDom:
+        type: string
+      dsLocalitaRes:
+        type: string
+      dsMail:
+        type: string
+      dsNome:
+        type: string
+      dsNumCivicoDom:
+        type: string
+      dsNumCivicoRes:
+        type: string
+      dsNumDocPermSogg:
+        type: string
+      dsSitoWeb:
+        type: string
+      dsTelefonoCell:
+        type: string
+      dsTelefonoFax:
+        type: string
+      dsTelefonoRes:
+        type: string
+      flgGenere:
+        type: string
+      idSilLavAnagrafica:
+        type: integer
+        format: int64
+      codMinCittadinanza:
+        type: string
+      idSilTComuneDom:
+        type: string
+      idSilTComuneNas:
+        type: string
+      idSilTComuneRes:
+        type: string
+      codMinGradoStudio:
+        type: string
+      codMinMotRilPerm:
+        type: string
+      idSilTNazioneNas:
+        type: string
+      idSilTNazioneRes:
+        type: string
+      codMinQuestura:
+        type: string
+      idSilTStatoCiv:
+        type: string
+      codMinStatusLavExtraUe:
+        type: string
+      idSilTToponimoDom:
+        type: string
+      idSilTToponimoRes:
+        type: string
+  LavoratoreResponse:
+    allOf:
+    - $ref: '#/definitions/CommonResponse'
+    properties:
+      id:
+        type: integer
+        format: int64
+      presenteErrore:
+        type: boolean
+  CommonParam:
+    type: object
+    properties:
+      callInfoParam:
+        $ref: "#/definitions/CallInfoParam"     
+  AziendaParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      altreInformazioni:
+        type: string
+      codAteco:
+        type: string
+      codCcnl:
+        type: string
+      codFiscale:
+        type: string
+      codFiscaleOld:
+        type: string
+      codNaturaGiuridica:
+        type: string
+      codTipoAzienda:
+        type: string
+      dsAnilt:
+        type: string
+      flgArtigiana:
+        type: string
+      flgMaster:
+        type: string  
+      flgPubblicaAmministrazione:
+        type: string
+      idAzienda:
+        type: integer
+        format: int64
+      partitaIva:
+        type: string
+      ragioneSociale:
+        type: string
+      sede:
+        $ref: '#/definitions/SedeParam'  
+  SedeParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      cap:
+        type: string
+      codClasseAmpiezza:
+        type: string
+      codComune:
+        type: string
+      codNazione:
+        type: string
+      codTipoSede:
+        type: integer
+        format: int64
+      codToponimo:
+        type: string
+      dataInizioAttivita:
+        type: string
+        format: date-time
+      dataRifNumDipendenti:
+        type: string
+        format: date-time
+      denominazione:
+        type: string
+      email:
+        type: string
+      fax:
+        type: string
+      flgValida:
+        type: string
+      idSede:
+        type: integer
+        format: int64
+      idSedeLegaleOld:
+        type: integer
+        format: int64
+      inail:
+        type: string
+      indirizzo:
+        type: string
+      inps:
+        type: string
+      localita:
+        type: string
+      motivoFlgValida:
+        type: string
+      numAgenziaSomm:
+        type: string
+      numCivico:
+        type: string
+      numDipendenti:
+        type: string
+      telefono:
+        type: string
+  CommonResponse:
+    type: object
+    properties: 
+      esitoPositivo:
+        type: boolean
+        default: true
+      apiMessages:
+        type: array
+        items:  
+          $ref: '#/definitions/ApiMessage'
+  AziendaResponse:
+    allOf:
+    - $ref: '#/definitions/CommonResponse'
+    properties:
+      sede:
+          $ref: '#/definitions/SedeResponse'    
+      codiceFiscale:
+        type: string
+      id:
+        type: integer
+        format: int64
+  SedeResponse:
+    allOf:
+    - $ref: '#/definitions/CommonResponse'
+    properties:
+      apiMessages:
+        type: array
+        items:  
+          $ref: '#/definitions/ApiMessage'
+      id:
+        type: integer
+        format: int64
+      idAzienda:
+        type: integer
+        format: int64
+  ReferenteFindParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      codTipoReferente:
+        type: string
+      dsCognome:
+        type: string
+      dsNome:
+        type: string
+      idReferente:
+        type: integer
+        format: int64
+      idSede:
+        type: integer
+        format: int64
+  ReferenteParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      cap:
+        type: string
+      denominazione:
+        type: string
+      dsCognome:
+        type: string
+      dsNome:
+        type: string
+      dtNascita:
+        type: string
+        format: date-time
+      dtRichiestaTitoloSoggiorno:
+        type: string
+        format: date-time
+      dtScadenzaTitoloSoggiorno:
+        type: string
+        format: date-time
+      fax:
+        type: string
+      faxAzienda:
+        type: string
+      genere:
+        type: string
+      id:
+        type: integer
+        format: int64
+      codMinCittadinanza:
+        type: string
+      idComune:
+        type: string
+      idComuneNasc:
+        type: string
+      codMinMotivoTitoloSoggiorno:
+        type: string
+      idNazione:
+        type: string
+      idNazioneNasc:
+        type: string
+      codMinQuestura:
+        type: string
+      idSede:
+        type: integer
+        format: int64
+      codMinTitoloSoggiorno:
+        type: string
+      indirizzo:
+        type: string
+      mail:
+        type: string
+      numCivico:
+        type: string
+      note:
+        type: string
+      numeroTitoloSoggiorno:
+        type: string
+      ruoli:
+        type: array
+        items:  
+          type: string
+      sitoWeb:
+        type: string
+      telefono:
+        type: string
+      telefonoAzienda:
+        type: string
+      toponimo:
+        type: string
+  ReferenteDeleteParam:
+    allOf:
+    - $ref: '#/definitions/CommonParam'
+    properties:
+      id:
+        type: integer
+        format: int64
+  ReferenteFindResponse:
+    allOf:
+    - $ref: '#/definitions/CommonResponse'
+    properties:
+      apiMessages:
+        type: array
+        items:  
+          $ref: '#/definitions/ApiMessage'
+      referenti:
+        type: array
+        items:  
+          $ref: '#/definitions/Referente'   
+  ReferenteResponse:
+    allOf:
+    - $ref: '#/definitions/CommonResponse'
+    properties:
+      referente:
+        $ref: '#/definitions/Referente'          
+  Referente:
+    type: object
+    properties:
+      cap:
+        type: string
+      denominazione:
+        type: string
+      dsCognome:
+        type: string
+      dsMotivoTitoloSoggiorno:
+        type: string
+      dsNome:
+        type: string
+      dsQuestura:
+        type: string
+      dsTitoloSoggiorno:
+        type: string
+      dtNascita:
+        type: string
+        format: date-time
+      dtRichiestaTitoloSoggiorno:
+        type: string
+        format: date-time
+      dtScadenzaTitoloSoggiorno:
+        type: string
+        format: date-time
+      fax:
+        type: string
+      faxAzienda:
+        type: string
+      genere:
+        type: string
+      id:
+        type: integer
+        format: int64
+      codMinCittadinanza:
+        type: string
+      idComune:
+        type: string
+      idComuneNasc:
+        type: string
+      codMinMotivoTitoloSoggiorno:
+        type: string
+      idNazione:
+        type: string
+      idNazioneNasc:
+        type: string
+      codMinQuestura:
+        type: string
+      idSede:
+        type: integer
+        format: int64
+      codMinTitoloSoggiorno:
+        type: string
+      indirizzo:
+        type: string
+      mail:
+        type: string
+      numCivico:
+        type: string
+      note:
+        type: string
+      numeroTitoloSoggiorno:
+        type: string
+      ruoli:
+        type: array
+        items:  
+          $ref: '#/definitions/Decodifica'
+      sitoWeb:
+        type: string
+      telefono:
+        type: string
+      telefonoAzienda:
+        type: string
+      toponimo:
+        type: string  
+  Decodifica:
+    type: object
+    properties:
+      codice:
+        type: object
+      descrizione:
+        type: string      
+  ApiMessage:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+      error:
+        type: boolean
+  ApiError:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string

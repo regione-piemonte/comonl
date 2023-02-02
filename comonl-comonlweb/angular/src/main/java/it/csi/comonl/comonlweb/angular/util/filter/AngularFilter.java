@@ -1,3 +1,8 @@
+/* **************************************************** */
+/* Copyright Regione Piemonte - 2022					*/
+/* SPDX-License-Identifier: EUPL-1.2-or-later			*/
+/* **************************************************** */
+
 package it.csi.comonl.comonlweb.angular.util.filter;
 
 import java.io.IOException;
