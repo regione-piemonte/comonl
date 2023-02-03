@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  CPASS BackEnd - INTEGRATION submodule - SIAC
+  %%
+  Copyright (C) 2019 - 2020 CSI Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2019 - 2020 | CSI Piemonte
+  SPDX-License-Identifier: EUPL-1.2-or-later
+  =========================LICENSE_END==================================
+  -->
+
+<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+  <jaxws:enableWrapperStyle>false</jaxws:enableWrapperStyle>
+</jaxws:bindings>

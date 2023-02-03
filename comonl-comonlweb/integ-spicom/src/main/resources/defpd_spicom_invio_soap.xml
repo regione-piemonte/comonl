@@ -1,0 +1,46 @@
+<porta-delegata name="PD_AccettazioneComunicazioni">
+   <services>
+     <service name="PA_AccettazioneComunicazioni" public-interface-class="it.csi.spicom.interf.ServizioInvioComunicazioni" >
+       <operations>
+            <operation name="inviaComunicazione" type="synch-call">
+                 <param-list>
+                     <param name="comunicazioneDaInviare" type="it.csi.spicom.dto.ComunicazioneTracciatoUnicoDTO" />
+                 </param-list>
+                 <ret-val type="it.csi.spicom.interf.EsitoInvioComunicazione"/>
+            </operation>
+            <operation name="inviaComunicazioneXML" type="synch-call">
+                 <param-list>
+                     <param name="xml" type="java.lang.String" />
+                 </param-list>
+                 <ret-val type="it.csi.spicom.interf.EsitoInvioComunicazione"/>
+            </operation>
+            <operation name="inviaComunicazioneProspettoXML" type="synch-call">
+                 <param-list>
+                     <param name="xml" type="java.lang.String" />
+                 </param-list>
+                 <ret-val type="it.csi.spicom.interf.EsitoInvioComunicazione"/>
+            </operation>
+            <operation name="isAlive" type="synch-call">
+			  <ret-val type="boolean"/>
+	    	</operation>
+            <operation name="isAlive" type="synch-call">
+			  <ret-val type="boolean"/>
+	    	</operation>
+            <operation name="testResources" type="synch-call">
+			  <ret-val type="boolean"/>
+	    </operation>
+       </operations>
+     </service>
+   </services>
+	<config>
+		<url-pa>multi://nome.dominio.it</url-pa>
+		<pluggable-pd-list chooser-class="it.csi.csi.porte.FixedDelegateChooser">
+			<pluggable-pd 
+				name="PA_AccettazioneComunicazioni" 
+				class="it.csi.csi.porte.soap.apache.PortaDelegataSoap" 
+				url-pa="${spicom_invio.url}">
+			</pluggable-pd>
+		</pluggable-pd-list>
+		<queue-manager url="rmi://:2001/QMgrCli" />
+	</config>
+</porta-delegata>
