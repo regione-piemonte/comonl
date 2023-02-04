@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  COMONL BackEnd - WAR submodule
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2-or-later
+  =========================LICENSE_END==================================
+  -->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<!-- Filter -->
+	<filter>
+		<filter-name>ThreadLocalFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.web.util.filter.ThreadLocalFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.web.util.filter.XSRFProtectionFilter</filter-class>
+		<init-param>
+			<param-name>disabled</param-name>
+			<param-value>${xsrffilter.disabled}</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>AngularFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.web.util.filter.AngularFilter</filter-class>
+		<init-param>
+			<param-name>indexUrl</param-name>
+			<param-value>${angularfilter.indexUrl}</param-value>
+		</init-param>
+		<init-param>
+			<param-name>backendUrl</param-name>
+			<param-value>${angularfilter.backendUrl}</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AngularFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>ThreadLocalFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Listener -->
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+	
+
+	
+	<!-- Servlet -->	
+    <servlet>
+      <servlet-name>logoutServlet</servlet-name>
+      <servlet-class>it.csi.comonl.comonlweb.web.util.servlet.LogOutServlet</servlet-class>
+      <init-param>
+        <param-name>logout.shibbolethSSOURL</param-name>
+        <param-value>${logout.shibbolethSSOURL}</param-value>
+      </init-param>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>logoutServlet</servlet-name>
+      <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

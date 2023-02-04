@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ========================LICENSE_START=================================
+  COMONL BackEnd - SRV submodule
+  %%
+  Copyright (C) 2022 Regione Piemonte
+  %%
+  SPDX-FileCopyrightText: Copyright 2022 | Regione Piemonte
+  SPDX-License-Identifier: EUPL-1.2-or-later
+  =========================LICENSE_END==================================
+  -->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<!-- Filter -->
+	<filter>
+		<filter-name>ThreadLocalFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.srv.util.filter.ThreadLocalFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.srv.util.filter.XSRFProtectionFilter</filter-class>
+		<init-param>
+			<param-name>disabled</param-name>
+			<param-value>${xsrffilter.disabled}</param-value>
+		</init-param>
+	</filter>
+	
+	<filter>
+		<filter-name>AngularFilter</filter-name>
+		<filter-class>it.csi.comonl.comonlweb.srv.util.filter.AngularFilter</filter-class>
+		<init-param>
+			<param-name>indexUrl</param-name>
+			<param-value>${angularfilter.indexUrl}</param-value>
+		</init-param>
+		<init-param>
+			<param-name>backendUrl</param-name>
+			<param-value>${angularfilter.backendUrl}</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AngularFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+
+	<filter-mapping>
+		<filter-name>ThreadLocalFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>XSRFProtectionFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+	
+	
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+
+
+	<!-- impostazioni di security -->
+	${security-contraints-pre}
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Restricted to Secure role</web-resource-name>
+			<description>protezione accesso servizi</description>
+			
+			<url-pattern>/*</url-pattern>
+			
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		
+		<auth-constraint>
+			<role-name>fruitore</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>applications</realm-name>
+	</login-config>
+
+	<security-role>
+		<role-name>fruitore</role-name>
+	</security-role>
+	${security-contraints-post}
+
+	<welcome-file-list>
+		<welcome-file>/index.html</welcome-file>
+	</welcome-file-list>
+	
+</web-app>

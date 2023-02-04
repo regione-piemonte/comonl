@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>it.csi.comonl</groupId>
+    <artifactId>comonlweb</artifactId>
+    <version>${revision}</version>
+  </parent>
+
+  <artifactId>comonlweb-tar</artifactId>
+  <packaging>pom</packaging>
+  <name>COMONL BackEnd - TAR submodule</name>
+  <description>Produce un archivio TAR contenente l'ear di progetto</description>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>comonlweb-ear</artifactId>
+      <type>ear</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>comonlweb</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>${plugin.version.assembly}</version>
+        <executions>
+          <execution>
+            <id>distro-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>src/assembly/distribution.xml</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
