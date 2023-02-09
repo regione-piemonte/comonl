@@ -32,7 +32,7 @@ public class TestAuthAdapter implements AuthAdapter {
 		final String methodName = "processAuth";
 
 		Utente utente = new Utente();
-		utente.setCodiceFiscale("AAAAAA00A11B000J");
+		utente.setCodiceFiscale("CCCCCCnnCnnCnnnC");
 		utente.setNome("pro");
 		utente.setCognome("logic");
 		utente.setId(new Random().nextInt());

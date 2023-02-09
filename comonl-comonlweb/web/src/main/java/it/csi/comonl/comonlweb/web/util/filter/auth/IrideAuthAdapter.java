@@ -120,7 +120,7 @@ public class IrideAuthAdapter implements AuthAdapter {
 			} else {
 				LOG.debug(methodName, "token caricato da file");
 				// per il reperimento di un token valido di test si puo' utilizzare
-				// http://tst-www.sistemapiemonte.it/routingconf-cons/identita.do
+				// http://tst-
 				// - verrà restituito il token
 				// - creare un file ‪"token.txt" nella propria "home directory" (es.
 				// ‪C:\Users\filip\token.txt)
@@ -128,7 +128,7 @@ public class IrideAuthAdapter implements AuthAdapter {
 				String pathHome = System.getProperty("user.home");
 				String filenameToken = pathHome + "/token.txt";
 				File fileToken = new File(filenameToken);
-				String sToken = "AAAAAA00A11F000N/CSI PIEMONTE/DEMO 25/ACTALIS_EU/20210927092053/16/s+D6vE98racLnX/MII7pOw==";
+				String sToken = "CCCCCCnnCnnCnnnC/xxxxx/yyyy/provider/timedate/nn/ssssss/ttttt";
 				if (fileToken.exists()) {
 					FileReader fr = new FileReader(fileToken);
 					BufferedReader br = new BufferedReader(fr);
@@ -145,9 +145,7 @@ public class IrideAuthAdapter implements AuthAdapter {
 				identita = new Identita(sToken);
 
 				// Dev mode - solo codice fiscale
-				// identita.setCodFiscale("AAAAAA00A11B000J");
-				//identita = new Identita();
-				//identita.setCodFiscale("AAAAAA00A11I000Q");
+				
 			}
 		} catch (MalformedIdTokenException e) {
 			LOG.error(methodName, "Token non correttamente formattato. " + e.toString(), e);
