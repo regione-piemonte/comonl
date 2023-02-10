@@ -28,7 +28,7 @@ L’applicativo permette alle aziende o ai propri delegati di gestire tutte le t
 Il prodotto "Comonl" è stato sviluppato negli anni nel completo rispetto dei Modelli e Regole definiti dal Ministero.
 
 Il prodotto è strutturato nelle seguenti componenti specifiche:
-- [comonldb]( https://github.com/regione-piemonte/comonl/tree/main/comonl-comonldb ) : script DDL/DML per la creazione ed il popolamento iniziale del DB (istanza DBMS Oracle), procedure PL/SQL di elaborazione dati;
+- [comonldb]( https://github.com/regione-piemonte/comonl/tree/main/comonl-comonldb ) : script per la creazione del DB (istanza DBMS Oracle);
 - [comonlwcl]( https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlwcl ) : Client Web (Angular8), front-end applicativo;
 - [comonlweb]( https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlweb ) : Componente SPA con servizi REST per comonlwcl;					;
 - [comonlsrv]( https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlweb ) : Componente di esposizione servizi (REST API) verso altri applicativi del Sistema Informativo Regionale.				;
@@ -43,7 +43,7 @@ Nella directory [csi-lib]( https://github.com/regione-piemonte/comonl/tree/main/
 
 # Prerequisiti di sistema
 
-Una istanza DBMS Oracle (v. 12 o sup. - consigliata la v.19, eventualmente la "Enterprise Edition" per carichi di lavoro elevati) con utenza avente privilegi per la creazione tabelle ed altri oggetti DB (tramite le istruzioni DDL messe a disposizione nella componente comonldb), ed una ulteriore utenza separata non proprietaria dello schama, per l'esecuzione di istruzioni DML di Create, Readd, Update e Delete sui dati.
+Una istanza DBMS Oracle (consigliata la verione 19, eventualmente la "Enterprise Edition" per carichi di lavoro elevati) con utenza avente privilegi per la creazione tabelle ed altri oggetti DB (tramite le istruzioni DDL messe a disposizione nella componente comonldb), ed una ulteriore utenza separata non proprietaria dello schama, per l'esecuzione di istruzioni DML di Create, Readd, Update e Delete sui dati.
 
 Una istanza di application server J2EE, consigliato WildFly 23 ( https://www.wildfly.org/downloads/ ).\
 Una istanza di web server, consigliato apache web server ( https://httpd.apache.org/ ).\
@@ -57,7 +57,7 @@ Infine, anche per quanto concerne l'autenticazione e la profilazione degli utent
 
 # Installazione
 
-Creare lo schema del DB e popolarlo, tramite gli script della componente comonldb. Installare anche i package e le procedure PL/SQL presenti nella stessa directory.
+Creare lo schema del DB, tramite gli script della componente comonldb.
  
 Configurare il datasource nell'application server, utilizzato in comonlweb e comonlsrv.
 
@@ -86,5 +86,3 @@ Per il versionamento del software si usa la tecnica Semantic Versioning (http://
 SPDX-License-Identifier: EUPL-1.2-or-later .\
 Questo software è distribuito con licenza EUPL-1.2 .\
 Consultare il file LICENSE.txt per i dettagli sulla licenza.
-
-
