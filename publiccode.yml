@@ -1,0 +1,171 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+applicationSuite: Regione Piemonte Sistema Informativo Lavoro
+categories:
+  - business-process-management
+description:
+  it:
+    features:
+      - Inviare una (Comunicazione di) assunzione
+      - Inviare una Comunicazione di aggiornamento rapporto lavoro
+      - Rettificare una Comunicazione
+      - Annullare una Comunicazione
+      - Inviare un Vardatori
+      - Rettificare un Vardatori
+      - Annullare un Vardatori
+    genericName: COMunicazioni ONLine Aziende
+    localisedName: GECO
+    longDescription: |
+      Il prodotto **COMONL **è l’applicativo della **Regione Piemonte** 
+      attraverso il quale i datori di lavoro pubblici e privati, inviano in
+      modalità telematica le **comunicazioni obbligatorie sui rapporti di
+      lavoro**: assunzioni, cessazioni, proroghe, trasformazioni, trasferimenti,
+      ecc.).
+
+
+      ​
+
+
+      Il servizio corrispondente, erogato con il nome di GECO, è disponibile
+      all'indirizzo
+      https://servizi.regione.piemonte.it/catalogo/gestione-online-comunicazioni-obbligatorie-geco
+
+
+      ​
+
+
+      Il servizio si rivolge a imprese, intermediari, Pubblica Amministrazione e
+      Centri per l’Impiego.
+
+
+      ​
+
+
+      Le leggi 608/96 e 264/49 stabiliscono l'obbligo per i datori di lavoro di
+      comunicare avviamenti, trasformazioni o cessazioni di rapporti di lavoro
+      ai Centri per l'impiego provinciali.
+
+
+      ​
+
+
+      La legge 27 dicembre 2006 n° 296, art. 1, commi 1180-1185, estende gli
+      obblighi della comunicazione anche a:
+
+
+      -    rapporti di lavoro a progetto e di associato in partecipazione
+
+
+      -    tirocini di formazione e di orientamento e le altre esperienze
+      lavorative assimilabili
+
+
+      -    trasferimento e distacco del lavoratore
+
+
+      -    modifica della ragione sociale
+
+
+      -    trasferimento o fusione di azienda o ramo di essa.
+
+
+      ​
+
+
+      Gli obblighi della comunicazione sono estesi anche ai datori di lavoro
+      agricoli, agli enti pubblici ed alle Pubbliche Amministrazioni.
+
+
+      Viene inoltre esteso l’effetto della comunicazione all’assolvimento degli
+      obblighi nei confronti delle direzioni regionali e provinciali del lavoro,
+      dell'Istituto nazionale della previdenza sociale, dell'Istituto nazionale
+      per l'assicurazione contro gli infortuni sul lavoro, o di altre forme
+      previdenziali sostitutive o esclusive, e inoltre nei confronti della
+      Prefettura - Ufficio territoriale del Governo.
+
+
+      Il rapporto di lavoro è l’insieme delle comunicazioni obbligatorie di un
+      lavoratore che opera presso un’impresa a partire da una determinata data;
+      inizia con la comunicazione di assunzione, termina con la comunicazione di
+      cessazione e contiene le possibili comunicazioni di aggiornamento
+      trasferimenti, trasformazioni, proroghe).
+
+
+      L’applicativo permette alle aziende o ai propri delegati di gestire tutte
+      le tipologie di comunicazione previste.
+
+
+      Il prodotto "Comonl" è stato sviluppato negli anni nel completo rispetto
+      dei Modelli e Regole definiti dal Ministero.
+
+
+      ​
+
+
+      Il prodotto è strutturato nelle seguenti componenti specifiche:
+
+
+      - [**comonldb**](
+      https://github.com/regione-piemonte/comonl/tree/main/comonl-comonldb ) :
+      script per la creazione del DB (istanza DBMS Oracle);
+
+
+      - [**comonlwcl**](
+      https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlwcl ) :
+      Client Web (Angular8), front-end applicativo;
+
+
+      - [**comonlweb**](
+      https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlweb ) :
+      Componente SPA con servizi REST per comonlwcl;					;
+
+
+      - [**comonlsrv**](
+      https://github.com/regione-piemonte/comonl/tree/main/comonl-comonlweb ) :
+      Componente di esposizione servizi (REST API) verso altri applicativi del
+      Sistema Informativo Regionale.				;
+
+
+      ​
+    shortDescription: |-
+      COMONL: COMunicazioni ONLine Aziende (GECO: GEstione online Comunicazioni
+      Obbligatorie)
+developmentStatus: stable
+it:
+  conforme:
+    gdpr: true
+    lineeGuidaDesign: true
+    misureMinimeSicurezza: true
+    modelloInteroperabilita: true
+  countryExtensionVersion: '0.2'
+  piattaforme:
+    anpr: false
+    cie: false
+    pagopa: false
+    spid: true
+  riuso:
+    codiceIPA: r_piemon
+legal:
+  authorsFile: 'https://raw.githubusercontent.com/regione-piemonte/comonl/master/AUTHORS.txt'
+  license: EUPL-1.2
+  mainCopyrightOwner: Regione Piemonte
+  repoOwner: Regione Piemonte
+localisation:
+  availableLanguages:
+    - it
+  localisationReady: false
+maintenance:
+  contacts:
+    - email: giancarlo.cantoni@csi.it
+      name: Giabcarlo Cantoni
+  type: internal
+name: COMONL
+platforms:
+  - web
+releaseDate: '2023-02-11'
+softwareType: standalone/web
+softwareVersion: 9.0.0
+url: 'https://github.com/regione-piemonte/comonl'
