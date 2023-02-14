@@ -157,6 +157,7 @@ localisation:
   availableLanguages:
     - it
   localisationReady: false
+logo: COMONL.png
 maintenance:
   contacts:
     - email: giancarlo.cantoni@csi.it
